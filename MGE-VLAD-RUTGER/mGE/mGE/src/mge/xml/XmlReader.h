@@ -7,8 +7,7 @@
 #include <sstream>
 #include "glm.hpp"
 #include "mge/core/GameObject.hpp"
-#include "mge/core/World.hpp"
-
+#include "mge/core/collision/StaticGameObject.h"
 
 #include "mge/core/Mesh.hpp"
 #include "mge/materials/AbstractMaterial.hpp"
@@ -17,20 +16,20 @@
 
 using namespace std;
 
+class PhysicsWorld;
 
 class XmlReader
 {
     public:
-            XmlReader(World * pWorld);
+            XmlReader();
             virtual ~XmlReader();
             void Read();
             std::vector<pugi::xml_node> GetNodeChildren(pugi::xml_node node);
-            void LoadObjects();
+           // void LoadObjects();
             void SetupObjects();
-            void SetupLevelGeometry();
+            void SetupLevelGeometry(PhysicsWorld * pPhysicsWorld);
         //    void setUpPhysics();
-            World * world;
-            std::vector<GameObject *> objects;
+            std::vector<StaticGameObject *> objects;
 
             std::vector<std::string> _names;
             std::vector<std::string> _diffuseTextures;

@@ -225,9 +225,6 @@
     <ClInclude Include="src\mge\xml\pugixml.hpp">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
-    <ClInclude Include="src\mge\xml\XmlReader.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
     <ClInclude Include="src\mge\core\collision\RigidbodyGameObject.h">
       <Filter>Header Files\core\collision</Filter>
     </ClInclude>
@@ -236,6 +233,9 @@
     </ClInclude>
     <ClInclude Include="src\mge\core\collision\PhysicsWorld.h">
       <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\xml\XmlReader.h">
+      <Filter>Header Files\xml</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -451,9 +451,6 @@
     <ClCompile Include="src\mge\xml\pugixml.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
-    <ClCompile Include="src\mge\xml\XmlReader.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
     <ClCompile Include="src\mge\util\Color.cpp">
       <Filter>Source Files\util</Filter>
     </ClCompile>
@@ -474,6 +471,9 @@
     </ClCompile>
     <ClCompile Include="src\mge\core\collision\PhysicsWorld.cpp">
       <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\xml\XmlReader.cpp">
+      <Filter>Source Files\xml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,9 +3,9 @@
 #include <string>
 using namespace std;
 #include "mge/core/Renderer.hpp"
-#include "mge/xml/XmlReader.h"
 #include "mge/core/Mesh.hpp"
 #include "mge/core/World.hpp"
+#include "mge/xml/XmlReader.h"
 #include "mge/core/collision/PhysicsWorld.h"
 #include "mge/core/FPS.hpp"
 #include "mge/LUA/LUAManager.h"
@@ -32,8 +32,6 @@ using namespace std;
 #include "mge/materials/WobblyMaterial.hpp"
 #include "mge/materials/TextureNormalMaterial.hpp"
 #include "mge/materials/SpotLightMaterial.hpp"
-
-
 
 #include "mge/behaviours/RotatingBehaviour.hpp"
 #include "mge/behaviours/KeysBehaviour.hpp"
@@ -100,7 +98,7 @@ void MGEDemo::_initializeScene()
     //F is flat shaded, S is smooth shaded (normals aligned or not), check the models folder!
     //Mesh* planeHighPoly = Mesh::load (config::MGE_MODEL_PATH+"plane_8192.obj");
     Mesh* planeQuad = Mesh::load (config::MGE_MODEL_PATH+"NormalPlane.obj");
-    Mesh* cubeMeshF = Mesh::load (config::MGE_MODEL_PATH+"cube_flat.obj");
+    Mesh* cubeMeshF = Mesh::load (config::MGE_MODEL_PATH+"cube.obj");
  /*   Mesh* t_Model = Mesh::load (config::MGE_MODEL_PATH+"t_Model.obj");
     Mesh* teapotMeshS = Mesh::load (config::MGE_MODEL_PATH+"teapot_smooth.obj");
     Mesh* roomMesh = Mesh::load (config::MGE_MODEL_PATH+"Room.obj");
@@ -108,10 +106,7 @@ void MGEDemo::_initializeScene()
     Mesh* roofMesh = Mesh::load (config::MGE_MODEL_PATH+"Roof.obj");
     Mesh* spikesMesh = Mesh::load (config::MGE_MODEL_PATH+"Spikes.obj");*/
 //=====================================================================================================================================================================================================//
-
-
-
-
+	
 
    //===============================  M A T E R I A L S ====================================================================================================================================================//
     AbstractMaterial * spotLightMaterial = new SpotLightMaterial(Color::Red);
@@ -174,7 +169,8 @@ void MGEDemo::_initializeScene()
     camera->setParent(Player);
     camera->setLocalPosition(glm::vec3(0,2,0));
     //camera->rotate(glm::radians(-45.f),glm::vec3(1,0,0));
-    camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
+   camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
+	//camera->setBehaviour(new Orbit(Player, 10.0f, 80.0f, 10.0f));
 
 
 	/*for (int i = 0; i < 10; i++)
@@ -246,6 +242,30 @@ void MGEDemo::_initializeScene()
 
     //{ LIGHTS
     //Directional Light
+
+  // /*GameObject* cube = new GameObject("cube", glm::vec3(0, 0, 0));
+  // cube->setMesh(cubeMeshF);
+  // cube->setMaterial(new ColorMaterial(Color::Orange));
+  // cube->setBehaviour(doorBehaviour);
+  // doorBehaviour->InitializePositions(glm::vec3(0, 2.0f, 0));
+  // cube->scale(glm::vec3(2.0f));
+  // _world->add(cube);
+  //
+
+  // GameObject* cube2 = new GameObject("cube2", glm::vec3(0, 0, 1));
+  // cube2->setMesh(cubeMeshF);
+  // cube2->setMaterial(new ColorMaterial(Color::Orange));
+  // cube->setBehaviour(doorBehaviour);
+  // doorBehaviour->InitializePositions(glm::vec3(0, 2.0f, 0));
+  // _world->add(cube2);
+
+  // GameObject* cube3 = new GameObject("cube3", glm::vec3(0, 0, 2));
+  // cube3->setMesh(cubeMeshF);
+  // cube3->setMaterial(new ColorMaterial(Color::Orange));
+  // cube->setBehaviour(doorBehaviour);
+  // doorBehaviour->InitializePositions(glm::vec3(0, 2.0f, 0));
+  // _world->add(cube3);*/
+
     Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(10,7,10),glm::vec3(1,0,1),glm::vec3(.5f,.5f,.5f),glm::vec3(1.f,1.f,1.f),glm::vec3(1,1,1));
 
     //Points lights
@@ -345,21 +365,20 @@ void MGEDemo::_initializeScene()
 
 	StaticGameObject * floor = new StaticGameObject("floor", glm::vec3(0, -1, 0), _world);
 	floor->setMesh(planeQuad);
-	floor->AddBoxCollider(100, 1, 100);
+	//floor->AddBoxCollider(100, 1, 100);
 	floor->setMaterial(new ColorMaterial(Color::Tomato));
 	_world->add(floor);
 
 	StaticGameObject * obj = new StaticGameObject("cube", glm::vec3(0, 1.5f, 0), _world);
 	obj->setMesh(cubeMeshF);
 	glm::vec3 colliderSize = obj->getMesh()->GetColliderSize();
-	obj->AddBoxCollider(3,3,3);
+	//obj->AddBoxCollider(3,3,3);
 	obj->setMaterial(new ColorMaterial(Color::ForestGreen));
 	_world->add(obj);
   
 
-
-    //xmlReader = new XmlReader(_world);
-    //xmlReader->SetupLevelGeometry();
+   xmlReader = new XmlReader();
+   xmlReader->SetupLevelGeometry(_world);
 
     //for (auto i = xmlReader->objects.begin(); i != xmlReader->objects.end(); ++i )
     //{
@@ -396,11 +415,11 @@ void MGEDemo::_render() {
    // _world->renderDebugInfo();
 
 
-    /*for (auto i = xmlReader->objects.begin(); i != xmlReader->objects.end(); ++i )
+    for (auto i = xmlReader->objects.begin(); i != xmlReader->objects.end(); ++i )
     {
-        GameObject * go = *i;
-        _world->DrawDebugCube(go->getWorldTransform(),_world,((BoxCollider*)go->getCollider())->getMinBounds(),((BoxCollider*)go->getCollider())->getMaxBounds(),glm::vec3(Color::Red));
-    }*/
+        StaticGameObject * go = *i;
+        _world->DrawDebugCube(go->getWorldTransform(),_world,go->GetMinBounds(),go->GetMaxBounds(),glm::vec3(Color::Red));
+    }
 }
 
 void MGEDemo::_updateHud() {

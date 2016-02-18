@@ -5,6 +5,8 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
+#include "mge/xml/XmlReader.h"
+
 class Swapper;
 class GameObject;
 class DebugHud;

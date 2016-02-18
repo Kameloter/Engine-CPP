@@ -31,11 +31,10 @@ void RigidbodyGameObject::updateRigidBody()
 	if (_name == "Player")
 	{
 		glm::vec3 translate;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) translate += getForward() ;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) translate -= getForward() ;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) translate -= getRight() ;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) translate += getRight() ;
-		std::cout << "translate " << translate << std::endl;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) translate += getForward() *2 ;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) translate -= getForward()* 2;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) translate -= getRight() *2;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) translate += getRight() *2;
 		//if (abs(translate.x) == 1 && abs(translate.z) == 1) translate *= 0.707f; else translate *= 1;
 		if (glm::length(translate)> 0) moveRb(translate);
 	}
