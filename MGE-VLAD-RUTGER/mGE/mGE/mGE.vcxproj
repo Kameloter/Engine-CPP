@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\mge\behaviours\AbstractBehaviour.hpp" />
+    <ClInclude Include="src\mge\behaviours\BoxBehaviour.h" />
+    <ClInclude Include="src\mge\behaviours\DoorBehaviour.h" />
+    <ClInclude Include="src\mge\behaviours\FPCamera.h" />
+    <ClInclude Include="src\mge\behaviours\FPController.h" />
+    <ClInclude Include="src\mge\behaviours\KeysBehaviour.hpp" />
+    <ClInclude Include="src\mge\behaviours\KeysBehaviour2.hpp" />
+    <ClInclude Include="src\mge\behaviours\LookAt.hpp" />
+    <ClInclude Include="src\mge\behaviours\Orbit.hpp" />
+    <ClInclude Include="src\mge\behaviours\RotatingBehaviour.hpp" />
+    <ClInclude Include="src\mge\behaviours\TriggerBehaviour.h" />
+    <ClInclude Include="src\mge\config.hpp" />
+    <ClInclude Include="src\mge\core\AbstractGame.hpp" />
+    <ClInclude Include="src\mge\core\Camera.hpp" />
+    <ClInclude Include="src\mge\core\collision\BoxCollider.h" />
+    <ClInclude Include="src\mge\core\collision\Collider.h" />
+    <ClInclude Include="src\mge\core\collision\Collision.h" />
+    <ClInclude Include="src\mge\core\collision\CollisionManager.h" />
+    <ClInclude Include="src\mge\core\collision\PhysicsWorld.h" />
+    <ClInclude Include="src\mge\core\collision\Rigidbody.h" />
+    <ClInclude Include="src\mge\core\collision\RigidbodyGameObject.h" />
+    <ClInclude Include="src\mge\core\collision\SphereCollider.h" />
+    <ClInclude Include="src\mge\core\collision\StaticGameObject.h" />
+    <ClInclude Include="src\mge\core\DirectionalLight.h" />
+    <ClInclude Include="src\mge\core\FPS.hpp" />
+    <ClInclude Include="src\mge\core\GameObject.hpp" />
+    <ClInclude Include="src\mge\core\Light.h" />
+    <ClInclude Include="src\mge\core\light\DirectionalLight.h" />
+    <ClInclude Include="src\mge\core\light\Light.h" />
+    <ClInclude Include="src\mge\core\light\PointLight.h" />
+    <ClInclude Include="src\mge\core\light\SpotLight.h" />
+    <ClInclude Include="src\mge\core\Mesh.hpp" />
+    <ClInclude Include="src\mge\core\ObjectPicker.h" />
+    <ClInclude Include="src\mge\core\Renderer.hpp" />
+    <ClInclude Include="src\mge\core\ShaderProgram.hpp" />
+    <ClInclude Include="src\mge\core\Texture.hpp" />
+    <ClInclude Include="src\mge\core\Timer.hpp" />
+    <ClInclude Include="src\mge\core\World.hpp" />
+    <ClInclude Include="src\mge\LUA\LUAManager.h" />
+    <ClInclude Include="src\mge\materials\AbstractMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\ColorMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\FragLitColorMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\PointLightAttenuationMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\PointLightMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\SpotLightMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\TerrainMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\TextureLitMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\TextureMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\TextureNormalMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\VertexLitColorMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\WobblyMaterial.hpp" />
+    <ClInclude Include="src\mge\MGEDemo.hpp" />
+    <ClInclude Include="src\mge\util\Color.h" />
+    <ClInclude Include="src\mge\util\DebugHud.hpp" />
+    <ClInclude Include="src\mge\xml\pugiconfig.hpp" />
+    <ClInclude Include="src\mge\xml\pugixml.hpp" />
+    <ClInclude Include="src\mge\xml\XmlReader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\mge\shaders\color.fs" />
+    <None Include="assets\mge\shaders\color.vs" />
+    <None Include="assets\mge\shaders\fragLitColor.fs" />
+    <None Include="assets\mge\shaders\fragLitColor.vs" />
+    <None Include="assets\mge\shaders\fragPointAttenuation.fs" />
+    <None Include="assets\mge\shaders\fragPointLitColor.fs" />
+    <None Include="assets\mge\shaders\fragPointLitColor.vs" />
+    <None Include="assets\mge\shaders\NormalMap.fs" />
+    <None Include="assets\mge\shaders\NormalMap.vs" />
+    <None Include="assets\mge\shaders\spotLight.fs" />
+    <None Include="assets\mge\shaders\spotLight.vs" />
+    <None Include="assets\mge\shaders\terrain.fs" />
+    <None Include="assets\mge\shaders\terrain.vs" />
+    <None Include="assets\mge\shaders\texture.fs" />
+    <None Include="assets\mge\shaders\texture.vs" />
+    <None Include="assets\mge\shaders\TextureLit.fs" />
+    <None Include="assets\mge\shaders\TextureLit.vs" />
+    <None Include="assets\mge\shaders\texturenormal.fs" />
+    <None Include="assets\mge\shaders\texturenormal.vs" />
+    <None Include="assets\mge\shaders\vertexLitColor.fs" />
+    <None Include="assets\mge\shaders\vertexLitColor.vs" />
+    <None Include="assets\mge\shaders\vertPointAttenuation.vs" />
+    <None Include="assets\mge\shaders\wobble.fs" />
+    <None Include="assets\mge\shaders\wobble.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\mge\behaviours\AbstractBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\BoxBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\DoorBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\FPCamera.cpp" />
+    <ClCompile Include="src\mge\behaviours\FPController.cpp" />
+    <ClCompile Include="src\mge\behaviours\KeysBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\KeysBehaviour2.cpp" />
+    <ClCompile Include="src\mge\behaviours\LookAt.cpp" />
+    <ClCompile Include="src\mge\behaviours\Orbit.cpp" />
+    <ClCompile Include="src\mge\behaviours\RotatingBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\TriggerBehaviour.cpp" />
+    <ClCompile Include="src\mge\core\AbstractGame.cpp" />
+    <ClCompile Include="src\mge\core\Camera.cpp" />
+    <ClCompile Include="src\mge\core\collision\BoxCollider.cpp" />
+    <ClCompile Include="src\mge\core\collision\Collider.cpp" />
+    <ClCompile Include="src\mge\core\collision\CollisionManager.cpp" />
+    <ClCompile Include="src\mge\core\collision\PhysicsWorld.cpp" />
+    <ClCompile Include="src\mge\core\collision\Rigidbody.cpp" />
+    <ClCompile Include="src\mge\core\collision\RigidbodyGameObject.cpp" />
+    <ClCompile Include="src\mge\core\collision\SphereCollider.cpp" />
+    <ClCompile Include="src\mge\core\collision\StaticGameObject.cpp" />
+    <ClCompile Include="src\mge\core\FPS.cpp" />
+    <ClCompile Include="src\mge\core\GameObject.cpp" />
+    <ClCompile Include="src\mge\core\light\DirectionalLight.cpp" />
+    <ClCompile Include="src\mge\core\light\Light.cpp" />
+    <ClCompile Include="src\mge\core\light\PointLight.cpp" />
+    <ClCompile Include="src\mge\core\light\SpotLight.cpp" />
+    <ClCompile Include="src\mge\core\Mesh.cpp" />
+    <ClCompile Include="src\mge\core\ObjectPicker.cpp" />
+    <ClCompile Include="src\mge\core\Renderer.cpp" />
+    <ClCompile Include="src\mge\core\ShaderProgram.cpp" />
+    <ClCompile Include="src\mge\core\Sound.cpp" />
+    <ClCompile Include="src\mge\core\Texture.cpp" />
+    <ClCompile Include="src\mge\core\Timer.cpp" />
+    <ClCompile Include="src\mge\core\World.cpp" />
+    <ClCompile Include="src\mge\LUA\LUAManager.cpp" />
+    <ClCompile Include="src\mge\materials\AbstractMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\ColorMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\FragLitColorMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\PointLightAttenuationMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\PointLightMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\SpotLightMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\TerrainMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\TextureLitMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\TextureMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\TextureNormalMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\VertexLitColorMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\WobblyMaterial.cpp" />
+    <ClCompile Include="src\mge\MGEDemo.cpp" />
+    <ClCompile Include="src\mge\util\Color.cpp" />
+    <ClCompile Include="src\mge\util\DebugHud.cpp" />
+    <ClCompile Include="src\mge\xml\pugixml.cpp" />
+    <ClCompile Include="src\mge\xml\XmlReader.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1FF6A40F-4F31-40EF-BDC7-91192B9D932A}</ProjectGuid>
+    <RootNamespace>mGE</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\src;C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\include;D:\MGE-VLAD-RUTGER\mGE\mGE\include;D:\MGE-VLAD-RUTGER\mGE\mGE\src;D:\MGE-VLAD-RUTGER\mGE\mGE\src;D:\MGE-VLAD-RUTGER\mGE\mGE</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\lib;D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>openal32.lib;sfml-main-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;opengl32.lib;glew32.lib;lua51.lib;tokamak_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\MGE-VLAD-RUTGER\mGE\mGE\include;D:\MGE-VLAD-RUTGER\mGE\mGE\src;D:\MGE-VLAD-RUTGER\mGE\mGE\src;D:\MGE-VLAD-RUTGER\mGE\mGE</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>openal32.lib;sfml-main-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;opengl32.lib;glew32.lib;lua51.lib;tokamak_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\src;C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\include;D:\MGE-VLAD-RUTGER\mGE\mGE\include;D:\MGE-VLAD-RUTGER\mGE\mGE\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\lib;D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;openal32.lib;sfml-main.lib;sfml-audio.lib;sfml-graphics.lib;sfml-system.lib;sfml-window.lib;opengl32.lib;glew32.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>NotSet</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\MGE-VLAD-RUTGER\mGE\mGE\include;D:\MGE-VLAD-RUTGER\mGE\mGE\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;openal32.lib;sfml-main.lib;sfml-audio.lib;sfml-graphics.lib;sfml-system.lib;sfml-window.lib;opengl32.lib;glew32.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>NotSet</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

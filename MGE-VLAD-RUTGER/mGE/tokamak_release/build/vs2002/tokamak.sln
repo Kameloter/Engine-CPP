@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tokamak", "./tokamak.vcproj", "{D779238A-38C7-5244-9F7F-2FF2540405DC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tokamakdll", "./tokamakdll.vcproj", "{286EFEE2-16E6-AB4A-B111-A5520774BCDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{D779238A-38C7-5244-9F7F-2FF2540405DC}.Debug.ActiveCfg = Debug|Win32
+		{D779238A-38C7-5244-9F7F-2FF2540405DC}.Debug.Build.0 = Debug|Win32
+		{D779238A-38C7-5244-9F7F-2FF2540405DC}.Release.ActiveCfg = Release|Win32
+		{D779238A-38C7-5244-9F7F-2FF2540405DC}.Release.Build.0 = Release|Win32
+		{286EFEE2-16E6-AB4A-B111-A5520774BCDB}.Debug.ActiveCfg = Debug|Win32
+		{286EFEE2-16E6-AB4A-B111-A5520774BCDB}.Debug.Build.0 = Debug|Win32
+		{286EFEE2-16E6-AB4A-B111-A5520774BCDB}.Release.ActiveCfg = Release|Win32
+		{286EFEE2-16E6-AB4A-B111-A5520774BCDB}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

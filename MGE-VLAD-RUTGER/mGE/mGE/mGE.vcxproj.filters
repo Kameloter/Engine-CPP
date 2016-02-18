@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\behaviours">
+      <UniqueIdentifier>{35a7ab4c-5147-41fc-a5c4-9c5c35918a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{c218a28e-f426-4bc8-a8bd-fc05ca059693}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\xml">
+      <UniqueIdentifier>{47ae9f04-88ba-417f-bb2a-6a4f6879977b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LUA">
+      <UniqueIdentifier>{7494465e-42be-4163-81fd-f7e478775149}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\materials">
+      <UniqueIdentifier>{182c22f1-958e-420a-afdc-de0df7ba2d70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{7689a86c-8a9d-41cc-9251-0b7f09923a1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\light">
+      <UniqueIdentifier>{0d960777-0979-4386-8063-3dc57c212c07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\collision">
+      <UniqueIdentifier>{f48f06b2-6d07-4acd-a051-e48682a02f70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shaders">
+      <UniqueIdentifier>{a178750b-ac7a-490e-a6a6-8673ca61f5f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\behaviours">
+      <UniqueIdentifier>{2b280eed-162f-4095-b40c-51ba1ad38ea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{922b4d4e-86ea-48f7-91b3-4aec823d6c46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\light">
+      <UniqueIdentifier>{28b56da1-e742-42c5-9ff9-e8df6c590fd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\collision">
+      <UniqueIdentifier>{af4a61a9-e909-4c0f-a7c5-8303357e082b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{dab042e0-150e-42d9-ac80-24f351eb40e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\materials">
+      <UniqueIdentifier>{3a07186e-f283-4d83-83a2-88c847fc7878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LUA">
+      <UniqueIdentifier>{af86af2f-3de8-4dc8-9b78-083043c963ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\xml">
+      <UniqueIdentifier>{8aab1b60-b518-4c15-ac23-d823ccc76e5a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\mge\config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\MGEDemo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\AbstractBehaviour.hpp">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\BoxBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\DoorBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\FPCamera.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\FPController.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\KeysBehaviour.hpp">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\KeysBehaviour2.hpp">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\LookAt.hpp">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\Orbit.hpp">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\RotatingBehaviour.hpp">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\TriggerBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\AbstractGame.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\Camera.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\DirectionalLight.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\FPS.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\GameObject.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\Light.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\Mesh.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\ObjectPicker.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\Renderer.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\ShaderProgram.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\Texture.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\Timer.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\World.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\light\DirectionalLight.h">
+      <Filter>Header Files\core\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\light\Light.h">
+      <Filter>Header Files\core\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\light\PointLight.h">
+      <Filter>Header Files\core\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\light\SpotLight.h">
+      <Filter>Header Files\core\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\BoxCollider.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\Collider.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\Collision.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\CollisionManager.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\Rigidbody.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\SphereCollider.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\LUA\LUAManager.h">
+      <Filter>Header Files\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\AbstractMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\ColorMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\FragLitColorMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\PointLightAttenuationMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\PointLightMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\SpotLightMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\TerrainMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\TextureLitMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\TextureMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\TextureNormalMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\VertexLitColorMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\materials\WobblyMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\util\Color.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\util\DebugHud.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\xml\pugiconfig.hpp">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\xml\pugixml.hpp">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\xml\XmlReader.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\RigidbodyGameObject.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\StaticGameObject.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\PhysicsWorld.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\mge\shaders\color.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\color.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\fragLitColor.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\fragLitColor.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\fragPointAttenuation.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\fragPointLitColor.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\fragPointLitColor.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\NormalMap.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\NormalMap.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\spotLight.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\spotLight.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\terrain.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\terrain.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\texture.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\texture.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\TextureLit.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\TextureLit.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\texturenormal.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\texturenormal.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\vertexLitColor.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\vertexLitColor.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\vertPointAttenuation.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\wobble.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\wobble.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\mge\behaviours\AbstractBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\BoxBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\DoorBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\FPCamera.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\FPController.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\KeysBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\KeysBehaviour2.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\LookAt.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\Orbit.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\RotatingBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\TriggerBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\AbstractGame.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\Camera.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\FPS.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\GameObject.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\Mesh.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\ObjectPicker.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\Renderer.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\ShaderProgram.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\Sound.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\Texture.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\Timer.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\World.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\light\DirectionalLight.cpp">
+      <Filter>Source Files\core\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\light\Light.cpp">
+      <Filter>Source Files\core\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\light\PointLight.cpp">
+      <Filter>Source Files\core\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\light\SpotLight.cpp">
+      <Filter>Source Files\core\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\collision\BoxCollider.cpp">
+      <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\collision\Collider.cpp">
+      <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\collision\CollisionManager.cpp">
+      <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\collision\Rigidbody.cpp">
+      <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\collision\SphereCollider.cpp">
+      <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\AbstractMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\ColorMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\FragLitColorMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\PointLightAttenuationMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\PointLightMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\SpotLightMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\TerrainMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\TextureLitMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\TextureMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\TextureNormalMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\VertexLitColorMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\WobblyMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\LUA\LUAManager.cpp">
+      <Filter>Source Files\LUA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\xml\pugixml.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\xml\XmlReader.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\util\Color.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\util\DebugHud.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\MGEDemo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\collision\RigidbodyGameObject.cpp">
+      <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\collision\StaticGameObject.cpp">
+      <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\collision\PhysicsWorld.cpp">
+      <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

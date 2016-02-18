@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<GameObjects>
+	<Object name="collider">
+		<Texture name="collider_texture"/>
+		<Normal name="collider_normal"/>
+		<Specular name="collider_specular"/>
+		<Position X="0.0" Y="2.0" Z="0.0"/>
+		<Col Type="1"/>
+		<ColSize X="2.0" Y="4.0" Z="2.0"/>
+	</Object>
+</GameObjects>

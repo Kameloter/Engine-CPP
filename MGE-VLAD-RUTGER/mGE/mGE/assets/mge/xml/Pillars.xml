@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<GameObjects>
+	<Object name="pillar">
+		<Texture name="pillar_texture"/>
+		<Normal name="pillar_normal"/>
+		<Specular name="pillar_specular"/>
+		<Position X="4.27130270004" Y="2.21543426978" Z="0.165440142155"/>
+		<Col Type="1"/>
+		<ColSize X="1.0" Y="1.0" Z="1.0"/>
+	</Object>
+	<Object name="pillar1">
+		<Texture name="pillar1_texture"/>
+		<Normal name="pillar1_normal"/>
+		<Specular name="pillar1_specular"/>
+		<Position X="-2.67475281971" Y="1.14369024476" Z="0.0854064050807"/>
+		<Col Type="1"/>
+		<ColSize X="1.93709291473" Y="1.93709291473" Z="1.93709291473"/>
+	</Object>
+	<Object name="pillar2">
+		<Texture name="pillar2_texture"/>
+		<Normal name="pillar2_normal"/>
+		<Specular name="pillar2_specular"/>
+		<Position X="-0.987920066253" Y="0.590415790622" Z="-3.74062717909"/>
+		<Col Type="1"/>
+		<ColSize X="3.75232896031" Y="3.75232896031" Z="3.75232896031"/>
+	</Object>
+</GameObjects>

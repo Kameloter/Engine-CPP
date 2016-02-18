@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<GameObjects>
+	<Object name="pCube3">
+		<Texture name="pCube3_texture"/>
+		<Normal name="pCube3_normal"/>
+		<Specular name="pCube3_specular"/>
+		<Position X="5.79176858893" Y="3.79208808634" Z="3.85663483252"/>
+		<Col Type="1"/>
+		<ColOffset X="0.0" Y="0.0" Z="0.0"/>
+		<ColSize X="4.88087561122" Y="4.88087561122" Z="4.88087561122"/>
+	</Object>
+	<Object name="pCube2">
+		<Texture name="pCube2_texture"/>
+		<Normal name="pCube2_normal"/>
+		<Specular name="pCube2_specular"/>
+		<Position X="-2.65394650712" Y="2.10840351701" Z="-1.22759642043"/>
+		<Col Type="1"/>
+		<ColOffset X="0.0" Y="0.0" Z="0.0"/>
+		<ColSize X="2.74705288014" Y="2.74705288014" Z="2.74705288014"/>
+	</Object>
+	<Object name="pCube1">
+		<Texture name="pCube1_texture"/>
+		<Normal name="pCube1_normal"/>
+		<Specular name="pCube1_specular"/>
+		<Position X="0.0" Y="0.0" Z="-5.17418238744"/>
+		<Col Type="1"/>
+		<ColOffset X="0.0" Y="0.0" Z="0.0"/>
+		<ColSize X="1.0" Y="1.0" Z="1.0"/>
+	</Object>
+</GameObjects>
