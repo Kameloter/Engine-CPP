@@ -57,7 +57,8 @@ void RigidbodyGameObject::updateRigidBody()
 	glm::vec3 glmRbVel(rbVel[0], rbVel[1], rbVel[2]);
 
 //	std::cout << "Rigid body velocity " << glm::length(glmRbVel) << std::endl;
-	setWorldPosition(toGLMpos);
+	//setWorldPosition(toGLMpos);
+	setLocalPosition(toGLMpos);
 }
 
 void RigidbodyGameObject::AddBoxCollider(float pW, float pH, float pD)

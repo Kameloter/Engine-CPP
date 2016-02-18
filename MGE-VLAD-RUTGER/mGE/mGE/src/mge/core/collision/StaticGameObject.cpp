@@ -37,6 +37,7 @@ void StaticGameObject::updateStaticBody()
 	rotationMat.SetColumns(rX, rY, rZ);
 
 	_animBody->SetRotation(rotationMat);
+	setWorldPosition(glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]));
 }
 
 void StaticGameObject::AddBoxCollider(float pW, float pH, float pD)

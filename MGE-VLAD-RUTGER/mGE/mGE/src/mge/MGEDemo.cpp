@@ -338,10 +338,10 @@ void MGEDemo::_initializeScene()
 		_world->add(obj);
 	}*/
 
-	GameObject * objs = new GameObject("spikes", glm::vec3(0, 1.5f, 0));
-	objs->setMesh(planeQuad);
-	objs->setMaterial(new ColorMaterial(Color::Tomato));
-	_world->add(objs);
+	//GameObject * objs = new GameObject("spikes", glm::vec3(0, 1.5f, 0));
+	//objs->setMesh(planeQuad);
+	//objs->setMaterial(new ColorMaterial(Color::Tomato));
+	//_world->add(objs);
 
 	StaticGameObject * floor = new StaticGameObject("floor", glm::vec3(0, -1, 0), _world);
 	floor->setMesh(planeQuad);
@@ -351,8 +351,8 @@ void MGEDemo::_initializeScene()
 
 	StaticGameObject * obj = new StaticGameObject("cube", glm::vec3(0, 1.5f, 0), _world);
 	obj->setMesh(cubeMeshF);
-//	glm::vec3 col(obj->getMesh);
-	obj->AddBoxCollider(2,2,2);
+	glm::vec3 colliderSize = obj->getMesh()->GetColliderSize();
+	obj->AddBoxCollider(3,3,3);
 	obj->setMaterial(new ColorMaterial(Color::ForestGreen));
 	_world->add(obj);
   
