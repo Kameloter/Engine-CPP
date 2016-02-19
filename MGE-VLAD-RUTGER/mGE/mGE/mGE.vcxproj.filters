@@ -156,24 +156,6 @@
     <ClInclude Include="src\mge\core\light\SpotLight.h">
       <Filter>Header Files\core\light</Filter>
     </ClInclude>
-    <ClInclude Include="src\mge\core\collision\BoxCollider.h">
-      <Filter>Header Files\core\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="src\mge\core\collision\Collider.h">
-      <Filter>Header Files\core\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="src\mge\core\collision\Collision.h">
-      <Filter>Header Files\core\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="src\mge\core\collision\CollisionManager.h">
-      <Filter>Header Files\core\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="src\mge\core\collision\Rigidbody.h">
-      <Filter>Header Files\core\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="src\mge\core\collision\SphereCollider.h">
-      <Filter>Header Files\core\collision</Filter>
-    </ClInclude>
     <ClInclude Include="src\mge\LUA\LUAManager.h">
       <Filter>Header Files\LUA</Filter>
     </ClInclude>
@@ -393,21 +375,6 @@
     </ClCompile>
     <ClCompile Include="src\mge\core\light\SpotLight.cpp">
       <Filter>Source Files\core\light</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mge\core\collision\BoxCollider.cpp">
-      <Filter>Source Files\core\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mge\core\collision\Collider.cpp">
-      <Filter>Source Files\core\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mge\core\collision\CollisionManager.cpp">
-      <Filter>Source Files\core\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mge\core\collision\Rigidbody.cpp">
-      <Filter>Source Files\core\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mge\core\collision\SphereCollider.cpp">
-      <Filter>Source Files\core\collision</Filter>
     </ClCompile>
     <ClCompile Include="src\mge\materials\AbstractMaterial.cpp">
       <Filter>Source Files\materials</Filter>

@@ -55,87 +55,20 @@ void XmlReader::SetupLevelGeometry(PhysicsWorld * pPhysicsWorld)
     root->setMaterial(new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"test.jpg"),32.f));
 	pPhysicsWorld->add(root);
 
-
-	//GameObject* cube = new GameObject("cube", glm::vec3(0, 0, 0));
-	//cube->setMesh(Mesh::load(config::MGE_MODEL_PATH + "cube.obj"));
-	//cube->setMaterial(new ColorMaterial(glm::vec3(0,0,1)));
-	//pPhysicsWorld->add(cube);
-
-
-	//GameObject* cube2 = new GameObject("cube2", glm::vec3(0, 0, 1));
-	//cube2->setMesh(Mesh::load(config::MGE_MODEL_PATH + "cube.obj"));
-	//cube2->setMaterial(new ColorMaterial(glm::vec3(0, 0, 1)));
-	//pPhysicsWorld->add(cube2);
-
-	//GameObject* cube3 = new GameObject("cube3", glm::vec3(0, 0, 2));
-	//cube3->setMesh(Mesh::load(config::MGE_MODEL_PATH + "cube.obj"));
-	//cube3->setMaterial(new ColorMaterial(glm::vec3(0, 0, 1)));
-	//pPhysicsWorld->add(cube3);
-
-
     for(int i = 0; i < _names.size(); i++)
     {
+			StaticGameObject* obj = new StaticGameObject(_names[i], _positions[i], pPhysicsWorld);
 
-       // if(_names[i] == "Wallcoll_9")
-      //  {
-			StaticGameObject * obj = new StaticGameObject(_names[i],_positions[i]/2.0f, pPhysicsWorld);
-			//obj->setMesh(cubeMeshF);
-			//glm::vec3 colliderSize = obj->getMesh()->GetColliderSize();
-			//obj->setMaterial(new ColorMaterial(Color::ForestGreen));
-			//_world->add(obj);
-           //   std::cout<< "bla" << std::endl;
-           // GameObject * obj = new GameObject(_names[i],_positions[i]);  //original
-            glm::vec3 boxColSize(_scales[i]);
-             //   std::cout<< "cOL SIZE " << _scales[i] << std::endl;
-            glm::vec3 halfSize = boxColSize * .5f;
-              //  std::cout<< "Half " << halfSize << std::endl;
-            glm::vec3 offset = obj->getLocalPosition();
-
-            glm::vec3 minBounds(offset.x - halfSize.x,
-                                offset.y - halfSize.y,
-                                offset.z - halfSize.z);
-            glm::vec3 maxBounds(offset.x + halfSize.x,
-                                offset.y + halfSize.y,
-                                offset.z + halfSize.z);
-			obj->SetBounds(maxBounds, minBounds);
-
-				cout <<"localpos "<< obj->getLocalPosition()<< "worldPos " << obj->getWorldPosition()<< endl;
-				cout << "minbound " << minBounds << "maxbound " << maxBounds << endl;
-			obj->AddBoxCollider(boxColSize.x, boxColSize.y, boxColSize.z);
-          // obj->setCollider(new BoxCollider(minBounds,maxBounds));
+			glm::vec3 boxColSize(_scales[i]);
+			obj->AddBoxCollider(boxColSize.x,boxColSize.y, boxColSize.z);
+            
             objects.push_back(obj);
 			pPhysicsWorld->add(obj);
-    //    }
-
     }
 }
 void XmlReader::SetupObjects()
 {
-  //  for(int i = 0; i < _names.size(); i++)
-  //  {
-  //      GameObject * obj = new GameObject(_names[i],_positions[i]);  //original
-  //      obj->setMesh(Mesh::load(config::MGE_MODEL_PATH  + "Cubet.obj"));
-  //      obj->setMaterial(new ColorMaterial());
-  //      obj->scale(_scales[i]);
 
-  //      glm::vec3 boxColSize(_scales[i]);
-  //      //boxColSize.x *= -1;
-  //      glm::vec3 halfSize = boxColSize * .5f;
-
-  //      glm::vec3 offset = obj->getLocalPosition();
-
-  //      glm::vec3 minBounds(offset.x - halfSize.x,
-  //                          offset.y - halfSize.y,
-  //                          offset.z - halfSize.z);
-  //      glm::vec3 maxBounds(offset.x + halfSize.x,
-  //                          offset.y + halfSize.y,
-  //                          offset.z + halfSize.z);
-
-		////obj-
-  //      obj->setCollider(new BoxCollider(minBounds,maxBounds));
-  //      objects.push_back(obj);
-  //      //_collisionManager->addObject(colCube);
-  //  }
 }
 std::vector<pugi::xml_node> XmlReader::GetNodeChildren(pugi::xml_node node)
 {

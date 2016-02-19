@@ -77,34 +77,15 @@ AbstractMaterial* pointLightMaterial;
 AbstractMaterial* pointAttenuationMat;
 PointLight* light2;
  RigidbodyGameObject* Player ;
- GameObject* room ;
-GameObject* pilars ;
-GameObject* roof ;
-GameObject* spikes ;
- BoxCollider  * playerCol;
- BoxCollider  * boxCol;
- BoxCollider  * boxCol2;
 GameObject* box;
-//build the game _world
 void MGEDemo::_initializeScene()
 {
-  //  _renderer->setClearColor(100,100,100);
     _renderer->setClearColor(0,0,0);
 
  //===============================  M E S H E S ====================================================================================================================================================//
 
-    //load a bunch of meshes we will be using throughout this demo
-    //each mesh only has to be loaded once, but can be used multiple times:
-    //F is flat shaded, S is smooth shaded (normals aligned or not), check the models folder!
-    //Mesh* planeHighPoly = Mesh::load (config::MGE_MODEL_PATH+"plane_8192.obj");
     Mesh* planeQuad = Mesh::load (config::MGE_MODEL_PATH+"NormalPlane.obj");
     Mesh* cubeMeshF = Mesh::load (config::MGE_MODEL_PATH+"cube.obj");
- /*   Mesh* t_Model = Mesh::load (config::MGE_MODEL_PATH+"t_Model.obj");
-    Mesh* teapotMeshS = Mesh::load (config::MGE_MODEL_PATH+"teapot_smooth.obj");
-    Mesh* roomMesh = Mesh::load (config::MGE_MODEL_PATH+"Room.obj");
-    Mesh* pilarsMesh = Mesh::load (config::MGE_MODEL_PATH+"Pilars.obj");
-    Mesh* roofMesh = Mesh::load (config::MGE_MODEL_PATH+"Roof.obj");
-    Mesh* spikesMesh = Mesh::load (config::MGE_MODEL_PATH+"Spikes.obj");*/
 //=====================================================================================================================================================================================================//
 	
 
@@ -112,14 +93,6 @@ void MGEDemo::_initializeScene()
     AbstractMaterial * spotLightMaterial = new SpotLightMaterial(Color::Red);
 
     //MATERIALS
-   // AbstractMaterial * wobbleMat = new WobblyMaterial(Texture::load(config::MGE_TEXTURE_PATH+"bricks.jpg"));
-
-    //Wobbling material <--not wobbling .. is texturenormal now
-  //  AbstractMaterial* wobblingMaterial = new TextureNormalMaterial(Texture::load (config::MGE_TEXTURE_PATH+"pistol.png"),glm::vec3(.3f),32.f,Texture::load(config::MGE_TEXTURE_PATH + "pistolNormal.png"));
- //   AbstractMaterial* wobblingMaterial2 = new TextureNormalMaterial(Texture::load (config::MGE_TEXTURE_PATH+"test.jpg"),glm::vec3(.3f),32.f,Texture::load(config::MGE_TEXTURE_PATH + "testNormal.jpg"));
- //   AbstractMaterial* wobblingMaterial3 = new TextureNormalMaterial(Texture::load (config::MGE_TEXTURE_PATH+"rocks.jpg"),glm::vec3(.3f),32.f,Texture::load(config::MGE_TEXTURE_PATH + "rocksnormal.png"));
-
-  //  AbstractMaterial* pistolMat = new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"pistol.png"),glm::vec3(.3f),32.f);
 
     //Texture Material + Light !
     AbstractMaterial* wallMat = new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"test.jpg"),32.f);
@@ -141,7 +114,6 @@ void MGEDemo::_initializeScene()
     AbstractMaterial * greenMaterial = new ColorMaterial(glm::vec3(0,1,0));
     AbstractMaterial * maroonMaterial = new ColorMaterial(Color::Maroon);
 
-
  //==========================================================================================================================================================================================================================//
 
     DoorBehaviour * doorBehaviour = new DoorBehaviour();
@@ -155,11 +127,7 @@ void MGEDemo::_initializeScene()
     _world->add(camera);
     _world->setMainCamera(camera);
 
-
     Player = new RigidbodyGameObject("Player", glm::vec3(4,1.5,4),_world);
-   // Rigidbody * rBody = new Rigidbody(glm::vec3(0),Player);
-  //  rBody->setIsKinemati(fa);
-  //  Player->setRigidBody(rBody);
 	Player->AddBoxCollider(1, 1, 1);
     Player->setMesh(cubeMeshF);
     Player->setMaterial(maroonMaterial);
@@ -168,138 +136,27 @@ void MGEDemo::_initializeScene()
 
     camera->setParent(Player);
     camera->setLocalPosition(glm::vec3(0,2,0));
-    //camera->rotate(glm::radians(-45.f),glm::vec3(1,0,0));
    camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
 	//camera->setBehaviour(new Orbit(Player, 10.0f, 80.0f, 10.0f));
 
 
-	/*for (int i = 0; i < 10; i++)
-	{*/
-		//StaticGameObject * sgo = new StaticGameObject("cupe", glm::vec3(0, 0, 0), _world);
-		//sgo->setMaterial(new ColorMaterial(Color::ForestGreen));
-	//	sgo->setMesh(cubeMeshF);
-		//glm::vec3 colSize = sgo->getMesh()->GetColliderSize();
-		//sgo->AddBoxCollider(colSize.x, colSize.y, colSize.z);
-// 	}
-	
-
-
-    /**  PROTOTYPE SCENE
-
-    room = new GameObject ("room", glm::vec3(0,0,0));
-    room->setMesh(roomMesh);
-    room->setMaterial(wallMat);
-    _world->add(room); if(_rigidBody)
-    {
-        _rigidBody->simulatePhysics(pStep);
-    }
-
-     roof = new GameObject ("roof", glm::vec3(0,0,0));
-    roof->setMesh(roofMesh);
-    roof->setMaterial(textureMaterial2);
-    _world->add(roof);
-
-    spikes = new GameObject ("spikes", glm::vec3(0,0,0));
-    spikes->setMesh(spikesMesh);
-    spikes->setMaterial(textureMaterial2);
-    _world->add(spikes);
-
-       pilars = new GameObject ("pilars", glm::vec3(0,0,0));
-    pilars->setMesh(pilarsMesh);
-    pilars->setMaterial(pillarMat);
-    _world->add(pilars);
-
-//    GameObject* teapot = new GameObject ("teapot", glm::vec3(0,0,0));
-//    teapot->setMesh (teapotMeshS);
-//    teapot->setMaterial(textureLit);
-//    teapot->setBehaviour (new KeysBehaviour());
-//    _world->add(teapot);
-//
-    box = new GameObject ("box", glm::vec3(-2,0.25f,1));
-    box->setMesh (cubeMeshF);
-    box->setMaterial(redMaterial);
-    box->setBehaviour(new BoxBehaviour(Player));
-    _world->add(box);
-    box->scale(glm::vec3(0.2f));
-
-    GameObject* door = new GameObject ("door", glm::vec3(4,1,0));
-    door ->setMesh (cubeMeshF);
-    door ->setMaterial(greenMaterial);
-    door->setBehaviour(doorBehaviour);
-    doorBehaviour->InitializePositions(glm::vec3(0,2.0f,0));
-    _world->add(door );
-    door ->scale(glm::vec3(0.2f,1.0f,0.5f));
-
-    GameObject* trigger = new GameObject ("trigger", glm::vec3(2,.25f,0));
-    trigger ->setMesh (cubeMeshF);
-    trigger ->setMaterial(blueMaterial);
-    trigger->setBehaviour(new TriggerBehaviour(box, doorBehaviour));
-    _world->add(trigger );
-    trigger ->scale(glm::vec3(0.2f));
-
-
-*/
-
     //{ LIGHTS
     //Directional Light
-
-  // /*GameObject* cube = new GameObject("cube", glm::vec3(0, 0, 0));
-  // cube->setMesh(cubeMeshF);
-  // cube->setMaterial(new ColorMaterial(Color::Orange));
-  // cube->setBehaviour(doorBehaviour);
-  // doorBehaviour->InitializePositions(glm::vec3(0, 2.0f, 0));
-  // cube->scale(glm::vec3(2.0f));
-  // _world->add(cube);
-  //
-
-  // GameObject* cube2 = new GameObject("cube2", glm::vec3(0, 0, 1));
-  // cube2->setMesh(cubeMeshF);
-  // cube2->setMaterial(new ColorMaterial(Color::Orange));
-  // cube->setBehaviour(doorBehaviour);
-  // doorBehaviour->InitializePositions(glm::vec3(0, 2.0f, 0));
-  // _world->add(cube2);
-
-  // GameObject* cube3 = new GameObject("cube3", glm::vec3(0, 0, 2));
-  // cube3->setMesh(cubeMeshF);
-  // cube3->setMaterial(new ColorMaterial(Color::Orange));
-  // cube->setBehaviour(doorBehaviour);
-  // doorBehaviour->InitializePositions(glm::vec3(0, 2.0f, 0));
-  // _world->add(cube3);*/
-
     Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(10,7,10),glm::vec3(1,0,1),glm::vec3(.5f,.5f,.5f),glm::vec3(1.f,1.f,1.f),glm::vec3(1,1,1));
 
     //Points lights
-
     Light *light = new PointLight("PointLight1", glm::vec3(2,2,0),glm::vec3(.1f),glm::vec3(Color::Green),glm::vec3(0.3f));
-    AbstractMaterial* lightMaterial = new ColorMaterial(light->diffuse);
-    light->setMesh(cubeMeshF);
-    light->setMaterial(lightMaterial);
     _world->add(light);
-    light->scale(glm::vec3(0.2f,0.2f,0.2f));
-    //light->setBehaviour(new KeysBehaviour2());
 
     light2 = new PointLight("PointLight2", glm::vec3(-7,2,0),glm::vec3(.1f),glm::vec3(1),glm::vec3(0.3f));
-//    AbstractMaterial* lightMaterial2 = new ColorMaterial(light2->diffuse);
-//    light2->setMesh(cubeMeshF);
-//    light2->setMaterial(lightMaterial2);
     _world->add(light2);
-//    light2->scale(glm::vec3(0.2f,0.2f,0.2f));
-   // light2->setBehaviour(new KeysBehaviour2());
 
     Light *light3 = new SpotLight("SpotLight",glm::vec3(0,-1,0),glm::vec3(.1f),glm::vec3(Color::Red),glm::vec3(.5f));
-//    AbstractMaterial* lightMaterial3 = new ColorMaterial(light3->diffuse);
-//    light3->setMesh(cubeMeshF);
-//    light3->setMaterial(lightMaterial3);
     _world->add(light3);
-//    light3->scale(glm::vec3(0.2f,0.2f,0.2f));
-  //  light3->setBehaviour(new KeysBehaviour2());
     //}
 
 
     //ADD OBJECTS TO WORLD ! ================================================================
-
-
-
     //Add Lights
 //    _world->AddLight(dirLight);
     _world->AddLight(light);
@@ -309,117 +166,23 @@ void MGEDemo::_initializeScene()
     //======================================================================================
     //PHYSICS TESTS
 
-
-
-//    for(int i = 0 ; i < 1000 ; i++)
-//    {
-//
-//        GameObject* colCube = new GameObject ("colCubeA ", glm::vec3(5 + i,1,5+i ));
-//        colCube ->setMesh (cubeMeshF);
-//        colCube ->setMaterial(blueMaterial);
-//        _world->add(colCube );
-//
-//
-//
-//        glm::vec3 boxColSize(2,2,2);
-//        glm::vec3 halfSize = boxColSize * .5f;
-//
-//        glm::vec3 offset = colCube->getLocalPosition();
-//
-//        glm::vec3 minBounds(offset.x - halfSize.x,
-//                            offset.y - halfSize.y,
-//                            offset.z - halfSize.z);
-//        glm::vec3 maxBounds(offset.x + halfSize.x,
-//                            offset.y + halfSize.y,
-//                            offset.z + halfSize.z);
-//
-//
-//        boxCol = new BoxCollider(minBounds,maxBounds);
-//        colCube->setCollider(boxCol);
-//
-//        _collisionManager->addObject(colCube);
-//    }
-
-
-
-
-
-
-
-
-/*
-	for (int i = 0; i < 5; i++)
-	{
-		StaticGameObject * obj = new StaticGameObject("cube", glm::vec3(0, 1, 0), _world);
-		obj->setMesh(cubeMeshF);
-		glm::vec3 col(obj->getMesh()->GetColliderSize());
-		obj->AddBoxCollider(col.x,col.y,col.z);
-		obj->setMaterial(new ColorMaterial(Color::ForestGreen));
-		_world->add(obj);
-	}*/
-
-	//GameObject * objs = new GameObject("spikes", glm::vec3(0, 1.5f, 0));
-	//objs->setMesh(planeQuad);
-	//objs->setMaterial(new ColorMaterial(Color::Tomato));
-	//_world->add(objs);
-
-	StaticGameObject * floor = new StaticGameObject("floor", glm::vec3(0, -1, 0), _world);
-	floor->setMesh(planeQuad);
-	//floor->AddBoxCollider(100, 1, 100);
-	floor->setMaterial(new ColorMaterial(Color::Tomato));
-	_world->add(floor);
-
-	StaticGameObject * obj = new StaticGameObject("cube", glm::vec3(0, 1.5f, 0), _world);
-	obj->setMesh(cubeMeshF);
-	glm::vec3 colliderSize = obj->getMesh()->GetColliderSize();
-	//obj->AddBoxCollider(3,3,3);
-	obj->setMaterial(new ColorMaterial(Color::ForestGreen));
-	_world->add(obj);
-  
-
    xmlReader = new XmlReader();
    xmlReader->SetupLevelGeometry(_world);
-
-    //for (auto i = xmlReader->objects.begin(); i != xmlReader->objects.end(); ++i )
-    //{
-    //     // GameObject * go = (GameObject*)*i;
-    //    //  cout << go->getName() << endl;
-    //        cout << "Added " << ((GameObject*)*i)->getName() << endl;
-    //      _world->add(*i);
-
-        
-    //}
-
 
     LUAManager::InitializeFile();
 }
 
-void MGEDemo::CreateLights(){
-
-
-}
 bool won = false;
 void MGEDemo::_render() {
-    //Collider * dummy = Player->getCollider();
-    if(Player->getLocalPosition().x > 4.5f) won = true;
-    if(won) {
-        string winText =  " YOU WIN YAAY !";
-        _hud->setWinTextInfo(winText);
-    }
+	if (Player->getLocalPosition().x > 4.5f) won = true;
+	if (won) {
+		string winText = " YOU WIN YAAY !";
+		_hud->setWinTextInfo(winText);
+	}
 
-    AbstractGame::_render();
-    _updateHud();
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::C)) system("cls");
-   // std::cout<< " Player -> " << Player->getLocalPosition()<<std::endl;
-
-   // _world->renderDebugInfo();
-
-
-    for (auto i = xmlReader->objects.begin(); i != xmlReader->objects.end(); ++i )
-    {
-        StaticGameObject * go = *i;
-        _world->DrawDebugCube(go->getWorldTransform(),_world,go->GetMinBounds(),go->GetMaxBounds(),glm::vec3(Color::Red));
-    }
+	AbstractGame::_render();
+	_updateHud();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) system("cls");
 }
 
 void MGEDemo::_updateHud() {

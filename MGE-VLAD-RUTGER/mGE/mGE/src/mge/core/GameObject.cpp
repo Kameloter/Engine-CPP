@@ -27,7 +27,6 @@ GameObject::~GameObject()
         remove (child);
         delete child;
     }
-
     //do not forget to delete behaviour, material, mesh, collider manually if required!
 }
 
@@ -44,7 +43,7 @@ std::string GameObject::getName() const
 void GameObject::setTransform (const glm::mat4& pTransform)
 {
     _transform = pTransform;
-	updateTransform = true; //mod
+	updateTransform = true; 
 }
 
 glm::mat4& GameObject::getTransform()
@@ -124,9 +123,6 @@ Collider* GameObject::getCollider()
     oldPos = getLocalPosition();
 
     boxCollider->translate(translation);
-//    std::cout << "Returned collider position -> " <<
-//    "Min Bounds -> " << ((BoxCollider*)boxCollider)->getMinBounds() <<
-//    "Max Bounds -> " << ((BoxCollider*)boxCollider)->getMaxBounds() << std::endl;
     return boxCollider;
 }
 
@@ -157,7 +153,6 @@ void GameObject::remove (GameObject* pChild) {
     pChild->setParent(NULL);
 }
 
-////////////
 void GameObject::setWorldPosition(glm::vec3 pWorldPos)
 {
 	if (updateTransform)
@@ -215,8 +210,6 @@ glm::vec3 GameObject::getUp()
     return glm::normalize(glm::vec3(_transform[1]));
 }
 
-////////////
-
 void GameObject::translate(glm::vec3 pTranslation)
 {
 	setTransform(glm::translate(_transform, pTranslation));
@@ -234,19 +227,12 @@ void GameObject::rotate(float pAngle, glm::vec3 pAxis)
 
 void GameObject::update(float pStep, const glm::mat4& pParentTransform)
 {
-	//if (_name == "root") cout << "Update transform -> update behaviour " << endl;
     _worldTransform = pParentTransform * _transform;
 	updateTransform = false;
 
     if (_behaviour) {
 		_behaviour->update(pStep);
 	}
-
-    //if(_name == "Player") std::cout << "POS AFTER RB - > " << getLocalPosition() << std::endl;
-
-    //make sure behaviour is updated after worldtransform is se
-
-
 
     for (int i = _children.size()-1; i >= 0; --i ) {
         _children[i]->update(pStep, _worldTransform);

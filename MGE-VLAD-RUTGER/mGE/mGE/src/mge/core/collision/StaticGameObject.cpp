@@ -3,16 +3,17 @@
 
 
 StaticGameObject::StaticGameObject(std::string pName, glm::vec3 pPosition, PhysicsWorld* pWorld)
-	: GameObject(pName,pPosition),
+	: GameObject(pName, pPosition),
 	_animBody(pWorld->addStaticGameObject(this))
 {
-
+	neV3 pos;
+	pos.Set(pPosition.x, pPosition.y, pPosition.z);
+	_animBody->SetPos(pos);
 }
 
 
 StaticGameObject::~StaticGameObject()
 {
-
 }
 
 void StaticGameObject::SetBounds(glm::vec3 maxBound, glm::vec3 minBound)
@@ -34,7 +35,7 @@ glm::vec3 StaticGameObject::GetMaxBounds()
 void StaticGameObject::updateStaticBody()
 {
 	//neV3 goWorldPos;
-	//goWorldPos.Set(getWorldPosition().x, getWorldPosition().y, getWorldPosition().z * -1);
+	//goWorldPos.Set(getWorldPosition().x, getWorldPosition().y, getWorldPosition().z * -1 );
 	//_animBody->SetPos(goWorldPos);
 
 	//neM3 rotationMat;
@@ -53,13 +54,16 @@ void StaticGameObject::updateStaticBody()
 
 	//_animBody->SetRotation(rotationMat);
 	//setWorldPosition(glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]));
+	//std::cout <<glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]) << std::endl;
 }
 
 void StaticGameObject::AddBoxCollider(float pW, float pH, float pD)
 {
 	neGeometry* geometry = _animBody->AddGeometry();
 	neV3 box;
+	std::cout <<"boxPOS" <<glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]) << std::endl;
 	box.Set(pW, pH, pD);
 	geometry->SetBoxSize(box);
 	_animBody->UpdateBoundingInfo();
+
 }

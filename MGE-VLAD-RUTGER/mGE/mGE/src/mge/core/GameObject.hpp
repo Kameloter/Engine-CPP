@@ -14,15 +14,6 @@ class AbstractMaterial;
 class World;
 class Mesh;
 
-
-
-/**
- * A GameObject wraps all data required to display an (interactive / dynamic) object, but knows nothing about OpenGL or rendering.
- * GameObject exposes both local and world transform and shows one way of how you can cache the worldtransform.
- * A nice addition for you as a student would be for example to try and add an inversetransform and inverseworldtransform (also cached).
- *
- * You will need to alter this class to add colliders etc.
- */
 class GameObject
 {
 	public:
