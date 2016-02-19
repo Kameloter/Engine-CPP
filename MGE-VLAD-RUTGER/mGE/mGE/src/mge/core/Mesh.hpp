@@ -30,6 +30,7 @@ class Mesh
          */
         void streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUVsAttrib);
         void streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUVsAttrib,GLint pTangentAttrib,GLint pBitangentAttrib);
+		void calculateTangents();
         void renderDebugInfo(glm::mat4& pModelMatrix, World* pWorld);
 		glm::vec3 GetColliderSize();
 	protected:

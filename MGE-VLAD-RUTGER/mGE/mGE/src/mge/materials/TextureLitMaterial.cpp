@@ -53,6 +53,8 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
     int spotCount = 0;
     for (int i =0; i < pWorld->getLightCount(); i++)
     {
+		
+
             Light* temp = pWorld->getLightAt(i);
         switch(temp->type){
             case Light::LightType::Directional:
@@ -67,9 +69,11 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
                 std::string num = "pointLight[" + std::to_string(pointCount - 1) + "].";
 
                 glUniform3fv(_shader->getUniformLocation(num + "position"),1, glm::value_ptr(temp->getWorldPosition()));
+
                 glUniform3fv(_shader->getUniformLocation(num + "ambient"),1, glm::value_ptr(temp->ambient));
                 glUniform3fv(_shader->getUniformLocation(num + "diffuse"),1,glm::value_ptr(temp->diffuse));
                 glUniform3fv(_shader->getUniformLocation(num + "specular"),1, glm::value_ptr(temp->specular));
+
                 glUniform1f (_shader->getUniformLocation(num + "constant"), 1.f);
                 glUniform1f (_shader->getUniformLocation(num + "linear"), 0.09f);
                 glUniform1f (_shader->getUniformLocation(num + "quadratic"), 0.032f);
@@ -77,8 +81,8 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
                 break;
             case Light::LightType::Spot:
                 {
-                    pointCount++;
-                    std::string num = "pointLight[" + std::to_string(pointCount - 1) + "].";
+					spotCount++;
+                    std::string num = "pointLight[" + std::to_string(spotCount - 1) + "].";
 
                     glUniform3fv(_shader->getUniformLocation(num + "position"),1, glm::value_ptr(temp->getWorldPosition()));
                     glUniform3fv(_shader->getUniformLocation(num + "ambient"),1, glm::value_ptr(temp->ambient));
@@ -90,13 +94,21 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
                 }
                 break;
         }
+
+
     }
+
+	glUniform1i(_shader->getUniformLocation("spotLightCount"), spotCount);
+	glUniform1i(_shader->getUniformLocation("pointLightCount"), pointCount);
 
 
     //pass in all MVP matrices separately
     glUniformMatrix4fv ( _shader->getUniformLocation("mat_Proj"),   1, GL_FALSE, glm::value_ptr(pCamera->getProjection()));
     glUniformMatrix4fv ( _shader->getUniformLocation("mat_View"),         1, GL_FALSE, glm::value_ptr(glm::inverse(pCamera->getWorldTransform())));
     glUniformMatrix4fv ( _shader->getUniformLocation("mat_Model"),        1, GL_FALSE, glm::value_ptr(pGameObject->getWorldTransform() ) );
+
+	glm::mat4 pvm = pCamera->getProjection() * glm::inverse(pCamera->getWorldTransform()) * pGameObject->getWorldTransform();
+	glUniformMatrix4fv(_shader->getUniformLocation("pvm"), 1, GL_FALSE, glm::value_ptr(pvm));
 
     //now inform mesh of where to stream its data
     pGameObject->getMesh()->streamToOpenGL(

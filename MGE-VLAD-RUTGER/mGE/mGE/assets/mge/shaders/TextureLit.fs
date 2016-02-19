@@ -1,5 +1,3 @@
-//DIFFUSE COLOR FRAGMENT SHADER
-
 #version 330 // for glsl version (12 is for older versions , say opengl 2.1
 
 //could maybe add 2 kinds of specular .. as a vector and a texture (for more flexibility)????
@@ -7,6 +5,7 @@ struct Material {
 
     float shininess;
 };
+
 struct DirLight {
     vec3 direction;
 
@@ -45,10 +44,15 @@ struct SpotLight {
 vec3 getDirectionalLight(DirLight light, vec3 n, vec3 view);
 vec3 getPointLight(PointLight light, vec3 n, vec3 view);
 vec3 getSpotLight(SpotLight light, vec3 n, vec3 view);
-#define lightNumber 15
-#define spotLightNumber 2
-uniform PointLight pointLight[lightNumber];
-uniform SpotLight spotLight[spotLightNumber];
+
+
+uniform int spotLightCount;
+uniform int pointLightCount;
+
+
+uniform PointLight pointLight[50];
+uniform SpotLight spotLight[15];
+
 uniform DirLight dirLight;
 uniform Material material;
 uniform sampler2D matDiffuse;
@@ -64,25 +68,39 @@ out vec4 fragment_color;
 
 void main( void )
 {
+   
+
     vec3 normalizedNormal = normalize(normals);
     vec3 viewDirection = normalize(cameraPosition - vertices);
+  
 
     vec3 finalColor;
     finalColor = getDirectionalLight(dirLight,normalizedNormal,viewDirection);
+	
+	
 
-    for(int i = 0; i < lightNumber; i++)
+    for(int i = 0; i < pointLightCount; i++)
     {
+		fragment_color = vec4(1,0,0, 1.f);
         finalColor += getPointLight(pointLight[i],normalizedNormal,viewDirection);
     }
-    for(int i = 0; i < spotLightNumber; i++)
+	 
+
+
+    for(int i = 0; i < spotLightCount; i++)
     {
+		fragment_color = vec4(1,0,0, 1.f);
         finalColor += getSpotLight(spotLight[i], normalizedNormal, viewDirection);
     }
+
+	
     fragment_color = vec4(finalColor, 1.f);
 }
 
 vec3 getDirectionalLight(DirLight light, vec3 n, vec3 view)
 {
+     
+	//return vec3(1,0,0);
     vec3 lightDirection = normalize(-light.direction);
 
     float diffuse = max(dot(n,lightDirection),0.f);
@@ -105,7 +123,7 @@ vec3 getDirectionalLight(DirLight light, vec3 n, vec3 view)
 }
 vec3 getPointLight(PointLight light, vec3 n, vec3 view)
 {
-    if(light.constant == 0) return vec3(0,0,0);
+  //  if(light.constant == 0) return vec3(0,0,0);
     //ambient
     vec3 ambientTerm = light.ambient * vec3(texture(matDiffuse, uvs));
 
@@ -141,7 +159,6 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view)
 
 vec3 getSpotLight(SpotLight light, vec3 n, vec3 view)
 {
-    if(light.constant == 0) return vec3(0,0,0);
     vec3 lightDirection = normalize(light.position - vertices);
 
     vec3 ambientTerm = light.ambient * vec3(texture(matDiffuse, uvs));

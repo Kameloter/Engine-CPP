@@ -2,6 +2,7 @@
 #include "mge/behaviours/FPController.h"
 #include "mge/core/GameObject.hpp"
 #include <SFML/Graphics.hpp>
+#include "mge/core/collision/RigidbodyGameObject.h"
 GameObject* _camera;
 FPController::FPController(float pMoveSpeed, float pTurnSpeed, GameObject * pCamera, InputType pInputType)
 {
@@ -22,8 +23,8 @@ bool _canPress = false;
 void FPController::update(float pStep){
 
     glm::vec3 translate;
-    glm::vec3 camForward = glm::normalize(glm::vec3(_camera->getForward().x,0,_camera->getForward().z));
-    glm::vec3 camRight = glm::normalize(glm::vec3(_camera->getRight().x,0,_camera->getRight().z));
+	glm::vec3 camForward = _owner->getForward();//glm::normalize(glm::vec3(_camera->getForward().x,0,_camera->getForward().z));
+	glm::vec3 camRight = _owner->getRight();// glm::normalize(glm::vec3(_camera->getRight().x,0,_camera->getRight().z));
     switch (_inputType)
     {
 
@@ -61,7 +62,9 @@ void FPController::update(float pStep){
         break;
     }
 
-	//_owner->s
+	if (glm::length(translate) != 0)
+		dynamic_cast<RigidbodyGameObject*>(_owner)->moveRb(translate);
+
 		// std::cout << "FPcontroller Input - > " << translate << std::endl;
    // _owner->translate(translate); // - >> Move character on input.
 //    _owner->translate(glm::vec3(0,-0.1f,0)); // -> small gravity;

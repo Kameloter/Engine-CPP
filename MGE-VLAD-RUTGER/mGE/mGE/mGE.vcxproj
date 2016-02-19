@@ -204,11 +204,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\kamel\Desktop\OpenGl\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\src;C:\Users\kamel\Desktop\OpenGl\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\include;D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\lib;D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\lib;C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\lib;D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>openal32.lib;sfml-main-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;opengl32.lib;glew32.lib;lua51.lib;tokamak_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
@@ -219,11 +219,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\MGE-VLAD-RUTGER\mGE\mGE\include;D:\MGE-VLAD-RUTGER\mGE\mGE\src;D:\MGE-VLAD-RUTGER\mGE\mGE\src;D:\MGE-VLAD-RUTGER\mGE\mGE</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\include;D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\lib;D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>openal32.lib;sfml-main-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;opengl32.lib;glew32.lib;lua51.lib;tokamak_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
@@ -236,13 +236,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\src;C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\include;D:\MGE-VLAD-RUTGER\mGE\mGE\include;D:\MGE-VLAD-RUTGER\mGE\mGE\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\include;D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\lib;D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\lib;C:\Users\kamel\Desktop\OpenGl\CPP-Engine\MGE-VLAD-RUTGER\mGE\mGE\lib;D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>legacy_stdio_definitions.lib;openal32.lib;sfml-main.lib;sfml-audio.lib;sfml-graphics.lib;sfml-system.lib;sfml-window.lib;opengl32.lib;glew32.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>NotSet</SubSystem>
     </Link>
@@ -254,13 +254,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\MGE-VLAD-RUTGER\mGE\mGE\include;D:\MGE-VLAD-RUTGER\mGE\mGE\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\include;D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\WORKSPACE\Engine-CPP\MGE-VLAD-RUTGER\mGE\mGE\lib;D:\MGE-VLAD-RUTGER\mGE\mGE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>legacy_stdio_definitions.lib;openal32.lib;sfml-main.lib;sfml-audio.lib;sfml-graphics.lib;sfml-system.lib;sfml-window.lib;opengl32.lib;glew32.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>NotSet</SubSystem>
     </Link>

@@ -53,6 +53,8 @@ void XmlReader::SetupLevelGeometry(PhysicsWorld * pPhysicsWorld)
     root->setMesh(Mesh::load(config::MGE_MODEL_PATH + "level_mesh.obj"));
 
     root->setMaterial(new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"test.jpg"),32.f));
+//	root->setMaterial(new TextureMaterial(Texture::load(config::MGE_TEXTURE_PATH + "test.jpg")));
+	//root->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
 	pPhysicsWorld->add(root);
 
     for(int i = 0; i < _names.size(); i++)

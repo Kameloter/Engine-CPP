@@ -131,12 +131,12 @@ void MGEDemo::_initializeScene()
 	Player->AddBoxCollider(1, 1, 1);
     Player->setMesh(cubeMeshF);
     Player->setMaterial(maroonMaterial);
-   // Player->setBehaviour(new FPController(10.0f,1.0f,camera,FPController::InputType::WASD));
+    Player->setBehaviour(new FPController(10.0f,1.0f,camera,FPController::InputType::WASD));
     _world->add(Player);
 
     camera->setParent(Player);
     camera->setLocalPosition(glm::vec3(0,2,0));
-   camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
+    camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
 	//camera->setBehaviour(new Orbit(Player, 10.0f, 80.0f, 10.0f));
 
 
@@ -151,17 +151,16 @@ void MGEDemo::_initializeScene()
     light2 = new PointLight("PointLight2", glm::vec3(-7,2,0),glm::vec3(.1f),glm::vec3(1),glm::vec3(0.3f));
     _world->add(light2);
 
-    Light *light3 = new SpotLight("SpotLight",glm::vec3(0,-1,0),glm::vec3(.1f),glm::vec3(Color::Red),glm::vec3(.5f));
-    _world->add(light3);
+  
     //}
 
 
     //ADD OBJECTS TO WORLD ! ================================================================
     //Add Lights
-//    _world->AddLight(dirLight);
+    _world->AddLight(dirLight);
     _world->AddLight(light);
-    _world->AddLight(light2);
-    _world->AddLight(light3);
+   _world->AddLight(light2);
+ //   _world->AddLight(light3);
    // _world->AddLight(light4);
     //======================================================================================
     //PHYSICS TESTS
@@ -174,7 +173,7 @@ void MGEDemo::_initializeScene()
 
 bool won = false;
 void MGEDemo::_render() {
-	if (Player->getLocalPosition().x > 4.5f) won = true;
+	if (Player->getLocalPosition().y < 0) Player->setLocalPosition(glm::vec3(Player->getLocalPosition().x, 0, Player->getLocalPosition().z));
 	if (won) {
 		string winText = " YOU WIN YAAY !";
 		_hud->setWinTextInfo(winText);

@@ -19,7 +19,8 @@ uniform mat4 mat_Proj;
 uniform vec3 cameraPosition;
 uniform vec3 lightPosition;
 
-
+out vec3 t;
+out vec3 b;
 
 
 void main( void ){
@@ -51,5 +52,7 @@ mat3 TBN = mat3(T, B, N);
     verticesTangent = TBN * vertices;
     camPosTangent = TBN * cameraPosition;
     lightPosTangent = TBN * lightPosition;
+
+	t = tangent;
 
 }

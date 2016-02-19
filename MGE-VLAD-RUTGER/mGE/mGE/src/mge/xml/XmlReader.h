@@ -13,6 +13,7 @@
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/materials/ColorMaterial.hpp"
 #include "mge/materials/TextureLitMaterial.hpp"
+#include "mge/materials/TextureMaterial.hpp"
 
 using namespace std;
 

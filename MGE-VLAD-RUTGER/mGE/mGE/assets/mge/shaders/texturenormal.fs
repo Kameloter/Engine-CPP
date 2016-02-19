@@ -12,6 +12,7 @@ in vec2 uvs;
 in vec3 verticesTangent;
 in vec3 camPosTangent;
 in vec3 lightPosTangent;
+in vec3 t;
 
 out vec4 fragment_color;
 
@@ -34,7 +35,7 @@ void main( void )
     vec3 specular = vec3(0.5f) * spec;
 
     fragment_color = vec4(ambient + diffuse + specular, 1.0f);
-
+	fragment_color = vec4(t,1);
 
 }
 
