@@ -207,13 +207,13 @@ Mesh* Mesh::load(string pFileName)
 void Mesh::calculateTangents() 
 {
 
-	int size = _indices.size();
+	int indicesSize = _indices.size();
 
-	_tangent = std::vector<glm::vec3>(size);
-	_bitangent = std::vector<glm::vec3>(size);
+	_tangent = std::vector<glm::vec3>(indicesSize);
+	_bitangent = std::vector<glm::vec3>(indicesSize);
 
 
-	for (int i = 0; i < _indices.size(); i+=3)
+	for (unsigned i = 0; i < _indices.size(); i+=3)
 	{
 		int index1 = _indices[0 + i];
 		int index2 = _indices[1 + i];
@@ -233,68 +233,33 @@ void Mesh::calculateTangents()
 		glm::vec2 deltaUv1 = uv2 - uv1;
 		glm::vec2 deltaUv2 = uv3 - uv1;
 
-		glm::mat2 uvMat(glm::rowMajor2(deltaUv1, deltaUv2));
-		glm::mat2 uvMatI(glm::transpose(uvMat));
-
-		glm::mat2x3 result = glm::transpose(uvMatI * glm::transpose(glm::mat2x3(edge1, edge2)));
-
-		glm::vec3 tangent, bitangent;
-
-		tangent = result[0];
-		bitangent = result[1];
-
-		/*float f = 1.0f / (deltaUv1.x * deltaUv2.y - deltaUv2.x * deltaUv1.y);
+	
+		float f = 1.0f / (deltaUv1.x * deltaUv2.y - deltaUv2.x * deltaUv1.y);
 
 	
 
-		tangent = (edge1 * deltaUv2.y - edge2 * deltaUv1.y)*f;
-		bitangent = (edge2 * deltaUv1.x - edge1 * deltaUv2.x)*f;
-
-		tangent.x = f * (deltaUv2.y * edge1.x - deltaUv1.y * edge2.x);
-		tangent.y = f * (deltaUv2.y * edge1.y - deltaUv1.y * edge2.y);
-		tangent.z = f * (deltaUv2.y * edge1.z - deltaUv2.y * edge2.z);
-
-		bitangent.x = f * (deltaUv2.x * edge1.x - deltaUv1.x * edge2.x);
-		bitangent.y = f * (deltaUv2.x * edge1.y - deltaUv1.x * edge2.y);
-		bitangent.z = f * (deltaUv2.x * edge1.z - deltaUv1.x * edge2.z);*/
-
+		glm::vec3 tangent = glm::normalize(f * glm::vec3(deltaUv2.y * edge1.x - deltaUv1.y * edge2.x,
+			deltaUv2.y * edge1.y - deltaUv1.y * edge2.y,
+			deltaUv2.y * edge1.z - deltaUv1.y * edge2.z));
+	
 		///*tangent = glm::normalize(tangent);
 		//bitangent = glm::normalize(bi*/tangent);
 
-		_tangent[i] = tangent;
-		_tangent[i+1] = tangent;
-		_tangent[i+2] = tangent;
+		_tangent[index1] = tangent;
+		_tangent[index2] = tangent;
+		_tangent[index3] = tangent;
 
 	}
 
 	
-		//cout << "1 - > " << mesh->_vertices[vertSize - 2] << endl;
-		//cout << "2 - > " << mesh->_vertices[vertSize - 1] << endl;
-		//cout << "3 - > " << mesh->_vertices[vertSize] << endl;
-		
+	/*for (int i = 0; i < _vertices.size(); i++)
+	{
+		glm::vec3 n = _normals[i];
+		glm::vec3 t = _tangent[i];
 
-		//Triangle sides.
-		
+		_tangent[i] = glm::normalize((t - n * glm::dot(n, t)));
 
-
-		
-
-	//	for (int j = 0; j < 3; ++j)
-	//	{
-	//		if (indexArray[j] == -1)
-	//		{
-	//			mesh->_tangent.push_back(tangent);
-	//			mesh->_bitangent.push_back(bitangent);
-	//		}
-	//		else
-	//		{
-
-	//			mesh->_tangent[indexArray[j]] = (mesh->_tangent[indexArray[j]] + tangent) *.5f;
-	//			mesh->_bitangent[indexArray[j]] = (mesh->_bitangent[indexArray[j]] + bitangent)* .5f;
-	//		}
-	//	}
-
-	//}
+	}*/
 }
 
 glm::vec3 Mesh::calculateColSize()

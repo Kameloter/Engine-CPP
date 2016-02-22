@@ -86,6 +86,7 @@ void MGEDemo::_initializeScene()
 
     Mesh* planeQuad = Mesh::load (config::MGE_MODEL_PATH+"NormalPlane.obj");
     Mesh* cubeMeshF = Mesh::load (config::MGE_MODEL_PATH+"cube.obj");
+	Mesh* pistolMesh = Mesh::load(config::MGE_MODEL_PATH + "Flashlight.obj");
 //=====================================================================================================================================================================================================//
 	
 
@@ -93,20 +94,14 @@ void MGEDemo::_initializeScene()
     AbstractMaterial * spotLightMaterial = new SpotLightMaterial(Color::Red);
 
     //MATERIALS
-
+	AbstractMaterial * normalMapMaterial = new TextureNormalMaterial(Texture::load(config::MGE_TEXTURE_PATH + ("Flashlight_diffuse.jpg")), glm::vec3(0.4f), 32.f, Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_normal.jpg"));
+	AbstractMaterial * normalMapMaterial2 = new TextureNormalMaterial(Texture::load(config::MGE_TEXTURE_PATH + ("rocks.jpg")), glm::vec3(0.4f), 32.f, Texture::load(config::MGE_TEXTURE_PATH + "rocksnormal.png"));
     //Texture Material + Light !
     AbstractMaterial* wallMat = new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"test.jpg"),32.f);
 
     AbstractMaterial* pillarMat = new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"pillar.jpg"),32.f);
     //Simple Texture material - No light
     AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load (config::MGE_TEXTURE_PATH+"land.jpg"));
-
-    AbstractMaterial* terrainMaterial = new TerrainMaterial (Texture::load (config::MGE_TEXTURE_PATH+"diffuse1.jpg"),
-                                                             Texture::load (config::MGE_TEXTURE_PATH+"water.jpg"),
-                                                             Texture::load (config::MGE_TEXTURE_PATH+"diffuse3.jpg"),
-                                                             Texture::load (config::MGE_TEXTURE_PATH+"diffuse4.jpg"),
-                                                             Texture::load (config::MGE_TEXTURE_PATH+"splatmap.png"),
-                                                             Texture::load (config::MGE_TEXTURE_PATH+"heightmap.png"));
     AbstractMaterial* textureMaterial2 = new TextureMaterial (Texture::load (config::MGE_TEXTURE_PATH+"bricks.jpg"));
 
     AbstractMaterial * blueMaterial = new ColorMaterial(glm::vec3(0,0,1));
@@ -127,23 +122,41 @@ void MGEDemo::_initializeScene()
     _world->add(camera);
     _world->setMainCamera(camera);
 
-    Player = new RigidbodyGameObject("Player", glm::vec3(4,1.5,4),_world);
-	Player->AddBoxCollider(1, 1, 1);
-    Player->setMesh(cubeMeshF);
-    Player->setMaterial(maroonMaterial);
-    Player->setBehaviour(new FPController(10.0f,1.0f,camera,FPController::InputType::WASD));
-    _world->add(Player);
+ //   Player = new RigidbodyGameObject("Player", glm::vec3(4,1.5,4),_world);
+	//Player->AddBoxCollider(1, 1, 1);
+ //   Player->setMesh(cubeMeshF);
+ //   Player->setMaterial(maroonMaterial);
+ //   Player->setBehaviour(new FPController(10.0f,1.0f,camera,FPController::InputType::WASD));
+ //   _world->add(Player);
 
-    camera->setParent(Player);
-    camera->setLocalPosition(glm::vec3(0,2,0));
-    camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
-	//camera->setBehaviour(new Orbit(Player, 10.0f, 80.0f, 10.0f));
+
+	GameObject * cubeNormal = new GameObject("normalmap", glm::vec3(0, 2, 0));
+	cubeNormal->setMesh(pistolMesh);
+	cubeNormal->setMaterial(normalMapMaterial);
+//	cubeNormal->scale(glm::vec3(0.1f));
+	_world->add(cubeNormal);
+	cout << "Col size of flashlight " << cubeNormal->getMesh()->GetColliderSize() << endl;
+
+	//GameObject * cubeNormal = new GameObject("normalmap", glm::vec3(0, 2, 0));
+	//cubeNormal->setMesh(cubeMeshF);
+	//cubeNormal->setMaterial(normalMapMaterial2);
+	////	cubeNormal->scale(glm::vec3(0.1f));
+	//_world->add(cubeNormal);
+
+
+  //  camera->setParent(Player);
+   // camera->setLocalPosition(glm::vec3(0,2,0));
+   // camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
+	camera->setBehaviour(new Orbit(cubeNormal, 10.0f, 80.0f, 10.0f));
 
 
     //{ LIGHTS
     //Directional Light
     Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(10,7,10),glm::vec3(1,0,1),glm::vec3(.5f,.5f,.5f),glm::vec3(1.f,1.f,1.f),glm::vec3(1,1,1));
-
+	dirLight->setMesh(cubeMeshF);
+	dirLight->setMaterial(new ColorMaterial(dirLight->diffuse));
+	_world->add(dirLight);
+	dirLight->setBehaviour(new KeysBehaviour2());
     //Points lights
     Light *light = new PointLight("PointLight1", glm::vec3(2,2,0),glm::vec3(.1f),glm::vec3(Color::Green),glm::vec3(0.3f));
     _world->add(light);
@@ -153,6 +166,7 @@ void MGEDemo::_initializeScene()
 
   
     //}
+
 
 
     //ADD OBJECTS TO WORLD ! ================================================================
@@ -166,19 +180,39 @@ void MGEDemo::_initializeScene()
     //PHYSICS TESTS
 
    xmlReader = new XmlReader();
-   xmlReader->SetupLevelGeometry(_world);
+  // xmlReader->SetupLevelGeometry(_world);
 
     LUAManager::InitializeFile();
+
+
+	GameObject * cX = new GameObject("compassX", glm::vec3(1, 0, 0));
+	cX->setMesh(cubeMeshF);
+	cX->setMaterial(new ColorMaterial(Color::Red));
+	cX->scale(glm::vec3(1.9, 0.1f, 0.1f));
+	_world->add(cX);
+
+	GameObject * cY= new GameObject("compassY", glm::vec3(0, 1, 0));
+	cY->setMesh(cubeMeshF);
+	cY->setMaterial(new ColorMaterial(Color::Green));
+	cY->scale(glm::vec3(0.1f,1.9, 0.1f));
+	_world->add(cY);
+
+	GameObject * cZ = new GameObject("compassZ", glm::vec3(0, 0, 1));
+	cZ->setMesh(cubeMeshF);
+	cZ->setMaterial(new ColorMaterial(Color::Blue));
+	cZ->scale(glm::vec3(0.1f, 0.1f, 1.9));
+	_world->add(cZ);
+
 }
 
 bool won = false;
 void MGEDemo::_render() {
-	if (Player->getLocalPosition().y < 0) Player->setLocalPosition(glm::vec3(Player->getLocalPosition().x, 0, Player->getLocalPosition().z));
+	//if (Player->getLocalPosition().y < 0) Player->setLocalPosition(glm::vec3(Player->getLocalPosition().x, 0, Player->getLocalPosition().z));
 	if (won) {
 		string winText = " YOU WIN YAAY !";
 		_hud->setWinTextInfo(winText);
 	}
-
+	//_world->renderDebugInfo();
 	AbstractGame::_render();
 	_updateHud();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) system("cls");

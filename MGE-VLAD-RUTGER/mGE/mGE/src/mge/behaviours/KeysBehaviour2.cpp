@@ -17,16 +17,16 @@ void KeysBehaviour2::update( float pStep )
 	float moveSpeed2 = 0.0f;
 	float moveSpeed3 = 0.0f;
 	float turnSpeed = 0.0f;
-	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Up )) {
+	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::W )) {
 		moveSpeed = _moveSpeed;
 	}
-	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Down )) {
+	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::S )) {
 		moveSpeed = -_moveSpeed;
 	}
-	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Right )) {
+	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::D )) {
 		moveSpeed2 = -_moveSpeed;
 	}
-	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Left )) {
+	if ( sf::Keyboard::isKeyPressed( sf::Keyboard::A )) {
 		moveSpeed2 = _moveSpeed;
 	}
 

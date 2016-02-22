@@ -58,7 +58,7 @@ void TextureNormalMaterial::render(World* pWorld, GameObject* pGameObject, Camer
             case Light::LightType::Directional:
               //  cout <<"Dir Light add"<<endl;
              //   glUniform3fv(_shader->getUniformLocation("dirLight.direction"),1, glm::value_ptr(((DirectionalLight*)temp)->direction));
-               // glUniform3fv(_shader->getUniformLocation("lightPosition"),1, glm::value_ptr(((DirectionalLight*)temp)->direction));
+                glUniform3fv(_shader->getUniformLocation("lightPosition"),1, glm::value_ptr(((DirectionalLight*)temp)->getWorldPosition()));
                 //cout<<((DirectionalLight*)temp)->direction<<endl;
                // cout<<"pro lightpos"<<endl;
             //    glUniform3fv(_shader->getUniformLocation("dirLight.ambient"),1, glm::value_ptr(temp->ambient));
