@@ -1,10 +1,11 @@
 //World , components , managers
 #include "LevelManager.h"
-#include "mge/core/World.hpp"
+#include "mge/core/collision/PhysicsWorld.h"
 #include "mge/core/Mesh.hpp"
 #include "mge/LUA/LUAManager.h"
 #include "mge/core/Camera.hpp"
 #include "mge/materials/AbstractMaterial.hpp"
+#include "mge/xml/XmlReader.h"
 
 //Lights and gameobjects
 #include "mge/core/GameObject.hpp"
@@ -28,6 +29,9 @@
 #include "mge/behaviours/BoxBehaviour.h"
 #include "mge/behaviours/DoorBehaviour.h"
 #include "mge/behaviours/TriggerBehaviour.h"
+#include "mge/behaviours/StatueBehaviour.h"
+#include "mge/behaviours/PressurePlateBehaviour.h"
+#include "mge/behaviours/CollectableBehaviour.h"
 #include "mge/behaviours/FPCamera.h"
 #include "mge/behaviours/LookAt.hpp"
 #include "mge/behaviours/Orbit.hpp"
@@ -36,9 +40,10 @@
 #include "mge/util/Color.h"
 #include "mge/config.hpp"
 
-LevelManager::LevelManager(World * pWorld):
+LevelManager::LevelManager(PhysicsWorld * pWorld, sf::Window * pWindow):
 	_world(pWorld)
 {
+	_window = pWindow;
 	cout << "Current level at start -> " << currentlevel << endl;
 }
 
@@ -127,12 +132,73 @@ void LevelManager::Build_menu()
 
 void LevelManager::Build_level_hub()
 {
+	AbstractMaterial * colorMat = new ColorMaterial(Color::Pink);
+
+	Mesh* cubeMeshF = Mesh::load(config::MGE_MODEL_PATH + "cube.obj");
+
+	Camera* camera = new Camera("camera", glm::vec3(0, 0, 0));
+	_world->add(camera);
+	_world->setMainCamera(camera);
+
+	RigidbodyGameObject * Player = new RigidbodyGameObject("Player", glm::vec3(4, 1.5, 4), _world);
+	Player->AddBoxCollider(1, 1, 1);
+	Player->setMesh(cubeMeshF);
+	Player->setMaterial(colorMat);
+	Player->setBehaviour(new FPController(50.0f, 1.0f, camera, FPController::InputType::WASD));
+	_world->add(Player);
+
+	camera->setParent(Player);
+	camera->setLocalPosition(glm::vec3(0, 2, 0));
+	camera->setBehaviour(new FPCamera(1.0f, 1.0f, Player, _window));
+
+	
+	GameObject * collectable = new GameObject("collectable", glm::vec3(8, 1.5, 15));
+	collectable->setMesh(cubeMeshF);
+	collectable->setMaterial(colorMat);
+	collectable->setBehaviour(new CollectableBehaviour());
+	_world->add(collectable);
+
+	RigidbodyGameObject * statue = new RigidbodyGameObject("statue", glm::vec3(8, 1.5, 4), _world);
+	statue->AddBoxCollider(1, 1, 1);
+	statue->setMesh(cubeMeshF);
+	statue->scale(glm::vec3(1, 4, 1));
+	statue->setMaterial(colorMat);
+	statue->setBehaviour(new StatueBehaviour());
+	_world->add(statue);
+
+	StaticGameObject * plate = new StaticGameObject("plate", glm::vec3(8, 1.5, 2), _world);
+	//plate->AddBoxCollider(1, 1, 1);
+	plate->setMesh(cubeMeshF);
+	plate->setMaterial(colorMat);
+	plate->setBehaviour(new PressurePlateBehaviour());
+	_world->add(plate);
+
+
+	RigidbodyGameObject * Door = new RigidbodyGameObject("door", glm::vec3(8, 1.5, 10), _world);
+	Door->AddBoxCollider(1, 1, 1);
+	Door->setMesh(cubeMeshF);
+	Door->setMaterial(colorMat);
+	Door->setBehaviour(new DoorBehaviour());
+	dynamic_cast<DoorBehaviour*>(Door->getBehaviour())->InitializePositions(glm::vec3(0, 5, 0));
+	_world->add(Door);
+
+	dynamic_cast<CollectableBehaviour*>(collectable->getBehaviour())->SetPlayer(Player);
+	dynamic_cast<StatueBehaviour*>(statue->getBehaviour())->SetPlayer(Player);
+	dynamic_cast<PressurePlateBehaviour*>(plate->getBehaviour())->SetStatue(statue);
+	dynamic_cast<DoorBehaviour*>(Door->getBehaviour())->AddPressurePlate(plate);
+
+	XmlReader * xmlReader;
+	xmlReader = new XmlReader();
+	xmlReader->SetupLevelGeometry(_world);
+
 	cout << " Build level hub " << endl;
 }
 
 void LevelManager::Build_level_1()
 {
 	cout << " Build level 1 " << endl;
+
+	
 //	Mesh* cubeMeshF = Mesh::load(config::MGE_MODEL_PATH + "cube.obj");
 //	Mesh* pistolMesh = Mesh::load(config::MGE_MODEL_PATH + "Flashlight.obj");
 //	AbstractMaterial * normalMapMaterial = new TextureNormalMaterial(Texture::load(config::MGE_TEXTURE_PATH + ("Flashlight_diffuse.jpg")), glm::vec3(0.4f), 32.f, Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_normal.jpg"));

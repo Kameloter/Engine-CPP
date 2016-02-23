@@ -42,7 +42,7 @@ MainMenu * mainMenu;
 void MGEDemo::_initializeScene()
 {
 	_renderer->setClearColor(0, 0, 0);
-	levelManager = new LevelManager(_world);
+	levelManager = new LevelManager(_world, _window);
 	levelManager->SwitchToLevel(GameLevels::Menu);
 	mainMenu = new MainMenu(_window);
 
@@ -52,9 +52,6 @@ void MGEDemo::_initializeScene()
 	//   Player->setMaterial(maroonMaterial);
 	//   Player->setBehaviour(new FPController(10.0f,1.0f,camera,FPController::InputType::WASD));
 	//   _world->add(Player);
-
-
-	
 
 	//GameObject * cubeNormal = new GameObject("normalmap", glm::vec3(0, 2, 0));
 	//cubeNormal->setMesh(cubeMeshF);
@@ -66,16 +63,6 @@ void MGEDemo::_initializeScene()
   //  camera->setParent(Player);
    // camera->setLocalPosition(glm::vec3(0,2,0));
    // camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
-
-
-//	XmlReader * xmlReader;
-	//xmlReader = new XmlReader();
-	// xmlReader->SetupLevelGeometry(_world);
-
-
-
-	
-
 }
 
 

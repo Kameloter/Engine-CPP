@@ -237,6 +237,9 @@
     <ClInclude Include="src\mge\UI\MainMenu.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\behaviours\CollectableBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -471,6 +474,9 @@
     </ClCompile>
     <ClCompile Include="src\mge\UI\MainMenu.cpp">
       <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\CollectableBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,11 +1,12 @@
 #pragma once
+#include <SFML\Graphics.hpp>
 using namespace std;
 enum GameLevels
 {
 	Idle,Menu, HUB, Level1, Level2
 };
 
-class World;
+class PhysicsWorld;
 class LevelManager
 {
 public:
@@ -15,7 +16,7 @@ public:
     GameLevels currentlevel;
 
 
-	LevelManager(World * pWorld);
+	LevelManager(PhysicsWorld * pWorld, sf::Window * pWindow);
 	~LevelManager();
 	
 	 
@@ -30,6 +31,7 @@ private:
 	void Build_level_2();
 
 
-	World * _world;
+	PhysicsWorld * _world;
+	sf::Window * _window;
 };
 
