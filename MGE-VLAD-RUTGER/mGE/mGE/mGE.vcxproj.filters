@@ -219,6 +219,12 @@
     <ClInclude Include="src\mge\xml\XmlReader.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\behaviours\StatueBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\PressurePlateBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -441,6 +447,12 @@
     </ClCompile>
     <ClCompile Include="src\mge\xml\XmlReader.cpp">
       <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\StatueBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\PressurePlateBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

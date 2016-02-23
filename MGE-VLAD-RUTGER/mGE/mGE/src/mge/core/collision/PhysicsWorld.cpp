@@ -33,7 +33,45 @@ PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObject
 
 	//start the physics simulation
 	_physicsSimulator = neSimulator::CreateSimulator(simulatorSize, NULL, &gravity);
+	//_physicsSimulator->se
+	//_physicsSimulator->GetCollisionTable()->Set(0, 0, neCollisionTable::RESPONSE_IMPULSE_CALLBACK);
+
+	//_physicsSimulator->SetCollisionCallback(CollisionCallback);
+
+	
 }
+
+//void CollisionCallback(neCollisionInfo & collisionInfo)
+//{
+//	if (collisionInfo.typeA == NE_RIGID_BODY)
+//	{
+//		neRigidBody * rbA = (neRigidBody *)collisionInfo.bodyA;
+//
+//		s32 data = rbA->GetUserData();
+//
+//		if (data == 0)
+//		{
+//			return;
+//		}
+//
+//		CRenderPrimitive* render = reinterpret_cast<CRenderPrimitive*>(data);
+//		render->SetDiffuseColor(D3DXCOLOR(1.0, 0, 0, 1.0f));
+//	}
+//	if (collisionInfo.typeB == NE_RIGID_BODY)
+//	{
+//		neRigidBody * rbB = (neRigidBody *)collisionInfo.bodyB;
+//
+//		s32 data = rbB->GetUserData();
+//
+//		if (data == 0)
+//		{
+//			return;
+//		}
+//
+//		CRenderPrimitive* render = reinterpret_cast<CRenderPrimitive*>(data);
+//		render->SetDiffuseColor(D3DXCOLOR(0, 0.5f, 0.5, 1.0f));
+//	}
+//}
 
 PhysicsWorld::~PhysicsWorld()
 {

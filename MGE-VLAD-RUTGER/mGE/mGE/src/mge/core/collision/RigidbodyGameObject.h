@@ -13,6 +13,9 @@ public:
 	void updateRigidBody();
 	void moveRb(glm::vec3 pPos);
 	void AddBoxCollider(float pW, float pH, float pD);
+	neRigidBody * GetRigidBody();
+
+	bool _moveable = true;
 private:
 	neRigidBody* _rigidbody;
 

@@ -12,12 +12,18 @@ class DoorBehaviour : public AbstractBehaviour
         virtual ~DoorBehaviour();
          virtual void update( float step );
          bool _activated;
-         void InitializePositions (glm::vec3 translateUp);
+         void SetOpenPos (glm::vec3 translateUp);
+		 void AddPressurePlate(GameObject * plate);
+		 void InitializePositions(glm::vec3 translateUp);
     protected:
     private:
+		
+		std::vector<GameObject*> plates;
+		bool CheckPlates();
+
         glm::vec3 _openPos;
         glm::vec3 _closedPos;
-         glm::vec3 _translateUp;
+        glm::vec3 _translateUp;
 };
 
 #endif // DOORBEHAVIOUR_H

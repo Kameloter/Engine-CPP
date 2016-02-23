@@ -15,6 +15,8 @@ class FPController : public AbstractBehaviour
         FPController( float pMoveSpeed,float pTurnSpeed,GameObject* pCamera, InputType pInputType);
         virtual ~FPController();
         virtual void update( float step );
+
+		bool _inAction = false;
     protected:
     private:
         float _moveSpeed;

@@ -4,232 +4,240 @@
 		<Texture name="Wallcoll_1_texture"/>
 		<Normal name="Wallcoll_1_normal"/>
 		<Specular name="Wallcoll_1_specular"/>
-		<Position X="-1.0" Y="1.0" Z="-0.503877228848"/>
+		<Position X="-3.0" Y="0.75" Z="3.35733120431"/>
 		<Col Type="1"/>
-		<ColSize X="4.0" Y="8.0" Z="1.0"/>
+		<ColSize X="12.0" Y="25.7965245719" Z="3.0"/>
 	</Object>
 	<Object name="Wallcoll_2">
 		<Texture name="Wallcoll_2_texture"/>
 		<Normal name="Wallcoll_2_normal"/>
 		<Specular name="Wallcoll_2_specular"/>
-		<Position X="-2.0" Y="1.0" Z="0.498119520364"/>
+		<Position X="-6.0" Y="0.75" Z="6.36332145195"/>
 		<Col Type="1"/>
-		<ColSize X="2.0" Y="8.0" Z="1.0"/>
+		<ColSize X="6.0" Y="25.7965245719" Z="3.0"/>
 	</Object>
 	<Object name="Wallcoll_3">
 		<Texture name="Wallcoll_3_texture"/>
 		<Normal name="Wallcoll_3_normal"/>
 		<Specular name="Wallcoll_3_specular"/>
-		<Position X="-2.50095317308" Y="1.0" Z="4.0"/>
+		<Position X="-7.50285951925" Y="0.75" Z="16.8689628909"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="8.0" Z="6.0"/>
+		<ColSize X="3.0" Y="25.7965245719" Z="18.0"/>
 	</Object>
 	<Object name="Wallcoll_4">
 		<Texture name="Wallcoll_4_texture"/>
 		<Normal name="Wallcoll_4_normal"/>
 		<Specular name="Wallcoll_4_specular"/>
-		<Position X="-2.5040046321" Y="1.0" Z="8.49852513199"/>
+		<Position X="-7.5120138963" Y="0.75" Z="30.3645382868"/>
 		<Col Type="1"/>
-		<ColSize X="3.0" Y="8.0" Z="3.0"/>
+		<ColSize X="9.0" Y="25.7965245719" Z="9.0"/>
 	</Object>
 	<Object name="Wallcoll_5">
 		<Texture name="Wallcoll_5_texture"/>
 		<Normal name="Wallcoll_5_normal"/>
 		<Specular name="Wallcoll_5_specular"/>
-		<Position X="0.0" Y="1.0" Z="9.0"/>
+		<Position X="0.0" Y="0.75" Z="31.8689628909"/>
 		<Col Type="1"/>
-		<ColSize X="2.0" Y="8.0" Z="2.0"/>
+		<ColSize X="6.0" Y="25.7965245719" Z="6.0"/>
 	</Object>
 	<Object name="Wallcoll_6">
 		<Texture name="Wallcoll_6_texture"/>
 		<Normal name="Wallcoll_6_normal"/>
 		<Specular name="Wallcoll_6_specular"/>
-		<Position X="-3.5" Y="0.493164332654" Z="4.5"/>
+		<Position X="-10.5" Y="0.600407595246" Z="18.3689628909"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="1.0" Z="5.0"/>
+		<ColSize X="3.0" Y="3.22456557149" Z="15.0"/>
 	</Object>
 	<Object name="Wallcoll_7">
 		<Texture name="Wallcoll_7_texture"/>
 		<Normal name="Wallcoll_7_normal"/>
 		<Specular name="Wallcoll_7_specular"/>
-		<Position X="-3.5" Y="1.5" Z="5.0"/>
+		<Position X="-10.5" Y="2.85567704619" Z="19.8689628909"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="1.0" Z="4.0"/>
+		<ColSize X="3.0" Y="3.22456557149" Z="12.0"/>
 	</Object>
 	<Object name="Wallcoll_8">
 		<Texture name="Wallcoll_8_texture"/>
 		<Normal name="Wallcoll_8_normal"/>
 		<Specular name="Wallcoll_8_specular"/>
-		<Position X="-3.5" Y="2.5" Z="6.5"/>
+		<Position X="-10.5" Y="5.12439917203" Z="24.3689628909"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="1.0" Z="1.0"/>
+		<ColSize X="3.0" Y="3.22456557149" Z="3.0"/>
 	</Object>
 	<Object name="Wallcoll_9">
 		<Texture name="Wallcoll_9_texture"/>
 		<Normal name="Wallcoll_9_normal"/>
 		<Specular name="Wallcoll_9_specular"/>
-		<Position X="0.0" Y="0.0" Z="4.0"/>
+		<Position X="0.0" Y="0.0" Z="16.8689628909"/>
 		<Col Type="1"/>
-		<ColSize X="31.2552476173" Y="0.0999592885197" Z="34.7511096308"/>
+		<ColSize X="93.765742852" Y="0.0749694663898" Z="104.253328892"/>
 	</Object>
 	<Object name="Wallcoll_10">
 		<Texture name="Wallcoll_10_texture"/>
 		<Normal name="Wallcoll_10_normal"/>
 		<Specular name="Wallcoll_10_specular"/>
-		<Position X="-3.0" Y="1.0" Z="-2.5"/>
+		<Position X="-9.0" Y="0.75" Z="-2.63103710914"/>
 		<Col Type="1"/>
-		<ColSize X="8.0" Y="8.0" Z="1.0"/>
+		<ColSize X="24.0" Y="25.7965245719" Z="3.0"/>
 	</Object>
 	<Object name="Wallcoll_11">
 		<Texture name="Wallcoll_11_texture"/>
 		<Normal name="Wallcoll_11_normal"/>
 		<Specular name="Wallcoll_11_specular"/>
-		<Position X="5.0" Y="1.0" Z="12.5"/>
+		<Position X="15.0" Y="0.75" Z="42.3689628909"/>
 		<Col Type="1"/>
-		<ColSize X="20.0" Y="8.0" Z="1.0"/>
+		<ColSize X="60.0" Y="25.7965245719" Z="3.0"/>
 	</Object>
 	<Object name="Wallcoll_12">
 		<Texture name="Wallcoll_12_texture"/>
 		<Normal name="Wallcoll_12_normal"/>
 		<Specular name="Wallcoll_12_specular"/>
-		<Position X="-5.5" Y="1.0" Z="5.0"/>
+		<Position X="-16.5" Y="0.75" Z="19.8689628909"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="8.0" Z="14.0"/>
+		<ColSize X="3.0" Y="25.7965245719" Z="42.0"/>
 	</Object>
 	<Object name="Wallcoll_13">
 		<Texture name="Wallcoll_13_texture"/>
 		<Normal name="Wallcoll_13_normal"/>
 		<Specular name="Wallcoll_13_specular"/>
-		<Position X="-1.5" Y="1.0" Z="-6.5"/>
+		<Position X="-4.5" Y="0.75" Z="-14.6310371091"/>
 		<Col Type="1"/>
-		<ColSize X="11.0" Y="8.0" Z="1.0"/>
+		<ColSize X="33.0" Y="25.7965245719" Z="3.0"/>
 	</Object>
 	<Object name="Wallcoll_14">
 		<Texture name="Wallcoll_14_texture"/>
 		<Normal name="Wallcoll_14_normal"/>
 		<Specular name="Wallcoll_14_specular"/>
-		<Position X="6.5" Y="0.5" Z="-3.5"/>
+		<Position X="19.5" Y="0.375" Z="-5.63103710914"/>
 		<Col Type="1"/>
-		<ColSize X="3.0" Y="3.0" Z="5.0"/>
+		<ColSize X="9.0" Y="8.2094832809" Z="15.0"/>
 	</Object>
 	<Object name="Wallcoll_15">
 		<Texture name="Wallcoll_15_texture"/>
 		<Normal name="Wallcoll_15_normal"/>
 		<Specular name="Wallcoll_15_specular"/>
-		<Position X="5.5" Y="2.0" Z="-6.0"/>
+		<Position X="16.5" Y="1.5" Z="-13.1310371091"/>
 		<Col Type="1"/>
-		<ColSize X="3.0" Y="6.0" Z="2.0"/>
+		<ColSize X="9.0" Y="19.347393429" Z="6.0"/>
 	</Object>
 	<Object name="Wallcoll_16">
 		<Texture name="Wallcoll_16_texture"/>
 		<Normal name="Wallcoll_16_normal"/>
 		<Specular name="Wallcoll_16_specular"/>
-		<Position X="9.5" Y="0.5" Z="0.0"/>
+		<Position X="28.5" Y="0.375" Z="4.86896289086"/>
 		<Col Type="1"/>
-		<ColSize X="3.0" Y="3.0" Z="6.0"/>
+		<ColSize X="9.0" Y="3.91556796081" Z="18.0"/>
 	</Object>
 	<Object name="Wallcoll_17">
 		<Texture name="Wallcoll_17_texture"/>
 		<Normal name="Wallcoll_17_normal"/>
 		<Specular name="Wallcoll_17_specular"/>
-		<Position X="7.5" Y="2.20214197627" Z="1.0"/>
+		<Position X="22.5" Y="1.6516064822" Z="7.86896289086"/>
 		<Col Type="1"/>
-		<ColSize X="3.0" Y="6.31016869375" Z="4.0"/>
+		<ColSize X="9.0" Y="20.3475527202" Z="12.0"/>
 	</Object>
 	<Object name="Wallcoll_18">
 		<Texture name="Wallcoll_18_texture"/>
 		<Normal name="Wallcoll_18_normal"/>
 		<Specular name="Wallcoll_18_specular"/>
-		<Position X="5.5" Y="2.20214197627" Z="0.0"/>
+		<Position X="16.5" Y="1.6516064822" Z="4.86896289086"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="6.31016869375" Z="2.0"/>
+		<ColSize X="3.0" Y="20.3475527202" Z="6.0"/>
 	</Object>
 	<Object name="Wallcoll_19">
 		<Texture name="Wallcoll_19_texture"/>
 		<Normal name="Wallcoll_19_normal"/>
 		<Specular name="Wallcoll_19_specular"/>
-		<Position X="4.0" Y="2.20214197627" Z="-1.5"/>
+		<Position X="12.0" Y="1.6516064822" Z="0.368962890857"/>
 		<Col Type="1"/>
-		<ColSize X="2.0" Y="6.31016869375" Z="3.0"/>
+		<ColSize X="6.0" Y="20.3475527202" Z="9.0"/>
 	</Object>
 	<Object name="Wallcoll_20">
 		<Texture name="Wallcoll_20_texture"/>
 		<Normal name="Wallcoll_20_normal"/>
 		<Specular name="Wallcoll_20_specular"/>
-		<Position X="4.5" Y="2.20214197627" Z="-3.5"/>
+		<Position X="13.5" Y="1.6516064822" Z="-5.63103710914"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="6.31016869375" Z="1.0"/>
+		<ColSize X="3.0" Y="20.3475527202" Z="3.0"/>
 	</Object>
 	<Object name="Wallcoll_21">
 		<Texture name="Wallcoll_21_texture"/>
 		<Normal name="Wallcoll_21_normal"/>
 		<Specular name="Wallcoll_21_specular"/>
-		<Position X="4.5" Y="0.5" Z="-4.5"/>
+		<Position X="13.5" Y="0.375" Z="-8.63103710914"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="1.0" Z="1.0"/>
+		<ColSize X="3.0" Y="3.72291993588" Z="3.0"/>
 	</Object>
 	<Object name="Wallcoll_22">
 		<Texture name="Wallcoll_22_texture"/>
 		<Normal name="Wallcoll_22_normal"/>
 		<Specular name="Wallcoll_22_specular"/>
-		<Position X="9.0" Y="2.0" Z="-5.0"/>
+		<Position X="27.0" Y="1.5" Z="-10.1310371091"/>
 		<Col Type="1"/>
-		<ColSize X="4.0" Y="6.0" Z="4.0"/>
+		<ColSize X="12.0" Y="19.347393429" Z="12.0"/>
 	</Object>
 	<Object name="Wallcoll_23">
 		<Texture name="Wallcoll_23_texture"/>
 		<Normal name="Wallcoll_23_normal"/>
 		<Specular name="Wallcoll_23_specular"/>
-		<Position X="-9.0" Y="2.0" Z="-5.0"/>
+		<Position X="-27.0" Y="1.5" Z="-10.1310371091"/>
 		<Col Type="1"/>
-		<ColSize X="4.0" Y="6.0" Z="4.0"/>
+		<ColSize X="12.0" Y="19.347393429" Z="12.0"/>
 	</Object>
 	<Object name="Wallcoll_24">
 		<Texture name="Wallcoll_24_texture"/>
 		<Normal name="Wallcoll_24_normal"/>
 		<Specular name="Wallcoll_24_specular"/>
-		<Position X="11.5" Y="2.0" Z="-2.0"/>
+		<Position X="34.5" Y="1.5" Z="-1.13103710914"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="6.0" Z="10.0"/>
+		<ColSize X="3.0" Y="19.347393429" Z="30.0"/>
 	</Object>
 	<Object name="Wallcoll_25">
 		<Texture name="Wallcoll_25_texture"/>
 		<Normal name="Wallcoll_25_normal"/>
 		<Specular name="Wallcoll_25_specular"/>
-		<Position X="12.5" Y="2.0" Z="4.0"/>
+		<Position X="37.5" Y="1.5" Z="16.8689628909"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="6.0" Z="2.0"/>
+		<ColSize X="3.0" Y="19.347393429" Z="6.0"/>
 	</Object>
 	<Object name="Wallcoll_26">
 		<Texture name="Wallcoll_26_texture"/>
 		<Normal name="Wallcoll_26_normal"/>
 		<Specular name="Wallcoll_26_specular"/>
-		<Position X="5.0" Y="2.0" Z="9.0"/>
+		<Position X="15.0" Y="1.5" Z="31.8689628909"/>
 		<Col Type="1"/>
-		<ColSize X="4.0" Y="6.0" Z="2.0"/>
+		<ColSize X="12.0" Y="19.347393429" Z="6.0"/>
 	</Object>
 	<Object name="Wallcoll_27">
 		<Texture name="Wallcoll_27_texture"/>
 		<Normal name="Wallcoll_27_normal"/>
 		<Specular name="Wallcoll_27_specular"/>
-		<Position X="5.5" Y="2.0" Z="7.5"/>
+		<Position X="16.5" Y="1.5" Z="27.3689628909"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="6.0" Z="1.0"/>
+		<ColSize X="3.0" Y="19.347393429" Z="3.0"/>
 	</Object>
 	<Object name="Wallcoll_28">
 		<Texture name="Wallcoll_28_texture"/>
 		<Normal name="Wallcoll_28_normal"/>
 		<Specular name="Wallcoll_28_specular"/>
-		<Position X="6.5" Y="2.0" Z="6.5"/>
+		<Position X="19.5" Y="1.5" Z="24.3689628909"/>
 		<Col Type="1"/>
-		<ColSize X="1.0" Y="6.0" Z="3.0"/>
+		<ColSize X="3.0" Y="19.347393429" Z="9.0"/>
 	</Object>
 	<Object name="Wallcoll_29">
 		<Texture name="Wallcoll_29_texture"/>
 		<Normal name="Wallcoll_29_normal"/>
 		<Specular name="Wallcoll_29_specular"/>
-		<Position X="10.5" Y="2.0" Z="8.5"/>
+		<Position X="31.5" Y="1.5" Z="30.3689628909"/>
 		<Col Type="1"/>
-		<ColSize X="7.0" Y="6.0" Z="7.0"/>
+		<ColSize X="21.0" Y="19.347393429" Z="21.0"/>
+	</Object>
+	<Object name="Wallcoll_30">
+		<Texture name="Wallcoll_30_texture"/>
+		<Normal name="Wallcoll_30_normal"/>
+		<Specular name="Wallcoll_30_specular"/>
+		<Position X="28.5" Y="2.52091940883" Z="2.70470423693"/>
+		<Col Type="1"/>
+		<ColSize X="9.0" Y="3.91556796081" Z="16.3579463018"/>
 	</Object>
 </GameObjects>
