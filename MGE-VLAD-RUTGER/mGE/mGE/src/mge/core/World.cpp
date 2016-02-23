@@ -4,7 +4,7 @@
 #include "mge/core/World.hpp"
 #include "mge/core/Camera.hpp"
 #include "mge/core/Mesh.hpp"
-#include "Light.h"
+#include "mge/core/light/Light.h"
 
 using namespace std;
 
@@ -31,7 +31,14 @@ Light* World::getLightAt(int pIndex) {
 Camera* World::getMainCamera () {
     return _mainCamera;
 }
-
+void World::CleanUpworld()
+{
+	while (_children.size() > 0) {
+		GameObject* child = _children[0];
+		remove(child);
+		delete child;
+	}
+}
 void World::renderDebugInfo() {
     //walk through all meshes and debug their normals
     GameObject* gameObject;

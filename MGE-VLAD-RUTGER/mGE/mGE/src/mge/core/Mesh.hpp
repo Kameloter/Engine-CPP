@@ -5,6 +5,7 @@
 #include <string>
 #include <GL/glew.h>
 #include <glm.hpp>
+#include <map>
 
 class World;
 
@@ -24,7 +25,7 @@ class Mesh
          * for more format information.
          */
 		static Mesh* load(std::string pFileName);
-
+		
         /**
          * Streams the mesh to opengl using the given indexes for the different attributes
          */
@@ -34,6 +35,9 @@ class Mesh
         void renderDebugInfo(glm::mat4& pModelMatrix, World* pWorld);
 		glm::vec3 GetColliderSize();
 	protected:
+		static std::map<std::string, Mesh*> _meshes;
+		static Mesh* _loadFromFile(const std::string pFileName);
+
 		glm::vec3 _colliderSize;
 	    std::string _id;
 		glm::vec3 calculateColSize();

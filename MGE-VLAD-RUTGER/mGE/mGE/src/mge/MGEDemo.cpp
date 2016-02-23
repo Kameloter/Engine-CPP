@@ -1,63 +1,27 @@
-//#include <glm.hpp>
 #include <iostream>
 #include <string>
 using namespace std;
 #include "mge/core/Renderer.hpp"
-#include "mge/core/Mesh.hpp"
 #include "mge/core/World.hpp"
-#include "mge/xml/XmlReader.h"
-#include "mge/core/collision/PhysicsWorld.h"
 #include "mge/core/FPS.hpp"
-#include "mge/LUA/LUAManager.h"
-#include "mge/core/Camera.hpp"
+#include "mge/core/collision/PhysicsWorld.h"
+#include "mge/core/LevelManager.h"
+#include "mge/UI/MainMenu.h"
 
-#include "mge/core/GameObject.hpp"
-#include "mge/core/collision/Rigidbody.h"
-#include "mge/core/collision/RigidbodyGameObject.h"
-#include "mge/core/collision/StaticGameObject.h"
-#include "mge/core/light/Light.h"
-#include "mge/core/light/DirectionalLight.h"
-#include "mge/core/light/PointLight.h"
-#include "mge/core/light/SpotLight.h"
-#include "mge/materials/AbstractMaterial.hpp"
 
-#include "mge/materials/ColorMaterial.hpp"
-#include "mge/materials/TerrainMaterial.hpp"
-#include "mge/materials/TextureMaterial.hpp"
-#include "mge/materials/VertexLitColorMaterial.hpp"
-#include "mge/materials/FragLitColorMaterial.hpp"
-#include "mge/materials/PointLightMaterial.hpp"
-#include "mge/materials/PointLightAttenuationMaterial.hpp"
-#include "mge/materials/TextureLitMaterial.hpp"
-#include "mge/materials/WobblyMaterial.hpp"
-#include "mge/materials/TextureNormalMaterial.hpp"
-#include "mge/materials/SpotLightMaterial.hpp"
 
-#include "mge/behaviours/RotatingBehaviour.hpp"
-#include "mge/behaviours/KeysBehaviour.hpp"
-#include "mge/behaviours/KeysBehaviour2.hpp"
-#include "mge/behaviours/FPController.h"
-#include "mge/behaviours/BoxBehaviour.h"
-#include "mge/behaviours/DoorBehaviour.h"
-
-#include "mge/behaviours/TriggerBehaviour.h"
-#include "mge/behaviours/FPCamera.h"
-#include "mge/behaviours/LookAt.hpp"
-#include "mge/behaviours/Orbit.hpp"
-#include "mge/util/Color.h"
-
-//collision
-#include "mge/core/collision/Collider.h"
-#include "mge/core/collision/BoxCollider.h"
-#include "mge/core/collision/SphereCollider.h"
-#include "mge/core/collision/Collision.h"
+//
+////collision
+//#include "mge/core/collision/Collider.h"
+//#include "mge/core/collision/BoxCollider.h"
+//#include "mge/core/collision/SphereCollider.h"
+//#include "mge/core/collision/Collision.h"
 
 #include "mge/util/DebugHud.hpp"
 
-#include "mge/config.hpp"
 #include "mge/MGEDemo.hpp"
 
-XmlReader * xmlReader;
+
 //construct the game class into _window, _renderer and hud (other parts are initialized by build)
 MGEDemo::MGEDemo():AbstractGame ()
 {
@@ -73,69 +37,24 @@ void MGEDemo::initialize() {
 	cout << "HUD initialized." << endl << endl;
 }
 
-AbstractMaterial* pointLightMaterial;
-AbstractMaterial* pointAttenuationMat;
-PointLight* light2;
- RigidbodyGameObject* Player ;
-GameObject* box;
+LevelManager * levelManager;
+MainMenu * mainMenu;
 void MGEDemo::_initializeScene()
 {
-    _renderer->setClearColor(0,0,0);
+	_renderer->setClearColor(0, 0, 0);
+	levelManager = new LevelManager(_world);
+	levelManager->SwitchToLevel(GameLevels::Menu);
+	mainMenu = new MainMenu(_window);
 
- //===============================  M E S H E S ====================================================================================================================================================//
+	//   Player = new RigidbodyGameObject("Player", glm::vec3(4,1.5,4),_world);
+	   //Player->AddBoxCollider(1, 1, 1);
+	//   Player->setMesh(cubeMeshF);
+	//   Player->setMaterial(maroonMaterial);
+	//   Player->setBehaviour(new FPController(10.0f,1.0f,camera,FPController::InputType::WASD));
+	//   _world->add(Player);
 
-    Mesh* planeQuad = Mesh::load (config::MGE_MODEL_PATH+"NormalPlane.obj");
-    Mesh* cubeMeshF = Mesh::load (config::MGE_MODEL_PATH+"cube.obj");
-	Mesh* pistolMesh = Mesh::load(config::MGE_MODEL_PATH + "Flashlight.obj");
-//=====================================================================================================================================================================================================//
+
 	
-
-   //===============================  M A T E R I A L S ====================================================================================================================================================//
-    AbstractMaterial * spotLightMaterial = new SpotLightMaterial(Color::Red);
-
-    //MATERIALS
-	AbstractMaterial * normalMapMaterial = new TextureNormalMaterial(Texture::load(config::MGE_TEXTURE_PATH + ("Flashlight_diffuse.jpg")), glm::vec3(0.4f), 32.f, Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_normal.jpg"));
-	AbstractMaterial * normalMapMaterial2 = new TextureNormalMaterial(Texture::load(config::MGE_TEXTURE_PATH + ("rocks.jpg")), glm::vec3(0.4f), 32.f, Texture::load(config::MGE_TEXTURE_PATH + "rocksnormal.png"));
-    //Texture Material + Light !
-    AbstractMaterial* wallMat = new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"test.jpg"),32.f);
-
-    AbstractMaterial* pillarMat = new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"pillar.jpg"),32.f);
-    //Simple Texture material - No light
-    AbstractMaterial* textureMaterial = new TextureMaterial (Texture::load (config::MGE_TEXTURE_PATH+"land.jpg"));
-    AbstractMaterial* textureMaterial2 = new TextureMaterial (Texture::load (config::MGE_TEXTURE_PATH+"bricks.jpg"));
-
-    AbstractMaterial * blueMaterial = new ColorMaterial(glm::vec3(0,0,1));
-    AbstractMaterial * redMaterial = new ColorMaterial(glm::vec3(1,0,0));
-    AbstractMaterial * greenMaterial = new ColorMaterial(glm::vec3(0,1,0));
-    AbstractMaterial * maroonMaterial = new ColorMaterial(Color::Maroon);
-
- //==========================================================================================================================================================================================================================//
-
-    DoorBehaviour * doorBehaviour = new DoorBehaviour();
-
-
-
-/** PLAYER AND CAMERA
-*/
-
-    Camera* camera = new Camera ("camera", glm::vec3(0,0,0));
-    _world->add(camera);
-    _world->setMainCamera(camera);
-
- //   Player = new RigidbodyGameObject("Player", glm::vec3(4,1.5,4),_world);
-	//Player->AddBoxCollider(1, 1, 1);
- //   Player->setMesh(cubeMeshF);
- //   Player->setMaterial(maroonMaterial);
- //   Player->setBehaviour(new FPController(10.0f,1.0f,camera,FPController::InputType::WASD));
- //   _world->add(Player);
-
-
-	GameObject * cubeNormal = new GameObject("normalmap", glm::vec3(0, 2, 0));
-	cubeNormal->setMesh(pistolMesh);
-	cubeNormal->setMaterial(normalMapMaterial);
-//	cubeNormal->scale(glm::vec3(0.1f));
-	_world->add(cubeNormal);
-	cout << "Col size of flashlight " << cubeNormal->getMesh()->GetColliderSize() << endl;
 
 	//GameObject * cubeNormal = new GameObject("normalmap", glm::vec3(0, 2, 0));
 	//cubeNormal->setMesh(cubeMeshF);
@@ -147,75 +66,41 @@ void MGEDemo::_initializeScene()
   //  camera->setParent(Player);
    // camera->setLocalPosition(glm::vec3(0,2,0));
    // camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
-	camera->setBehaviour(new Orbit(cubeNormal, 10.0f, 80.0f, 10.0f));
 
 
-    //{ LIGHTS
-    //Directional Light
-    Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(10,7,10),glm::vec3(1,0,1),glm::vec3(.5f,.5f,.5f),glm::vec3(1.f,1.f,1.f),glm::vec3(1,1,1));
-	dirLight->setMesh(cubeMeshF);
-	dirLight->setMaterial(new ColorMaterial(dirLight->diffuse));
-	_world->add(dirLight);
-	dirLight->setBehaviour(new KeysBehaviour2());
-    //Points lights
-    Light *light = new PointLight("PointLight1", glm::vec3(2,2,0),glm::vec3(.1f),glm::vec3(Color::Green),glm::vec3(0.3f));
-    _world->add(light);
-
-    light2 = new PointLight("PointLight2", glm::vec3(-7,2,0),glm::vec3(.1f),glm::vec3(1),glm::vec3(0.3f));
-    _world->add(light2);
-
-  
-    //}
+//	XmlReader * xmlReader;
+	//xmlReader = new XmlReader();
+	// xmlReader->SetupLevelGeometry(_world);
 
 
 
-    //ADD OBJECTS TO WORLD ! ================================================================
-    //Add Lights
-    _world->AddLight(dirLight);
-    _world->AddLight(light);
-   _world->AddLight(light2);
- //   _world->AddLight(light3);
-   // _world->AddLight(light4);
-    //======================================================================================
-    //PHYSICS TESTS
-
-   xmlReader = new XmlReader();
-  // xmlReader->SetupLevelGeometry(_world);
-
-    LUAManager::InitializeFile();
-
-
-	GameObject * cX = new GameObject("compassX", glm::vec3(1, 0, 0));
-	cX->setMesh(cubeMeshF);
-	cX->setMaterial(new ColorMaterial(Color::Red));
-	cX->scale(glm::vec3(1.9, 0.1f, 0.1f));
-	_world->add(cX);
-
-	GameObject * cY= new GameObject("compassY", glm::vec3(0, 1, 0));
-	cY->setMesh(cubeMeshF);
-	cY->setMaterial(new ColorMaterial(Color::Green));
-	cY->scale(glm::vec3(0.1f,1.9, 0.1f));
-	_world->add(cY);
-
-	GameObject * cZ = new GameObject("compassZ", glm::vec3(0, 0, 1));
-	cZ->setMesh(cubeMeshF);
-	cZ->setMaterial(new ColorMaterial(Color::Blue));
-	cZ->scale(glm::vec3(0.1f, 0.1f, 1.9));
-	_world->add(cZ);
+	
 
 }
 
-bool won = false;
+
 void MGEDemo::_render() {
-	//if (Player->getLocalPosition().y < 0) Player->setLocalPosition(glm::vec3(Player->getLocalPosition().x, 0, Player->getLocalPosition().z));
-	if (won) {
-		string winText = " YOU WIN YAAY !";
-		_hud->setWinTextInfo(winText);
-	}
+
 	//_world->renderDebugInfo();
 	AbstractGame::_render();
 	_updateHud();
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) system("cls");
+	if (levelManager->currentlevel == GameLevels::Menu)
+	{
+		
+		if (mainMenu->ButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME !"))
+		{
+			levelManager->SwitchToLevel(GameLevels::HUB);
+		}
+	}
+
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) levelManager->SwitchToLevel(GameLevels::Menu);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) levelManager->SwitchToLevel(GameLevels::HUB);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) levelManager->SwitchToLevel(GameLevels::Level1);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) levelManager->SwitchToLevel(GameLevels::Level2);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) _world->CleanUpworld();
+
 }
 
 void MGEDemo::_updateHud() {

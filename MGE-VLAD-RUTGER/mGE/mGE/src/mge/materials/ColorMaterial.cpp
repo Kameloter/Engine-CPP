@@ -40,7 +40,7 @@ void ColorMaterial::_lazyInitializeShader() {
 
 ColorMaterial::~ColorMaterial()
 {
-    //dtor
+	std::cout << " color material cleaned " << std::endl;
 }
 
 void ColorMaterial::setDiffuseColor(glm::vec3 pDiffuseColor) {

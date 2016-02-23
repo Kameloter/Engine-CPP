@@ -16,6 +16,8 @@ public:
 	glm::vec3 GetMaxBounds();
 	void updateStaticBody();
 
+	void moveStaticObject(glm::vec3 pPos);
+
 	void AddBoxCollider(float pW, float pH, float pD);
 private:
 	neAnimatedBody* _animBody;

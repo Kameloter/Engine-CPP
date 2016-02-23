@@ -1,11 +1,8 @@
 #include "mge/core/Mesh.hpp"
 #include <iostream>
-#include <map>
-#include <string>
 #include <fstream>
-
 using namespace std;
-
+std::map<std::string, Mesh*> Mesh::_meshes;
 #include "mge/core/Renderer.hpp"
 #include "mge/core/World.hpp"
 #include "mge/core/Camera.hpp"
@@ -19,6 +16,8 @@ Mesh::Mesh(string pId)
 
 Mesh::~Mesh()
 {
+
+	cout << " Mesh cleaned up " << endl;
 	//dtor
 }
 
@@ -72,33 +71,55 @@ Mesh::~Mesh()
  */
 Mesh* Mesh::load(string pFileName)
 {
-    cout << "Loading " << pFileName << "..." <<endl;
+    
+	Mesh * mesh = 0;
+
+	std::map<std::string, Mesh*>::iterator meshIterator = _meshes.find(pFileName);
+
+	if (meshIterator == _meshes.end()) // if iterator is at the end then he did not find existing mesh
+	{
+		mesh = _loadFromFile(pFileName);
+		std::cout << "Mesh " << pFileName << " loaded." << std::endl;
+		std::cout << "Caching mesh." << std::endl;
+		_meshes[pFileName] = mesh;
+	}
+	else {
+		std::cout << "Returning cached mesh " << pFileName << std::endl;
+		mesh = meshIterator->second;
+	}
+	return mesh;
+}
+
+
+Mesh* Mesh::_loadFromFile(std::string pFileName)
+{
+	cout << "Loading " << pFileName << "..." << endl;
 
 	Mesh* mesh = new Mesh(pFileName);
 
-	ifstream file (pFileName, ios::in);
+	ifstream file(pFileName, ios::in);
 
-	if( file.is_open() ){
-        //these three vectors will contains data as taken from the obj file
-        //in the order it is encountered in the object file
+	if (file.is_open()) {
+		//these three vectors will contains data as taken from the obj file
+		//in the order it is encountered in the object file
 		vector<glm::vec3> vertices;
 		vector<glm::vec3> normals;
 		vector<glm::vec2> uvs;
 
-        //in addition we create a map to store the triplets found under the f(aces) section in the
-        //object file and map them to an index for our index buffer (just number them sequentially
-        //as we encounter them and store references to the pack
+		//in addition we create a map to store the triplets found under the f(aces) section in the
+		//object file and map them to an index for our index buffer (just number them sequentially
+		//as we encounter them and store references to the pack
 		map <FaceIndexTriplet, unsigned int> mappedTriplets;
 
 		string line; // to store each line in
-		while(getline(file,line)) {
+		while (getline(file, line)) {
 
-            // c-type string to store cmd read from obj file (cmd is v, vt, vn, f)
+			// c-type string to store cmd read from obj file (cmd is v, vt, vn, f)
 			char cmd[10];
 			cmd[0] = 0;
 
-            //get the first string in the line of max 10 chars (c-style)
-			sscanf ( line.c_str(), "%10s", cmd );
+			//get the first string in the line of max 10 chars (c-style)
+			sscanf(line.c_str(), "%10s", cmd);
 
 			//note that although the if statements below seem to imply that we can
 			//read these different line types (eg vertex, normal, uv) in any order,
@@ -108,80 +129,80 @@ Mesh* Mesh::load(string pFileName)
 
 			//so... start processing lines
 			//are we reading a vertex line? straightforward copy into local vertices vector
-			if ( strcmp ( cmd, "v" ) == 0 ) {
+			if (strcmp(cmd, "v") == 0) {
 				glm::vec3 vertex;
-				sscanf(line.c_str(), "%10s %f %f %f ", cmd, &vertex.x, &vertex.y, &vertex.z );
-				vertices.push_back( vertex );
+				sscanf(line.c_str(), "%10s %f %f %f ", cmd, &vertex.x, &vertex.y, &vertex.z);
+				vertices.push_back(vertex);
 
-            //or are we reading a normal line? straightforward copy into local normal vector
-			} else if ( strcmp ( cmd, "vn" ) == 0 ) {
+				//or are we reading a normal line? straightforward copy into local normal vector
+			}
+			else if (strcmp(cmd, "vn") == 0) {
 				glm::vec3 normal;
-				sscanf(line.c_str(), "%10s %f %f %f ", cmd, &normal.x, &normal.y, &normal.z );
-				normals.push_back( normal );
+				sscanf(line.c_str(), "%10s %f %f %f ", cmd, &normal.x, &normal.y, &normal.z);
+				normals.push_back(normal);
 
-            //or are we reading a uv line? straightforward copy into local uv vector
-			} else if ( strcmp ( cmd, "vt" ) == 0 ) {
+				//or are we reading a uv line? straightforward copy into local uv vector
+			}
+			else if (strcmp(cmd, "vt") == 0) {
 				glm::vec2 uv;
-				sscanf(line.c_str(), "%10s %f %f ", cmd, &uv.x, &uv.y );
-				uvs.push_back( uv );
+				sscanf(line.c_str(), "%10s %f %f ", cmd, &uv.x, &uv.y);
+				uvs.push_back(uv);
 
-            //this is where it gets nasty. After having read all vertices, normals and uvs into
-            //their own buffer
-			} else if ( strcmp ( cmd, "f" ) == 0 ) {
+				//this is where it gets nasty. After having read all vertices, normals and uvs into
+				//their own buffer
+			}
+			else if (strcmp(cmd, "f") == 0) {
 
-			    //an f lines looks like
-			    //f 2/1/1 1/2/1 3/3/1
-			    //in other words
-			    //f v1/u1/n1 v2/u2/n2 v3/u3/n3
-			    //for each triplet like that we need to check whether we already encountered it
-			    //and update our administration based on that
+				//an f lines looks like
+				//f 2/1/1 1/2/1 3/3/1
+				//in other words
+				//f v1/u1/n1 v2/u2/n2 v3/u3/n3
+				//for each triplet like that we need to check whether we already encountered it
+				//and update our administration based on that
 				glm::ivec3 vertexIndex;
 				glm::ivec3 normalIndex;
 				glm::ivec3 uvIndex;
-			    int count = sscanf(line.c_str(), "%10s %d/%d/%d %d/%d/%d %d/%d/%d", cmd, &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2] );
+				int count = sscanf(line.c_str(), "%10s %d/%d/%d %d/%d/%d %d/%d/%d", cmd, &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2]);
 
-                //Have we read exactly 10 elements?
-				if ( count == 10 ) {
-                    std::vector<float> indexArray;
-                    //process 3 triplets, one for each vertex (which is first element of the triplet)
-					for ( int i = 0; i < 3; ++i ) {
-					    //create key out of the triplet and check if we already encountered this before
-						FaceIndexTriplet triplet (vertexIndex[i], uvIndex[i], normalIndex[i]);
+				//Have we read exactly 10 elements?
+				if (count == 10) {
+					//process 3 triplets, one for each vertex (which is first element of the triplet)
+					for (int i = 0; i < 3; ++i) {
+						//create key out of the triplet and check if we already encountered this before
+						FaceIndexTriplet triplet(vertexIndex[i], uvIndex[i], normalIndex[i]);
 						map<FaceIndexTriplet, unsigned int>::iterator found = mappedTriplets.find(triplet);
 
 						//if iterator points at the end, we haven't found it
 						if (found == mappedTriplets.end())
-                        {
-                            //so create a new index value, and map our triplet to it
+						{
+							//so create a new index value, and map our triplet to it
 							unsigned int index = mappedTriplets.size();
-							mappedTriplets[ triplet ] = index;
+							mappedTriplets[triplet] = index;
 
 							//now record this index
-							mesh->_indices.push_back( index );
+							mesh->_indices.push_back(index);
 							//and store the corresponding vertex/normal/uv values into our own buffers
 							//note the -1 is required since all values in the f triplets in the .obj file
 							//are 1 based, but our vectors are 0 based
-							mesh->_vertices.push_back( vertices[ vertexIndex[i]-1 ] );
-							mesh->_normals.push_back( normals[ normalIndex[i]-1 ] );
-							mesh->_uvs.push_back( uvs[ uvIndex[i]-1 ] );
-							//indexArray.push_back(-1);
-							//indexArray.push_back(-1);
+							mesh->_vertices.push_back(vertices[vertexIndex[i] - 1]);
+							mesh->_normals.push_back(normals[normalIndex[i] - 1]);
+							mesh->_uvs.push_back(uvs[uvIndex[i] - 1]);
 						}
 						else
-                        {
-                            //if the key was already present, get the index value for it
+						{
+							//if the key was already present, get the index value for it
 							unsigned int index = found->second;
-                            //and update our index buffer with it
-							mesh->_indices.push_back( index );
-						//	indexArray.push_back(index);
+							//and update our index buffer with it
+							mesh->_indices.push_back(index);
 						}
 
 
 
-					
+
 					}
-				} else {
-				    //If we read a different amount, something is wrfong
+				}
+				else {
+					//If we read a different amount, something is wrfong
 					cout << "Error reading obj, needing v,vn,vt" << endl;
 					delete mesh;
 					return NULL;
@@ -189,21 +210,23 @@ Mesh* Mesh::load(string pFileName)
 			}
 
 		}
-		
+
 		file.close();
 		mesh->_colliderSize = mesh->calculateColSize();
 		mesh->calculateTangents();
 		mesh->_buffer();
-		cout << "Mesh loaded and buffered:" << (mesh->_indices.size()/3.0f) << " triangles." << endl;
+		cout << "Mesh loaded and buffered:" << (mesh->_indices.size() / 3.0f) << " triangles." << endl;
 		return mesh;
-	} else {
+	}
+	else {
 		cout << "Could not read " << pFileName << endl;
 		delete mesh;
 		return NULL;
 	}
 
-	
 }
+
+
 void Mesh::calculateTangents() 
 {
 

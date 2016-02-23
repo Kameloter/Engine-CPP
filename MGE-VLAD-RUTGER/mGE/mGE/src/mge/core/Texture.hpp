@@ -11,7 +11,6 @@ class Texture
 		static Texture* load(const std::string pTexturePath);
 
 		virtual ~Texture();
-
 		GLuint getId();
 
 	protected:

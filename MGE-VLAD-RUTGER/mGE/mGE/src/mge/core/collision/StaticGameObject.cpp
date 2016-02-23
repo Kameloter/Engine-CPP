@@ -32,6 +32,14 @@ glm::vec3 StaticGameObject::GetMaxBounds()
 	return maxBounds;
 }
 
+
+void StaticGameObject::moveStaticObject(glm::vec3 )
+{
+
+}
+
+
+
 void StaticGameObject::updateStaticBody()
 {
 	//neV3 goWorldPos;

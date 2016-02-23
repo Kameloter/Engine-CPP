@@ -15,6 +15,7 @@ Orbit::Orbit(GameObject * pTarget,float pRotationSpeed,float pMaxRotationX,float
 
 Orbit::~Orbit()
 {
+	cout << " Orbit behaviour cleaned for " << _owner->getName() << endl;
     //dtor
 }
 

@@ -25,7 +25,7 @@ Texture* Texture::load(std::string pName)
     Texture* texture = 0;
 
     //try to locate texture
-   	std::map<std::string, Texture*>::iterator textureIterator = _textures.find("test.jpg");
+   	std::map<std::string, Texture*>::iterator textureIterator = _textures.find(pName);
 
    	if (textureIterator == _textures.end()) {
         texture = _loadFromFile(pName);

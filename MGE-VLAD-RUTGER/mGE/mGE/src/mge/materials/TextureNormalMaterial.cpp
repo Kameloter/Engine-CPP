@@ -18,7 +18,10 @@ TextureNormalMaterial::TextureNormalMaterial(Texture * pDiffuseTexture,glm::vec3
     _lazyInitializeShader();
 }
 
-TextureNormalMaterial::~TextureNormalMaterial() {}
+TextureNormalMaterial::~TextureNormalMaterial() 
+{
+	std::cout << " Normal Map material cleaned up " << std::endl;
+}
 
 void TextureNormalMaterial::_lazyInitializeShader() {
     if (!_shader) {
