@@ -41,6 +41,7 @@
     <ClInclude Include="src\mge\core\DirectionalLight.h" />
     <ClInclude Include="src\mge\core\FPS.hpp" />
     <ClInclude Include="src\mge\core\GameObject.hpp" />
+    <ClInclude Include="src\mge\core\LevelManager.h" />
     <ClInclude Include="src\mge\core\Light.h" />
     <ClInclude Include="src\mge\core\light\DirectionalLight.h" />
     <ClInclude Include="src\mge\core\light\Light.h" />
@@ -67,6 +68,7 @@
     <ClInclude Include="src\mge\materials\VertexLitColorMaterial.hpp" />
     <ClInclude Include="src\mge\materials\WobblyMaterial.hpp" />
     <ClInclude Include="src\mge\MGEDemo.hpp" />
+    <ClInclude Include="src\mge\UI\MainMenu.h" />
     <ClInclude Include="src\mge\util\Color.h" />
     <ClInclude Include="src\mge\util\DebugHud.hpp" />
     <ClInclude Include="src\mge\xml\pugiconfig.hpp" />
@@ -121,6 +123,7 @@
     <ClCompile Include="src\mge\core\collision\StaticGameObject.cpp" />
     <ClCompile Include="src\mge\core\FPS.cpp" />
     <ClCompile Include="src\mge\core\GameObject.cpp" />
+    <ClCompile Include="src\mge\core\LevelManager.cpp" />
     <ClCompile Include="src\mge\core\light\DirectionalLight.cpp" />
     <ClCompile Include="src\mge\core\light\Light.cpp" />
     <ClCompile Include="src\mge\core\light\PointLight.cpp" />
@@ -147,6 +150,7 @@
     <ClCompile Include="src\mge\materials\VertexLitColorMaterial.cpp" />
     <ClCompile Include="src\mge\materials\WobblyMaterial.cpp" />
     <ClCompile Include="src\mge\MGEDemo.cpp" />
+    <ClCompile Include="src\mge\UI\MainMenu.cpp" />
     <ClCompile Include="src\mge\util\Color.cpp" />
     <ClCompile Include="src\mge\util\DebugHud.cpp" />
     <ClCompile Include="src\mge\xml\pugixml.cpp" />
