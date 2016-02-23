@@ -8,16 +8,16 @@ in vec3 bitangent;
 
 out vec3 vertices;
 out vec2 uvs;
-out vec3 verticesTangent;
-out vec3 camPosTangent;
-out vec3 lightPosTangent;
+out mat3 TBN;
+//out vec3 verticesTangent;
+//out vec3 camPosTangent;
+//out vec3 lightPosTangent;
 
 
 uniform	mat4 mat_Model;
 uniform mat4 mat_View;
 uniform mat4 mat_Proj;
-uniform vec3 cameraPosition;
-uniform vec3 lightPosition;
+
 
 out vec3 t;
 out vec3 b;
@@ -32,7 +32,9 @@ void main( void ){
     vec3 T = normalize(vec3(mat_Model * vec4(tangent, 0.0)));
     vec3 N = normalize(vec3(mat_Model * vec4(normal, 0.0)));
 
-    //T = normalize(T - dot(T, N) * N); // re-orthogonalize T with respect to N
+    T = normalize(T - dot(T, N) * N); // re-orthogonalize T with respect to N
+
+
 	//T -= N * dot(T,N);
 	//T = normalize(T);
 
@@ -43,13 +45,13 @@ void main( void ){
 		T *= -1;
 	}
 
-	mat3 TBN = mat3(T, B, N);
+     TBN = mat3(T, B, N);
 
 
 
-    verticesTangent = TBN * vertices;
-    camPosTangent = TBN * cameraPosition;
-    lightPosTangent = TBN * lightPosition;
+   // verticesTangent = TBN * vertices;
+  //  camPosTangent = TBN * cameraPosition;
+  //  lightPosTangent = TBN * lightPosition;
 
 	t = tangent;
 

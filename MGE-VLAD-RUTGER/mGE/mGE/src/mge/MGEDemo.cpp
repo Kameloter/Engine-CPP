@@ -68,9 +68,6 @@ void MGEDemo::_initializeScene()
    // camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
 
 
-//	XmlReader * xmlReader;
-	//xmlReader = new XmlReader();
-	// xmlReader->SetupLevelGeometry(_world);
 
 
 

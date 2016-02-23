@@ -21,7 +21,7 @@ GameObject::~GameObject()
 {
     //detach all children
     cout << "GC running on:" << _name << endl;
-
+	delete _behaviour;
     while (_children.size() > 0) {
         GameObject* child = _children[0];
         remove (child);

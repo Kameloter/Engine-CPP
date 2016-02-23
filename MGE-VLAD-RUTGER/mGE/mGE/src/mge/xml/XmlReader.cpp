@@ -1,12 +1,18 @@
 #include "XmlReader.h"
 #include "mge/config.hpp"
+
 #include "mge/core/collision/StaticGameObject.h"
-
 #include "mge/core/collision/PhysicsWorld.h"
+#include "mge/core/Mesh.hpp"
+#include "mge/materials/AbstractMaterial.hpp"
+#include "mge/materials/ColorMaterial.hpp"
+#include "mge/materials/TextureLitMaterial.hpp"
+#include "mge/materials/TextureMaterial.hpp"
 
-XmlReader::XmlReader()
+XmlReader::XmlReader(PhysicsWorld* pWorld) :
+	_world(pWorld)
 {
-    Read();
+    //Read();
 }
 
 XmlReader::~XmlReader()
@@ -14,8 +20,9 @@ XmlReader::~XmlReader()
     //dtor
 }
 
-void XmlReader::Read()
+void XmlReader::Read(string pFileName)
 {
+	cout << "Reading Level Data..." << endl;
      int counter;
   //  pugi::xml_parse_result result = ;
     if(!_xmlFile.load_file("assets/mge/xml/level.xml")) std::cout<<"Couldn't load the file"<<std::endl;
@@ -44,9 +51,14 @@ void XmlReader::Read()
                                             StringToNumber<float>(_objectProperties[5].attribute("Z").value())));
 
     }
+	
 }
+void XmlReader::LoadLevel(string pLevelName)
+{
+	Read(pLevelName);
 
-void XmlReader::SetupLevelGeometry(PhysicsWorld * pPhysicsWorld)
+}
+void XmlReader::SetupLevelGeometry()
 {
     //Create root geometry
     GameObject * root = new GameObject("Level1_geometry",glm::vec3(0,0,0));
@@ -55,17 +67,17 @@ void XmlReader::SetupLevelGeometry(PhysicsWorld * pPhysicsWorld)
     root->setMaterial(new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"test.jpg"),32.f));
 //	root->setMaterial(new TextureMaterial(Texture::load(config::MGE_TEXTURE_PATH + "test.jpg")));
 	//root->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
-	pPhysicsWorld->add(root);
+	_world->add(root);
 
     for(int i = 0; i < _names.size(); i++)
     {
-			StaticGameObject* obj = new StaticGameObject(_names[i], _positions[i], pPhysicsWorld);
+			StaticGameObject* obj = new StaticGameObject(_names[i], _positions[i], _world);
 
 			glm::vec3 boxColSize(_scales[i]);
 			obj->AddBoxCollider(boxColSize.x,boxColSize.y, boxColSize.z);
             
             objects.push_back(obj);
-			pPhysicsWorld->add(obj);
+			_world->add(obj);
     }
 }
 void XmlReader::SetupObjects()
