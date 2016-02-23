@@ -64,8 +64,8 @@ void XmlReader::SetupLevelGeometry()
     GameObject * root = new GameObject("Level1_geometry",glm::vec3(0,0,0));
     root->setMesh(Mesh::load(config::MGE_MODEL_PATH + "level_mesh.obj"));
 
-    root->setMaterial(new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"test.jpg"),32.f));
-//	root->setMaterial(new TextureMaterial(Texture::load(config::MGE_TEXTURE_PATH + "test.jpg")));
+  //  root->setMaterial(new TextureLitMaterial(Texture::load (config::MGE_TEXTURE_PATH+"test.jpg"),32.f));
+	root->setMaterial(new TextureMaterial(Texture::load(config::MGE_TEXTURE_PATH + "test.jpg")));
 	//root->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
 	_world->add(root);
 

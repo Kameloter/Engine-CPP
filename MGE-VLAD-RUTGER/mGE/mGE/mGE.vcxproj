@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="src\mge\behaviours\AbstractBehaviour.hpp" />
     <ClInclude Include="src\mge\behaviours\BoxBehaviour.h" />
+    <ClInclude Include="src\mge\behaviours\CollectableBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\DoorBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\FPCamera.h" />
     <ClInclude Include="src\mge\behaviours\FPController.h" />
@@ -105,6 +106,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mge\behaviours\AbstractBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\BoxBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\CollectableBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\DoorBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\FPCamera.cpp" />
     <ClCompile Include="src\mge\behaviours\FPController.cpp" />

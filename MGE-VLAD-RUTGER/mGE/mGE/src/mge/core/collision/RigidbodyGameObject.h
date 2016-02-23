@@ -18,6 +18,7 @@ public:
 	bool _moveable = true;
 private:
 	neRigidBody* _rigidbody;
+	PhysicsWorld*  _world;
 
 };
 

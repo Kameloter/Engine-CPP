@@ -6,6 +6,7 @@ RigidbodyGameObject::RigidbodyGameObject(std::string pName, glm::vec3 pPosition,
 	GameObject(pName,pPosition),
 	_rigidbody (pWorld->addRigidBodyObject(this))
 {
+	_world = pWorld;
 	neV3 position;
 	position.Set(pPosition.x, pPosition.y, pPosition.z);
 	_rigidbody->SetPos(position);
@@ -14,7 +15,7 @@ RigidbodyGameObject::RigidbodyGameObject(std::string pName, glm::vec3 pPosition,
 
 RigidbodyGameObject::~RigidbodyGameObject()
 {
-
+	//_world->freeMemory(this);
 }
 
 void RigidbodyGameObject::moveRb(glm::vec3 pPos)
