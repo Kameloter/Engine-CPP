@@ -65,10 +65,10 @@
       <UniqueIdentifier>{8aab1b60-b518-4c15-ac23-d823ccc76e5a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\UI">
-      <UniqueIdentifier>{22bae5ba-5478-4ac0-9637-260dd000f98c}</UniqueIdentifier>
+      <UniqueIdentifier>{e82ba958-f1f7-4527-9fe2-6640f18833b3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\UI">
-      <UniqueIdentifier>{804ca8a8-65bc-4108-946d-41f8d31a8601}</UniqueIdentifier>
+      <UniqueIdentifier>{5ae72400-ba2e-42dd-b8f4-51989aa7fed4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -231,11 +231,11 @@
     <ClInclude Include="src\mge\behaviours\PressurePlateBehaviour.h">
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
-    <ClInclude Include="src\mge\UI\MainMenu.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="src\mge\core\LevelManager.h">
       <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\UI\MainMenu.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -466,11 +466,11 @@
     <ClCompile Include="src\mge\behaviours\PressurePlateBehaviour.cpp">
       <Filter>Source Files\behaviours</Filter>
     </ClCompile>
-    <ClCompile Include="src\mge\UI\MainMenu.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="src\mge\core\LevelManager.cpp">
       <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\UI\MainMenu.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
