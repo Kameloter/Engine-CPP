@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<GameObjects>
+	<Object name="Player">
+		<Position X="13.2574901096" Y="0.648198818894" Z="2.90118362431"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="10"/>
+	</Object>
+	<Object name="Secret_Enterance_01">
+		<Position X="11.4" Y="5.5" Z="34.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="9"/>
+	</Object>
+	<Object name="Secret_Enterance_02">
+		<Position X="35.4" Y="5.5" Z="-7.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="9"/>
+	</Object>
+	<Object name="Secret_Enterance_03">
+		<Position X="-30.6" Y="5.5" Z="10.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="9"/>
+	</Object>
+	<Object name="Door_01">
+		<Position X="-22.3709306369" Y="5.40352433235" Z="-7.50374199806"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="8"/>
+	</Object>
+	<Object name="Door_02">
+		<Position X="-36.0" Y="9.22622042898" Z="42.6"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="8"/>
+	</Object>
+	<Object name="Secret_Exit_01">
+		<Position X="6.0" Y="5.5" Z="9.6"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="9"/>
+	</Object>
+	<Object name="Secret_Exit_02">
+		<Position X="24.6" Y="5.5" Z="-7.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="9"/>
+	</Object>
+	<Object name="Bridge_01">
+		<Position X="22.2835776542" Y="-1.84181269645" Z="-8.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="11"/>
+	</Object>
+	<Object name="Bridge_02">
+		<Position X="-12.5" Y="-3.12710914245" Z="6.1"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="3"/>
+	</Object>
+	<Object name="Bridge_03">
+		<Position X="-6.0" Y="3.7" Z="-26.9"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="3"/>
+	</Object>
+	<Object name="Shooting_Trap_01">
+		<Position X="-41.6" Y="5.0" Z="-1.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="4"/>
+	</Object>
+	<Object name="Shooting_Trap_02">
+		<Position X="-30.4" Y="5.0" Z="7.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="4"/>
+	</Object>
+	<Object name="Shooting_Trap_03">
+		<Position X="-30.4" Y="5.0" Z="13.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="4"/>
+	</Object>
+	<Object name="Coin_01">
+		<Position X="25.2639103471" Y="1.5298371537" Z="-28.7295810996"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Coin_02">
+		<Position X="21.0" Y="7.5" Z="-12.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Coin_03">
+		<Position X="21.0" Y="7.5" Z="-2.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Coin_04">
+		<Position X="13.5" Y="3.0" Z="34.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Coin_05">
+		<Position X="10.5" Y="-4.0" Z="26.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Coin_06">
+		<Position X="1.5" Y="-4.0" Z="26.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Pressure_Plate_01">
+		<Position X="-17.5" Y="0.140874767201" Z="-27.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="1"/>
+	</Object>
+	<Object name="Pressure_Plate_02">
+		<Position X="-18.5" Y="0.110956462705" Z="13.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="1"/>
+	</Object>
+	<Object name="Coin_07">
+		<Position X="-47.6827133679" Y="4.07038022074" Z="14.9370172385"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Coin_08">
+		<Position X="-58.5" Y="-1.0" Z="39.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Coin_09">
+		<Position X="-14.0" Y="-1.0" Z="39.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Coin_010">
+		<Position X="-19.5" Y="2.5" Z="-4.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Coin_011">
+		<Position X="-19.5" Y="2.5" Z="-10.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Le_Key_01">
+		<Position X="-36.0" Y="8.0" Z="38.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="6"/>
+	</Object>
+	<Object name="Statue_01">
+		<Position X="-18.3658253833" Y="2.94558105381" Z="6.1637488459"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="0"/>
+	</Object>
+	<Object name="Statue_02">
+		<Position X="-18.3658253833" Y="2.94558105381" Z="-21.6157708031"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="0"/>
+	</Object>
+</GameObjects>

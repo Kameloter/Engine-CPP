@@ -11,8 +11,6 @@ class LevelManager
 {
 public:
 
-	
-
     GameLevels currentlevel;
 
 

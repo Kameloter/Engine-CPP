@@ -249,6 +249,9 @@
     <ClInclude Include="src\mge\core\collision\BoxTrigger.h">
       <Filter>Header Files\core\collision</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\core\Player.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -492,6 +495,9 @@
     </ClCompile>
     <ClCompile Include="src\mge\core\collision\BoxTrigger.cpp">
       <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\Player.cpp">
+      <Filter>Source Files\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

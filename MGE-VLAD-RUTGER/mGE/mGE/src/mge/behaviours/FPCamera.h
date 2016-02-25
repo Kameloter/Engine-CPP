@@ -8,7 +8,7 @@
 class FPCamera: public AbstractBehaviour
 {
     public:
-        FPCamera( float pMoveSpeed,float pTurnSpeed, GameObject * pPlayer, sf::Window * window);
+        FPCamera( float pMoveSpeed,float pTurnSpeed, GameObject * pPlayer);
         virtual ~FPCamera();
         virtual void update( float step );
 		bool _inAction = false;

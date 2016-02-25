@@ -9,6 +9,7 @@
 #include "mge/xml/XmlReader.h"
 //Lights and gameobjects
 #include "mge/core/GameObject.hpp"
+#include "mge/core/Player.h"
 #include "mge/core/collision/RigidbodyGameObject.h"
 #include "mge/core/collision/StaticGameObject.h"
 #include "mge/core/collision/BoxTrigger.h"
@@ -151,24 +152,26 @@ void LevelManager::Build_level_1()
 //	AbstractMaterial * normalMapMaterial3 = new TextureNormalMaterial(Texture::load(config::MGE_TEXTURE_PATH + ("planeDiff.png")), glm::vec3(1), 1 , Texture::load(config::MGE_TEXTURE_PATH + "planeNormal.png"));
 //	AbstractMaterial * combinedMat = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "planeDiff.png"), Texture::load(config::MGE_TEXTURE_PATH + "planeNormal.png"), 32.f);
 
-	Camera* camera = new Camera("camera", glm::vec3(0, 0, 0));
-	_world->add(camera);
-	_world->setMainCamera(camera);
+	//Camera* camera = new Camera("camera", glm::vec3(0, 0, 0));
+	//_world->add(camera);
+	//_world->setMainCamera(camera);
 
-	RigidbodyGameObject * Player = new RigidbodyGameObject("Player", glm::vec3(4, 1.5, 4), _world);
-	glm::vec3 center = Player->getLocalPosition();
-	glm::vec3 minbound(center.x - 0.5f, center.y - 0.5f, center.z - 0.5f);
-	glm::vec3 maxbound(center.x + 0.5f, center.y + 0.5f, center.z + 0.5f);
-	Player->SetBounds(minbound, maxbound);
-	Player->AddBoxCollider(1, 1, 1);
-	Player->setMesh(cubeMeshF);
-	Player->setMaterial(new ColorMaterial(Color::Green));
-	Player->setBehaviour(new FPController(30.0f, 1.0f, camera, FPController::InputType::WASD));
-	_world->add(Player);
+	//Player * player = new Player("Player", glm::vec3(4, 1.5, 4), _world, camera);
 
-	 camera->setParent(Player);
-	 camera->setLocalPosition(glm::vec3(0,2,0));
-	 camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
+	////RigidbodyGameObject * Player = new RigidbodyGameObject("Player", glm::vec3(4, 1.5, 4), _world);
+	////glm::vec3 center = Player->getLocalPosition();
+	////glm::vec3 minbound(center.x - 0.5f, center.y - 0.5f, center.z - 0.5f);
+	////glm::vec3 maxbound(center.x + 0.5f, center.y + 0.5f, center.z + 0.5f);
+	////Player->SetBounds(minbound, maxbound);
+	////Player->AddBoxCollider(1, 1, 1);
+	////Player->setMesh(cubeMeshF);
+	////Player->setMaterial(new ColorMaterial(Color::Green));
+	////Player->setBehaviour(new FPController(30.0f, 1.0f, camera, FPController::InputType::WASD));
+	//_world->add(player);
+
+	// camera->setParent(player);
+	// camera->setLocalPosition(glm::vec3(0,2,0));
+	// camera->setBehaviour(new FPCamera(1.0f,1.0f, player));
 
 	 //testtrig = new StaticGameObject("obj6", glm::vec3(3, 1, 3), _world,true);
 
@@ -188,14 +191,14 @@ void LevelManager::Build_level_1()
 	//camera->setBehaviour(new Orbit(cubeNormal, 10.0f, 80.0f, 10.0f));
 
 //	LUAManager::InitializeFile();
-	 StaticGameObject * box = new StaticGameObject("box", glm::vec3(3, 1, 3), _world);
-	 box->setMesh(cubeMeshF);
-	 glm::vec3 colsize = box->getMesh()->GetColliderSize();
-	 box->AddBoxCollider(colsize.x, colsize.y, colsize.z);
-	 box->setMaterial(new ColorMaterial(Color::Blue));
-	 _world->add(box);
-	 box->setBehaviour(new StatueBehaviour());
-	 dynamic_cast<StatueBehaviour*>(box->getBehaviour())->SetPlayer(Player);
+	 //StaticGameObject * box = new StaticGameObject("box", glm::vec3(3, 1, 3), _world);
+	 //box->setMesh(cubeMeshF);
+	 //glm::vec3 colsize = box->getMesh()->GetColliderSize();
+	 //box->AddBoxCollider(colsize.x, colsize.y, colsize.z);
+	 //box->setMaterial(new ColorMaterial(Color::Blue));
+	 //_world->add(box);
+	 //box->setBehaviour(new StatueBehaviour());
+	 //dynamic_cast<StatueBehaviour*>(box->getBehaviour())->SetPlayer(player);
 
 #pragma region Lights
 	//Directional Light
@@ -210,7 +213,7 @@ void LevelManager::Build_level_1()
 	light->setMaterial(new ColorMaterial(light->diffuse));
 	light->scale(glm::vec3(0.1));
 	_world->add(light);
-	light->setParent(Player);
+	//light->setParent(player);
 	light->setLocalPosition(glm::vec3(0, 1, -2));
 	//light->setBehaviour(new KeysBehaviour2());
 
@@ -222,6 +225,7 @@ void LevelManager::Build_level_1()
 
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("Level1");
+	xmlReader->LoadInteractables("interactables");
 	LUAManager::InitializeFile(_world);
 	//}
 
