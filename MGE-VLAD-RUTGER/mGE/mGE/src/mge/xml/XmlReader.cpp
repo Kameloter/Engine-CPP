@@ -1,6 +1,8 @@
 #include "XmlReader.h"
 #include "mge/config.hpp"
 
+#include "mge/LUA/LUAManager.h"
+
 #include "mge/core/collision/StaticGameObject.h"
 #include "mge/core/collision/PhysicsWorld.h"
 #include "mge/core/Mesh.hpp"
@@ -63,7 +65,7 @@ void XmlReader::SetupLevelGeometry(std::string pLevelName)
 {
 	cout << " Setting up level geometry..." << endl;
     //Create root geometry
-    GameObject * root = new GameObject("pLevelname",glm::vec3(0,0,0));
+    GameObject * root = new GameObject(pLevelName,glm::vec3(0,0,0));
     root->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + ".obj"));
 
 	root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png"), 0.1));

@@ -16,7 +16,7 @@ class PhysicsWorld : public World
 		neAnimatedBody* addStaticGameObject(StaticGameObject * pStaticGameobject);
 
 		void addStaticTrigger(StaticGameObject * pGameObject);
-		void addRbTrigger(RigidbodyGameObject * pGameObject);
+		void addMovingTrigger(RigidbodyGameObject * pGameObject);
 
 		void update(float pStep, const glm::mat4& pParentTransform);
 
@@ -24,6 +24,9 @@ class PhysicsWorld : public World
 		void freeMemory(neAnimatedBody* pAnimbody);
 
 		TriggerManager* _triggerManager;
+
+		std::vector<RigidbodyGameObject*> getRigidObjects();
+		std::vector<StaticGameObject*> getStaticObjects();
 
 		virtual void CleanUpPhysicsWorld();
     protected:

@@ -103,11 +103,11 @@ void PhysicsWorld::update(float pStep, const glm::mat4& pParentTransform)
 
 void  PhysicsWorld::addStaticTrigger(StaticGameObject * pGameObject)
 {
-	_triggerManager->addObject(pGameObject);
+	_triggerManager->addStaticTrigger(pGameObject);
 }
-void  PhysicsWorld::addRbTrigger(RigidbodyGameObject * pGameObject)
+void  PhysicsWorld::addMovingTrigger(RigidbodyGameObject * pGameObject)
 {
-	_triggerManager->addMovingObject(pGameObject);
+	_triggerManager->addMovingTrigger(pGameObject);
 }
 neRigidBody* PhysicsWorld::addRigidBodyObject(RigidbodyGameObject * pRbGameObject)
 {
@@ -122,7 +122,15 @@ neAnimatedBody* PhysicsWorld::addStaticGameObject(StaticGameObject * pStaticGame
 
 	return _physicsSimulator->CreateAnimatedBody();
 }
- void PhysicsWorld::CleanUpPhysicsWorld()
+std::vector<RigidbodyGameObject*> PhysicsWorld::getRigidObjects()
+{
+	return _rigidbodyGameObjects;
+}
+std::vector<StaticGameObject*> PhysicsWorld::getStaticObjects()
+{
+	return _staticGameObjects;
+}
+void PhysicsWorld::CleanUpPhysicsWorld()
 {
 	std::cout << "Cleaning world " << std::endl;
 	World::CleanUpworld();
@@ -149,10 +157,6 @@ neAnimatedBody* PhysicsWorld::addStaticGameObject(StaticGameObject * pStaticGame
 	_staticGameObjects.clear();
 	std::cout << "Cleaning physics world static bodies - cleaned   " << "size " << _staticGameObjects.size() << std::endl;
 	//free rigidbody memory ?
-
-
-	//
-
 }
 void PhysicsWorld::freeMemory(neRigidBody* pNeRb)
 {
