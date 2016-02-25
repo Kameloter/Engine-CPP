@@ -11,7 +11,7 @@ using namespace std;
 //class World;
 class PhysicsWorld;
 class Renderer;
-class CollisionManager;
+class TriggerManager;
 
 /**
  * Defines the basic structure for a game, with defaults already filled in.

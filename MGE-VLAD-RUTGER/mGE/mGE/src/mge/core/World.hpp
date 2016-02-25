@@ -21,10 +21,11 @@ class World : public GameObject
         const std::vector<Light*>& GetLights(){return _lights;};
         int getLightCount();
         Light* getLightAt(int pIndex);
-		void CleanUpworld();
+		
 
     protected:
         std::vector<Light*> _lights;
+		virtual void CleanUpworld();
 	private:
 	    Camera* _mainCamera;
 

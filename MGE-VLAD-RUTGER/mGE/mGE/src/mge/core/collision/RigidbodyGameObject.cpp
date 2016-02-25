@@ -1,6 +1,7 @@
 #include "RigidbodyGameObject.h"
 #include "mge/core/collision/PhysicsWorld.h"
 #include "SFML\Graphics.hpp"
+#include "BoxTrigger.h"
 
 RigidbodyGameObject::RigidbodyGameObject(std::string pName, glm::vec3 pPosition, PhysicsWorld* pWorld) :
 	GameObject(pName,pPosition),
@@ -10,12 +11,18 @@ RigidbodyGameObject::RigidbodyGameObject(std::string pName, glm::vec3 pPosition,
 	neV3 position;
 	position.Set(pPosition.x, pPosition.y, pPosition.z);
 	_rigidbody->SetPos(position);
+
+	
 }
 
 
 RigidbodyGameObject::~RigidbodyGameObject()
 {
-	//_world->freeMemory(this);
+	_world->freeMemory(_rigidbody);
+	std::cout << _name << "<-- Rigid body cleaned" << std::endl;
+
+	delete _trigger;
+	std::cout << "trigger of  " << _name << "cleaned " << std::endl;
 }
 
 void RigidbodyGameObject::moveRb(glm::vec3 pPos)
@@ -69,9 +76,28 @@ void RigidbodyGameObject::AddBoxCollider(float pW, float pH, float pD)
 	box.Set(pW, pH, pD);
 	geometry->SetBoxSize(box);
 	_rigidbody->UpdateBoundingInfo();
+
+	_trigger = new BoxTrigger(minBounds, maxBounds);
+	_world->addRbTrigger(this);
 }
 
 neRigidBody* RigidbodyGameObject::GetRigidBody()
 {
 	return _rigidbody;
+}
+
+void RigidbodyGameObject::SetBounds(glm::vec3 maxBound, glm::vec3 minBound)
+{
+	minBounds = minBound;
+	maxBounds = maxBound;
+}
+
+glm::vec3 RigidbodyGameObject::GetMinBounds()
+{
+	return minBounds;
+}
+
+glm::vec3 RigidbodyGameObject::GetMaxBounds()
+{
+	return maxBounds;
 }

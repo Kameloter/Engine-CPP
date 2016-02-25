@@ -2,6 +2,7 @@
 
 #include "mge/core/collision/RigidbodyGameObject.h"
 #include "mge/core/collision/StaticGameObject.h"
+#include "mge/core/collision/TriggerManager.h"
 
 
 PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObjectsCount)
@@ -33,6 +34,7 @@ PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObject
 
 	//start the physics simulation
 	_physicsSimulator = neSimulator::CreateSimulator(simulatorSize, NULL, &gravity);
+	_triggerManager = new TriggerManager();
 	//_physicsSimulator->se
 	//_physicsSimulator->GetCollisionTable()->Set(0, 0, neCollisionTable::RESPONSE_IMPULSE_CALLBACK);
 
@@ -75,7 +77,7 @@ PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObject
 
 PhysicsWorld::~PhysicsWorld()
 {
-    //dtor
+	delete _triggerManager;
 }
 
 
@@ -94,27 +96,71 @@ void PhysicsWorld::update(float pStep, const glm::mat4& pParentTransform)
 	{
 		_rigidbodyGameObjects[i]->updateRigidBody();
 	}
+
+	_triggerManager->runPhysics(pStep);
 	
 }
 
-
+void  PhysicsWorld::addStaticTrigger(StaticGameObject * pGameObject)
+{
+	_triggerManager->addObject(pGameObject);
+}
+void  PhysicsWorld::addRbTrigger(RigidbodyGameObject * pGameObject)
+{
+	_triggerManager->addMovingObject(pGameObject);
+}
 neRigidBody* PhysicsWorld::addRigidBodyObject(RigidbodyGameObject * pRbGameObject)
 {
 	_rigidbodyGameObjects.push_back(pRbGameObject);
+	
 	return _physicsSimulator->CreateRigidBody();
 }
 
 neAnimatedBody* PhysicsWorld::addStaticGameObject(StaticGameObject * pStaticGameobject)
 {
 	_staticGameObjects.push_back(pStaticGameobject);
+
 	return _physicsSimulator->CreateAnimatedBody();
 }
+ void PhysicsWorld::CleanUpPhysicsWorld()
+{
+	std::cout << "Cleaning world " << std::endl;
+	World::CleanUpworld();
+	std::cout << "World cleaned. " << std::endl;
 
+	_triggerManager->cleanUp();
+
+	std::cout << "Cleaning physics world rigidbodyes " << std::endl;
+	//clear list with physics objects ...
+	//for (int i = 0; i < _rigidbodyGameObjects.size(); i++)
+	//{
+	//	delete _rigidbodyGameObjects[i];
+	//}
+	_rigidbodyGameObjects.clear();
+	std::cout << "Cleaning physics world rigidbodyes - cleaned   " << "size " << _rigidbodyGameObjects.size() <<  std::endl;
+
+
+
+	std::cout << "Cleaning physics world static bodies " << std::endl;
+	//for (int i = 0; i < _staticGameObjects.size(); i++)
+	//{
+	//	delete _staticGameObjects[i];
+	//}
+	_staticGameObjects.clear();
+	std::cout << "Cleaning physics world static bodies - cleaned   " << "size " << _staticGameObjects.size() << std::endl;
+	//free rigidbody memory ?
+
+
+	//
+
+}
 void PhysicsWorld::freeMemory(neRigidBody* pNeRb)
 {
-
+	_physicsSimulator->FreeRigidBody(pNeRb);
+	std::cout << "rb memory freed" << std::endl;
 }
 void PhysicsWorld::freeMemory(neAnimatedBody* pAnimbody)
 {
-
+	_physicsSimulator->FreeAnimatedBody(pAnimbody);
+	std::cout << "sb memory freed" << std::endl;
 }

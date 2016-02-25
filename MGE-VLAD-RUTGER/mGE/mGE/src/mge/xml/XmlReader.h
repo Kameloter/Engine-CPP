@@ -18,11 +18,10 @@ class XmlReader
     public:
             XmlReader(PhysicsWorld * pWorld);
             virtual ~XmlReader();
-            void Read(string pFileName);
+            void Read(const char* pFileName);
             std::vector<pugi::xml_node> GetNodeChildren(pugi::xml_node node);
            // void LoadObjects();
-            void SetupObjects();
-            void SetupLevelGeometry();
+            void SetupLevelGeometry(std::string pLevelName);
             std::vector<StaticGameObject *> objects;
 
             std::vector<std::string> _names;
@@ -31,7 +30,7 @@ class XmlReader
 
             std::vector<glm::vec3> _positions;
             std::vector<glm::vec3> _scales;
-			void LoadLevel(string pLevelName);
+			void LoadLevel(const char* pLevelName);
             template<typename T>
             T StringToNumber(const std::string& numberAsString);
         protected:

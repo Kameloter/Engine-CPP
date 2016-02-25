@@ -42,16 +42,11 @@ MainMenu * mainMenu;
 void MGEDemo::_initializeScene()
 {
 	_renderer->setClearColor(0, 0, 0);
-	levelManager = new LevelManager(_world);
+	levelManager = new LevelManager(_world,_window);
 	levelManager->SwitchToLevel(GameLevels::Menu);
 	mainMenu = new MainMenu(_window);
 
-	//   Player = new RigidbodyGameObject("Player", glm::vec3(4,1.5,4),_world);
-	   //Player->AddBoxCollider(1, 1, 1);
-	//   Player->setMesh(cubeMeshF);
-	//   Player->setMaterial(maroonMaterial);
-	//   Player->setBehaviour(new FPController(10.0f,1.0f,camera,FPController::InputType::WASD));
-	//   _world->add(Player);
+	
 
 
 	
@@ -63,9 +58,6 @@ void MGEDemo::_initializeScene()
 	//_world->add(cubeNormal);
 
 
-  //  camera->setParent(Player);
-   // camera->setLocalPosition(glm::vec3(0,2,0));
-   // camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
 
 
 
@@ -96,7 +88,9 @@ void MGEDemo::_render() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) levelManager->SwitchToLevel(GameLevels::HUB);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) levelManager->SwitchToLevel(GameLevels::Level1);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) levelManager->SwitchToLevel(GameLevels::Level2);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) _world->CleanUpworld();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) _world->CleanUpPhysicsWorld();
+
+	levelManager->testUpdate();
 
 }
 

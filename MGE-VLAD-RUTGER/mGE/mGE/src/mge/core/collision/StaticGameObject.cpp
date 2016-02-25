@@ -1,19 +1,36 @@
 #include "StaticGameObject.h"
 #include "mge/core/collision/PhysicsWorld.h"
+#include "mge/core/collision/BoxTrigger.h"
 
-
-StaticGameObject::StaticGameObject(std::string pName, glm::vec3 pPosition, PhysicsWorld* pWorld)
+StaticGameObject::StaticGameObject(std::string pName, glm::vec3 pPosition, PhysicsWorld* pWorld, bool trigger)
 	: GameObject(pName, pPosition),
-	_animBody(pWorld->addStaticGameObject(this))
+	_world(pWorld)
 {
-	neV3 pos;
-	pos.Set(pPosition.x, pPosition.y, pPosition.z);
-	_animBody->SetPos(pos);
+	if (!trigger)
+	{
+		_animBody = _world->addStaticGameObject(this);
+		neV3 pos;
+		pos.Set(pPosition.x, pPosition.y, pPosition.z);
+		_animBody->SetPos(pos);
+		_trigger = nullptr;
+	}
+	else
+	{
+		_animBody = nullptr;
+	}
 }
 
 
 StaticGameObject::~StaticGameObject()
 {
+	if (_animBody != nullptr)
+	{
+		_world->freeMemory(_animBody);
+		std::cout << _name << "<-- Static body cleaned" << std::endl;
+	}
+
+	if(_trigger != nullptr) _trigger;
+	std::cout << "trigger of  " << _name << "cleaned " << std::endl;
 }
 
 void StaticGameObject::SetBounds(glm::vec3 maxBound, glm::vec3 minBound)
@@ -67,11 +84,20 @@ void StaticGameObject::updateStaticBody()
 
 void StaticGameObject::AddBoxCollider(float pW, float pH, float pD)
 {
-	neGeometry* geometry = _animBody->AddGeometry();
-	neV3 box;
-	std::cout <<"boxPOS" <<glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]) << std::endl;
-	box.Set(pW, pH, pD);
-	geometry->SetBoxSize(box);
-	_animBody->UpdateBoundingInfo();
+	if (_animBody != nullptr)
+	{
+		neGeometry* geometry = _animBody->AddGeometry();
+		neV3 box;
+		std::cout << "boxPOS" << glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]) << std::endl;
+		box.Set(pW, pH, pD);
+		geometry->SetBoxSize(box);
+		_animBody->UpdateBoundingInfo();
+	}
+	else {
+		_trigger = new BoxTrigger(minBounds, maxBounds);
+		_world->addStaticTrigger(this);
+	}
 
+	
 }
+

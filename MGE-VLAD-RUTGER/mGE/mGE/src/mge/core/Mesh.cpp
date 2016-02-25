@@ -233,8 +233,7 @@ void Mesh::calculateTangents()
 	int indicesSize = _indices.size();
 
 	_tangent = std::vector<glm::vec3>(indicesSize);
-	_bitangent = std::vector<glm::vec3>(indicesSize);
-
+	
 
 	for (unsigned i = 0; i < _indices.size(); i+=3)
 	{
@@ -369,10 +368,7 @@ void Mesh::_buffer()
     glBindBuffer( GL_ARRAY_BUFFER, _tangentBufferId );
     glBufferData( GL_ARRAY_BUFFER, _tangent.size()*sizeof(glm::vec3), &_tangent[0], GL_STATIC_DRAW );
 
-    glGenBuffers(1, &_bitangentBufferId);
-    glBindBuffer( GL_ARRAY_BUFFER, _bitangentBufferId );
-    glBufferData( GL_ARRAY_BUFFER, _bitangent.size()*sizeof(glm::vec3), &_bitangent[0], GL_STATIC_DRAW );
-
+  
 
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
 }
@@ -413,7 +409,7 @@ void Mesh::streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUV
 
 }
 
-void Mesh::streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUVsAttrib,GLint pTangentAttrib,GLint pBitangentAttrib) {
+void Mesh::streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUVsAttrib,GLint pTangentAttrib) {
     if (pVerticesAttrib != -1) {
         glBindBuffer(GL_ARRAY_BUFFER, _vertexBufferId);
         glEnableVertexAttribArray(pVerticesAttrib);
@@ -439,12 +435,6 @@ void Mesh::streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUV
 
     }
 
- if (pBitangentAttrib != -1) {
-        glBindBuffer( GL_ARRAY_BUFFER, _bitangentBufferId);
-        glEnableVertexAttribArray(pBitangentAttrib);
-        glVertexAttribPointer(pBitangentAttrib, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-    }
 
 
 	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, _indexBufferId );
@@ -460,7 +450,6 @@ void Mesh::streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUV
 	if (pNormalsAttrib != -1) glDisableVertexAttribArray(pNormalsAttrib);
 	if (pVerticesAttrib != -1) glDisableVertexAttribArray(pVerticesAttrib);
 	if (pTangentAttrib != -1) glDisableVertexAttribArray(pTangentAttrib);
-	if (pBitangentAttrib != -1) glDisableVertexAttribArray(pBitangentAttrib);
 }
 
 void Mesh::renderDebugInfo(glm::mat4& pModelMatrix, World* pWorld) {

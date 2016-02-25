@@ -5,15 +5,13 @@
 #include <string>
 #include <iostream>
 #include "glm.hpp"
-#include "mge/core/collision/Collider.h"
-#include "mge/core/collision/BoxCollider.h"
 
-class AbstractCollider;
+
 class AbstractBehaviour;
 class AbstractMaterial;
 class World;
 class Mesh;
-
+class BoxTrigger;
 class GameObject
 {
 	public:
@@ -74,21 +72,17 @@ class GameObject
         int getChildCount();
         GameObject* getChildAt (int pIndex);
 		bool updateTransform;
-
-        Collider* boxCollider;
-        Collider* getCollider();
-        inline void setCollider(Collider* collider){
-            boxCollider = collider;
-        }
+		BoxTrigger * getTrigger();
+     
         glm::vec3 oldPos;
 	protected:
 		std::string _name;
 		glm::mat4 _transform;
 		glm::mat4 _worldTransform;
-
+	
         GameObject* _parent;
 		std::vector<GameObject*> _children;
-
+		BoxTrigger* _trigger;
         Mesh* _mesh;
 		AbstractBehaviour* _behaviour;
 		AbstractMaterial* _material;

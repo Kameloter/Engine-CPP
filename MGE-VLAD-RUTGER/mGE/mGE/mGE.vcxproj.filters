@@ -240,6 +240,15 @@
     <ClInclude Include="src\mge\behaviours\CollectableBehaviour.h">
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\core\collision\Collision.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\TriggerManager.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\core\collision\BoxTrigger.h">
+      <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -477,6 +486,12 @@
     </ClCompile>
     <ClCompile Include="src\mge\behaviours\CollectableBehaviour.cpp">
       <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\collision\TriggerManager.cpp">
+      <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\collision\BoxTrigger.cpp">
+      <Filter>Source Files\core\collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

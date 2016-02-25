@@ -11,7 +11,7 @@ class SphereCollider : public Collider
         virtual ~SphereCollider();
 
         Collision collide(Collider * pCollider);
-        Collision collide(BoxCollider * pBoxCol);
+        Collision collide(BoxTrigger * pBoxCol);
         Collision collide(SphereCollider * pSphereCol);
 
         void translate(const glm::vec3 pTranslation);

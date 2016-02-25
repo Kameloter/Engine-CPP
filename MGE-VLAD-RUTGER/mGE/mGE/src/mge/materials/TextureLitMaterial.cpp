@@ -12,10 +12,16 @@
 
 ShaderProgram* TextureLitMaterial::_shader = NULL;
 
-TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, float pShininess):
-    _diffuseTexture(pDiffuseTexture),_shininess(pShininess),specMapOn(false)
+TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, Texture* pNormalTexture, float pShininess) :
+	_diffuseTexture(pDiffuseTexture), _normalTexture(pNormalTexture), specMapOn(false), _specularTexture(0),_shininess(pShininess)
 {
     _lazyInitializeShader();
+}
+
+TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, Texture* pNormalTexture, Texture* pSpecularTexture, float pShininess) :
+	_diffuseTexture(pDiffuseTexture), _normalTexture(pNormalTexture), specMapOn(true), _specularTexture(pSpecularTexture),_shininess(pShininess)
+{
+	_lazyInitializeShader();
 }
 
 TextureLitMaterial::~TextureLitMaterial() {}
@@ -38,18 +44,19 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
 
     _shader->use();
 
-    //setup texture slot 0
+    // set texture slots
+    _shader->setTexture(_shader->getUniformLocation("mat_diffuse"),0,_diffuseTexture->getId());
+	_shader->setTexture(_shader->getUniformLocation("mat_normal"), 1, _normalTexture->getId());
+	if(specMapOn)_shader->setTexture(_shader->getUniformLocation("mat_specular"),2,_specularTexture->getId());
 
-    _shader->setTexture(_shader->getUniformLocation("matDiffuse"),0,_diffuseTexture->getId());
-    //_shader->setTexture(_shader->getUniformLocation("matSpecular"),1,_specularTexture->getId());
-    glUniform1i(_shader->getUniformLocation("specMapOn"),0);
-    //set material uniforms
-    glUniform1i (_shader->getUniformLocation("matDiffuse"), 0);
-   // glUniform1i (_shader->getUniformLocation("matSpecular"), 1);
-   // glUniform3fv (_shader->getUniformLocation("material.specular"),1, glm::value_ptr(_specular));
-    glUniform1f (_shader->getUniformLocation("material.shininess"), _shininess);
+	// tell shader what specularity and shininess to use
+	glUniform1i(_shader->getUniformLocation("mat_useSpecMap"),specMapOn);
+    glUniform1f (_shader->getUniformLocation("mat_shininess"), _shininess);
+	//Camera position --> needs optimization  
     glUniform3fv(_shader->getUniformLocation("cameraPosition"),1, glm::value_ptr( pCamera->getWorldPosition()));
-    int pointCount = 0;
+   
+	
+	int pointCount = 0;
     int spotCount = 0;
     for (int i =0; i < pWorld->getLightCount(); i++)
     {
@@ -100,12 +107,11 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
 
 	glUniform1i(_shader->getUniformLocation("spotLightCount"), spotCount);
 	glUniform1i(_shader->getUniformLocation("pointLightCount"), pointCount);
-
-
+	
     //pass in all MVP matrices separately
     glUniformMatrix4fv ( _shader->getUniformLocation("mat_Proj"),   1, GL_FALSE, glm::value_ptr(pCamera->getProjection()));
     glUniformMatrix4fv ( _shader->getUniformLocation("mat_View"),         1, GL_FALSE, glm::value_ptr(glm::inverse(pCamera->getWorldTransform())));
-    glUniformMatrix4fv ( _shader->getUniformLocation("mat_Model"),        1, GL_FALSE, glm::value_ptr(pGameObject->getWorldTransform() ) );
+    glUniformMatrix4fv ( _shader->getUniformLocation("mat_Model"),        1, GL_FALSE, glm::value_ptr(pGameObject->getWorldTransform()));
 
 	glm::mat4 pvm = pCamera->getProjection() * glm::inverse(pCamera->getWorldTransform()) * pGameObject->getWorldTransform();
 	glUniformMatrix4fv(_shader->getUniformLocation("pvm"), 1, GL_FALSE, glm::value_ptr(pvm));
@@ -114,7 +120,8 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
     pGameObject->getMesh()->streamToOpenGL(
         _shader->getAttribLocation("vertex"),
         _shader->getAttribLocation("normal"),
-        _shader->getAttribLocation("uv")
+        _shader->getAttribLocation("uv"),
+		_shader->getAttribLocation("tangent")
     );
 }
 

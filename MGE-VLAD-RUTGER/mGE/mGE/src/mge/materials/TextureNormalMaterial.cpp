@@ -26,8 +26,6 @@ TextureNormalMaterial::~TextureNormalMaterial()
 void TextureNormalMaterial::_lazyInitializeShader() {
     if (!_shader) {
         _shader = new ShaderProgram();
-//        _shader->addShader(GL_VERTEX_SHADER, config::MGE_SHADER_PATH+"NormalMap.vs");
-//        _shader->addShader(GL_FRAGMENT_SHADER, config::MGE_SHADER_PATH+"NormalMap.fs");
         _shader->addShader(GL_VERTEX_SHADER, config::MGE_SHADER_PATH+"texturenormal.vs");
         _shader->addShader(GL_FRAGMENT_SHADER, config::MGE_SHADER_PATH+"texturenormal.fs");
         _shader->finalize();
@@ -94,8 +92,7 @@ void TextureNormalMaterial::render(World* pWorld, GameObject* pGameObject, Camer
         _shader->getAttribLocation("vertex"),
         _shader->getAttribLocation("normal"),
         _shader->getAttribLocation("uv"),
-        _shader->getAttribLocation("tangent"),
-        _shader->getAttribLocation("bitangent")
+        _shader->getAttribLocation("tangent")
     );
 }
 

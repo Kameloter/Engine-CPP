@@ -1,11 +1,4 @@
 #version 330 // for glsl version (12 is for older versions , say opengl 2.1
-
-//could maybe add 2 kinds of specular .. as a vector and a texture (for more flexibility)????
-struct Material {
-
-    float shininess;
-};
-
 struct DirLight {
     vec3 direction;
 
@@ -41,9 +34,9 @@ struct SpotLight {
     float linear;
 };
 
-vec3 getDirectionalLight(DirLight light, vec3 n, vec3 view);
-vec3 getPointLight(PointLight light, vec3 n, vec3 view);
-vec3 getSpotLight(SpotLight light, vec3 n, vec3 view);
+vec3 getDirectionalLight(DirLight light, vec3 n, vec3 view, vec3 diffSample);
+vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample);
+vec3 getSpotLight(SpotLight light, vec3 n, vec3 view, vec3 diffSample);
 
 
 uniform int spotLightCount;
@@ -52,17 +45,24 @@ uniform int pointLightCount;
 
 uniform PointLight pointLight[50];
 uniform SpotLight spotLight[15];
-
 uniform DirLight dirLight;
-uniform Material material;
-uniform sampler2D matDiffuse;
-uniform sampler2D matSpecular;
+
+
+uniform bool mat_useSpecMap;
+uniform float mat_shininess;
+uniform sampler2D mat_diffuse;
+uniform sampler2D mat_normal;
+uniform sampler2D mat_specular;
+
+
+
+
 uniform vec3 cameraPosition;
-uniform bool specMapOn;
 
 in vec3 vertices;
-in vec3 normals;
+in mat3 TBN;
 in vec2 uvs;
+in vec3 normals;
 
 out vec4 fragment_color;
 
@@ -70,82 +70,99 @@ void main( void )
 {
    
 
-    vec3 normalizedNormal = normalize(normals);
+    vec3 normal = texture(mat_normal, uvs).rgb;
+	normal = normalize(normal * 2.0 - 1.0);
+	normal = normalize(TBN * normal);
+
+	vec3 normN = normalize(normals);
+
     vec3 viewDirection = normalize(cameraPosition - vertices);
-  
+	vec3 sampledDiffuse = texture(mat_diffuse, uvs).rgb;
 
-    vec3 finalColor;
-    finalColor = getDirectionalLight(dirLight,normalizedNormal,viewDirection);
-	
-	
 
+    vec3 finalColor = vec3(0);
+    finalColor = getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
+
+ 
     for(int i = 0; i < pointLightCount; i++)
     {
-		fragment_color = vec4(1,0,0, 1.f);
-        finalColor += getPointLight(pointLight[i],normalizedNormal,viewDirection);
+        finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
     }
 	 
 
 
-    for(int i = 0; i < spotLightCount; i++)
-    {
-		fragment_color = vec4(1,0,0, 1.f);
-        finalColor += getSpotLight(spotLight[i], normalizedNormal, viewDirection);
-    }
+//    for(int i = 0; i < spotLightCount; i++)
+//    {
+//		fragment_color = vec4(1,0,0, 1.f);
+//        finalColor += getSpotLight(spotLight[i], normal, viewDirection);
+//    }
+	fragment_color = vec4(finalColor,1);
 
-	
-    fragment_color = vec4(finalColor, 1.f);
 }
 
-vec3 getDirectionalLight(DirLight light, vec3 n, vec3 view)
+vec3 getDirectionalLight(DirLight light, vec3 n, vec3 view, vec3 diffSample)
 {
      
-	//return vec3(1,0,0);
     vec3 lightDirection = normalize(-light.direction);
 
-    float diffuse = max(dot(n,lightDirection),0.f);
+    vec3 ambientTerm = light.ambient * diffSample;
 
-    vec3 reflectDirection = reflect(-lightDirection, n);
-    float specular = pow(max(dot(view, reflectDirection),0.f),material.shininess);
+	float diffuse = max(dot(n,lightDirection),0.f);
+    vec3 diffuseTerm = light.diffuse * diffuse * diffSample;
 
-    vec3 ambientTerm = light.ambient * vec3(texture(matDiffuse, uvs));
-    vec3 diffuseTerm = light.diffuse * diffuse * vec3(texture(matDiffuse, uvs));
-    vec3 specularTerm;
-    if(specMapOn)
-    {
-         specularTerm = light.specular * specular * vec3(texture(matSpecular, uvs));
-    }else{
-        specularTerm = light.specular * specular *  vec3(0.1);
+		
+	
+	vec3 specularTerm = vec3(0,0,0);
 
-    }
-
+ // vec3 reflectDirection = reflect(-lightDirection, n);
+ // float specular = dot(view, reflectDirection);
+	
+	vec3 halfwayDir = normalize(lightDirection + view);
+	float specular = dot(n,halfwayDir);
+	if(specular > 0)
+	{
+		specular = pow(specular, 32);
+		if(mat_useSpecMap)
+		  {
+		    specularTerm = light.specular * specular * vec3(texture(mat_specular, uvs)) * mat_shininess;
+		  }else{
+		    specularTerm = light.specular * specular * mat_shininess;
+			}
+	}
     return (ambientTerm + diffuseTerm + specularTerm);
 }
-vec3 getPointLight(PointLight light, vec3 n, vec3 view)
+
+
+vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample)
 {
-  //  if(light.constant == 0) return vec3(0,0,0);
-    //ambient
-    vec3 ambientTerm = light.ambient * vec3(texture(matDiffuse, uvs));
+	vec3 lightDirection = normalize(light.position - vertices);
 
-    vec3 lightDirection = normalize(light.position - vertices);
-    //diffuse
-    float diffuse = max(dot(n, lightDirection),0.0f);
-    vec3 diffuseTerm = light.diffuse * diffuse * vec3(texture(matDiffuse, uvs));
+    vec3 ambientTerm = light.ambient * diffSample;
 
-    //specular - BLINN - PHONG
-   vec3 halfWayDir = normalize(lightDirection + view);
-   float specular = pow(max(dot(n, halfWayDir), 0.f), material.shininess);
-   //specular - BLINN
-   // vec3 reflectDirection = reflect(-lightDirection, n);
-   // float specular = pow(max(dot(reflectDirection, view), 0.f), material.shininess);
-    vec3 specularTerm;
-    if(specMapOn)
-    {
-         specularTerm = light.specular * specular * vec3(texture(matSpecular, uvs));
-    }else{
-        specularTerm = light.specular * specular *  vec3(0.1);
+	float diffuse = max(dot(n,lightDirection),0.f);
+    vec3 diffuseTerm = light.diffuse * diffuse * diffSample;
 
-    }
+
+	vec3 specularTerm = vec3(0,0,0);
+
+
+  //  vec3 reflectDirection = reflect(-lightDirection, n);
+  //  float specular = dot(view, reflectDirection);
+	
+	vec3 halfwayDir = normalize(lightDirection + view);
+	float specular = dot(n,halfwayDir);
+	if(specular > 0)
+	{
+		specular = pow(specular, mat_shininess);
+		if(mat_useSpecMap)
+		  {
+		    specularTerm = light.specular * specular * vec3(texture(mat_specular, uvs)) * mat_shininess;
+		  }else{
+		    specularTerm = light.specular * specular * mat_shininess;
+			}
+	
+	}
+   
     //Attenuation
     float distance = length(light.position - vertices);
     float attenuation = 1.0f / (light.constant + light.linear * distance + light.quadratic * pow(distance,2));
@@ -157,27 +174,35 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view)
     return (ambientTerm + diffuseTerm + specularTerm);
 }
 
-vec3 getSpotLight(SpotLight light, vec3 n, vec3 view)
+vec3 getSpotLight(SpotLight light, vec3 n, vec3 view,vec3 diffSample)
 {
     vec3 lightDirection = normalize(light.position - vertices);
 
-    vec3 ambientTerm = light.ambient * vec3(texture(matDiffuse, uvs));
+    vec3 ambientTerm = light.ambient * diffSample;
 
-    float diffuse = max(dot(n, lightDirection),0.0f);
-    vec3 diffuseTerm = light.diffuse * diffuse * vec3(texture(matDiffuse, uvs));
+	float diffuse = max(dot(n,lightDirection),0.f);
+    vec3 diffuseTerm = light.diffuse * diffuse * diffSample;
 
-    vec3 viewDirection = normalize(cameraPosition - vertices);
 
-    vec3 reflectDirection = reflect(-lightDirection, n);
-    float specular = pow(max(dot(reflectDirection, viewDirection), 0.f), material.shininess);
-    vec3 specularTerm;
-    if(specMapOn)
-    {
-         specularTerm = light.specular * specular * vec3(texture(matSpecular, uvs));
-    }else{
-        specularTerm = light.specular * specular * vec3(0.1);
+	vec3 specularTerm = vec3(0,0,0);
 
-    }
+
+  //  vec3 reflectDirection = reflect(-lightDirection, n);
+  //  float specular = dot(view, reflectDirection);
+	
+	vec3 halfwayDir = normalize(lightDirection + view);
+	float specular = dot(n,halfwayDir);
+	if(specular > 0)
+	{
+		specular = pow(specular, mat_shininess);
+		if(mat_useSpecMap)
+		  {
+		    specularTerm = light.specular * specular * vec3(texture(mat_specular, uvs)) * mat_shininess;
+		  }else{
+		    specularTerm = light.specular * specular * mat_shininess;
+			}
+	
+	}
 
     //attenuation
     float distance = length(light.position - vertices);

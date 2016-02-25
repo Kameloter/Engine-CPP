@@ -18,7 +18,7 @@ public:
 
 	LevelManager(PhysicsWorld * pWorld, sf::Window * pWindow);
 	~LevelManager();
-	
+	void testUpdate();
 	 
 	 void SwitchToLevel(GameLevels pToLevel);
 private:

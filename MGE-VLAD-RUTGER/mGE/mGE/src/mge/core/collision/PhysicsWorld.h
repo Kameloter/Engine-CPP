@@ -5,6 +5,7 @@
 #include "tokamak.h"
 class StaticGameObject;
 class RigidbodyGameObject;
+class TriggerManager;
 class PhysicsWorld : public World
 {
     public:
@@ -14,12 +15,17 @@ class PhysicsWorld : public World
 		neRigidBody* addRigidBodyObject(RigidbodyGameObject * pRbGameObject);
 		neAnimatedBody* addStaticGameObject(StaticGameObject * pStaticGameobject);
 
+		void addStaticTrigger(StaticGameObject * pGameObject);
+		void addRbTrigger(RigidbodyGameObject * pGameObject);
+
 		void update(float pStep, const glm::mat4& pParentTransform);
 
 		void freeMemory(neRigidBody* pNeRb);
 		void freeMemory(neAnimatedBody* pAnimbody);
 
+		TriggerManager* _triggerManager;
 
+		virtual void CleanUpPhysicsWorld();
     protected:
     private:
 		std::vector<RigidbodyGameObject*> _rigidbodyGameObjects;

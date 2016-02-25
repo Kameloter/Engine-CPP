@@ -8,6 +8,7 @@ using namespace std;
 #include "mge/core/Mesh.hpp"
 #include "mge/core/World.hpp"
 #include "mge/behaviours/AbstractBehaviour.hpp"
+#include "mge/core/collision/BoxTrigger.h"
 
 GameObject::GameObject(std::string pName, glm::vec3 pPosition )
 :	_name( pName ), _transform( glm::translate( pPosition ) ),  _parent(NULL), _children(),
@@ -117,13 +118,13 @@ GameObject* GameObject::getParent() {
     return _parent;
 }
 
-Collider* GameObject::getCollider()
+BoxTrigger* GameObject::getTrigger()
 {
     glm::vec3 translation = getLocalPosition()  - oldPos;
     oldPos = getLocalPosition();
 
-    boxCollider->translate(translation);
-    return boxCollider;
+    _trigger->translate(translation);
+    return _trigger;
 }
 
 

@@ -30,7 +30,7 @@ class Mesh
          * Streams the mesh to opengl using the given indexes for the different attributes
          */
         void streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUVsAttrib);
-        void streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUVsAttrib,GLint pTangentAttrib,GLint pBitangentAttrib);
+        void streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUVsAttrib,GLint pTangentAttrib);
 		void calculateTangents();
         void renderDebugInfo(glm::mat4& pModelMatrix, World* pWorld);
 		glm::vec3 GetColliderSize();
@@ -47,15 +47,13 @@ class Mesh
 		GLuint _normalBufferId;
 		GLuint _uvBufferId;
 		GLuint _tangentBufferId;
-		GLuint _bitangentBufferId;
 
 	    //the actual data
 		std::vector<glm::vec3> _vertices;       //vec3 with 3d coords for all vertices
 		std::vector<glm::vec3> _normals;        //vec3 with 3d normal data
 		std::vector<glm::vec2> _uvs;            //vec2 for uv
         std::vector<glm::vec3> _tangent;
-        std::vector<glm::vec3> _bitangent;
-
+      
 		//references to the vertices/normals & uvs in previous vectors
 		std::vector<unsigned> _indices;
 

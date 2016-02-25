@@ -8,7 +8,7 @@ class PhysicsWorld;
 class StaticGameObject : public GameObject
 {
 public:
-	StaticGameObject(std::string pName, glm::vec3 pPosition, PhysicsWorld* pWorld);
+	StaticGameObject(std::string pName, glm::vec3 pPosition, PhysicsWorld* pWorld, bool trigger = false);
 	~StaticGameObject();
 
 	void SetBounds(glm::vec3 maxBound, glm::vec3 minBound);
@@ -21,6 +21,7 @@ public:
 	void AddBoxCollider(float pW, float pH, float pD);
 private:
 	neAnimatedBody* _animBody;
+	PhysicsWorld* _world;
 	glm::vec3 minBounds;
 	glm::vec3 maxBounds;
 };

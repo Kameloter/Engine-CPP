@@ -36,6 +36,9 @@
     <ClInclude Include="src\mge\config.hpp" />
     <ClInclude Include="src\mge\core\AbstractGame.hpp" />
     <ClInclude Include="src\mge\core\Camera.hpp" />
+    <ClInclude Include="src\mge\core\collision\BoxTrigger.h" />
+    <ClInclude Include="src\mge\core\collision\Collision.h" />
+    <ClInclude Include="src\mge\core\collision\TriggerManager.h" />
     <ClInclude Include="src\mge\core\collision\PhysicsWorld.h" />
     <ClInclude Include="src\mge\core\collision\RigidbodyGameObject.h" />
     <ClInclude Include="src\mge\core\collision\StaticGameObject.h" />
@@ -120,6 +123,8 @@
     <ClCompile Include="src\mge\behaviours\TriggerBehaviour.cpp" />
     <ClCompile Include="src\mge\core\AbstractGame.cpp" />
     <ClCompile Include="src\mge\core\Camera.cpp" />
+    <ClCompile Include="src\mge\core\collision\BoxTrigger.cpp" />
+    <ClCompile Include="src\mge\core\collision\TriggerManager.cpp" />
     <ClCompile Include="src\mge\core\collision\PhysicsWorld.cpp" />
     <ClCompile Include="src\mge\core\collision\RigidbodyGameObject.cpp" />
     <ClCompile Include="src\mge\core\collision\StaticGameObject.cpp" />
