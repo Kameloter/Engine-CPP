@@ -11,17 +11,15 @@ public:
 	StaticGameObject(std::string pName, glm::vec3 pPosition, PhysicsWorld* pWorld, bool trigger = false);
 	~StaticGameObject();
 
-	void SetBounds(glm::vec3 maxBound, glm::vec3 minBound);
-	glm::vec3 GetMinBounds();
-	glm::vec3 GetMaxBounds();
 	void updateStaticBody();
 
-	void moveStaticObject(glm::vec3 pPos);
+	void moveStaticObject(glm::vec3 ptranslate);
+	neAnimatedBody * getAnimBody();
+
 
 	void AddBoxCollider(float pW, float pH, float pD);
 private:
 	neAnimatedBody* _animBody;
 	PhysicsWorld* _world;
-	glm::vec3 minBounds;
-	glm::vec3 maxBounds;
+
 };

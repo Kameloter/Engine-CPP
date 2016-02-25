@@ -73,7 +73,22 @@ class GameObject
         GameObject* getChildAt (int pIndex);
 		bool updateTransform;
 		BoxTrigger * getTrigger();
-     
+		inline void SetBounds(glm::vec3 pMinBound, glm::vec3 pMaxBound)
+		{
+			_minBounds = pMinBound;
+			_maxBounds = pMaxBound;
+			//std::cout << " bounds set " << _minBounds << "   max - > " << _maxBounds << std::endl;
+
+		}
+		inline glm::vec3 GetMinBounds()
+		{
+			return _minBounds;
+		}
+		inline glm::vec3 GetMaxBounds()
+		{
+			return _maxBounds;
+		}
+
         glm::vec3 oldPos;
 	protected:
 		std::string _name;
@@ -91,6 +106,9 @@ class GameObject
         //update children list administration
         void _innerAdd (GameObject* pChild);
 		void _innerRemove (GameObject* pChild);
+
+		glm::vec3 _minBounds;
+		glm::vec3 _maxBounds;
 };
 
 #endif // GAMEOBJECT_H

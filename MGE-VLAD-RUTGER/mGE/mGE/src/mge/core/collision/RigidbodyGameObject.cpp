@@ -21,15 +21,18 @@ RigidbodyGameObject::~RigidbodyGameObject()
 	_world->freeMemory(_rigidbody);
 	std::cout << _name << "<-- Rigid body cleaned" << std::endl;
 
-	delete _trigger;
-	std::cout << "trigger of  " << _name << "cleaned " << std::endl;
+	//delete _trigger;
+	//std::cout << "trigger of  " << _name << "cleaned " << std::endl;
 }
 
 void RigidbodyGameObject::moveRb(glm::vec3 pPos)
 {
+	neV3 currVel;
+	currVel.Set(_rigidbody->GetVelocity());
+
 	neV3 posToSet;
-	posToSet.Set(pPos.x, pPos.y, pPos.z);
-	
+	posToSet.Set(pPos.x, currVel[1], pPos.z);
+
 	_rigidbody->SetVelocity( posToSet);
 }
 
@@ -63,10 +66,8 @@ void RigidbodyGameObject::updateRigidBody()
 		rbVel.Set(_rigidbody->GetVelocity());
 		glm::vec3 glmRbVel(rbVel[0], rbVel[1], rbVel[2]);
 
-		//setWorldPosition(toGLMpos);
-		if (_moveable) {
-			setLocalPosition(toGLMpos);
-		}
+		setLocalPosition(toGLMpos);
+		
 }
 
 void RigidbodyGameObject::AddBoxCollider(float pW, float pH, float pD)
@@ -77,8 +78,8 @@ void RigidbodyGameObject::AddBoxCollider(float pW, float pH, float pD)
 	geometry->SetBoxSize(box);
 	_rigidbody->UpdateBoundingInfo();
 
-	_trigger = new BoxTrigger(minBounds, maxBounds);
-	_world->addRbTrigger(this);
+	_trigger = new BoxTrigger(_minBounds, _maxBounds);
+	_world->addMovingTrigger(this);
 }
 
 neRigidBody* RigidbodyGameObject::GetRigidBody()
@@ -86,18 +87,18 @@ neRigidBody* RigidbodyGameObject::GetRigidBody()
 	return _rigidbody;
 }
 
-void RigidbodyGameObject::SetBounds(glm::vec3 maxBound, glm::vec3 minBound)
-{
-	minBounds = minBound;
-	maxBounds = maxBound;
-}
+//void RigidbodyGameObject::SetBounds(glm::vec3 maxBound, glm::vec3 minBound)
+//{
+//	minBounds = minBound;
+//	maxBounds = maxBound;
+//}
 
-glm::vec3 RigidbodyGameObject::GetMinBounds()
-{
-	return minBounds;
-}
+//glm::vec3 RigidbodyGameObject::GetMinBounds()
+//{
+//	return minBounds;
+//}
 
-glm::vec3 RigidbodyGameObject::GetMaxBounds()
-{
-	return maxBounds;
-}
+//glm::vec3 RigidbodyGameObject::GetMaxBounds()
+//{
+//	return maxBounds;
+//}

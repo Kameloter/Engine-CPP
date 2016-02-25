@@ -12,8 +12,8 @@ class TriggerManager
         TriggerManager();
         virtual ~TriggerManager();
 
-        void addObject (GameObject * pObject);
-		void addMovingObject(GameObject * pObject);
+        void addStaticTrigger(GameObject * pObject);
+		void addMovingTrigger(GameObject * pObject);
 		void cleanUp();
 		/*void addObject(StaticGameObject * pObject);
 

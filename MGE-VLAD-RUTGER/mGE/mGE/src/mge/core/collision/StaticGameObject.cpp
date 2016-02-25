@@ -19,7 +19,11 @@ StaticGameObject::StaticGameObject(std::string pName, glm::vec3 pPosition, Physi
 		_animBody = nullptr;
 	}
 }
-
+neAnimatedBody * StaticGameObject::getAnimBody()
+{
+	if(_animBody != nullptr)
+		return _animBody;	
+}
 
 StaticGameObject::~StaticGameObject()
 {
@@ -32,33 +36,44 @@ StaticGameObject::~StaticGameObject()
 	if(_trigger != nullptr) _trigger;
 	std::cout << "trigger of  " << _name << "cleaned " << std::endl;
 }
+//
+//void StaticGameObject::SetBounds(glm::vec3 maxBound, glm::vec3 minBound)
+//{
+//	minBounds = minBound;
+//	maxBounds = maxBound;
+//}
+//
+//glm::vec3 StaticGameObject::GetMinBounds()
+//{
+//	return minBounds;
+//}
+//
+//glm::vec3 StaticGameObject::GetMaxBounds()
+//{
+//	return maxBounds;
+//}
 
-void StaticGameObject::SetBounds(glm::vec3 maxBound, glm::vec3 minBound)
+
+void StaticGameObject::moveStaticObject(glm::vec3 pTranslate)
 {
-	minBounds = minBound;
-	maxBounds = maxBound;
-}
-
-glm::vec3 StaticGameObject::GetMinBounds()
-{
-	return minBounds;
-}
-
-glm::vec3 StaticGameObject::GetMaxBounds()
-{
-	return maxBounds;
-}
-
-
-void StaticGameObject::moveStaticObject(glm::vec3 )
-{
-
+	neV3 posToSet;
+	posToSet.Set(pTranslate.x, pTranslate.y, pTranslate.z);
+	_animBody->SetPos(_animBody->GetPos() + posToSet);
 }
 
 
 
 void StaticGameObject::updateStaticBody()
 {
+
+	if (!_trigger)
+	{
+		neV3 pos = _animBody->GetPos();
+
+		glm::vec3 glmPOS(pos[0], pos[1], pos[2]);
+
+		setLocalPosition(glmPOS);
+	}
 	//neV3 goWorldPos;
 	//goWorldPos.Set(getWorldPosition().x, getWorldPosition().y, getWorldPosition().z * -1 );
 	//_animBody->SetPos(goWorldPos);
@@ -94,7 +109,7 @@ void StaticGameObject::AddBoxCollider(float pW, float pH, float pD)
 		_animBody->UpdateBoundingInfo();
 	}
 	else {
-		_trigger = new BoxTrigger(minBounds, maxBounds);
+		_trigger = new BoxTrigger(_minBounds, _maxBounds);
 		_world->addStaticTrigger(this);
 	}
 

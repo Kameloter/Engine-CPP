@@ -20,7 +20,6 @@ AbstractGame::~AbstractGame()
     delete _window;
     delete _renderer;
     delete _world;
-    
 }
 
 void AbstractGame::initialize() {

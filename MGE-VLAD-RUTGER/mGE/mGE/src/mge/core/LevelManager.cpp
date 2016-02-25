@@ -24,6 +24,7 @@
 #include "mge/materials/TextureLitMaterial.hpp"
 
 //Behaviours 
+#include "mge/behaviours/StatueBehaviour.h"
 #include "mge/behaviours/RotatingBehaviour.hpp"
 #include "mge/behaviours/KeysBehaviour.hpp"
 #include "mge/behaviours/KeysBehaviour2.hpp"
@@ -95,10 +96,10 @@ void LevelManager::BuildLevel(GameLevels pLevel)
 		break;
 	}
 }
-
+StaticGameObject * testtrig = nullptr;
 void LevelManager::DestroyLevel(GameLevels pLevel)
 {
-
+	testtrig = nullptr;
 	switch (pLevel)
 	{
 	case Menu:
@@ -132,7 +133,7 @@ void LevelManager::Build_level_hub()
 {
 	cout << " Build level hub " << endl;
 }
-StaticGameObject * testtrig;
+
 void LevelManager::Build_level_1()
 {
 	cout << " Build level 1 " << endl;
@@ -158,7 +159,7 @@ void LevelManager::Build_level_1()
 	glm::vec3 center = Player->getLocalPosition();
 	glm::vec3 minbound(center.x - 0.5f, center.y - 0.5f, center.z - 0.5f);
 	glm::vec3 maxbound(center.x + 0.5f, center.y + 0.5f, center.z + 0.5f);
-	Player->SetBounds(maxbound, minbound);
+	Player->SetBounds(minbound, maxbound);
 	Player->AddBoxCollider(1, 1, 1);
 	Player->setMesh(cubeMeshF);
 	Player->setMaterial(new ColorMaterial(Color::Green));
@@ -169,16 +170,16 @@ void LevelManager::Build_level_1()
 	 camera->setLocalPosition(glm::vec3(0,2,0));
 	 camera->setBehaviour(new FPCamera(1.0f,1.0f,Player,_window));
 
-	 testtrig = new StaticGameObject("obj6", glm::vec3(3, 1, 3), _world,true);
+	 //testtrig = new StaticGameObject("obj6", glm::vec3(3, 1, 3), _world,true);
 
-	 glm::vec3 center2 = testtrig->getLocalPosition();
-	 glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
-	 glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
-	 testtrig->SetBounds(maxbound2, minbound2);
-	 testtrig->AddBoxCollider(1, 1, 1);
-	 testtrig->setMesh(cubeMeshF);
-	 testtrig->setMaterial(new ColorMaterial(Color::Tomato));
-	 _world->add(testtrig);
+	 //glm::vec3 center2 = testtrig->getLocalPosition();
+	 //glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
+	 //glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
+	 //testtrig->SetBounds(minbound2, maxbound2);
+	 //testtrig->AddBoxCollider(1, 1, 1);
+	 //testtrig->setMesh(cubeMeshF);
+	 //testtrig->setMaterial(new ColorMaterial(Color::Tomato));
+	 //_world->add(testtrig);
 
 	//GameObject * cubeNormal = new GameObject("normalmap", glm::vec3(0, 0, 0));
 	//cubeNormal->setMesh(logMesh);
@@ -187,7 +188,14 @@ void LevelManager::Build_level_1()
 	//camera->setBehaviour(new Orbit(cubeNormal, 10.0f, 80.0f, 10.0f));
 
 //	LUAManager::InitializeFile();
-
+	 StaticGameObject * box = new StaticGameObject("box", glm::vec3(3, 1, 3), _world);
+	 box->setMesh(cubeMeshF);
+	 glm::vec3 colsize = box->getMesh()->GetColliderSize();
+	 box->AddBoxCollider(colsize.x, colsize.y, colsize.z);
+	 box->setMaterial(new ColorMaterial(Color::Blue));
+	 _world->add(box);
+	 box->setBehaviour(new StatueBehaviour());
+	 dynamic_cast<StatueBehaviour*>(box->getBehaviour())->SetPlayer(Player);
 
 #pragma region Lights
 	//Directional Light
@@ -214,7 +222,7 @@ void LevelManager::Build_level_1()
 
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("Level1");
-
+	LUAManager::InitializeFile(_world);
 	//}
 
 	/*RigidbodyGameObject * obj = new RigidbodyGameObject("obj", glm::vec3(1, 1, 0),_world);
@@ -266,10 +274,6 @@ void LevelManager::Build_level_1()
 	//cZ->setMaterial(new ColorMaterial(Color::Blue));
 	//cZ->scale(glm::vec3(0.1f, 0.1f, 1.9));
 	//_world->add(cZ);
-
-
-
-
 }
 
 void LevelManager::Build_level_2()
@@ -279,8 +283,17 @@ void LevelManager::Build_level_2()
 
 void LevelManager::testUpdate()
 {
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
 	{
 		std::cout << " GOT NAME " << testtrig->getTrigger()->collisionInfo->getHitBy() << std::endl;
-	}*/
+	}
+
+	if (testtrig != nullptr)
+	{
+		if (testtrig->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
+		{
+			cout << "Hello i got hit ! :) " << endl;
+		}
+	}
 }
+

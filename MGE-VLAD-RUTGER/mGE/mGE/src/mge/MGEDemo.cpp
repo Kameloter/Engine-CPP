@@ -39,6 +39,8 @@ void MGEDemo::initialize() {
 
 LevelManager * levelManager;
 MainMenu * mainMenu;
+
+
 void MGEDemo::_initializeScene()
 {
 	_renderer->setClearColor(0, 0, 0);

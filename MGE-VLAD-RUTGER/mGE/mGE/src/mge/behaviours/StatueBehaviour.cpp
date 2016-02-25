@@ -1,5 +1,6 @@
 #include "StatueBehaviour.h"
 #include "mge/core/collision/RigidbodyGameObject.h"
+#include "mge/core/collision/StaticGameObject.h"
 #include "mge/behaviours/FPController.h"
 
 #include <glm.hpp>
@@ -67,10 +68,10 @@ void StatueBehaviour::update(float pStep) {
 			pos.Set(posi.x, _player->getLocalPosition().y, posi.z);
 			rigidbody->SetPos(pos);
 
-			neV3 movement;
-			movement.Set(direction.x * 3, 0, direction.z * 3);
+			glm::vec3 movement(direction.x * 3, 0, direction.z * 3);
+			
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) dynamic_cast<RigidbodyGameObject*>(_owner)->GetRigidBody()->SetVelocity(movement);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(movement);
 			
 		}
 	}

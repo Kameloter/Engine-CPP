@@ -12,11 +12,11 @@ TriggerManager::~TriggerManager()
     //dtor
 }
 
-void TriggerManager::addObject(GameObject * object)
+void TriggerManager::addStaticTrigger(GameObject * object)
 {
 	_triggers.push_back(object);
 }
-void TriggerManager::addMovingObject(GameObject * object)
+void TriggerManager::addMovingTrigger(GameObject * object)
 {
 	_movingTriggers.push_back(object);
 }
@@ -39,14 +39,13 @@ void TriggerManager::runPhysics(float pDelta)
 
 		//	std::cout << " Helo sb" << std::endl;
 
+			//maybe it should return a pointer and then delete it at end of collision loop after giving info to objects???
 			Collision collisionInfo = _movingTriggers[i]->getTrigger()->resolveCollision(_triggers[i]->getTrigger());
 			
-           // std :: cout << "After colliding bool " << collisionInfo.getIsColliding() << std::endl;
-          //  std :: cout << "After colliding distance " << collisionInfo.getCollisionDistance() << std::endl;
             if(collisionInfo.getIsColliding())
             {
 
-                  std::cout << "THERE IS COLLISION " << std::endl;
+              //    std::cout << "THERE IS COLLISION " << std::endl;
 				  _movingTriggers[i]->getTrigger()->collisionInfo->setInfo(true, _triggers[j]->getName());
 				  _triggers[j]->getTrigger()->collisionInfo->setInfo(true, _movingTriggers[i]->getName());
 			}

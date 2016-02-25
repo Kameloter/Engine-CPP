@@ -12,6 +12,7 @@ class BoxTrigger
 
 
 		Collision* collisionInfo;
+
 		Collision resolveCollision(BoxTrigger * colB);
 
         void translate(const glm::vec3 pTranslation);

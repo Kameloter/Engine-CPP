@@ -16,7 +16,6 @@ class TextureLitMaterial : public AbstractMaterial
 
         virtual ~TextureLitMaterial ();
         virtual void render(World* pWorld, GameObject* pGameObject, Camera* pCamera);
-
         void setDiffuseTexture (Texture* pDiffuseTexture);
        
     protected:

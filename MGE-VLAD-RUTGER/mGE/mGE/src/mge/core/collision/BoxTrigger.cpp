@@ -14,21 +14,26 @@ BoxTrigger::BoxTrigger(const glm::vec3 pMinBounds, const glm::vec3 pMaxBounds) :
 BoxTrigger::~BoxTrigger()
 {
     //dtor
+
+	delete collisionInfo;
+	cout << " collision info cleared" << endl;
 }
 
 void BoxTrigger::translate(const glm::vec3 pTranslation)
 {
     _minBounds += pTranslation;
     _maxBounds += pTranslation;
+	
+//	cout <<" Min bounds " <<  _minBounds << endl;
 }
 Collision BoxTrigger::resolveCollision( BoxTrigger * colB)
 {
 	glm::vec3 distance1 = colB->getMinBounds() - getMaxBounds();
 	glm::vec3 distance2 = getMinBounds() - colB->getMaxBounds();
 	//cout << "CubeB - Min bounds " << colB->getMinBounds() << endl;
-	//cout << "CubeB - Max bounds " << colB->getMaxBounds() << endl;
-	//  cout << "CubeA - Min bounds " << colA->getMinBounds() << endl;
-	// cout << "CubeA - Max bounds " << colA->getMaxBounds() << endl;
+//	cout << "CubeB - Max bounds " << colB->getMaxBounds() << endl;
+ // cout << "CubeA - Min bounds " << getMinBounds() << endl;
+// cout << "CubeA - Max bounds " << getMaxBounds() << endl;
 
 	// cout << "distance1 (bMin - Amax) " << distance1 << endl;
 	//cout << "distance2 (aMin - bMax) " << distance2 << endl;

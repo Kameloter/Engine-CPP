@@ -71,7 +71,7 @@ void FPController::update(float pStep){
 			dynamic_cast<RigidbodyGameObject*>(_owner)->moveRb(translate);
 		}
 		else {
-			dynamic_cast<RigidbodyGameObject*>(_owner)->moveRb(glm::vec3(0, translate.y, 0));
+			//dynamic_cast<RigidbodyGameObject*>(_owner)->moveRb(glm::vec3(0, translate.y, 0));
 		}
 		// std::cout << "FPcontroller Input - > " << translate << std::endl;
    // _owner->translate(translate); // - >> Move character on input.
