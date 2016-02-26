@@ -226,6 +226,7 @@ void LevelManager::Build_level_1()
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("Level1");
 	xmlReader->LoadInteractables("interactables");
+	xmlReader->LoadSubtitleTriggers("subtitles");
 	LUAManager::InitializeFile(_world);
 	//}
 

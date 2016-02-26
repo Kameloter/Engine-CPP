@@ -26,6 +26,8 @@
 #include "mge/behaviours/PressurePlateBehaviour.h"
 #include "mge/behaviours/PushBlockBehaviour.h"
 #include "mge/behaviours/SpikeBehaviour.h"
+#include "mge/behaviours/SubtitleBehaviour.h"
+#include "mge/SubtitleManager.h"
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -129,6 +131,12 @@ void XmlReader::LoadInteractables(const char* pName)
 	SetupInteractableGeometry(pName);
 }
 
+void XmlReader::LoadSubtitleTriggers(const char * pLevelName)
+{
+	ReadSubtitleTriggers(pLevelName);
+	SetupSubtitleTriggers(pLevelName);
+}
+
 void XmlReader::ReadInteractables(const char* pFileName)
 {
 	std::string path = config::MGE_XML_PATH;
@@ -164,6 +172,8 @@ void XmlReader::ReadInteractables(const char* pFileName)
 	}
 	cout << "XML finished reading -- > " << _mainNodesInteractable.size() << " objects " << endl;
 }
+
+
 
 void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 {
@@ -251,25 +261,31 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setBehaviour(new SpikeBehaviour());
 			_world->add(obj);
 
-			glm::vec3 center2 = obj->getLocalPosition();
-			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
-			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
-			obj->SetBounds(minbound2, maxbound2);
-			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+
+
 
 			if (_rotationsInteractables[i].z > 0) {
 				obj->rotate(glm::radians(_rotationsInteractables[i].z), glm::vec3(0, 0, 1));
-				std::cout << colSize << std::endl;
-				obj->AddBoxCollider(colSize.x, colSize.z, colSize.y);
+				glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
+				glm::vec3 center2 = obj->getLocalPosition();
+				glm::vec3 minbound2(center2.x - colSize.y, center2.y - colSize.x, center2.z - colSize.z);
+				glm::vec3 maxbound2(center2.x + colSize.y, center2.y + colSize.x, center2.z + colSize.z);
+				std::cout << "minbound = " << minbound2 << "  maxbound =" << maxbound2 << std::endl;
+				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
+				//obj->SetBounds(glm::vec3(minbound2.y,minbound2.z,minbound2.x), glm::vec3(maxbound2.y, maxbound2.z, maxbound2.x));
+
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			}
 			else
 			{
+				glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
+				glm::vec3 center2 = obj->getLocalPosition();
+				glm::vec3 minbound2(center2.x - colSize.x, center2.y - colSize.y, center2.z - colSize.z);
+				glm::vec3 maxbound2(center2.x + colSize.x, center2.y + colSize.y, center2.z + colSize.z);
+				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
 				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			}
-
 			dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();
-
-
 		}
 		break;
 		case 5:
@@ -419,5 +435,93 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 	}
 
 	cout << "intactable geonmytry loaded.... " << endl;
+}
+void XmlReader::ReadSubtitleTriggers(const char * pFilename)
+{
+	std::string path = config::MGE_XML_PATH;
+	path += pFilename;
+	path += ".xml";
+	const char* fullpath = path.c_str();
+
+	cout << "Reading Subtitles Data... - " << fullpath << endl;
+	if (!_xmlSubtitle.load_file(fullpath)) std::cout << "Couldn't load the file" << std::endl;
+	pugi::xml_node root = _xmlSubtitle.child("GameObjects");
+	//std::cout<< "ROOT XML => " << root.name() << std::endl;
+	_subtitleMainNodes = GetNodeChildren(root);
+	//std :: cout << "SIZE OF ROOT CHILDREN = > " << _mainNodes.size() << std::endl;
+	for (int i = 0; i != _subtitleMainNodes.size(); i++)
+	{
+
+		//Add names to a list
+		_subtitleTriggerName.push_back(_subtitleMainNodes[i].attribute("name").value());
+
+
+		//Read all object node children
+		_subtitleProperties = GetNodeChildren(_subtitleMainNodes[i]);
+		//Store positions
+		_subtitleTriggerPosition.push_back(glm::vec3(StringToNumber<float>(_subtitleProperties[0].attribute("X").value()),
+			StringToNumber<float>(_subtitleProperties[0].attribute("Y").value()),
+			StringToNumber<float>(_subtitleProperties[0].attribute("Z").value())));
+
+		_subtitleTriggerSize.push_back(glm::vec3(StringToNumber<float>(_subtitleProperties[1].attribute("X").value()),
+			StringToNumber<float>(_subtitleProperties[1].attribute("Y").value()),
+			StringToNumber<float>(_subtitleProperties[1].attribute("Z").value())));
+
+		_typeTriggers.push_back(StringToNumber<int>(_interactableProperties[2].attribute("Type").value()));
+	}
+	cout << "XML finished reading -- > " << _subtitleMainNodes.size() << " objects " << endl;
+}
+void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
+{
+	for (int i = 0; i < _subtitleTriggerName.size(); i++)
+	{
+		std::cout << _typeTriggers[i] << std::endl;
+		switch (_typeTriggers[i])
+		{
+
+			case 0: //Subtitle tirgger
+			{
+				StaticGameObject * obj = new StaticGameObject(_subtitleTriggerName[i], _subtitleTriggerPosition[i], _world, true);
+				//obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key.obj"));
+				//obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+				_world->add(obj);
+
+				glm::vec3 center2 = obj->getLocalPosition();
+				glm::vec3 triggerSize = _subtitleTriggerSize[i] / 2;
+				glm::vec3 minbound2(center2.x - triggerSize.x, center2.y - triggerSize.y, center2.z - triggerSize.z);
+				glm::vec3 maxbound2(center2.x + triggerSize.x, center2.y + triggerSize.y, center2.z + triggerSize.z);
+				obj->SetBounds(minbound2, maxbound2);
+
+				//glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+				obj->AddBoxCollider(0, 0, 0);
+				
+				obj->setBehaviour(new SubtitleBehaviour());
+				std::cout << " Sub triggaas added " << std::endl;
+			}
+			break;
+			case 1: //Death trigger
+			{
+				StaticGameObject * obj = new StaticGameObject(_subtitleTriggerName[i], _subtitleTriggerPosition[i], _world, true);
+				//obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key.obj"));
+				//obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+				_world->add(obj);
+
+				glm::vec3 center2 = obj->getLocalPosition();
+				glm::vec3 triggerSize = _subtitleTriggerSize[i] / 2;
+				glm::vec3 minbound2(center2.x - triggerSize.x, center2.y - triggerSize.y, center2.z - triggerSize.z);
+				glm::vec3 maxbound2(center2.x + triggerSize.x, center2.y + triggerSize.y, center2.z + triggerSize.z);
+				obj->SetBounds(minbound2, maxbound2);
+
+				//glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+				obj->AddBoxCollider(0, 0, 0);
+
+				//obj->setBehaviour(new SubtitleBehaviour());
+
+			}
+			break;
+		}
+		
+
+	}
 }
 

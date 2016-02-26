@@ -22,6 +22,7 @@
     <ClInclude Include="src\mge\behaviours\AbstractBehaviour.hpp" />
     <ClInclude Include="src\mge\behaviours\BoxBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\CollectableBehaviour.h" />
+    <ClInclude Include="src\mge\behaviours\DeathBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\DoorBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\FPCamera.h" />
     <ClInclude Include="src\mge\behaviours\FPController.h" />
@@ -34,6 +35,7 @@
     <ClInclude Include="src\mge\behaviours\RotatingBehaviour.hpp" />
     <ClInclude Include="src\mge\behaviours\SpikeBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\StatueBehaviour.h" />
+    <ClInclude Include="src\mge\behaviours\SubtitleBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\TriggerBehaviour.h" />
     <ClInclude Include="src\mge\config.hpp" />
     <ClInclude Include="src\mge\core\AbstractGame.hpp" />
@@ -118,6 +120,7 @@
     <ClCompile Include="src\mge\behaviours\AbstractBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\BoxBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\CollectableBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\DeathBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\DoorBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\FPCamera.cpp" />
     <ClCompile Include="src\mge\behaviours\FPController.cpp" />
@@ -130,6 +133,7 @@
     <ClCompile Include="src\mge\behaviours\RotatingBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\SpikeBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\StatueBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\SubtitleBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\TriggerBehaviour.cpp" />
     <ClCompile Include="src\mge\core\AbstractGame.cpp" />
     <ClCompile Include="src\mge\core\Camera.cpp" />
