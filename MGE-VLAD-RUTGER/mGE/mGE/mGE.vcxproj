@@ -53,6 +53,7 @@
     <ClInclude Include="src\mge\core\light\SpotLight.h" />
     <ClInclude Include="src\mge\core\Mesh.hpp" />
     <ClInclude Include="src\mge\core\ObjectPicker.h" />
+    <ClInclude Include="src\mge\core\Player.h" />
     <ClInclude Include="src\mge\core\Renderer.hpp" />
     <ClInclude Include="src\mge\core\ShaderProgram.hpp" />
     <ClInclude Include="src\mge\core\Texture.hpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="src\mge\core\light\SpotLight.cpp" />
     <ClCompile Include="src\mge\core\Mesh.cpp" />
     <ClCompile Include="src\mge\core\ObjectPicker.cpp" />
+    <ClCompile Include="src\mge\core\Player.cpp" />
     <ClCompile Include="src\mge\core\Renderer.cpp" />
     <ClCompile Include="src\mge\core\ShaderProgram.cpp" />
     <ClCompile Include="src\mge\core\Sound.cpp" />

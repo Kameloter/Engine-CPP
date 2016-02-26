@@ -7,6 +7,17 @@ using namespace std;
 #include <sstream>
 #include <iostream>
 
+//behaviours for objects
+#include "mge/behaviours/StatueBehaviour.h"
+#include "mge/behaviours/RotatingBehaviour.hpp"
+#include "mge/behaviours/FPController.h"
+#include "mge/behaviours/BoxBehaviour.h"
+#include "mge/behaviours/DoorBehaviour.h"
+#include "mge/behaviours/TriggerBehaviour.h"
+#include "mge/behaviours/FPCamera.h"
+#include "mge/behaviours/CollectableBehaviour.h"
+#include "mge/behaviours/PressurePlateBehaviour.h"
+
 lua_State * lua;
 
 
@@ -57,6 +68,26 @@ int LUAManager::InitializeFile(PhysicsWorld * pWorld){
 int LUAManager::CreateCube(lua_State * L){
     std::cout<<"working???"<<std::endl;
     return 0;
+}
+
+int LUAManager::ConnectStatueToPlate(lua_State * L)
+{
+	string plateName = lua_tostring(L, 1);
+	string statueName = lua_tostring(L, 2);
+
+	StaticGameObject * plate = FindStaticObject(plateName);
+	//dynamic_cast<PressurePlateBehaviour*>(plate->getBehaviour())->SetStatue(FindStaticObject(statueName));
+	return 0;
+}
+
+int LUAManager::SetOpenVector(lua_State * L)
+{
+	return 0;
+}
+
+int LUAManager::AddPressurePlateToDoor(lua_State * L)
+{
+	return 0;
 }
 
 void LUAManager::setObjects(std::vector<StaticGameObject*> pStaticObjects, std::vector<RigidbodyGameObject*> pRigidObjects)

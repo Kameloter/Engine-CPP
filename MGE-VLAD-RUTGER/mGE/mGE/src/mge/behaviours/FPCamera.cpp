@@ -3,12 +3,11 @@
 #include "mge/core/GameObject.hpp"
 #include <SFML/Graphics.hpp>
 
-FPCamera::FPCamera(float pMoveSpeed, float pTurnSpeed, GameObject * pPlayer,sf::Window * pWindow)
+FPCamera::FPCamera(float pMoveSpeed, float pTurnSpeed, GameObject * pPlayer)
 {
     _moveSpeed = pMoveSpeed;
     _turnSpeed = pTurnSpeed;
     _player = pPlayer;
-    _window = pWindow;
 
 }
 
@@ -22,7 +21,7 @@ void FPCamera::update(float pStep){
 		glm::mat4 ownerTransform = _owner->getTransform();
 
 		sf::Vector2i mouseVector = sf::Mouse::getPosition();
-		sf::Mouse::setPosition((sf::Vector2i(_window->getPosition().x + _window->getSize().x / 2, _window->getPosition().y + _window->getSize().y / 2)));
+		sf::Mouse::setPosition(sf::Vector2i(700,400));
 
 		sf::Vector2i diffVector = -(mouseVector - sf::Mouse::getPosition());
 

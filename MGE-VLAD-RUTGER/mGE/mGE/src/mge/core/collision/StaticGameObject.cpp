@@ -68,31 +68,41 @@ void StaticGameObject::updateStaticBody()
 
 	if (!_trigger)
 	{
-		neV3 pos = _animBody->GetPos();
+		/*neV3 pos = _animBody->GetPos();
 
 		glm::vec3 glmPOS(pos[0], pos[1], pos[2]);
 
 		setLocalPosition(glmPOS);
+*/
+
+		neV3 goWorldPos;
+		goWorldPos.Set(getWorldPosition().x, getWorldPosition().y, getWorldPosition().z * -1);
+		_animBody->SetPos(goWorldPos);
+
+
+		neM3 rotationMat;
+		neQ quat;
+
+		neV3 rX;
+		rX.Set(getWorldTransform()[0].x, getWorldTransform()[0].y, getWorldTransform()[0].z);
+		
+		neV3 rY;
+		rY.Set(getWorldTransform()[1].x, getWorldTransform()[1].y, getWorldTransform()[1].z);
+
+		neV3 rZ;
+		rZ.Set(getWorldTransform()[2].x, getWorldTransform()[2].y, getWorldTransform()[2].z);
+	
+
+		rotationMat.SetColumns(rX, rY, rZ);
+
+		quat.SetupFromMatrix3(rotationMat);
+
+		_animBody->SetRotation(quat);
+
+		std::cout << _animBody->GetRotationQ().x << std::endl;
+
 	}
-	//neV3 goWorldPos;
-	//goWorldPos.Set(getWorldPosition().x, getWorldPosition().y, getWorldPosition().z * -1 );
-	//_animBody->SetPos(goWorldPos);
 
-	//neM3 rotationMat;
-
-	//neV3 rX;
-	//rX.Set(getWorldTransform()[0].x, getWorldTransform()[1].x, getWorldTransform()[2].x);
-
-	//neV3 rY;
-	//rY.Set(getWorldTransform()[0].y, getWorldTransform()[1].y, getWorldTransform()[2].y);
-
-	//neV3 rZ;
-	//rZ.Set(getWorldTransform()[0].z, getWorldTransform()[1].z, getWorldTransform()[2].z);
-	//rZ *= -1;
-
-	//rotationMat.SetColumns(rX, rY, rZ);
-
-	//_animBody->SetRotation(rotationMat);
 	//setWorldPosition(glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]));
 	//std::cout <<glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]) << std::endl;
 }
@@ -103,10 +113,11 @@ void StaticGameObject::AddBoxCollider(float pW, float pH, float pD)
 	{
 		neGeometry* geometry = _animBody->AddGeometry();
 		neV3 box;
-		std::cout << "boxPOS" << glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]) << std::endl;
+		//std::cout << "boxPOS" << glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]) << std::endl;
 		box.Set(pW, pH, pD);
 		geometry->SetBoxSize(box);
 		_animBody->UpdateBoundingInfo();
+		std::cout << "collider added" << std::endl;
 	}
 	else {
 		_trigger = new BoxTrigger(_minBounds, _maxBounds);

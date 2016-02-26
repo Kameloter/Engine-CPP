@@ -2,15 +2,27 @@
 #include "mge/config.hpp"
 
 #include "mge/LUA/LUAManager.h"
+#include "mge/core/Camera.hpp"
 
 #include "mge/core/collision/StaticGameObject.h"
 #include "mge/core/collision/PhysicsWorld.h"
 #include "mge/core/Mesh.hpp"
+#include "mge/core/Player.h"
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/materials/ColorMaterial.hpp"
 #include "mge/materials/TextureLitMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/materials/TextureNormalMaterial.hpp"
+
+//behaviours for objects
+#include "mge/behaviours/StatueBehaviour.h"
+#include "mge/behaviours/RotatingBehaviour.hpp"
+#include "mge/behaviours/FPController.h"
+#include "mge/behaviours/BoxBehaviour.h"
+#include "mge/behaviours/DoorBehaviour.h"
+#include "mge/behaviours/TriggerBehaviour.h"
+#include "mge/behaviours/FPCamera.h"
+#include "mge/behaviours/CollectableBehaviour.h"
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -61,6 +73,7 @@ void XmlReader::LoadLevel(const char* pLevelName)
 	Read(pLevelName);
 	SetupLevelGeometry(pLevelName);
 }
+
 void XmlReader::SetupLevelGeometry(std::string pLevelName)
 {
 	cout << " Setting up level geometry..." << endl;
@@ -105,4 +118,192 @@ T XmlReader::StringToNumber(const std::string& numberAsString)
     std::stringstream stream(numberAsString);
     stream >> value;
     return value;
+}
+
+void XmlReader::LoadInteractables(const char* pName)
+{
+	ReadInteractables(pName);
+	SetupInteractableGeometry(pName);
+}
+
+void XmlReader::ReadInteractables(const char* pFileName)
+{
+	std::string path = config::MGE_XML_PATH;
+	path += pFileName;
+	path += ".xml";
+	const char* fullpath = path.c_str();
+
+	cout << "Reading interactable Data... - " << fullpath << endl;
+	if (!_xmlFileInteractables.load_file(fullpath)) std::cout << "Couldn't load the file" << std::endl;
+	pugi::xml_node root = _xmlFileInteractables.child("GameObjects");
+	//std::cout<< "ROOT XML => " << root.name() << std::endl;
+	_mainNodesInteractable = GetNodeChildren(root);
+	//std :: cout << "SIZE OF ROOT CHILDREN = > " << _mainNodes.size() << std::endl;
+	for (int i = 0; i != _mainNodesInteractable.size(); i++)
+	{
+
+		//Add names to a list
+		_namesInteractables.push_back(_mainNodesInteractable[i].attribute("name").value());
+
+
+		//Read all object node children
+		_interactableProperties = GetNodeChildren(_mainNodesInteractable[i]);
+		//Store positions
+		_positionsInteractables.push_back(glm::vec3(StringToNumber<float>(_interactableProperties[0].attribute("X").value()),
+			StringToNumber<float>(_interactableProperties[0].attribute("Y").value()),
+			StringToNumber<float>(_interactableProperties[0].attribute("Z").value())));
+
+		_rotationsInteractables.push_back(glm::vec3(StringToNumber<float>(_interactableProperties[1].attribute("X").value()),
+			StringToNumber<float>(_interactableProperties[1].attribute("Y").value()),
+			StringToNumber<float>(_interactableProperties[1].attribute("Z").value())));
+
+		_typeInteractables.push_back(StringToNumber<int>(_interactableProperties[2].attribute("Type").value()));
+	}
+	cout << "XML finished reading -- > " << _mainNodesInteractable.size() << " objects " << endl;
+}
+
+void XmlReader::SetupInteractableGeometry(std::string pLevelName)
+{
+	cout << " Setting up level geometry..." << endl;
+	//root->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + ".obj"));
+
+	//root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png"), 0.1));
+	////root->setMaterial(new TextureNormalMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"),glm::vec3(1), 32, Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png")));
+	////root->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+	//_world->add(root);
+
+
+	for (int i = 0; i < _namesInteractables.size(); i++)
+	{
+		switch (_typeInteractables[i])
+		{
+		case 0:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "statue.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+			_world->add(obj);
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+		}
+		break;
+		case 1:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "pressurePlate.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(0, 1, 0)));
+			_world->add(obj);
+		}
+			break;
+		case 2:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "coin.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			//obj->setBehaviour(new CollectableBehaviour());
+			_world->add(obj);
+		}
+		break;
+		case 3:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "pushblock.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0.5f)));
+			_world->add(obj);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+		}
+			break;
+		case 4:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "traps.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+			_world->add(obj);
+		}
+			break;
+		case 5:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Spikes.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			_world->add(obj);
+		}
+			break;
+		case 6:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			_world->add(obj);
+		}
+			break;
+		case 7:
+		{
+			/*StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "traps.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			_world->add(obj);*/
+		}
+			break;
+		case 8:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "gate.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			if (_rotationsInteractables[i].y > 0) {
+				obj->rotate(glm::radians(90.0f), glm::vec3(0, 1, 0));
+			}
+
+
+			_world->add(obj);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+		}
+		break;
+		case 9:
+		{
+		
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "secret_path.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+			_world->add(obj);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+		}
+		break;
+
+		case 10:
+		{
+			Camera* camera = new Camera("camera", glm::vec3(0, 0, 0));
+			_world->add(camera);
+			_world->setMainCamera(camera);
+
+			Player * player = new Player(_names[i], _positionsInteractables[i], _world, camera);
+			_world->add(player);
+
+			camera->setParent(player);
+			camera->setLocalPosition(glm::vec3(0, 2, 0));
+			camera->setBehaviour(new FPCamera(1.0f, 1.0f, player));
+		}
+		break;
+
+		case 11:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "bridge.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(0, 0, 1)));
+			_world->add(obj);
+		}
+		break;
+	
+		default:
+		break;
+		}
+		
+	}
+	cout << "intactable geonmytry loaded.... " << endl;
 }

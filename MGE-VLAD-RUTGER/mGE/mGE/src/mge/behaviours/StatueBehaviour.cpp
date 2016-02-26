@@ -7,6 +7,8 @@
 #include "mge/core/GameObject.hpp"
 #include <SFML/Graphics.hpp>
 
+
+
 StatueBehaviour::StatueBehaviour()
 {
 	_isCarried = false;

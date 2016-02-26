@@ -1,7 +1,5 @@
-#ifndef COLOR_H
-#define COLOR_H
+#pragma once
 #include <glm.hpp>
-#include "Color.h"
 
 class Color
 {
@@ -35,4 +33,3 @@ glm::vec3 Color::Pink = glm::vec3(1,0.752941f,0.796078f);
 glm::vec3 Color::Orange = glm::vec3(1, 0.647059f, 0);
 glm::vec3 Color::Tomato = glm::vec3(1, 0.388235f, 0.278431f);
 
-#endif // COLOR_H
