@@ -25,6 +25,7 @@
 #include "mge/behaviours/CollectableBehaviour.h"
 #include "mge/behaviours/PressurePlateBehaviour.h"
 #include "mge/behaviours/PushBlockBehaviour.h"
+#include "mge/behaviours/SpikeBehaviour.h"
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -247,15 +248,28 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "traps.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+			obj->setBehaviour(new SpikeBehaviour());
 			_world->add(obj);
 
 			glm::vec3 center2 = obj->getLocalPosition();
 			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
 			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
 			obj->SetBounds(minbound2, maxbound2);
-
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
-			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+
+			if (_rotationsInteractables[i].z > 0) {
+				obj->rotate(glm::radians(_rotationsInteractables[i].z), glm::vec3(0, 0, 1));
+				std::cout << colSize << std::endl;
+				obj->AddBoxCollider(colSize.x, colSize.z, colSize.y);
+			}
+			else
+			{
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+
+			dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();
+
+
 		}
 		break;
 		case 5:
@@ -271,7 +285,15 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->SetBounds(minbound2, maxbound2);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
-			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+
+			if (_rotationsInteractables[i].x > 0) {
+				obj->rotate(glm::radians(90.0f), glm::vec3(1, 0, 0));
+				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
+			}
+			else
+			{
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
 		}
 		break;
 		case 6:

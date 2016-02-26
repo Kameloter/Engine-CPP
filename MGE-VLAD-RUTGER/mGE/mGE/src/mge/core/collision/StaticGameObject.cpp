@@ -66,7 +66,10 @@ void StaticGameObject::moveStaticObject(glm::vec3 pTranslate)
 	_animBody->SetPos(_animBody->GetPos() + posToSet);
 }
 
-
+void StaticGameObject::moveTriggerObject(glm::vec3 pTranslate)
+{
+	setLocalPosition(getLocalPosition()+ pTranslate);
+}
 
 void StaticGameObject::updateStaticBody()
 {

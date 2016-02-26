@@ -56,18 +56,18 @@
 		<Object_Type Type="3"/>
 	</Object>
 	<Object name="Shooting_Trap_01">
-		<Position X="-41.6" Y="5.0" Z="-1.5"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Position X="-41.6" Y="3.0" Z="-1.5"/>
+		<Rotation X="0.0" Y="0.0" Z="90.0"/>
 		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Shooting_Trap_02">
-		<Position X="-30.4" Y="5.0" Z="7.5"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Position X="-30.4" Y="3.0" Z="7.5"/>
+		<Rotation X="0.0" Y="0.0" Z="270.0"/>
 		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Shooting_Trap_03">
-		<Position X="-30.4" Y="5.0" Z="13.5"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Position X="-30.4" Y="3.0" Z="13.5"/>
+		<Rotation X="0.0" Y="0.0" Z="270.0"/>
 		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Coin_01">

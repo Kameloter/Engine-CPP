@@ -8,7 +8,6 @@ PressurePlateBehaviour::PressurePlateBehaviour()
 {	
 }
 
-
 PressurePlateBehaviour::~PressurePlateBehaviour()
 {
 }

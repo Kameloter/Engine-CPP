@@ -32,6 +32,7 @@
     <ClInclude Include="src\mge\behaviours\PressurePlateBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\PushBlockBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\RotatingBehaviour.hpp" />
+    <ClInclude Include="src\mge\behaviours\SpikeBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\StatueBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\TriggerBehaviour.h" />
     <ClInclude Include="src\mge\config.hpp" />
@@ -127,6 +128,7 @@
     <ClCompile Include="src\mge\behaviours\PressurePlateBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\PushBlockBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\RotatingBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\SpikeBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\StatueBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\TriggerBehaviour.cpp" />
     <ClCompile Include="src\mge\core\AbstractGame.cpp" />

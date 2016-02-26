@@ -276,6 +276,9 @@
     <ClInclude Include="src\mge\behaviours\PushBlockBehaviour.h">
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\behaviours\SpikeBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -537,6 +540,9 @@
     </ClCompile>
     <ClCompile Include="src\mge\behaviours\PushBlockBehaviour.cpp">
       <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\SpikeBehaviour.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

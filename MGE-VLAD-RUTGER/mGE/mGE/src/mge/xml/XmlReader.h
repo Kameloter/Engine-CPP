@@ -7,8 +7,6 @@
 #include <sstream>
 #include "glm.hpp"
 
-
-
 using namespace std;
 
 class PhysicsWorld;
