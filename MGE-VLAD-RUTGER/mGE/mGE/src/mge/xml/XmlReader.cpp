@@ -24,6 +24,7 @@
 #include "mge/behaviours/FPCamera.h"
 #include "mge/behaviours/CollectableBehaviour.h"
 #include "mge/behaviours/PressurePlateBehaviour.h"
+#include "mge/behaviours/PushBlockBehaviour.h"
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -202,23 +203,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		}
 		case 2:
 		{
-
-
-			/*		testtrig = new StaticGameObject("obj6", glm::vec3(3, 1, 3), _world, true);
-
-					glm::vec3 center2 = testtrig->getLocalPosition();
-					glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
-					glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
-					testtrig->SetBounds(minbound2, maxbound2);
-					testtrig->AddBoxCollider(1, 1, 1);
-					testtrig->setMesh(cubeMeshF);
-					testtrig->setBehaviour(new CollectableBehaviour());
-					testtrig->setMaterial(new ColorMaterial(Color::Tomato));
-					_world->add(testtrig);
-		*/
-
-
-			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], glm::vec3( _positionsInteractables[i].x, _positionsInteractables[i].y - 1.0f, _positionsInteractables[i].z), _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "coin.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
 
@@ -239,10 +224,22 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "pushblock.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0.5f)));
+			obj->setBehaviour(new PushBlockBehaviour());
+		
 			_world->add(obj);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
-			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+
+			if (_rotationsInteractables[i].y > 0) {
+				obj->rotate(glm::radians(90.0f), glm::vec3(0, 1, 0));
+				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
+			}
+			else
+			{
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+
+			dynamic_cast<PushBlockBehaviour*>(obj->getBehaviour())->InitializePositions();
 		}
 		break;
 		case 4:
@@ -291,6 +288,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+
+			obj->setBehaviour(new CollectableBehaviour());
 		}
 		break;
 		case 7:
@@ -337,7 +336,18 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
 			obj->SetBounds(minbound2, maxbound2);
 
+		
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+
+			if (_rotationsInteractables[i].y > 0) {
+				obj->rotate(glm::radians(90.0f), glm::vec3(0, 1, 0));
+				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
+			}
+			else
+			{
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+
 			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 		}
 		break;
@@ -348,7 +358,6 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			_world->add(camera);
 			_world->setMainCamera(camera);
 
-			std::cout << "NAME!!  " << _namesInteractables[i] << std::endl;
 			Player * player = new Player("Player", _positionsInteractables[i], _world, camera);
 			_world->add(player);
 

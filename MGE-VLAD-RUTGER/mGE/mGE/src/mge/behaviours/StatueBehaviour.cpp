@@ -62,6 +62,11 @@ void StatueBehaviour::update(float pStep) {
 				direction = glm::vec3(1, 0, 0);
 			}
 
+		/*	if (glm::distance(_owner->getLocalPosition(), _player->getLocalPosition())>4) {
+				_isCarried = false;
+				dynamic_cast<FPController*>(_player->getBehaviour())->_inAction = false;
+			}*/
+
 			neV3 pos;
 			pos.Set(posi.x, _player->getLocalPosition().y, posi.z);
 			rigidbody->SetPos(pos);

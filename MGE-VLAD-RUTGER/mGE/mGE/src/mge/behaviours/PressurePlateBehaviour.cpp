@@ -5,8 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 PressurePlateBehaviour::PressurePlateBehaviour()
-{
-	
+{	
 }
 
 
@@ -15,7 +14,7 @@ PressurePlateBehaviour::~PressurePlateBehaviour()
 }
 
 void PressurePlateBehaviour::update(float pStep) {
-	if (glm::distance(_owner->getLocalPosition(), _statue->getLocalPosition()) < 5.0f) {
+	if (glm::distance(_owner->getLocalPosition(), _statue->getLocalPosition()) < 3.0f) {
 		_activated = true;
 		std::cout << "activated" << std::endl;
 	}
