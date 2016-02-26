@@ -12,8 +12,8 @@ public:
 	~StaticGameObject();
 
 	void updateStaticBody();
-
 	void moveStaticObject(glm::vec3 ptranslate);
+
 	neAnimatedBody * getAnimBody();
 
 

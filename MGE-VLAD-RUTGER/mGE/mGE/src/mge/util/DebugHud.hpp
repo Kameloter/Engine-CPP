@@ -15,7 +15,6 @@ class DebugHud
 		void setWinTextInfo (std::string pInfo);
 
 
-		void playSubTitle();
 	private:
 		sf::RenderWindow * _window;
 

@@ -47,6 +47,7 @@ void DebugHud::setDebugInfo(std::string pInfo) {
     _debugText.setString(pInfo);
 	_debugText.setPosition(10, 10);
 }
+
 void DebugHud::setWinTextInfo(std::string pInfo) {
     _winText.setString(pInfo);
 	_winText.setPosition(10 ,100);

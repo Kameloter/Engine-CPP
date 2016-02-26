@@ -267,6 +267,12 @@
     <ClInclude Include="src\mge\core\Player.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\Subtitle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\SubtitleManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -522,6 +528,9 @@
     </ClCompile>
     <ClCompile Include="src\mge\core\Player.cpp">
       <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\SubtitleManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -55,7 +55,9 @@ void TriggerManager::runPhysics(float pDelta)
 		//	std::cout << " Helo sb" << std::endl;
 			//std::cout << _movingTriggers[i]->getTrigger()->getMaxBounds() << std::endl;
 			//maybe it should return a pointer and then delete it at end of collision loop after giving info to objects???
-			Collision collisionInfo = _movingTriggers[i]->getTrigger()->resolveCollision(_triggers[i]->getTrigger());
+
+			
+			Collision collisionInfo = _movingTriggers[i]->getTrigger()->resolveCollision(_triggers[j]->getTrigger());
 			
             if(collisionInfo.getIsColliding())
             {

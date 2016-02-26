@@ -14,6 +14,8 @@ public:
 	static void update(float pStep);
 	static void playSubtitle(std::string sub, float showTime);
 	static void draw(sf::RenderWindow * pWindow);
+	static void resetText(std::string s, float t);
+	static void addSubtitle(std::string pGameObject, std::string pSubtitle);
 
 private:
 

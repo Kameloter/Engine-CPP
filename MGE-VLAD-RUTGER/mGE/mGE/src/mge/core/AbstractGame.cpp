@@ -166,6 +166,7 @@ void AbstractGame::_processEvents()
 	}
 
 	if (exit) {
+		_world->CleanUpPhysicsWorld();
         _window->close();
         _running = false;
 	}

@@ -30,14 +30,14 @@ StaticGameObject::~StaticGameObject()
 	if (_animBody != nullptr)
 	{
 		_world->freeMemory(_animBody);
-		std::cout << _name << "<-- Static body cleaned" << std::endl;
+	//	std::cout << _name << "<-- Static body cleaned" << std::endl;
 	}
 
 	if (_trigger != nullptr)
 	{
 		_world->CleanObject(this);
 		delete _trigger;
-		std::cout << "trigger of  " << _name << "cleaned " << std::endl;
+	//	std::cout << "trigger of  " << _name << "cleaned " << std::endl;
 
 	}
 }
@@ -122,7 +122,8 @@ void StaticGameObject::AddBoxCollider(float pW, float pH, float pD)
 		_animBody->UpdateBoundingInfo();
 	}
 	else {
-		std::cout << "min  " << _minBounds << " max  " << _maxBounds << std::endl;
+		if(getName() == "Coin_02") 
+			std::cout << "min  " << _minBounds << " max  " << _maxBounds << std::endl;
 		_trigger = new BoxTrigger(_minBounds, _maxBounds);
 		_world->addStaticTrigger(this);
 	}

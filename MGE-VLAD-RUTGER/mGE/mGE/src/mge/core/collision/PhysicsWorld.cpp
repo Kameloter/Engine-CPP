@@ -133,30 +133,30 @@ std::vector<StaticGameObject*> PhysicsWorld::getStaticObjects()
 }
 void PhysicsWorld::CleanUpPhysicsWorld()
 {
-	std::cout << "Cleaning world " << std::endl;
+	//std::cout << "Cleaning world " << std::endl;
 	World::CleanUpworld();
-	std::cout << "World cleaned. " << std::endl;
+	//std::cout << "World cleaned. " << std::endl;
 
 	_triggerManager->cleanUp();
 
-	std::cout << "Cleaning physics world rigidbodyes " << std::endl;
+	//std::cout << "Cleaning physics world rigidbodyes " << std::endl;
 	//clear list with physics objects ...
 	//for (int i = 0; i < _rigidbodyGameObjects.size(); i++)
 	//{
 	//	delete _rigidbodyGameObjects[i];
 	//}
 	_rigidbodyGameObjects.clear();
-	std::cout << "Cleaning physics world rigidbodyes - cleaned   " << "size " << _rigidbodyGameObjects.size() <<  std::endl;
+	//std::cout << "Cleaning physics world rigidbodyes - cleaned   " << "size " << _rigidbodyGameObjects.size() <<  std::endl;
 
 
 
-	std::cout << "Cleaning physics world static bodies " << std::endl;
+	//std::cout << "Cleaning physics world static bodies " << std::endl;
 	//for (int i = 0; i < _staticGameObjects.size(); i++)
 	//{
 	//	delete _staticGameObjects[i];
 	//}
 	_staticGameObjects.clear();
-	std::cout << "Cleaning physics world static bodies - cleaned   " << "size " << _staticGameObjects.size() << std::endl;
+	//std::cout << "Cleaning physics world static bodies - cleaned   " << "size " << _staticGameObjects.size() << std::endl;
 	//free rigidbody memory ?
 }
 void PhysicsWorld::CleanObject(GameObject * object)
@@ -180,10 +180,10 @@ void PhysicsWorld::CleanObject(GameObject * object)
 void PhysicsWorld::freeMemory(neRigidBody* pNeRb)
 {
 	_physicsSimulator->FreeRigidBody(pNeRb);
-	std::cout << "rb memory freed" << std::endl;
+//	std::cout << "rb memory freed" << std::endl;
 }
 void PhysicsWorld::freeMemory(neAnimatedBody* pAnimbody)
 {
 	_physicsSimulator->FreeAnimatedBody(pAnimbody);
-	std::cout << "sb memory freed" << std::endl;
+//	std::cout << "sb memory freed" << std::endl;
 }

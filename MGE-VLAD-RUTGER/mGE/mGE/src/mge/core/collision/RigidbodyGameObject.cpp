@@ -19,7 +19,7 @@ RigidbodyGameObject::RigidbodyGameObject(std::string pName, glm::vec3 pPosition,
 RigidbodyGameObject::~RigidbodyGameObject()
 {
 	_world->freeMemory(_rigidbody);
-	std::cout << _name << "<-- Rigid body cleaned" << std::endl;
+//	std::cout << _name << "<-- Rigid body cleaned" << std::endl;
 
 	//delete _trigger;
 	//std::cout << "trigger of  " << _name << "cleaned " << std::endl;

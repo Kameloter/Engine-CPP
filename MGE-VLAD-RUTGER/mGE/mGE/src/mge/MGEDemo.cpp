@@ -16,9 +16,9 @@ using namespace std;
 //#include "mge/core/collision/BoxCollider.h"
 //#include "mge/core/collision/SphereCollider.h"
 //#include "mge/core/collision/Collision.h"
-
+#include "mge/core/Timer.hpp"
 #include "mge/util/DebugHud.hpp"
-
+#include "mge/SubtitleManager.h"
 #include "mge/MGEDemo.hpp"
 
 
@@ -59,7 +59,9 @@ void MGEDemo::_initializeScene()
 
 
 
-
+	SubtitleManager::addSubtitle("Trigger1", "yoo maaan , this gas is so so dengruruuus");
+	SubtitleManager::addSubtitle("Trigger1", "yoo maaan , this gas is so so dengruruuus");
+	SubtitleManager::addSubtitle("Trigger2", "yoo maaan , this gas is so so dengruruuus");
 
 
 
@@ -67,7 +69,7 @@ void MGEDemo::_initializeScene()
 
 }
 
-
+bool press = false;
 void MGEDemo::_render() {
 
 	//_world->renderDebugInfo();
@@ -82,8 +84,12 @@ void MGEDemo::_render() {
 		}
 	}
 
-
-
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::O) && !press)
+	{
+		press = true;
+		std::cout << " press " << std::endl;
+		SubtitleManager::playSubtitle("Trigger1", 5.0f);
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) levelManager->SwitchToLevel(GameLevels::Menu);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) levelManager->SwitchToLevel(GameLevels::HUB);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) levelManager->SwitchToLevel(GameLevels::Level1);
@@ -97,6 +103,8 @@ void MGEDemo::_render() {
 void MGEDemo::_updateHud() {
     string debugInfo = "";
     debugInfo += string ("FPS:") + std::to_string(FPS::getFPS())+"\n";
+	SubtitleManager::update(Timer::deltaTime());
+	SubtitleManager::draw(_window);
 
     _hud->setDebugInfo(debugInfo);
 	_hud->setWinTextInfo("Score : " + std::to_string(StatsHolder::getScore()));

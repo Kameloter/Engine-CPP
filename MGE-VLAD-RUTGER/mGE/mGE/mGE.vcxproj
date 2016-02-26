@@ -76,6 +76,8 @@
     <ClInclude Include="src\mge\materials\WobblyMaterial.hpp" />
     <ClInclude Include="src\mge\MGEDemo.hpp" />
     <ClInclude Include="src\mge\StatsHolder.h" />
+    <ClInclude Include="src\mge\Subtitle.h" />
+    <ClInclude Include="src\mge\SubtitleManager.h" />
     <ClInclude Include="src\mge\UI\MainMenu.h" />
     <ClInclude Include="src\mge\util\Color.h" />
     <ClInclude Include="src\mge\util\DebugHud.hpp" />
@@ -165,6 +167,7 @@
     <ClCompile Include="src\mge\materials\WobblyMaterial.cpp" />
     <ClCompile Include="src\mge\MGEDemo.cpp" />
     <ClCompile Include="src\mge\StatsHolder.cpp" />
+    <ClCompile Include="src\mge\SubtitleManager.cpp" />
     <ClCompile Include="src\mge\UI\MainMenu.cpp" />
     <ClCompile Include="src\mge\util\Color.cpp" />
     <ClCompile Include="src\mge\util\DebugHud.cpp" />

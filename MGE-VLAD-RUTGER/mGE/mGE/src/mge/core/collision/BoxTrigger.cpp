@@ -16,7 +16,7 @@ BoxTrigger::~BoxTrigger()
     //dtor
 
 	delete collisionInfo;
-	cout << " collision info cleared" << endl;
+	//cout << " collision info cleared" << endl;
 }
 
 void BoxTrigger::translate(const glm::vec3 pTranslation)

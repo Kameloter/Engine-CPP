@@ -3,7 +3,8 @@
 
 class Subtitle
 {
-	Subtitle(std::string pSub):subtitle(pSub){}
+	
 public:
+	Subtitle(std::string pSub) :subtitle(pSub) {}
 	std::string subtitle;
 };
