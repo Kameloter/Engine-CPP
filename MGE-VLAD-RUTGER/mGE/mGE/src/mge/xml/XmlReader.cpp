@@ -23,6 +23,7 @@
 #include "mge/behaviours/TriggerBehaviour.h"
 #include "mge/behaviours/FPCamera.h"
 #include "mge/behaviours/CollectableBehaviour.h"
+#include "mge/behaviours/PressurePlateBehaviour.h"
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -165,13 +166,6 @@ void XmlReader::ReadInteractables(const char* pFileName)
 void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 {
 	cout << " Setting up level geometry..." << endl;
-	//root->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + ".obj"));
-
-	//root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png"), 0.1));
-	////root->setMaterial(new TextureNormalMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"),glm::vec3(1), 32, Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png")));
-	////root->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
-	//_world->add(root);
-
 
 	for (int i = 0; i < _namesInteractables.size(); i++)
 	{
@@ -182,6 +176,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "statue.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+			obj->setBehaviour(new StatueBehaviour);
+			dynamic_cast<StatueBehaviour*>(obj->getBehaviour())->SetPlayer(_world->getRigidObjects()[0]);
 			_world->add(obj);
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
@@ -192,7 +188,11 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "pressurePlate.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(0, 1, 0)));
+			obj->setBehaviour(new PressurePlateBehaviour());
 			_world->add(obj);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 		}
 			break;
 		case 2:
@@ -200,7 +200,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "coin.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
-			//obj->setBehaviour(new CollectableBehaviour());
+			obj->setBehaviour(new CollectableBehaviour());
+			dynamic_cast<CollectableBehaviour*>(obj->getBehaviour())->SetPlayer(_world->getRigidObjects()[0]);
 			_world->add(obj);
 		}
 		break;
@@ -252,15 +253,22 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "gate.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
-			if (_rotationsInteractables[i].y > 0) {
-				obj->rotate(glm::radians(90.0f), glm::vec3(0, 1, 0));
-			}
 
-
-			_world->add(obj);
+			obj->setBehaviour(new DoorBehaviour());
+			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
-			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+
+			if (_rotationsInteractables[i].y > 0) {
+				obj->rotate(glm::radians(90.0f), glm::vec3(0, 1, 0));
+				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
+			}
+			else
+			{
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+			_world->add(obj);
+			
 		}
 		break;
 		case 9:
@@ -293,13 +301,27 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 		case 11:
 		{
-			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "bridge.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(0, 0, 1)));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+
+			obj->setBehaviour(new DoorBehaviour());
+			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+
+			if (_rotationsInteractables[i].y > 0) {
+				obj->rotate(glm::radians(90.0f), glm::vec3(0, 1, 0));
+				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
+			}
+			else
+			{
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
 			_world->add(obj);
+
 		}
 		break;
-	
 		default:
 		break;
 		}

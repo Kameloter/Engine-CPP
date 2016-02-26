@@ -15,8 +15,9 @@ PressurePlateBehaviour::~PressurePlateBehaviour()
 }
 
 void PressurePlateBehaviour::update(float pStep) {
-	if (glm::distance(_owner->getLocalPosition(), _statue->getLocalPosition()) < 1.9f) {
+	if (glm::distance(_owner->getLocalPosition(), _statue->getLocalPosition()) < 5.0f) {
 		_activated = true;
+		std::cout << "activated" << std::endl;
 	}
 	else
 	{

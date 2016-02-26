@@ -45,25 +45,21 @@ void StatueBehaviour::update(float pStep) {
 			glm::vec3 direction;
 
 			if (diffVector.z > 0 && diffVector.x < 0.7f && diffVector.x > -0.7f) {
-				posi += _owner->getForward() * 4;
+				posi += _owner->getForward() * 3;
 				direction = glm::vec3(0, 0, 1);
-				std::cout << "down" << std::endl;
 			
 			}
 			else if (diffVector.z < 0 && diffVector.x < 0.7f && diffVector.x > -0.7f) {
-				posi += -_owner->getForward() * 4;
+				posi += -_owner->getForward() * 3;
 				direction = glm::vec3(0, 0, -1);
-				std::cout << "up" << std::endl;
 			}
 			else if (diffVector.z > -0.7f && diffVector.z < 0.7f && diffVector.x <0.0f) {
-				posi += _owner->getRight() * 4;
+				posi += _owner->getRight() * 3;
 				direction = glm::vec3(-1, 0, 0);
-				std::cout << "left" << std::endl;
 			}
 			else if (diffVector.z > -0.7f && diffVector.z < 0.7f && diffVector.x >0.0f) {
-				posi += -_owner->getRight() * 4;
+				posi += -_owner->getRight() * 3;
 				direction = glm::vec3(1, 0, 0);
-				std::cout << "right" << std::endl;
 			}
 
 			neV3 pos;
@@ -71,10 +67,8 @@ void StatueBehaviour::update(float pStep) {
 			rigidbody->SetPos(pos);
 
 			glm::vec3 movement(direction.x * 3, 0, direction.z * 3);
-			
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(movement);
-			
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(movement/200);
 		}
 	}
 

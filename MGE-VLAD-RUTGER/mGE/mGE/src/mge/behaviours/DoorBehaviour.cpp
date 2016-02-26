@@ -4,7 +4,7 @@
 #include "mge/core/GameObject.hpp"
 #include <SFML/Graphics.hpp>
 #include "mge/behaviours/PressurePlateBehaviour.h"
-#include "mge\core\collision\RigidbodyGameObject.h"
+#include "mge\core\collision/StaticGameObject.h"
 
 DoorBehaviour::DoorBehaviour()
 {
@@ -19,7 +19,11 @@ DoorBehaviour::~DoorBehaviour()
 void DoorBehaviour::update(float pStep){
 	if (CheckPlates()) {
 		if (glm::distance(_owner->getWorldPosition(), _openPos)>0.25f) {
-			dynamic_cast<RigidbodyGameObject*>(_owner)->moveRb(glm::normalize(_openPos - _closedPos));
+			dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(glm::normalize(_openPos - _closedPos)/25);
+		}
+		else if(glm::distance(_owner->getWorldPosition(), _closedPos)>0.25f)
+		{
+			dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(-glm::normalize(_openPos - _closedPos) /25);
 		}
 	}
 }
@@ -29,7 +33,7 @@ void DoorBehaviour::AddPressurePlate(GameObject * plate)
 	plates.push_back(plate);
 }
 
-void DoorBehaviour::InitializePositions(glm::vec3 translateUp)
+void DoorBehaviour::InitializePositions()
 {
 	_closedPos = _owner->getLocalPosition();
 	_openPos = _owner->getLocalPosition() + glm::vec3(0, 3, 0);

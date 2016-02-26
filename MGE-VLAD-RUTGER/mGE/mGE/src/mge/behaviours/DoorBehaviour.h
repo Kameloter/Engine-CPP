@@ -14,7 +14,7 @@ class DoorBehaviour : public AbstractBehaviour
          bool _activated;
          void SetOpenPos (glm::vec3 translateUp);
 		 void AddPressurePlate(GameObject * plate);
-		 void InitializePositions(glm::vec3 translateUp);
+		 void InitializePositions();
     protected:
     private:
 		

@@ -24,7 +24,7 @@ class LUAManager
 		static int AddPressurePlateToDoor(lua_State * L);
 
 
-		static void setObjects(std::vector<StaticGameObject *> pStaticObjects, std::vector<RigidbodyGameObject *> pRigidObjects);
+		static void setObjects(std::vector<StaticGameObject *> pStaticObjects, std::vector<RigidbodyGameObject *> pRigidObjects, std::vector<GameObject*> pTriggerStatic);
 
         LUAManager();
         virtual ~LUAManager();
@@ -32,8 +32,10 @@ class LUAManager
     private:
 		static std::vector<RigidbodyGameObject *> rigidObjects;
 		static std::vector<StaticGameObject *> staticObjects;
+		static std::vector<GameObject*> staticTriggerObjects;
 		static RigidbodyGameObject * FindRigidObject(std::string name);
 		static StaticGameObject * FindStaticObject(std::string name);
+		static StaticGameObject * FindStaticTriggerObject(std::string name);
 };
 
 #endif // LUAMANAGER_H
