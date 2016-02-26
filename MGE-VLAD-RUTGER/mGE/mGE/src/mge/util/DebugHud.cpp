@@ -7,6 +7,7 @@ using namespace std;
 #include <SFML/Graphics/Text.hpp>
 #include "mge/core/FPS.hpp"
 
+
 #include "mge/util/DebugHud.hpp"
 #include "mge/config.hpp"
 
@@ -48,7 +49,7 @@ void DebugHud::setDebugInfo(std::string pInfo) {
 }
 void DebugHud::setWinTextInfo(std::string pInfo) {
     _winText.setString(pInfo);
-	_winText.setPosition(_window->getSize().x / 2 , _window->getSize().y / 2);
+	_winText.setPosition(10 ,100);
 }
 
 void DebugHud::draw()

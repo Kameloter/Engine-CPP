@@ -1,6 +1,6 @@
 #ifndef ABSTRACTBEHAVIOUR_H
 #define ABSTRACTBEHAVIOUR_H
-
+#include "mge/events/EventListener.h"
 class GameObject;
 
 /**
@@ -11,7 +11,8 @@ class GameObject;
  *
  * It is similar to MonoBehaviour in Unity.
  */
-class AbstractBehaviour
+
+class AbstractBehaviour 
 {
 	public:
 		AbstractBehaviour();
@@ -25,7 +26,7 @@ class AbstractBehaviour
 
         //behaviour should be able to update itself every step and MUST be implemented
 		virtual void update(float pStep) = 0;
-
+		
     protected:
 	    //reference back its owner
 		GameObject* _owner;

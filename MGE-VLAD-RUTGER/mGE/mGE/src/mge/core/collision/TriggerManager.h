@@ -15,13 +15,14 @@ class TriggerManager
         void addStaticTrigger(GameObject * pObject);
 		void addMovingTrigger(GameObject * pObject);
 		void cleanUp();
+		void cleanObject(GameObject * object);
 		/*void addObject(StaticGameObject * pObject);
 
         void addRbObject (RigidbodyGameObject * pObject);*/
        // inline StaticGameObject* getStaticObjectAt(unsigned int pIndex) const { return _objects[pIndex];}
 		//inline RigidbodyGameObject* getRigidbodyObjectAt(unsigned int pIndex) const { return _rbObjects[pIndex]; }
         void runPhysics(float pDelta);
-
+		std::vector<GameObject*> getStaticTriggerObjects();
 		
     protected:
     private:

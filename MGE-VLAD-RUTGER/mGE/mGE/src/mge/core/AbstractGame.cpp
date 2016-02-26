@@ -8,6 +8,7 @@ using namespace std;
 #include "mge/core/Renderer.hpp"
 //#include "mge/core/World.hpp"
 #include "mge/core/collision/PhysicsWorld.h"
+#include "mge/events/EventDispatcher.h"
 
 AbstractGame::AbstractGame():_window(NULL),_renderer(NULL),_world(NULL),_running(false)
 {
@@ -142,6 +143,7 @@ void AbstractGame::_processEvents()
         //give all system event listeners a chance to handle events
         //optionally to be implemented by you...
         //SystemEventDispatcher::dispatchEvent(event);
+		EventDispatcher::dispatchEvent(event);
 
         switch (event.type) {
             case sf::Event::Closed:

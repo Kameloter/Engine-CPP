@@ -39,6 +39,16 @@ void World::CleanUpworld()
 		delete child;
 	}
 }
+
+void World::CleanObjectFromWorld(GameObject * object)
+{
+	std::cout << "Removing object from world !!!.  " << object->getName() << std::endl;
+	
+
+	_children.erase(std::remove(_children.begin(), _children.end(), object), _children.end());
+	//delete object;
+}
+
 void World::renderDebugInfo() {
     //walk through all meshes and debug their normals
     GameObject* gameObject;

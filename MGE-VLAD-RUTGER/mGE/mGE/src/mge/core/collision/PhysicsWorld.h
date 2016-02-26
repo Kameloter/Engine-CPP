@@ -29,6 +29,8 @@ class PhysicsWorld : public World
 		std::vector<StaticGameObject*> getStaticObjects();
 
 		virtual void CleanUpPhysicsWorld();
+
+		virtual void CleanObject(GameObject * object);
     protected:
     private:
 		std::vector<RigidbodyGameObject*> _rigidbodyGameObjects;

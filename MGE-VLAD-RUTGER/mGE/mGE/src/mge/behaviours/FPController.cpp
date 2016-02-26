@@ -95,3 +95,6 @@ void FPController::update(float pStep){
 	dynamic_cast<FPCamera*>(_camera->getBehaviour())->_inAction = _inAction;
 
 }
+
+
+

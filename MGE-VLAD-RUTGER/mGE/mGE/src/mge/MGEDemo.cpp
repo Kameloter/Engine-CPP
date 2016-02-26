@@ -8,7 +8,7 @@ using namespace std;
 #include "mge/core/LevelManager.h"
 #include "mge/UI/MainMenu.h"
 
-
+#include "mge/StatsHolder.h"
 
 //
 ////collision
@@ -39,8 +39,6 @@ void MGEDemo::initialize() {
 
 LevelManager * levelManager;
 MainMenu * mainMenu;
-
-
 void MGEDemo::_initializeScene()
 {
 	_renderer->setClearColor(0, 0, 0);
@@ -101,6 +99,7 @@ void MGEDemo::_updateHud() {
     debugInfo += string ("FPS:") + std::to_string(FPS::getFPS())+"\n";
 
     _hud->setDebugInfo(debugInfo);
+	_hud->setWinTextInfo("Score : " + std::to_string(StatsHolder::getScore()));
     _hud->draw();
 }
 

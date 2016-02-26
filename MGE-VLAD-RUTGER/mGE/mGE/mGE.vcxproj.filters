@@ -70,6 +70,12 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{5ae72400-ba2e-42dd-b8f4-51989aa7fed4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\events">
+      <UniqueIdentifier>{5e34993f-1770-4cff-b2e8-8dc01856378e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\events">
+      <UniqueIdentifier>{d5284315-e6a3-4297-a7e8-c43e5db11fb1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\mge\config.hpp">
@@ -248,6 +254,15 @@
     </ClInclude>
     <ClInclude Include="src\mge\core\collision\BoxTrigger.h">
       <Filter>Header Files\core\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\events\EventDispatcher.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\events\EventListener.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\StatsHolder.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -492,6 +507,15 @@
     </ClCompile>
     <ClCompile Include="src\mge\core\collision\BoxTrigger.cpp">
       <Filter>Source Files\core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\events\EventDispatcher.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\events\EventListener.cpp">
+      <Filter>Source Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\StatsHolder.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

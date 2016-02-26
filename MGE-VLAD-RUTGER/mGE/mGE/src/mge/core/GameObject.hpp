@@ -38,9 +38,7 @@ class GameObject
 		glm::vec3 getForward();
 		glm::vec3 getRight();
 		glm::vec3 getUp();
-
-
-
+	
         //change local position, rotation, scaling
 		void translate(glm::vec3 pTranslation);
 		void rotate(float pAngle, glm::vec3 pAxis);
@@ -94,7 +92,8 @@ class GameObject
 		std::string _name;
 		glm::mat4 _transform;
 		glm::mat4 _worldTransform;
-	
+
+
         GameObject* _parent;
 		std::vector<GameObject*> _children;
 		BoxTrigger* _trigger;

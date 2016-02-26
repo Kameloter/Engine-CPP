@@ -1,9 +1,8 @@
 #include "PhysicsWorld.h"
-
+#include <algorithm>
 #include "mge/core/collision/RigidbodyGameObject.h"
 #include "mge/core/collision/StaticGameObject.h"
 #include "mge/core/collision/TriggerManager.h"
-
 
 PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObjectsCount)
 {
@@ -157,6 +156,24 @@ void PhysicsWorld::CleanUpPhysicsWorld()
 	_staticGameObjects.clear();
 	std::cout << "Cleaning physics world static bodies - cleaned   " << "size " << _staticGameObjects.size() << std::endl;
 	//free rigidbody memory ?
+}
+void PhysicsWorld::CleanObject(GameObject * object)
+{
+	std::cout << " physics world clean object  ---- "  << object->getName() << std::endl;
+
+
+	_staticGameObjects.erase(std::remove(_staticGameObjects.begin(), _staticGameObjects.end(), object), _staticGameObjects.end());
+	std::cout << " static objects cleaned  " << object->getName() << std::endl;
+	_triggerManager->cleanObject(object);
+	std::cout << " trigger manager  cleaned  " << object->getName() << std::endl;
+
+	World::CleanObjectFromWorld(object);
+	
+	//GameObject::clearGameObject(dynamic_cast<GameObject*>(object));
+	//_triggerManager->cleanObject(object);
+	//std::cout << " Cleaning individual physic obbect from list " << std::endl;
+	//_staticGameObjects.erase(std::remove(_staticGameObjects.begin(), _staticGameObjects.end(), object),_staticGameObjects.end());
+	
 }
 void PhysicsWorld::freeMemory(neRigidBody* pNeRb)
 {

@@ -1,13 +1,9 @@
 #include "CollectableBehaviour.h"
-
-#include "mge/core/collision/RigidbodyGameObject.h"
-
-#include <glm.hpp>
 #include "mge/core/GameObject.hpp"
-#include <SFML/Graphics.hpp>
-
-
-
+#include "mge/core/collision/BoxTrigger.h"
+#include "mge/core/collision/Collision.h"
+#include "mge/core/collision/StaticGameObject.h"
+#include "mge/StatsHolder.h"
 CollectableBehaviour::CollectableBehaviour()
 {
 }
@@ -15,15 +11,17 @@ CollectableBehaviour::CollectableBehaviour()
 
 CollectableBehaviour::~CollectableBehaviour()
 {
+	std::cout << " Deleted collectable " << std::endl;
 }
 
-void CollectableBehaviour::update(float pStep) {
-	if (glm::distance(_owner->getLocalPosition(), _player->getLocalPosition()) < 1.0f) {
-		delete _owner;
+void CollectableBehaviour::update(float pStep) 
+{
+	if (dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
+	{
+		std::cout << " Picked up " << std::endl;
+		StatsHolder::increaseScore(1);
+		delete dynamic_cast<StaticGameObject*>(_owner);
 	}
 }
 
-void CollectableBehaviour::SetPlayer(GameObject * pPlayer)
-{
-	_player = pPlayer;
-}
+

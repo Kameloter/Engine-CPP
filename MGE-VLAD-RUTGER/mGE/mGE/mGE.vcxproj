@@ -58,6 +58,8 @@
     <ClInclude Include="src\mge\core\Texture.hpp" />
     <ClInclude Include="src\mge\core\Timer.hpp" />
     <ClInclude Include="src\mge\core\World.hpp" />
+    <ClInclude Include="src\mge\events\EventDispatcher.h" />
+    <ClInclude Include="src\mge\events\EventListener.h" />
     <ClInclude Include="src\mge\LUA\LUAManager.h" />
     <ClInclude Include="src\mge\materials\AbstractMaterial.hpp" />
     <ClInclude Include="src\mge\materials\ColorMaterial.hpp" />
@@ -72,6 +74,7 @@
     <ClInclude Include="src\mge\materials\VertexLitColorMaterial.hpp" />
     <ClInclude Include="src\mge\materials\WobblyMaterial.hpp" />
     <ClInclude Include="src\mge\MGEDemo.hpp" />
+    <ClInclude Include="src\mge\StatsHolder.h" />
     <ClInclude Include="src\mge\UI\MainMenu.h" />
     <ClInclude Include="src\mge\util\Color.h" />
     <ClInclude Include="src\mge\util\DebugHud.hpp" />
@@ -143,6 +146,8 @@
     <ClCompile Include="src\mge\core\Texture.cpp" />
     <ClCompile Include="src\mge\core\Timer.cpp" />
     <ClCompile Include="src\mge\core\World.cpp" />
+    <ClCompile Include="src\mge\events\EventDispatcher.cpp" />
+    <ClCompile Include="src\mge\events\EventListener.cpp" />
     <ClCompile Include="src\mge\LUA\LUAManager.cpp" />
     <ClCompile Include="src\mge\materials\AbstractMaterial.cpp" />
     <ClCompile Include="src\mge\materials\ColorMaterial.cpp" />
@@ -157,6 +162,7 @@
     <ClCompile Include="src\mge\materials\VertexLitColorMaterial.cpp" />
     <ClCompile Include="src\mge\materials\WobblyMaterial.cpp" />
     <ClCompile Include="src\mge\MGEDemo.cpp" />
+    <ClCompile Include="src\mge\StatsHolder.cpp" />
     <ClCompile Include="src\mge\UI\MainMenu.cpp" />
     <ClCompile Include="src\mge\util\Color.cpp" />
     <ClCompile Include="src\mge\util\DebugHud.cpp" />

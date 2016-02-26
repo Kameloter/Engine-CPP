@@ -14,6 +14,8 @@ class DebugHud
 		void setDebugInfo (std::string pInfo);
 		void setWinTextInfo (std::string pInfo);
 
+
+		void playSubTitle();
 	private:
 		sf::RenderWindow * _window;
 
@@ -22,6 +24,9 @@ class DebugHud
         sf::Font _font;
         sf::Text _debugText;
         sf::Text _winText;
+
+
+		sf::Text _subToShow;
 
         void _createDebugHud();
 };

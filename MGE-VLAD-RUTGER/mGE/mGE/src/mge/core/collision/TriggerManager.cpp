@@ -2,6 +2,7 @@
 #include "mge/core/collision/Collision.h"
 #include "mge/core/GameObject.hpp"
 #include "mge/core/collision/BoxTrigger.h"
+#include <algorithm>
 TriggerManager::TriggerManager()
 {
     //ctor
@@ -19,6 +20,20 @@ void TriggerManager::addStaticTrigger(GameObject * object)
 void TriggerManager::addMovingTrigger(GameObject * object)
 {
 	_movingTriggers.push_back(object);
+}
+void TriggerManager::cleanObject(GameObject * object)
+{
+	std::cout << " Cleaning individual object trigger from list "<< std::endl;
+	_triggers.erase(std::remove(_triggers.begin(), _triggers.end(), object), _triggers.end());
+}
+
+
+
+
+std::vector<GameObject*> TriggerManager::getStaticTriggerObjects()
+{
+	//std::cout << "Returning size of static trigger objects  " << _triggers.size() << std::endl;
+	return _triggers;
 }
 
 void TriggerManager::cleanUp()
