@@ -33,8 +33,13 @@ StaticGameObject::~StaticGameObject()
 		std::cout << _name << "<-- Static body cleaned" << std::endl;
 	}
 
-	if(_trigger != nullptr) _trigger;
-	std::cout << "trigger of  " << _name << "cleaned " << std::endl;
+	if (_trigger != nullptr)
+	{
+		_world->CleanObject(this);
+		delete _trigger;
+		std::cout << "trigger of  " << _name << "cleaned " << std::endl;
+
+	}
 }
 //
 //void StaticGameObject::SetBounds(glm::vec3 maxBound, glm::vec3 minBound)
@@ -115,9 +120,9 @@ void StaticGameObject::AddBoxCollider(float pW, float pH, float pD)
 		box.Set(pW, pH, pD);
 		geometry->SetBoxSize(box);
 		_animBody->UpdateBoundingInfo();
-		std::cout << "collider added" << std::endl;
 	}
 	else {
+		std::cout << "min  " << _minBounds << " max  " << _maxBounds << std::endl;
 		_trigger = new BoxTrigger(_minBounds, _maxBounds);
 		_world->addStaticTrigger(this);
 	}

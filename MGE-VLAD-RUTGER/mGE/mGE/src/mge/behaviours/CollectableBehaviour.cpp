@@ -16,7 +16,8 @@ CollectableBehaviour::~CollectableBehaviour()
 
 void CollectableBehaviour::update(float pStep) 
 {
-	if (dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
+	//std::cout << dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->getMaxBounds() << std::endl;
+	 if (dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
 	{
 		std::cout << " Picked up " << std::endl;
 		StatsHolder::increaseScore(1);

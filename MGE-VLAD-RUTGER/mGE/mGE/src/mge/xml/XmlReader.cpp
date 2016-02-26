@@ -191,17 +191,46 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setBehaviour(new PressurePlateBehaviour());
 			_world->add(obj);
 
+			glm::vec3 center2 = obj->getLocalPosition();
+			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
+			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
+			obj->SetBounds(minbound2, maxbound2);
+
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
-		}
 			break;
+		}
 		case 2:
 		{
+
+
+			/*		testtrig = new StaticGameObject("obj6", glm::vec3(3, 1, 3), _world, true);
+
+					glm::vec3 center2 = testtrig->getLocalPosition();
+					glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
+					glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
+					testtrig->SetBounds(minbound2, maxbound2);
+					testtrig->AddBoxCollider(1, 1, 1);
+					testtrig->setMesh(cubeMeshF);
+					testtrig->setBehaviour(new CollectableBehaviour());
+					testtrig->setMaterial(new ColorMaterial(Color::Tomato));
+					_world->add(testtrig);
+		*/
+
+
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "coin.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
-			//obj->setBehaviour(new CollectableBehaviour());
-			//dynamic_cast<CollectableBehaviour*>(obj->getBehaviour())->SetPlayer(_world->getRigidObjects()[0]);
+
+			glm::vec3 center2 = obj->getLocalPosition();
+			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
+			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
+			obj->SetBounds(minbound2, maxbound2);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+
+			obj->setBehaviour(new CollectableBehaviour());
 			_world->add(obj);
 		}
 		break;
@@ -215,31 +244,55 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 		}
-			break;
+		break;
 		case 4:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "traps.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
 			_world->add(obj);
+
+			glm::vec3 center2 = obj->getLocalPosition();
+			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
+			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
+			obj->SetBounds(minbound2, maxbound2);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 		}
-			break;
+		break;
 		case 5:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Spikes.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
 			_world->add(obj);
+
+			glm::vec3 center2 = obj->getLocalPosition();
+			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
+			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
+			obj->SetBounds(minbound2, maxbound2);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 		}
-			break;
+		break;
 		case 6:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
 			_world->add(obj);
+
+			glm::vec3 center2 = obj->getLocalPosition();
+			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
+			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
+			obj->SetBounds(minbound2, maxbound2);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 		}
-			break;
+		break;
 		case 7:
 		{
 			/*StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
@@ -247,7 +300,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
 			_world->add(obj);*/
 		}
-			break;
+		break;
 		case 8:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
@@ -268,16 +321,21 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			}
 			_world->add(obj);
-			
+
 		}
 		break;
 		case 9:
 		{
-		
+
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "secret_path.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
 			_world->add(obj);
+
+			glm::vec3 center2 = obj->getLocalPosition();
+			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
+			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
+			obj->SetBounds(minbound2, maxbound2);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
@@ -290,7 +348,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			_world->add(camera);
 			_world->setMainCamera(camera);
 
-			Player * player = new Player(_names[i], _positionsInteractables[i], _world, camera);
+			std::cout << "NAME!!  " << _namesInteractables[i] << std::endl;
+			Player * player = new Player("Player", _positionsInteractables[i], _world, camera);
 			_world->add(player);
 
 			camera->setParent(player);
@@ -323,9 +382,11 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		}
 		break;
 		default:
-		break;
+			break;
 		}
-		
+
 	}
+
 	cout << "intactable geonmytry loaded.... " << endl;
 }
+

@@ -75,7 +75,11 @@ class GameObject
 		{
 			_minBounds = pMinBound;
 			_maxBounds = pMaxBound;
-			//std::cout << " bounds set " << _minBounds << "   max - > " << _maxBounds << std::endl;
+			if (getName() == "Coin_01")
+			{
+				std::cout << " bounds set " << _minBounds << "   max - > " << _maxBounds << std::endl;
+			}
+			
 
 		}
 		inline glm::vec3 GetMinBounds()

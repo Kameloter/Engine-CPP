@@ -100,14 +100,16 @@ void PhysicsWorld::update(float pStep, const glm::mat4& pParentTransform)
 	
 }
 
-void  PhysicsWorld::addStaticTrigger(StaticGameObject * pGameObject)
+void  PhysicsWorld::addStaticTrigger(GameObject * pGameObject)
 {
 	_triggerManager->addStaticTrigger(pGameObject);
 }
-void  PhysicsWorld::addMovingTrigger(RigidbodyGameObject * pGameObject)
+void  PhysicsWorld::addMovingTrigger(GameObject * pGameObject)
 {
 	_triggerManager->addMovingTrigger(pGameObject);
 }
+
+
 neRigidBody* PhysicsWorld::addRigidBodyObject(RigidbodyGameObject * pRbGameObject)
 {
 	_rigidbodyGameObjects.push_back(pRbGameObject);

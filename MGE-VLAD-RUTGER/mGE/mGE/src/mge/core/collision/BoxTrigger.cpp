@@ -31,9 +31,9 @@ Collision BoxTrigger::resolveCollision( BoxTrigger * colB)
 	glm::vec3 distance1 = colB->getMinBounds() - getMaxBounds();
 	glm::vec3 distance2 = getMinBounds() - colB->getMaxBounds();
 	//cout << "CubeB - Min bounds " << colB->getMinBounds() << endl;
-//	cout << "CubeB - Max bounds " << colB->getMaxBounds() << endl;
- // cout << "CubeA - Min bounds " << getMinBounds() << endl;
-// cout << "CubeA - Max bounds " << getMaxBounds() << endl;
+	//cout << "CubeB - Max bounds " << colB->getMaxBounds() << endl;
+//  cout << "CubeA - Min bounds " << getMinBounds() << endl;
+ //cout << "CubeA - Max bounds " << getMaxBounds() << endl;
 
 	// cout << "distance1 (bMin - Amax) " << distance1 << endl;
 	//cout << "distance2 (aMin - bMax) " << distance2 << endl;

@@ -47,20 +47,20 @@ void TriggerManager::runPhysics(float pDelta)
 //	std::cout << " Helo trig" <<  std::endl;
     for(unsigned int i = 0; i < _movingTriggers.size(); i++)
     {
-		//std::cout << " Helo rb  " << _movingTriggers[i]->getLocalPosition() << std::endl;
+		//std::cout << " Helo rb  " << std::endl;
 	//	std::cout << " Helo rb  " << _movingTriggers[i]->getTrigger()->getMaxBounds() <<  std::endl;
         for(unsigned int j = 0; j < _triggers.size(); j++)
         {
 
 		//	std::cout << " Helo sb" << std::endl;
-
+			//std::cout << _movingTriggers[i]->getTrigger()->getMaxBounds() << std::endl;
 			//maybe it should return a pointer and then delete it at end of collision loop after giving info to objects???
 			Collision collisionInfo = _movingTriggers[i]->getTrigger()->resolveCollision(_triggers[i]->getTrigger());
 			
             if(collisionInfo.getIsColliding())
             {
 
-              //    std::cout << "THERE IS COLLISION " << std::endl;
+                  std::cout << "THERE IS COLLISION " << std::endl;
 				  _movingTriggers[i]->getTrigger()->collisionInfo->setInfo(true, _triggers[j]->getName());
 				  _triggers[j]->getTrigger()->collisionInfo->setInfo(true, _movingTriggers[i]->getName());
 			}

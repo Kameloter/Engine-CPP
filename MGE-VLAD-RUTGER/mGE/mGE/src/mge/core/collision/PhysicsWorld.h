@@ -15,8 +15,8 @@ class PhysicsWorld : public World
 		neRigidBody* addRigidBodyObject(RigidbodyGameObject * pRbGameObject);
 		neAnimatedBody* addStaticGameObject(StaticGameObject * pStaticGameobject);
 
-		void addStaticTrigger(StaticGameObject * pGameObject);
-		void addMovingTrigger(RigidbodyGameObject * pGameObject);
+		void addStaticTrigger(GameObject * pGameObject);
+		void addMovingTrigger(GameObject * pGameObject);
 
 		void update(float pStep, const glm::mat4& pParentTransform);
 
