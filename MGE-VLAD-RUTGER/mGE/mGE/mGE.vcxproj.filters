@@ -264,6 +264,9 @@
     <ClInclude Include="src\mge\StatsHolder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\core\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -515,6 +518,9 @@
       <Filter>Source Files\events</Filter>
     </ClCompile>
     <ClCompile Include="src\mge\StatsHolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

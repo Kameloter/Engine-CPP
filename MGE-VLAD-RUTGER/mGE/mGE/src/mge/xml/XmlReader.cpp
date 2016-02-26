@@ -200,8 +200,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "coin.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
-			obj->setBehaviour(new CollectableBehaviour());
-			dynamic_cast<CollectableBehaviour*>(obj->getBehaviour())->SetPlayer(_world->getRigidObjects()[0]);
+			//obj->setBehaviour(new CollectableBehaviour());
+			//dynamic_cast<CollectableBehaviour*>(obj->getBehaviour())->SetPlayer(_world->getRigidObjects()[0]);
 			_world->add(obj);
 		}
 		break;

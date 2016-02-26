@@ -68,14 +68,14 @@ void StaticGameObject::updateStaticBody()
 
 	if (!_trigger)
 	{
-		/*neV3 pos = _animBody->GetPos();
+		neV3 pos = _animBody->GetPos();
 
 		glm::vec3 glmPOS(pos[0], pos[1], pos[2]);
 
 		setLocalPosition(glmPOS);
-*/
 
-		neV3 goWorldPos;
+
+	/*	neV3 goWorldPos;
 		goWorldPos.Set(getWorldPosition().x, getWorldPosition().y, getWorldPosition().z * -1);
 		_animBody->SetPos(goWorldPos);
 
@@ -97,9 +97,7 @@ void StaticGameObject::updateStaticBody()
 
 		quat.SetupFromMatrix3(rotationMat);
 
-		_animBody->SetRotation(quat);
-
-		std::cout << _animBody->GetRotationQ().x << std::endl;
+		_animBody->SetRotation(quat);*/
 
 	}
 
