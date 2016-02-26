@@ -10,7 +10,7 @@ public:
 	SpikeBehaviour();
 	~SpikeBehaviour();
 	virtual void update(float step);
-
+	void SetOpenPos(glm::vec3 translateUp);
 	void InitializePositions();
 
 private:

@@ -22,6 +22,7 @@ class LUAManager
 		static int ConnectStatueToPlate(lua_State * L);
 		static int SetOpenVector(lua_State * L);
 		static int SetOpenVectorBlock(lua_State * L);
+		static int SetOpenVectorSpike(lua_State * L);
 		static int AddPressurePlateToDoor(lua_State * L);
 		static int AddPressurePlateToBlock(lua_State * L);
 

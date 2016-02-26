@@ -54,3 +54,7 @@ void SpikeBehaviour::InitializePositions()
 	_openPos = _owner->getLocalPosition() + glm::vec3(0, 3, 0);
 }
 
+void SpikeBehaviour::SetOpenPos(glm::vec3 translateUp) {
+	_openPos = _owner->getLocalPosition() + translateUp;
+}
+

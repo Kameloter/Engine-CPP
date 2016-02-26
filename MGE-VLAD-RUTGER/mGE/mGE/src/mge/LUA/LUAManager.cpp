@@ -18,6 +18,7 @@ using namespace std;
 #include "mge/behaviours/CollectableBehaviour.h"
 #include "mge/behaviours/PressurePlateBehaviour.h"
 #include "mge/behaviours/PushBlockBehaviour.h"
+#include "mge/behaviours/SpikeBehaviour.h"
 
 
 #include "mge/core/collision/TriggerManager.h"
@@ -58,6 +59,8 @@ int LUAManager::InitializeFile(PhysicsWorld * pWorld){
 	lua_setglobal(lua, "AddPressurePlateToBlock");
 	lua_pushcfunction(lua, SetOpenVectorBlock);
 	lua_setglobal(lua, "SetOpenVectorBlock");
+	lua_pushcfunction(lua, SetOpenVectorSpike);
+	lua_setglobal(lua, "SetOpenVectorSpike");
 
     if (luaL_loadfile(lua, "assets/mge/lua/Room1.lua") || lua_pcall(lua, 0, 0, 0)) {
         printf("error: %s", lua_tostring(lua, -1));
@@ -113,6 +116,16 @@ int LUAManager::SetOpenVectorBlock(lua_State * L)
 
 	StaticGameObject * door = FindStaticObject(blockName);
 	dynamic_cast<PushBlockBehaviour*>(door->getBehaviour())->SetOpenPos(translate);
+	return 0;
+}
+
+int LUAManager::SetOpenVectorSpike(lua_State * L)
+{
+	string spikeName = lua_tostring(L, 1);
+	glm::vec3 translate = glm::vec3(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4));
+
+	StaticGameObject * door = FindStaticTriggerObject(spikeName);
+	dynamic_cast<SpikeBehaviour*>(door->getBehaviour())->SetOpenPos(translate);
 	return 0;
 }
 
