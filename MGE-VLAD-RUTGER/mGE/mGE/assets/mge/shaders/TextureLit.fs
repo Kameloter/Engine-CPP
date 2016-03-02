@@ -62,7 +62,7 @@ uniform vec3 cameraPosition;
 in vec3 vertices;
 in mat3 TBN;
 in vec2 uvs;
-in vec3 normals;
+//in vec3 normals;
 
 out vec4 fragment_color;
 
@@ -74,22 +74,22 @@ void main( void )
 	normal = normalize(normal * 2.0 - 1.0);
 	normal = normalize(TBN * normal);
 
-	vec3 normN = normalize(normals);
+	//vec3 normN = normalize(normals);
 
     vec3 viewDirection = normalize(cameraPosition - vertices);
 	vec3 sampledDiffuse = texture(mat_diffuse, uvs).rgb;
 
 
     vec3 finalColor = vec3(0);
-    finalColor = getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
+  //  finalColor = getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
 
  
-    for(int i = 0; i < pointLightCount; i++)
-    {
-        finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
-    }
+ //   for(int i = 0; i < pointLightCount; i++)
+ //   {
+ //       finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
+ //   }
 	 
-
+	 finalColor += getPointLight(pointLight[1],normal,viewDirection, sampledDiffuse);
 
 //    for(int i = 0; i < spotLightCount; i++)
 //    {

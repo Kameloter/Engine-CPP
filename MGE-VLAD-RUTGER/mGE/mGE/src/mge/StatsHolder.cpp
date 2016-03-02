@@ -2,6 +2,7 @@
 
 
 int StatsHolder::_score;
+bool StatsHolder::PlayerDied = false;
 StatsHolder::StatsHolder()
 {
 }

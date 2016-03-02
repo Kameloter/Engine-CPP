@@ -60,10 +60,10 @@ void MGEDemo::_initializeScene()
 
 
 	SubtitleManager::addSubtitle("Subtitles_01", "Maybe I can find something in here to open the door!");	//4sec
-	SubtitleManager::addSubtitle("Subtitles_02", "Hmm, a nice souvenir for at home! If I ever find the way out of here that is…");	//5sec
-	SubtitleManager::addSubtitle("Subtitles_03", "I’ll have to be careful here.. But it seems like there should be a way across.");//	5sec
+	SubtitleManager::addSubtitle("Subtitles_02", "Hmm, a nice souvenir for at home!\n If I ever find the way out of here that is…");	//5sec
+	SubtitleManager::addSubtitle("Subtitles_03", "I’ll have to be careful here.. \nBut it seems like there should be a way across.");//	5sec
 	SubtitleManager::addSubtitle("Subtitles_04", "Nice..");	//	3sec
-	SubtitleManager::addSubtitle("Subtitles_05", "This room looks safe, and that object seems like it would fit perfectly in the big gate! I should take it with me.");//	8sec
+	SubtitleManager::addSubtitle("Subtitles_05", "This room looks safe, and that object \nseems like it would fit perfectly in the big gate! \nI should take it with me.");//	8sec
 	SubtitleManager::addSubtitle("Subtitles_06", "Let’s hope this gate will take me out of here."); //5 sec
 
 
@@ -83,21 +83,26 @@ void MGEDemo::_render() {
 		
 		if (mainMenu->ButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME !"))
 		{
-			levelManager->SwitchToLevel(GameLevels::HUB);
+			levelManager->SwitchToLevel(GameLevels::Level1);
 		}
 	}
-
+	if (StatsHolder::PlayerDied == true)
+	{
+		StatsHolder::PlayerDied = false;
+		levelManager->SwitchToLevel(GameLevels::HUB);
+		levelManager->SwitchToLevel(GameLevels::Level1);
+	}
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::O) && !press)
 	{
 		press = true;
 		std::cout << " press " << std::endl;
 		SubtitleManager::playSubtitle("Trigger1", 5.0f);
 	}*/
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) levelManager->SwitchToLevel(GameLevels::Menu);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) levelManager->SwitchToLevel(GameLevels::HUB);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) levelManager->SwitchToLevel(GameLevels::Level1);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) levelManager->SwitchToLevel(GameLevels::Level2);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) _world->CleanUpPhysicsWorld();
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) levelManager->SwitchToLevel(GameLevels::Menu);
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) levelManager->SwitchToLevel(GameLevels::HUB);
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) levelManager->SwitchToLevel(GameLevels::Level1);
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) levelManager->SwitchToLevel(GameLevels::Level2);
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) _world->CleanUpPhysicsWorld();
 
 	levelManager->testUpdate();
 

@@ -37,6 +37,7 @@
     <ClInclude Include="src\mge\behaviours\StatueBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\SubtitleBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\TriggerBehaviour.h" />
+    <ClInclude Include="src\mge\behaviours\WinBehaviour.h" />
     <ClInclude Include="src\mge\config.hpp" />
     <ClInclude Include="src\mge\core\AbstractGame.hpp" />
     <ClInclude Include="src\mge\core\Camera.hpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="src\mge\behaviours\StatueBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\SubtitleBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\TriggerBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\WinBehaviour.cpp" />
     <ClCompile Include="src\mge\core\AbstractGame.cpp" />
     <ClCompile Include="src\mge\core\Camera.cpp" />
     <ClCompile Include="src\mge\core\collision\BoxTrigger.cpp" />

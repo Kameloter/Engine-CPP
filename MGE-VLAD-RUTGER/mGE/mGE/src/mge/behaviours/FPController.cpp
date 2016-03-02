@@ -12,7 +12,7 @@ FPController::FPController(float pMoveSpeed, float pTurnSpeed, GameObject * pCam
     _turnSpeed = pTurnSpeed;
     _camera = pCamera;
     _inputType = pInputType;
-	jump.Set(0, 10, 0);
+	jump.Set(0, 7, 0);
 
 }
 

@@ -36,7 +36,7 @@
 #include "mge/behaviours/FPCamera.h"
 #include "mge/behaviours/LookAt.hpp"
 #include "mge/behaviours/Orbit.hpp"
-
+#include "SFML\Audio.hpp"
 //Util
 #include "mge/util/Color.h"
 #include "mge/config.hpp"
@@ -134,7 +134,8 @@ void LevelManager::Build_level_hub()
 {
 	cout << " Build level hub " << endl;
 }
-
+sf::SoundBuffer ambientBuffer;
+sf::Sound soundAmbient;
 void LevelManager::Build_level_1()
 {
 	cout << " Build level 1 " << endl;
@@ -208,18 +209,22 @@ void LevelManager::Build_level_1()
 	//_world->add(dirLight);
 	//dirLight->setBehaviour(new KeysBehaviour2());
 	//Points lights
-	Light *light = new PointLight("PointLight1", glm::vec3(0, 0, 0), glm::vec3(.3f,0,0), glm::vec3(1,0,0), glm::vec3(1,0,0));
-	light->setMesh(cubeMeshF);
+	Light *light = new PointLight("PointLight1", glm::vec3(40, 5, 35), glm::vec3(.3), glm::vec3(1,1,1), glm::vec3(0.1));
+	//Light *light2 = new PointLight("PointLight1", glm::vec3(28, 5, 35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
+	//Light *light3 = new PointLight("PointLight1", glm::vec3(28, 5, 25), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
+	//Light *light4 = new PointLight("PointLight1", glm::vec3(40, 5, 35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
+	/*light->setMesh(cubeMeshF);
 	light->setMaterial(new ColorMaterial(light->diffuse));
 	light->scale(glm::vec3(0.1));
-	_world->add(light);
-	//light->setParent(player);
-	light->setLocalPosition(glm::vec3(0, 1, -2));
+	_world->add(light);*/
+
 	//light->setBehaviour(new KeysBehaviour2());
 
 
-	_world->AddLight(dirLight);
-	//_world->AddLight(light);
+	//_world->AddLight(dirLight);
+	_world->AddLight(light);
+	//_world->AddLight(light2);
+	//_world->AddLight(light3);
 
 #pragma endregion Lights
 
@@ -227,7 +232,16 @@ void LevelManager::Build_level_1()
 	xmlReader->LoadLevel("Level1");
 	xmlReader->LoadInteractables("interactables");
 	xmlReader->LoadSubtitleTriggers("subtitles");
-	LUAManager::InitializeFile(_world);
+	LUAManager::InitializeFile(_world); 
+
+	
+	if (!ambientBuffer.loadFromFile(config::MGE_SOUND_PATH + "ambience.wav"))
+	{
+		std::cout << " cant load sound " << std::endl;
+	}
+	soundAmbient.setBuffer(ambientBuffer);
+	soundAmbient.setLoop(true);
+	soundAmbient.play();
 	//}
 
 	/*RigidbodyGameObject * obj = new RigidbodyGameObject("obj", glm::vec3(1, 1, 0),_world);
@@ -288,17 +302,6 @@ void LevelManager::Build_level_2()
 
 void LevelManager::testUpdate()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
-	{
-		std::cout << " GOT NAME " << testtrig->getTrigger()->collisionInfo->getHitBy() << std::endl;
-	}
-
-	if (testtrig != nullptr)
-	{
-		if (testtrig->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
-		{
-			cout << "Hello i got hit ! :) " << endl;
-		}
-	}
+	
 }
 

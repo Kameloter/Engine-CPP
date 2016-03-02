@@ -9,6 +9,7 @@
 #include "mge/core/collision/Collision.h"
 #include "mge/StatsHolder.h"
 
+
 SpikeBehaviour::SpikeBehaviour()
 {
 }
@@ -44,8 +45,8 @@ void SpikeBehaviour::update(float pStep) {
 
 	if (dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
 	{
-		std::cout << " player died " << std::endl;
-	}
+		StatsHolder::PlayerDied = true;
+	}			
 }
 
 void SpikeBehaviour::InitializePositions()

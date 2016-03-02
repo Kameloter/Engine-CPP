@@ -2,6 +2,7 @@
 #include "mge/core/collision/BoxTrigger.h"
 #include "mge/core/collision/Collision.h"
 #include "mge/core/collision/StaticGameObject.h"
+#include "mge/StatsHolder.h"
 #include "mge/SubtitleManager.h"
 
 
@@ -20,5 +21,6 @@ void DeathBehaviour::update(float pStep)
 	if (dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
 	{
 		std::cout << " PLAYER DIIIIED " << std::endl;
+		StatsHolder::PlayerDied = true;
 	}
 }

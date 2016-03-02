@@ -13,15 +13,15 @@ uniform mat4 pvm;
 out vec3 vertices;
 out vec2 uvs;
 out mat3 TBN;
-out vec3 normals;
+//out vec3 normals;
 
 void main( void ){
 	gl_Position = pvm * vec4(vertex, 1.f);
 
     vertices = vec3(mat_Model * vec4(vertex,1.f));
 	uvs = uv;
-    normals = vec3(transpose(inverse(mat_Model)) * vec4 (normal,0.f)); // was used if there is no normal mapping.
-    uvs = uv;
+ //   normals = vec3(transpose(inverse(mat_Model)) * vec4 (normal,0.f)); // was used if there is no normal mapping.
+ //   uvs = uv;
 
 
 	vec3 T = normalize(vec3(mat_Model * vec4(tangent, 0.0)));

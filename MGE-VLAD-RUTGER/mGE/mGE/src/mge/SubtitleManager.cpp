@@ -89,8 +89,9 @@ void SubtitleManager::playSubtitle(std::string sub, float showTime)
 	_subFont.loadFromFile(config::MGE_FONT_PATH + "arial.ttf");
 	_subText.setFont(_subFont);
 	_subText.setString(sub2->subtitle);
-	_subText.setPosition(sf::Vector2f(10, 10));
-	_subText.setColor(sf::Color::White);
+	_subText.setPosition(sf::Vector2f(250, 500));
+	_subText.setColor(sf::Color::White);	
+	_subText.setCharacterSize(20);
 
 
 	waitTime = showTime;

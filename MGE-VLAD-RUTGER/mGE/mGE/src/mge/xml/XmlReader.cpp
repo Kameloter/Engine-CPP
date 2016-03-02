@@ -27,6 +27,7 @@
 #include "mge/behaviours/PushBlockBehaviour.h"
 #include "mge/behaviours/SpikeBehaviour.h"
 #include "mge/behaviours/SubtitleBehaviour.h"
+#include "mge/behaviours/DeathBehaviour.h"
 #include "mge/SubtitleManager.h"
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
@@ -86,9 +87,9 @@ void XmlReader::SetupLevelGeometry(std::string pLevelName)
     GameObject * root = new GameObject(pLevelName,glm::vec3(0,0,0));
     root->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + ".obj"));
 
-	root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png"), 0.1));
+//	root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png"), 0.1));
 	//root->setMaterial(new TextureNormalMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"),glm::vec3(1), 32, Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png")));
-	//root->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+	
 	_world->add(root);
 
 
@@ -270,7 +271,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 				glm::vec3 center2 = obj->getLocalPosition();
 				glm::vec3 minbound2(center2.x - colSize.y, center2.y - colSize.x, center2.z - colSize.z);
 				glm::vec3 maxbound2(center2.x + colSize.y, center2.y + colSize.x, center2.z + colSize.z);
-				std::cout << "minbound = " << minbound2 << "  maxbound =" << maxbound2 << std::endl;
+				//std::cout << "minbound = " << minbound2 << "  maxbound =" << maxbound2 << std::endl;
 				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
 				//obj->SetBounds(glm::vec3(minbound2.y,minbound2.z,minbound2.x), glm::vec3(maxbound2.y, maxbound2.z, maxbound2.x));
 
@@ -434,7 +435,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 	}
 
-	cout << "intactable geonmytry loaded.... " << endl;
+	cout << "Interactable geometry loaded.... " << endl;
 }
 void XmlReader::ReadSubtitleTriggers(const char * pFilename)
 {
@@ -467,7 +468,8 @@ void XmlReader::ReadSubtitleTriggers(const char * pFilename)
 			StringToNumber<float>(_subtitleProperties[1].attribute("Y").value()),
 			StringToNumber<float>(_subtitleProperties[1].attribute("Z").value())));
 
-		_typeTriggers.push_back(StringToNumber<int>(_interactableProperties[2].attribute("Type").value()));
+		_typeTriggers.push_back(StringToNumber<int>(_subtitleProperties[2].attribute("Type").value()));
+		std::cout << _typeTriggers[i] << std::endl;
 	}
 	cout << "XML finished reading -- > " << _subtitleMainNodes.size() << " objects " << endl;
 }
@@ -475,7 +477,7 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 {
 	for (int i = 0; i < _subtitleTriggerName.size(); i++)
 	{
-		std::cout << _typeTriggers[i] << std::endl;
+		//std::cout << _typeTriggers[i] << std::endl;
 		switch (_typeTriggers[i])
 		{
 
@@ -501,6 +503,7 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 			break;
 			case 1: //Death trigger
 			{
+
 				StaticGameObject * obj = new StaticGameObject(_subtitleTriggerName[i], _subtitleTriggerPosition[i], _world, true);
 				//obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key.obj"));
 				//obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
@@ -515,7 +518,7 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 				//glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 				obj->AddBoxCollider(0, 0, 0);
 
-				//obj->setBehaviour(new SubtitleBehaviour());
+				obj->setBehaviour(new DeathBehaviour());
 
 			}
 			break;

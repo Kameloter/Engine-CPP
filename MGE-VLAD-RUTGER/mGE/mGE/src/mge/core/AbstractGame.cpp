@@ -42,7 +42,7 @@ void AbstractGame::initialize() {
 void AbstractGame::_initializeWindow() {
 	cout << "Initializing window..." << endl;
 	_window = new sf::RenderWindow( sf::VideoMode(800,600), "My Game!", sf::Style::Default, sf::ContextSettings(24,8,0,3,3));
-	_window->setVerticalSyncEnabled(true);
+	_window->setVerticalSyncEnabled(false);
     cout << "Window initialized." << endl << endl;
 }
 
@@ -143,7 +143,7 @@ void AbstractGame::_processEvents()
         //give all system event listeners a chance to handle events
         //optionally to be implemented by you...
         //SystemEventDispatcher::dispatchEvent(event);
-		EventDispatcher::dispatchEvent(event);
+		//EventDispatcher::dispatchEvent(event);
 
         switch (event.type) {
             case sf::Event::Closed:
