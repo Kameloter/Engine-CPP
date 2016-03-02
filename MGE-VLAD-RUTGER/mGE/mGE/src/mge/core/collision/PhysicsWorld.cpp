@@ -87,16 +87,16 @@ void PhysicsWorld::update(float pStep, const glm::mat4& pParentTransform)
 
 	for (int i = 0; i < _staticGameObjects.size(); i++)
 	{
-		//_staticGameObjects[i]->updateStaticBody();
+		_staticGameObjects[i]->updateStaticBody();
 	}
-	//_physicsSimulator->Advance(pStep);
+	_physicsSimulator->Advance(pStep);
 
 	for (int i  = 0; i < _rigidbodyGameObjects.size(); i++)
 	{
-		//_rigidbodyGameObjects[i]->updateRigidBody();
+		_rigidbodyGameObjects[i]->updateRigidBody();
 	}
 
-	//_triggerManager->runPhysics(pStep);
+	_triggerManager->runPhysics(pStep);
 	
 }
 
