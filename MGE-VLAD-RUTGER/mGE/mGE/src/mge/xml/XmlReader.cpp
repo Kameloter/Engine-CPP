@@ -87,8 +87,7 @@ void XmlReader::SetupLevelGeometry(std::string pLevelName)
     GameObject * root = new GameObject(pLevelName,glm::vec3(0,0,0));
     root->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + ".obj"));
 
-//	root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png"), 0.1));
-	//root->setMaterial(new TextureNormalMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"),glm::vec3(1), 32, Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png")));
+	root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png"), 0.1));
 	
 	_world->add(root);
 

@@ -21,7 +21,6 @@ void main( void ){
     vertices = vec3(mat_Model * vec4(vertex,1.f));
 	uvs = uv;
  //   normals = vec3(transpose(inverse(mat_Model)) * vec4 (normal,0.f)); // was used if there is no normal mapping.
- //   uvs = uv;
 
 
 	vec3 T = normalize(vec3(mat_Model * vec4(tangent, 0.0)));

@@ -84,12 +84,12 @@ void main( void )
   //  finalColor = getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
 
  
- //   for(int i = 0; i < pointLightCount; i++)
- //   {
- //       finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
- //   }
+    for(int i = 0; i < pointLightCount; i++)
+    {
+        finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
+    }
 	 
-	 finalColor += getPointLight(pointLight[1],normal,viewDirection, sampledDiffuse);
+
 
 //    for(int i = 0; i < spotLightCount; i++)
 //    {
