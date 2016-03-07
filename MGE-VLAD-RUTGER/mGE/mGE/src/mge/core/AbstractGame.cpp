@@ -109,14 +109,32 @@ void AbstractGame::run()
 
 	    //clear frame, do it here so we can draw debug stuff in any other step etc
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
+		
+		clock_t startUpdate;
+		startUpdate = clock();
+		double updateTime;
+	
         _update();
+
+		updateTime = (std::clock() - startUpdate) / (double)(CLOCKS_PER_SEC / 1000);
+
+		clock_t startRender;
+		startRender = clock();
+		double renderTime;
+
         _render();
+
+		renderTime = (std::clock() - startRender) / (double)(CLOCKS_PER_SEC / 1000);
 
         //swap colorbuffer to screen
         _window->display();
 
 		_processEvents();
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::O)) {
+			cout << "TIME NEEDED TO UPDATE -> " << updateTime << endl;
+			cout << "TIME NEEDED TO RENDER -> " << renderTime << endl;
+		}
 	}
 }
 
