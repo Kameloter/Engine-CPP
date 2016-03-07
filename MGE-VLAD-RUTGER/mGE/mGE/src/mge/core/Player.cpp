@@ -23,6 +23,11 @@ Player::Player(std::string pName, glm::vec3 pPosition, PhysicsWorld* pWorld, Gam
 	this->SetBounds(minbound, maxbound);
 
 	this->AddBoxCollider(1, 1, 1);
+
+	f32 mass = 10;
+	_rigidbody->SetInertiaTensor(neBoxInertiaTensor(1,1,1, mass));
+	_rigidbody->SetMass(mass);
+	_rigidbody->SetAngularDamping(1.0f);
 }
 
 

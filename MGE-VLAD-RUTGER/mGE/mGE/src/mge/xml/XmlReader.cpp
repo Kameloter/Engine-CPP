@@ -185,7 +185,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 		case 0:
 		{
-			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
+			RigidbodyGameObject * obj = new RigidbodyGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "statue.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
 			obj->setBehaviour(new StatueBehaviour);
@@ -193,6 +193,11 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			_world->add(obj);
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+
+			f32 mass = 30;
+			obj->GetRigidBody()->SetInertiaTensor(neBoxInertiaTensor(colSize.x, colSize.y, colSize.z, mass));
+			obj->GetRigidBody()->SetMass(mass);
+			obj->GetRigidBody()->SetAngularDamping(0.05f);
 		}
 		break;
 		case 1:
@@ -402,6 +407,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			camera->setParent(player);
 			camera->setLocalPosition(glm::vec3(0, 2, 0));
 			camera->setBehaviour(new FPCamera(1.0f, 1.0f, player));
+
+		
 		}
 		break;
 

@@ -15,8 +15,10 @@ public:
 	void AddBoxCollider(float pW, float pH, float pD);
 	neRigidBody * GetRigidBody();
 
-private:
+protected:
 	neRigidBody* _rigidbody;
+private:
+
 	PhysicsWorld*  _world;
 
 };

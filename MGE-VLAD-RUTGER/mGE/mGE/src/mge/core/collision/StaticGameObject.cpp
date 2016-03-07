@@ -122,6 +122,7 @@ void StaticGameObject::AddBoxCollider(float pW, float pH, float pD)
 		//std::cout << "boxPOS" << glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]) << std::endl;
 		box.Set(pW, pH, pD);
 		geometry->SetBoxSize(box);
+		geometry->SetMaterialIndex(0);
 		_animBody->UpdateBoundingInfo();
 	}
 	else {

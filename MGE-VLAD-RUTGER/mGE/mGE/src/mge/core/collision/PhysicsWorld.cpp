@@ -34,6 +34,12 @@ PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObject
 	//start the physics simulation
 	_physicsSimulator = neSimulator::CreateSimulator(simulatorSize, NULL, &gravity);
 	_triggerManager = new TriggerManager();
+	
+	s32 STATICMATERIAL;
+	STATICMATERIAL = 0;
+
+	_physicsSimulator->SetMaterial(STATICMATERIAL, 2.0f, 0.01f); // index , friction, bounciness
+	//_physicsSimulator
 	//_physicsSimulator->se
 	//_physicsSimulator->GetCollisionTable()->Set(0, 0, neCollisionTable::RESPONSE_IMPULSE_CALLBACK);
 
