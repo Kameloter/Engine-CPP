@@ -40,7 +40,9 @@ std::vector<GameObject*> TriggerManager::getStaticTriggerObjects()
 void TriggerManager::cleanUp()
 {
 	_triggers.clear();
+	_triggers.shrink_to_fit();
 	_movingTriggers.clear();
+	_movingTriggers.shrink_to_fit();
 	std::cout << " Triggers and moving triggers cleared " << std::endl;
 }
 void TriggerManager::runPhysics(float pDelta)

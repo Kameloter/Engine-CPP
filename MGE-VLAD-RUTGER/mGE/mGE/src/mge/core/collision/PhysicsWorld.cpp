@@ -36,8 +36,6 @@ PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObject
 	_triggerManager = new TriggerManager();
 
 	_physicsSimulator->SetMaterial(0, 2.0f, 0.01f);// index , friction, bounciness
-
-
 }
 
 //void CollisionCallback(neCollisionInfo & collisionInfo)
@@ -81,21 +79,22 @@ PhysicsWorld::~PhysicsWorld()
 void PhysicsWorld::update(float pStep, const glm::mat4& pParentTransform)
 {
 	World::update(pStep, pParentTransform);
-//	std::cout << "Update physiiics" << std::endl;
+}
+
+void PhysicsWorld::fixedUpdate()
+{
+	_physicsSimulator->Advance(0.02f);
+	_triggerManager->runPhysics(0.02f);
 
 	for (int i = 0; i < _staticGameObjects.size(); i++)
 	{
 		_staticGameObjects[i]->updateStaticBody();
 	}
-	_physicsSimulator->Advance(pStep);
 
 	for (int i  = 0; i < _rigidbodyGameObjects.size(); i++)
 	{
 		_rigidbodyGameObjects[i]->updateRigidBody();
 	}
-
-	_triggerManager->runPhysics(pStep);
-	
 }
 
 void  PhysicsWorld::addStaticTrigger(GameObject * pGameObject)
@@ -120,14 +119,17 @@ neAnimatedBody* PhysicsWorld::addStaticGameObject(StaticGameObject * pStaticGame
 	_staticGameObjects.push_back(pStaticGameobject);
 	return _physicsSimulator->CreateAnimatedBody();
 }
+
 std::vector<RigidbodyGameObject*> PhysicsWorld::getRigidObjects()
 {
 	return _rigidbodyGameObjects;
 }
+
 std::vector<StaticGameObject*> PhysicsWorld::getStaticObjects()
 {
 	return _staticGameObjects;
 }
+
 void PhysicsWorld::CleanUpPhysicsWorld()
 {
 	//std::cout << "Cleaning world " << std::endl;
@@ -143,6 +145,7 @@ void PhysicsWorld::CleanUpPhysicsWorld()
 	//	delete _rigidbodyGameObjects[i];
 	//}
 	_rigidbodyGameObjects.clear();
+	_rigidbodyGameObjects.shrink_to_fit();
 	//std::cout << "Cleaning physics world rigidbodyes - cleaned   " << "size " << _rigidbodyGameObjects.size() <<  std::endl;
 
 
@@ -153,13 +156,14 @@ void PhysicsWorld::CleanUpPhysicsWorld()
 	//	delete _staticGameObjects[i];
 	//}
 	_staticGameObjects.clear();
+	_staticGameObjects.shrink_to_fit();
 	//std::cout << "Cleaning physics world static bodies - cleaned   " << "size " << _staticGameObjects.size() << std::endl;
 	//free rigidbody memory ?
 }
+
 void PhysicsWorld::CleanObject(GameObject * object)
 {
 	std::cout << " physics world clean object  ---- "  << object->getName() << std::endl;
-
 
 	_staticGameObjects.erase(std::remove(_staticGameObjects.begin(), _staticGameObjects.end(), object), _staticGameObjects.end());
 	std::cout << " static objects cleaned  " << object->getName() << std::endl;

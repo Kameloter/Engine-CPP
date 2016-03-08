@@ -19,6 +19,7 @@ class PhysicsWorld : public World
 		void addMovingTrigger(GameObject * pGameObject);
 
 		void update(float pStep, const glm::mat4& pParentTransform);
+		void fixedUpdate();
 
 		void freeMemory(neRigidBody* pNeRb);
 		void freeMemory(neAnimatedBody* pAnimbody);
