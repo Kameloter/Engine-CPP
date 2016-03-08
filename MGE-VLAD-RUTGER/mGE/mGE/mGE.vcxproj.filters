@@ -288,6 +288,9 @@
     <ClInclude Include="src\mge\behaviours\WinBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\behaviours\SceneSwitchBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -556,11 +559,14 @@
     <ClCompile Include="src\mge\behaviours\SubtitleBehaviour.cpp">
       <Filter>Source Files\behaviours</Filter>
     </ClCompile>
-    <ClCompile Include="src\mge\behaviours\DeathBehaviour.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\mge\behaviours\WinBehaviour.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\DeathBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\SceneSwitchBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

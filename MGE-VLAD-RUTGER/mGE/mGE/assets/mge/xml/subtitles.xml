@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<GameObjects>
-	<Object name="Subtitles_01">
-		<Position X="35.9712120658" Y="3.55175221101" Z="34.5016583175"/>
-		<ColSize X="5.40355557936" Y="7.66832256515" Z="11.1710259978"/>
-		<Object_Type Type="0"/>
-	</Object>
-	
-</GameObjects>

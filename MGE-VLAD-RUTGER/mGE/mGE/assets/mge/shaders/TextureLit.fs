@@ -80,7 +80,7 @@ void main( void )
 
 
     vec3 finalColor = vec3(0);
-   // finalColor = getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
+    finalColor = getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
 
  
     for(int i = 0; i < pointLightCount; i++)

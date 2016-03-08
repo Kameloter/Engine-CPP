@@ -3,11 +3,11 @@
 #include "mge/core/collision/Collision.h"
 #include "mge/core/collision/StaticGameObject.h"
 #include "mge/StatsHolder.h"
-#include "mge/SubtitleManager.h"
 
 
 DeathBehaviour::DeathBehaviour()
 {
+	hit = false;
 }
 
 
@@ -17,10 +17,15 @@ DeathBehaviour::~DeathBehaviour()
 
 void DeathBehaviour::update(float pStep)
 {
-	//std::cout << dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->getMaxBounds() << std::endl;
-	if (dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
+}
+
+void DeathBehaviour::OnCollision(Collision collision)
+{
+	//::cout << collision.getHitBy()  << std::endl;
+	if (collision.getHitBy() == "Player" && !hit)
 	{
-		std::cout << " PLAYER DIIIIED " << std::endl;
+		hit = true;
+		std::cout << " Hitting playerr :) " << std::endl;
 		StatsHolder::PlayerDied = true;
 	}
 }

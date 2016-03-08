@@ -42,8 +42,9 @@ MainMenu * mainMenu;
 void MGEDemo::_initializeScene()
 {
 	_renderer->setClearColor(0, 0, 0);
-	levelManager = new LevelManager(_world,_window);
-	levelManager->SwitchToLevel(GameLevels::Menu);
+	LevelManager::getInstance().setWorldWindow(_world, _window);
+	//levelManager = new LevelManager(_world,_window);
+	LevelManager::getInstance().SwitchToLevel(GameLevels::Menu);
 	mainMenu = new MainMenu(_window);
 
 	
@@ -78,19 +79,19 @@ void MGEDemo::_render() {
 	//_world->renderDebugInfo();
 	AbstractGame::_render();
 	_updateHud();
-	if (levelManager->currentlevel == GameLevels::Menu)
+	if (LevelManager::getInstance().currentlevel == GameLevels::Menu)
 	{
 		
 		if (mainMenu->ButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME !"))
 		{
-			levelManager->SwitchToLevel(GameLevels::Level1);
+			LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
 		}
 	}
 	if (StatsHolder::PlayerDied == true)
 	{
 		StatsHolder::PlayerDied = false;
-		levelManager->SwitchToLevel(GameLevels::HUB);
-		levelManager->SwitchToLevel(GameLevels::Level1);
+		LevelManager::getInstance().SwitchToLevel(GameLevels::HUB);
+		LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
 	}
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::O) && !press)
 	{

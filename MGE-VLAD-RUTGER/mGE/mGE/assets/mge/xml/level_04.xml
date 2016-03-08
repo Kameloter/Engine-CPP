@@ -1,0 +1,215 @@
+<?xml version="1.0" ?>
+<GameObjects>
+	<Object name="Lava">
+		<Position X="4.50000003681" Y="-1.2818529159" Z="-6.00000004908"/>
+		<ColSize X="55.4884081332" Y="1.4884081332" Z="55.4884081332"/>
+	</Object>
+	<Object name="Collider_1">
+		<Position X="-19.5" Y="15.0" Z="11.9999992847"/>
+		<ColSize X="3.0" Y="60.0" Z="60.0"/>
+	</Object>
+	<Object name="Collider_2">
+		<Position X="28.5" Y="15.0" Z="-1.49999950826"/>
+		<ColSize X="3.0" Y="60.0" Z="87.0"/>
+	</Object>
+	<Object name="Collider_3">
+		<Position X="-19.5" Y="15.0" Z="-34.4999998212"/>
+		<ColSize X="3.0" Y="60.0" Z="21.0"/>
+	</Object>
+	<Object name="Collider_4">
+		<Position X="-16.5" Y="15.0" Z="-49.5"/>
+		<ColSize X="3.0" Y="60.0" Z="9.0"/>
+	</Object>
+	<Object name="Collider_5">
+		<Position X="25.5" Y="15.0" Z="-49.5"/>
+		<ColSize X="3.0" Y="60.0" Z="9.0"/>
+	</Object>
+	<Object name="Collider_6">
+		<Position X="4.50000031292" Y="15.0" Z="-55.5"/>
+		<ColSize X="39.0" Y="60.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_7">
+		<Position X="10.5" Y="15.0" Z="-16.5"/>
+		<ColSize X="3.0" Y="60.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_8">
+		<Position X="-1.5" Y="15.0" Z="-16.5"/>
+		<ColSize X="3.0" Y="60.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_9">
+		<Position X="21.0" Y="15.0" Z="6.0"/>
+		<ColSize X="6.0" Y="60.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_10">
+		<Position X="-12.0" Y="15.0" Z="6.0"/>
+		<ColSize X="6.0" Y="60.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_11">
+		<Position X="19.5000000894" Y="15.0" Z="45.0"/>
+		<ColSize X="21.0" Y="60.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_12">
+		<Position X="-10.5" Y="15.0" Z="45.0"/>
+		<ColSize X="21.0" Y="60.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_13">
+		<Position X="-19.5" Y="33.0" Z="-21.0"/>
+		<ColSize X="3.0" Y="24.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_14">
+		<Position X="-21.0" Y="6.00000044703" Z="-13.5000010729"/>
+		<ColSize X="12.0" Y="18.0" Z="63.0"/>
+	</Object>
+	<Object name="Collider_15">
+		<Position X="25.5" Y="6.00000044703" Z="-13.5000010729"/>
+		<ColSize X="3.0" Y="18.0" Z="63.0"/>
+	</Object>
+	<Object name="Collider_16">
+		<Position X="4.50000031292" Y="6.00000044703" Z="10.5000002682"/>
+		<ColSize X="39.0" Y="18.0" Z="15.0"/>
+	</Object>
+	<Object name="Collider_17">
+		<Position X="4.50000040233" Y="18.0" Z="30.0"/>
+		<ColSize X="45.0" Y="12.0" Z="24.0"/>
+	</Object>
+	<Object name="Collider_18">
+		<Position X="4.49999964237" Y="25.5" Z="34.4999992847"/>
+		<ColSize X="33.0" Y="3.0" Z="15.0"/>
+	</Object>
+	<Object name="Collider_19">
+		<Position X="4.50000053644" Y="28.5" Z="40.5000007153"/>
+		<ColSize X="27.0" Y="3.0" Z="21.0"/>
+	</Object>
+	<Object name="Collider_20">
+		<Position X="4.5" Y="22.5" Z="13.5"/>
+		<ColSize X="3.0" Y="3.0" Z="9.0"/>
+	</Object>
+	<Object name="Collider_21">
+		<Position X="4.5" Y="22.5" Z="3.0"/>
+		<ColSize X="9.0" Y="3.0" Z="12.0"/>
+	</Object>
+	<Object name="Collider_22">
+		<Position X="7.5" Y="18.0" Z="7.5"/>
+		<ColSize X="3.0" Y="6.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_23">
+		<Position X="1.5" Y="18.0" Z="7.5"/>
+		<ColSize X="3.0" Y="6.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_24">
+		<Position X="4.50000031292" Y="19.5000007153" Z="-51.0"/>
+		<ColSize X="39.0" Y="9.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_25">
+		<Position X="-10.4999996424" Y="19.5000007153" Z="-46.5"/>
+		<ColSize X="9.0" Y="9.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_26">
+		<Position X="19.5000007153" Y="19.5000007153" Z="-46.5"/>
+		<ColSize X="9.0" Y="9.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_27">
+		<Position X="-4.5" Y="18.0" Z="-46.5"/>
+		<ColSize X="3.0" Y="6.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_28">
+		<Position X="13.5" Y="18.0" Z="-46.5"/>
+		<ColSize X="3.0" Y="6.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_29">
+		<Position X="10.5" Y="16.5" Z="-46.5"/>
+		<ColSize X="3.0" Y="3.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_30">
+		<Position X="-1.5" Y="16.5" Z="-46.5"/>
+		<ColSize X="3.0" Y="3.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_31">
+		<Position X="4.50000031292" Y="12.0" Z="-45.0"/>
+		<ColSize X="39.0" Y="6.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_32">
+		<Position X="4.50000031292" Y="7.5" Z="-40.5"/>
+		<ColSize X="39.0" Y="3.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_33">
+		<Position X="-6.0" Y="1.50000017881" Z="-40.5"/>
+		<ColSize X="12.0" Y="9.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_34">
+		<Position X="15.0" Y="1.50000017881" Z="-40.5"/>
+		<ColSize X="12.0" Y="9.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_35">
+		<Position X="4.5" Y="-1.5" Z="-45.0"/>
+		<ColSize X="9.0" Y="3.0" Z="18.0"/>
+	</Object>
+	<Object name="Collider_36">
+		<Position X="-13.5" Y="1.50000017881" Z="-22.5000011623"/>
+		<ColSize X="3.0" Y="9.0" Z="33.0"/>
+	</Object>
+	<Object name="Collider_37">
+		<Position X="22.5" Y="1.50000013411" Z="-28.4999989271"/>
+		<ColSize X="3.0" Y="15.0" Z="21.0"/>
+	</Object>
+	<Object name="Collider_38">
+		<Position X="22.5" Y="10.5" Z="-25.5"/>
+		<ColSize X="3.0" Y="3.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_39">
+		<Position X="22.5" Y="12.0" Z="-21.0"/>
+		<ColSize X="3.0" Y="6.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_40">
+		<Position X="4.5" Y="-1.5" Z="-9.0"/>
+		<ColSize X="9.0" Y="3.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_41">
+		<Position X="4.5" Y="-1.5" Z="-4.5"/>
+		<ColSize X="3.0" Y="3.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_42">
+		<Position X="4.5" Y="0.0" Z="0.0"/>
+		<ColSize X="3.0" Y="6.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_43">
+		<Position X="-13.5" Y="0.0" Z="-1.50000017881"/>
+		<ColSize X="3.0" Y="6.0" Z="9.0"/>
+	</Object>
+	<Object name="Collider_44">
+		<Position X="-4.50000017881" Y="0.0" Z="1.5"/>
+		<ColSize X="15.0" Y="6.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_45">
+		<Position X="1.5" Y="39.0000014305" Z="51.0"/>
+		<ColSize X="3.0" Y="18.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_46">
+		<Position X="7.5" Y="39.0000014305" Z="51.0"/>
+		<ColSize X="3.0" Y="18.0" Z="6.0"/>
+	</Object>
+	<Object name="Collider_47">
+		<Position X="4.5" Y="34.5" Z="52.5"/>
+		<ColSize X="3.0" Y="3.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_48">
+		<Position X="4.5" Y="31.5" Z="49.5"/>
+		<ColSize X="3.0" Y="3.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_49">
+		<Position X="-28.5" Y="18.0" Z="-21.0"/>
+		<ColSize X="3.0" Y="6.0" Z="12.0"/>
+	</Object>
+	<Object name="Collider_50">
+		<Position X="-24.0" Y="18.0" Z="-28.5"/>
+		<ColSize X="6.0" Y="6.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_51">
+		<Position X="-24.0" Y="18.0" Z="-13.5"/>
+		<ColSize X="6.0" Y="6.0" Z="3.0"/>
+	</Object>
+	<Object name="Collider_52">
+		<Position X="-24.0" Y="22.5" Z="-21.0"/>
+		<ColSize X="6.0" Y="3.0" Z="12.0"/>
+	</Object>
+</GameObjects>

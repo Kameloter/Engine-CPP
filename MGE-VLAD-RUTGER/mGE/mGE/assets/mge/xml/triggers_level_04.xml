@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<GameObjects>
+	<Object name="level_hub">
+		<Position X="4.62900358795" Y="39.0000014305" Z="49.7547111992"/>
+		<ColSize X="5.0" Y="18.0" Z="7.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+</GameObjects>

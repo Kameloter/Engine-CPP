@@ -1,11 +1,11 @@
 #pragma once
 #include "AbstractBehaviour.hpp"
-class SubtitleBehaviour :
-	public AbstractBehaviour
+
+class SceneSwitchBehaviour : public AbstractBehaviour
 {
 public:
-	SubtitleBehaviour();
-	~SubtitleBehaviour();
+	SceneSwitchBehaviour();
+	~SceneSwitchBehaviour();
 
 	virtual void update(float step);
 	virtual void OnCollision(Collision collision);

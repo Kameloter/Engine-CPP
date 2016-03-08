@@ -6,7 +6,7 @@
 
 SubtitleBehaviour::SubtitleBehaviour()
 {
-
+	hit = false;
 }
 
 
@@ -23,7 +23,7 @@ void SubtitleBehaviour::update(float pStep)
 		
 	}
 }
-bool hit = false;
+
 void SubtitleBehaviour::OnCollision(Collision collision)
 {
 	//::cout << collision.getHitBy()  << std::endl;

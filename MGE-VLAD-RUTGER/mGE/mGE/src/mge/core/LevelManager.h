@@ -3,7 +3,7 @@
 using namespace std;
 enum GameLevels
 {
-	Idle,Menu, HUB, Level1, Level2
+	Idle,Menu, HUB, Level1, Level2, Level3, Level4
 };
 
 class PhysicsWorld;
@@ -11,12 +11,19 @@ class LevelManager
 {
 public:
 
-    GameLevels currentlevel;
+	static LevelManager& getInstance() {
+		static LevelManager  _instance;
 
+		return _instance;
+	}
 
-	LevelManager(PhysicsWorld * pWorld, sf::Window * pWindow);
+   GameLevels currentlevel;
+	LevelManager();
 	~LevelManager();
+
 	void testUpdate();
+
+	void setWorldWindow(PhysicsWorld * pWorld, sf::Window * pWindow);
 	 
 	 void SwitchToLevel(GameLevels pToLevel);
 private:
@@ -27,9 +34,13 @@ private:
 	void Build_level_hub();
 	void Build_level_1();
 	void Build_level_2();
+	void Build_level_3();
+	void Build_level_4();
 
 
 	PhysicsWorld * _world;
 	sf::Window * _window;
+	
+	static LevelManager * _instance;
 };
 

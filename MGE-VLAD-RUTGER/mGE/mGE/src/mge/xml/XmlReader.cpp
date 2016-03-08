@@ -32,6 +32,7 @@
 #include "mge/behaviours/SubtitleBehaviour.h"
 #include "mge/behaviours/DeathBehaviour.h"
 #include "mge/SubtitleManager.h"
+#include "mge/behaviours/SceneSwitchBehaviour.h"
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -66,13 +67,13 @@ void XmlReader::Read(const char* pFileName)
         //Read all object node children
         _objectProperties = GetNodeChildren(_mainNodes[i]);
         //Store positions
-        _positions.push_back(glm::vec3(StringToNumber<float>(_objectProperties[3].attribute("X").value()),
-                                            StringToNumber<float>(_objectProperties[3].attribute("Y").value()),
-                                            StringToNumber<float>(_objectProperties[3].attribute("Z").value())));
+        _positions.push_back(glm::vec3(StringToNumber<float>(_objectProperties[0].attribute("X").value()),
+                                            StringToNumber<float>(_objectProperties[0].attribute("Y").value()),
+                                            StringToNumber<float>(_objectProperties[0].attribute("Z").value())));
         //Store scales
-        _scales.push_back(glm::vec3(StringToNumber<float>(_objectProperties[5].attribute("X").value()),
-                                            StringToNumber<float>(_objectProperties[5].attribute("Y").value()),
-                                            StringToNumber<float>(_objectProperties[5].attribute("Z").value())));
+        _scales.push_back(glm::vec3(StringToNumber<float>(_objectProperties[1].attribute("X").value()),
+                                            StringToNumber<float>(_objectProperties[1].attribute("Y").value()),
+                                            StringToNumber<float>(_objectProperties[1].attribute("Z").value())));
 
     }
 	cout << "XML finished reading -- > " << _mainNodes.size() << " objects " << endl;
@@ -90,8 +91,9 @@ void XmlReader::SetupLevelGeometry(std::string pLevelName)
     GameObject * root = new GameObject(pLevelName,glm::vec3(0,0,0));
     root->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + ".obj"));
 
-	root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png"), 0.1f));
-	
+	//root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png"), 0.1f));
+	root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Level1_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + "Level1_norm.png"), 0.1f));
+
 	_world->add(root);
 
 
@@ -543,6 +545,25 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 				obj->AddBoxCollider(0, 0, 0);
 
 				obj->setBehaviour(new DeathBehaviour());
+
+			}
+			break;
+			
+			case 2: //Scene switcher
+			{
+				StaticGameObject * obj = new StaticGameObject(_subtitleTriggerName[i], _subtitleTriggerPosition[i], _world, true);
+				_world->add(obj);
+
+				glm::vec3 center2 = obj->getLocalPosition();
+				glm::vec3 triggerSize = _subtitleTriggerSize[i] / 2;
+				glm::vec3 minbound2(center2.x - triggerSize.x, center2.y - triggerSize.y, center2.z - triggerSize.z);
+				glm::vec3 maxbound2(center2.x + triggerSize.x, center2.y + triggerSize.y, center2.z + triggerSize.z);
+				obj->SetBounds(minbound2, maxbound2);
+
+				//glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+				obj->AddBoxCollider(0, 0, 0);
+
+				obj->setBehaviour(new SceneSwitchBehaviour());
 
 			}
 			break;

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<GameObjects>
+	<Object name="pCube1">
+		<Position X="4.34865781659" Y="31.1869354879" Z="37.5494106966"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="10"/>
+	</Object>
+</GameObjects>
