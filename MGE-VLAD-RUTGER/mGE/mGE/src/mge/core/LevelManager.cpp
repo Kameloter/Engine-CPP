@@ -221,8 +221,8 @@ void LevelManager::Build_level_1()
 	//light->setBehaviour(new KeysBehaviour2());
 
 
-	_world->AddLight(dirLight);
-	_world->AddLight(light);
+	//_world->AddLight(dirLight);
+	//_world->AddLight(light);
 	//_world->AddLight(light2);
 	//_world->AddLight(light3);
 

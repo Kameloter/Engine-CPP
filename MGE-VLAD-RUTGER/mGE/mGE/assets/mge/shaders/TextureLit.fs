@@ -39,7 +39,7 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample);
 vec3 getSpotLight(SpotLight light, vec3 n, vec3 view, vec3 diffSample);
 
 
-uniform int spotLightCount;
+//uniform int spotLightCount;
 uniform int pointLightCount;
 
 
@@ -68,7 +68,6 @@ out vec4 fragment_color;
 
 void main( void )
 {
-   
 
     vec3 normal = texture(mat_normal, uvs).rgb;
 	normal = normalize(normal * 2.0 - 1.0);
@@ -81,21 +80,15 @@ void main( void )
 
 
     vec3 finalColor = vec3(0);
-    finalColor = getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
+   // finalColor = getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
 
  
     for(int i = 0; i < pointLightCount; i++)
     {
-        finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
+       // finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
     }
 	 
-
-
-//    for(int i = 0; i < spotLightCount; i++)
-//    {
-//		fragment_color = vec4(1,0,0, 1.f);
-//        finalColor += getSpotLight(spotLight[i], normal, viewDirection);
-//    }
+    finalColor += getSpotLight(spotLight[0], normal, viewDirection,sampledDiffuse);
 	fragment_color = vec4(finalColor,1);
 
 }
