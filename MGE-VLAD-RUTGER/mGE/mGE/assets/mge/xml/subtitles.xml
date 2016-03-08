@@ -5,34 +5,5 @@
 		<ColSize X="5.40355557936" Y="7.66832256515" Z="11.1710259978"/>
 		<Object_Type Type="0"/>
 	</Object>
-	<Object name="Subtitles_02">
-		<Position X="33.1661629621" Y="3.55175221101" Z="-28.5377726932"/>
-		<ColSize X="5.40355557936" Y="7.66832256515" Z="5.96434519062"/>
-		<Object_Type Type="0"/>
-	</Object>
-	<Object name="Subtitles_03">
-		<Position X="17.2165728346" Y="3.55175221101" Z="-8.31091981332"/>
-		<ColSize X="15.2703439723" Y="16.4748059893" Z="36.1807043714"/>
-		<Object_Type Type="0"/>
-	</Object>
-	<Object name="Subtitles_04">
-		<Position X="-21.5045283888" Y="4.19590562243" Z="-7.68522597915"/>
-		<ColSize X="8.22907369617" Y="12.1548463427" Z="11.2948234646"/>
-		<Object_Type Type="0"/>
-	</Object>
-	<Object name="Subtitles_05">
-		<Position X="-36.3275195049" Y="4.19590562243" Z="25.273091401"/>
-		<ColSize X="8.22907369617" Y="12.1548463427" Z="5.0912838108"/>
-		<Object_Type Type="0"/>
-	</Object>
-	<Object name="Subtitles_06">
-		<Position X="-17.9235226652" Y="7.51097270632" Z="49.074683004"/>
-		<ColSize X="8.22907369617" Y="12.1548463427" Z="8.83262081967"/>
-		<Object_Type Type="0"/>
-	</Object>
-	<Object name="Death_01">
-		<Position X="-5.16174519036" Y="-8.25429106962" Z="-8.31091981332"/>
-		<ColSize X="33.2083617085" Y="2.14955482739" Z="37.3000627599"/>
-		<Object_Type Type="1"/>
-	</Object>
+	
 </GameObjects>

@@ -2,6 +2,7 @@
 #include "mge/core/collision/Collision.h"
 #include "mge/core/GameObject.hpp"
 #include "mge/core/collision/BoxTrigger.h"
+#include "mge/behaviours/AbstractBehaviour.hpp"
 #include <algorithm>
 TriggerManager::TriggerManager()
 {
@@ -61,15 +62,18 @@ void TriggerManager::runPhysics(float pDelta)
 			
             if(collisionInfo.getIsColliding())
             {
-
+				collisionInfo.setInfo(true, _movingTriggers[i]->getName());
                 //  std::cout << "THERE IS COLLISION " << std::endl;
-				  _movingTriggers[i]->getTrigger()->collisionInfo->setInfo(true, _triggers[j]->getName());
-				  _triggers[j]->getTrigger()->collisionInfo->setInfo(true, _movingTriggers[i]->getName());
+			/*	  _movingTriggers[i]->getTrigger()->collisionInfo->setInfo(true, _triggers[j]->getName());
+				  _triggers[j]->getTrigger()->collisionInfo->setInfo(true, _movingTriggers[i]->getName());*/
+
+				_movingTriggers[i]->getBehaviour()->OnCollision(collisionInfo);
+				_triggers[j]->getBehaviour()->OnCollision(collisionInfo);
 			}
 			else 
 			{
-				_movingTriggers[i]->getTrigger()->collisionInfo->setInfo(false,"");
-				_triggers[j]->getTrigger()->collisionInfo->setInfo(false, "");
+				/*_movingTriggers[i]->getTrigger()->collisionInfo->setInfo(false,"");
+				_triggers[j]->getTrigger()->collisionInfo->setInfo(false, "");*/
 			}
         }
     }

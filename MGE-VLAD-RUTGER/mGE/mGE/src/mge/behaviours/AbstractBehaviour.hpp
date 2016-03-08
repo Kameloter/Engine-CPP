@@ -11,7 +11,7 @@ class GameObject;
  *
  * It is similar to MonoBehaviour in Unity.
  */
-
+class Collision;
 class AbstractBehaviour 
 {
 	public:
@@ -26,6 +26,8 @@ class AbstractBehaviour
 
         //behaviour should be able to update itself every step and MUST be implemented
 		virtual void update(float pStep) = 0;
+
+		virtual void OnCollision(Collision collision);
 		
     protected:
 	    //reference back its owner

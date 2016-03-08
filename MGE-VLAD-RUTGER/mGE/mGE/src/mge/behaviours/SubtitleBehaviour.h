@@ -9,5 +9,6 @@ public:
 	~SubtitleBehaviour();
 
 	virtual void update(float step);
+	virtual void OnCollision(Collision collision);
 };
 
