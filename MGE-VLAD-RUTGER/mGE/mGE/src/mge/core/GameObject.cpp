@@ -202,6 +202,15 @@ glm::vec3 GameObject::getForward()
 {
     return  glm::normalize(glm::vec3(-_transform[2]));
 }
+
+glm::vec3 GameObject::getWorldForward()
+{
+	return  glm::normalize(glm::vec3(-_worldTransform[2]));
+}
+glm::vec3 GameObject::getWorldRight()
+{
+	return glm::normalize(glm::vec3(_worldTransform[0]));
+}
 glm::vec3 GameObject::getRight()
 {
     return glm::normalize(glm::vec3(_transform[0]));

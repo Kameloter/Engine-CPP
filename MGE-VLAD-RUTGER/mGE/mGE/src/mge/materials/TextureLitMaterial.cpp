@@ -73,7 +73,7 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
             case Light::LightType::Point:
                 {
                   pointCount++;
-				  std::cout <<"POINTCOUNT ->"<< pointCount << std::endl;
+				 // std::cout <<"POINTCOUNT ->"<< pointCount << std::endl;
                 std::string num = "pointLight[" + std::to_string(pointCount - 1) + "].";
 
                 glUniform3fv(_shader->getUniformLocation(num + "position"),1, glm::value_ptr(temp->getWorldPosition()));
@@ -94,15 +94,15 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
                     std::string num = "spotLight[" + std::to_string(spotCount - 1) + "].";
 
                     glUniform3fv(_shader->getUniformLocation(num + "position"),1, glm::value_ptr(temp->getWorldPosition()));
-					glUniform3fv(_shader->getUniformLocation(num + "direction"), 1, glm::value_ptr(temp->getForward()));
+					glUniform3fv(_shader->getUniformLocation(num + "direction"), 1, glm::value_ptr(-temp->getWorldRight()));
                     glUniform3fv(_shader->getUniformLocation(num + "ambient"),1, glm::value_ptr(temp->ambient));
                     glUniform3fv(_shader->getUniformLocation(num + "diffuse"),1,glm::value_ptr(temp->diffuse));
                     glUniform3fv(_shader->getUniformLocation(num + "specular"),1, glm::value_ptr(temp->specular));
                     glUniform1f (_shader->getUniformLocation(num + "constant"), 1.f);
                     glUniform1f (_shader->getUniformLocation(num + "linear"), 0.09f);
                     glUniform1f (_shader->getUniformLocation(num + "quadratic"), 0.032f);
-					glUniform1f(_shader->getUniformLocation(num + "innerCircle"), glm::cos(glm::radians(6.5f)));
-					glUniform1f(_shader->getUniformLocation(num +"outerCircle"), glm::cos(glm::radians(9.5f)));
+					glUniform1f(_shader->getUniformLocation(num + "innerCircle"), glm::cos(glm::radians(11.5f)));
+					glUniform1f(_shader->getUniformLocation(num +"outerCircle"), glm::cos(glm::radians(13.5f)));
                 }
                 break;
         }

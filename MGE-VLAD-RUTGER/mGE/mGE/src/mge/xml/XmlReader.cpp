@@ -412,26 +412,34 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			camera->setBehaviour(new FPCamera(1.0f, 1.0f, player));
 
 			StaticGameObject * flashLight = new StaticGameObject("FlashLight", glm::vec3(0, 0, 0), _world, true);
+			_world->add(flashLight);
 			flashLight->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Flashlight.obj"));
 			flashLight->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_diffuse.jpg") , Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_normal.jpg"),Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_specular.jpg"),0.1f));
-			_world->add(flashLight);
+		
 			flashLight->setParent(camera);
+			flashLight->setLocalPosition(camera->getForward() - glm::vec3(0, 0.5f, 0) + camera->getRight() / 2.0f);
+		
 			flashLight->scale(glm::vec3(0.1f));
-			flashLight->rotate(glm::radians(270.0f), glm::vec3(0, 1, 0));
+			flashLight->rotate(glm::radians(-90.f), glm::vec3(0, 1, 0));
 			
-			flashLight->setLocalPosition(camera->getForward() - glm::vec3(0,0.5f,0) + camera->getRight()/2.0f);
+			
+		
 
-			Light *light = new PointLight("Flashlight-light", glm::vec3(40,5,35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
-			_world->AddLight(light);
-			Light *slight = new SpotLight("Flashlight-light2", glm::vec3(40, 2, 35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
-			//light->rotate(glm::radians(180.0f), glm::vec3(0, 0, 1));
-			slight->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key.obj"));
-			slight->setMaterial(new ColorMaterial(glm::vec3(1, 1, 0)));
-			_world->add(slight);
-			_world->AddLight(slight);
+			//Light *light = new PointLight("Flashlight-light", glm::vec3(40,5,35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
+			//_world->AddLight(light);
 			//light->setParent(flashLight);
 			//light->rotate(glm::radians(270.0f), glm::vec3(0, 1, 0));
 			//light->setLocalPosition(glm::vec3(0, 2, 0));
+
+			Light *slight = new SpotLight("Flashlight-light2", glm::vec3(40, 2, 35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
+			_world->add(slight);
+			//light->rotate(glm::radians(180.0f), glm::vec3(0, 0, 1));
+			slight->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key.obj"));
+			slight->setMaterial(new ColorMaterial(glm::vec3(1, 1, 0)));
+			slight->setParent(flashLight);
+			slight->setLocalPosition(glm::vec3(0));
+			_world->AddLight(slight);
+		
 		}
 		break;
 
