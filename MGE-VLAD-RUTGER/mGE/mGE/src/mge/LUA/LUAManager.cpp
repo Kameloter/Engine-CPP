@@ -91,7 +91,7 @@ int LUAManager::ConnectStatueToPlate(lua_State * L)
 	string statueName = lua_tostring(L, 2);
 
 	StaticGameObject * plate = FindStaticTriggerObject(plateName);
-	StaticGameObject * statue = FindStaticObject(statueName);
+	RigidbodyGameObject * statue = FindRigidObject(statueName);
 
 	std::cout << plate->getName() << " + " << statue->getName() << std::endl;
 
