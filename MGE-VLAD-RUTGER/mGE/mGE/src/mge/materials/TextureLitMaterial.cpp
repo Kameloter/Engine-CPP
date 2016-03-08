@@ -101,8 +101,8 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
                     glUniform1f (_shader->getUniformLocation(num + "constant"), 1.f);
                     glUniform1f (_shader->getUniformLocation(num + "linear"), 0.09f);
                     glUniform1f (_shader->getUniformLocation(num + "quadratic"), 0.032f);
-					glUniform1f(_shader->getUniformLocation(num + "innerCircle"), glm::cos(glm::radians(11.5f)));
-					glUniform1f(_shader->getUniformLocation(num +"outerCircle"), glm::cos(glm::radians(13.5f)));
+					glUniform1f(_shader->getUniformLocation(num + "innerCircle"), glm::cos(glm::radians(14.5f)));
+					glUniform1f(_shader->getUniformLocation(num +"outerCircle"), glm::cos(glm::radians(18.5f)));
                 }
                 break;
         }

@@ -421,23 +421,10 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		
 			flashLight->scale(glm::vec3(0.1f));
 			flashLight->rotate(glm::radians(-90.f), glm::vec3(0, 1, 0));
-			
-			
-		
-
-			//Light *light = new PointLight("Flashlight-light", glm::vec3(40,5,35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
-			//_world->AddLight(light);
-			//light->setParent(flashLight);
-			//light->rotate(glm::radians(270.0f), glm::vec3(0, 1, 0));
-			//light->setLocalPosition(glm::vec3(0, 2, 0));
 
 			Light *slight = new SpotLight("Flashlight-light2", glm::vec3(40, 2, 35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
-			_world->add(slight);
-			//light->rotate(glm::radians(180.0f), glm::vec3(0, 0, 1));
-			slight->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key.obj"));
-			slight->setMaterial(new ColorMaterial(glm::vec3(1, 1, 0)));
 			slight->setParent(flashLight);
-			slight->setLocalPosition(glm::vec3(0));
+			slight->setLocalPosition(-2.5f * flashLight->getForward());
 			_world->AddLight(slight);
 		
 		}
