@@ -2,8 +2,6 @@
 #include "mge/core/collision/PhysicsWorld.h"
 #include "mge/core/collision/BoxTrigger.h"
 
-#define STATICMATERIAL 0
-
 StaticGameObject::StaticGameObject(std::string pName, glm::vec3 pPosition, PhysicsWorld* pWorld, bool trigger)
 	: GameObject(pName, pPosition),
 	_world(pWorld)
@@ -124,6 +122,7 @@ void StaticGameObject::AddBoxCollider(float pW, float pH, float pD)
 		//std::cout << "boxPOS" << glm::vec3(_animBody->GetPos()[0], _animBody->GetPos()[1], _animBody->GetPos()[2]) << std::endl;
 		box.Set(pW, pH, pD);
 		geometry->SetBoxSize(box);
+		geometry->SetMaterialIndex(0);
 		_animBody->UpdateBoundingInfo();
 	}
 	else {

@@ -34,10 +34,18 @@ PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObject
 	//start the physics simulation
 	_physicsSimulator = neSimulator::CreateSimulator(simulatorSize, NULL, &gravity);
 	_triggerManager = new TriggerManager();
+	
+	s32 STATICMATERIAL;
+	STATICMATERIAL = 0;
 
-	_physicsSimulator->SetMaterial(0, 2.0f, 0.01f);// index , friction, bounciness
+	_physicsSimulator->SetMaterial(STATICMATERIAL, 2.0f, 0.01f); // index , friction, bounciness
+	//_physicsSimulator
+	//_physicsSimulator->se
+	//_physicsSimulator->GetCollisionTable()->Set(0, 0, neCollisionTable::RESPONSE_IMPULSE_CALLBACK);
 
+	//_physicsSimulator->SetCollisionCallback(CollisionCallback);
 
+	
 }
 
 //void CollisionCallback(neCollisionInfo & collisionInfo)
@@ -118,6 +126,7 @@ neRigidBody* PhysicsWorld::addRigidBodyObject(RigidbodyGameObject * pRbGameObjec
 neAnimatedBody* PhysicsWorld::addStaticGameObject(StaticGameObject * pStaticGameobject)
 {
 	_staticGameObjects.push_back(pStaticGameobject);
+
 	return _physicsSimulator->CreateAnimatedBody();
 }
 std::vector<RigidbodyGameObject*> PhysicsWorld::getRigidObjects()
@@ -174,7 +183,6 @@ void PhysicsWorld::CleanObject(GameObject * object)
 	//_staticGameObjects.erase(std::remove(_staticGameObjects.begin(), _staticGameObjects.end(), object),_staticGameObjects.end());
 	
 }
-
 void PhysicsWorld::freeMemory(neRigidBody* pNeRb)
 {
 	_physicsSimulator->FreeRigidBody(pNeRb);
