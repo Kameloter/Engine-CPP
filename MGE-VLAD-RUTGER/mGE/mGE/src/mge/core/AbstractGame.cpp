@@ -103,30 +103,7 @@ void AbstractGame::run()
 {
 	_running = true;
 
-	float accumulatedTime = 0.0f;
-	float lastTime = clock();
-
-	int count = 0;
-
 	while (_running) {
-
-		float currentTime = clock();
-		float deltaTime = currentTime - lastTime;
-		accumulatedTime += deltaTime;
-
-		while (accumulatedTime > 20.0f) {
-			_fixedUpdate();
-			accumulatedTime -= 20.0f;
-			//count++;
-		}
-
-		lastTime = currentTime;
-
-	/*	if (count == 50) {
-			cout << "dsad" << endl;
-			count = 0;
-		}*/
-
 		Timer::update();
 		FPS::update();
 
@@ -164,10 +141,6 @@ void AbstractGame::run()
 void AbstractGame::_update()
 {
     _world->update(Timer::deltaTime(), glm::mat4());
-}
-
-void AbstractGame::_fixedUpdate() {
-	_world->fixedUpdate();
 }
 
 void AbstractGame::_render ()
