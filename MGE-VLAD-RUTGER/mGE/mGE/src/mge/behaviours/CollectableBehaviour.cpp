@@ -8,6 +8,7 @@
 #include "mge/StatsHolder.h"
 CollectableBehaviour::CollectableBehaviour()
 {
+	hit = false;
 }
 
 
@@ -17,17 +18,32 @@ CollectableBehaviour::~CollectableBehaviour()
 }
 sf::SoundBuffer buffer;
 sf::Sound sound;
+
 void CollectableBehaviour::update(float pStep) 
 {
 	//std::cout << dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->getMaxBounds() << std::endl;
 	 if (dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
 	{
 
-		 buffer;
+	
+
+		
+	}
+}
+
+void CollectableBehaviour::OnCollision(Collision collision)
+{
+	//::cout << collision.getHitBy()  << std::endl;
+	if (collision.getHitBy() == "Player" && !hit)
+	{
+		hit = true;
+
+		buffer;
 		if (!buffer.loadFromFile(config::MGE_SOUND_PATH + "victory.wav"))
 		{
 			std::cout << " cant load sound " << std::endl;
-		} 
+		}
+
 		sound.setBuffer(buffer);
 		sound.play();
 
@@ -36,5 +52,4 @@ void CollectableBehaviour::update(float pStep)
 		delete dynamic_cast<StaticGameObject*>(_owner);
 	}
 }
-
 

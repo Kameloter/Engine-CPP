@@ -83,8 +83,8 @@ void PhysicsWorld::update(float pStep, const glm::mat4& pParentTransform)
 
 void PhysicsWorld::fixedUpdate()
 {
-	_physicsSimulator->Advance(0.02f);
-	_triggerManager->runPhysics(0.02f);
+	_physicsSimulator->Advance(0.005f);
+	_triggerManager->runPhysics(0.005f);
 
 	for (int i = 0; i < _staticGameObjects.size(); i++)
 	{

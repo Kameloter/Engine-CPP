@@ -17,35 +17,27 @@ PushBlockBehaviour::~PushBlockBehaviour()
 }
 
 void PushBlockBehaviour::update(float pStep) {
-	if (CheckPlates()) {
-		if (forward) {
-			if (glm::distance(_owner->getWorldPosition(), _openPos) > 0.5f) {
-				dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(glm::normalize(_openPos - _closedPos) / 25);
-			}
-			else
-			{
-				forward = false;
-			}
+	if (forward) {
+		if (glm::distance(_owner->getWorldPosition(), _openPos) > 0.5f) {
+			dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(( glm::normalize(_openPos - _closedPos))* pStep * 15);
 		}
 		else
 		{
-			if (glm::distance(_owner->getWorldPosition(), _closedPos) > 0.5f)
-			{
-				dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(-glm::normalize(_openPos - _closedPos) / 25);
-			}
-			else
-			{
-				forward = true;
-			}
+			forward = false;
 		}
-
-		
 	}
-}
+	else
+	{
+		if (glm::distance(_owner->getWorldPosition(), _closedPos) > 0.5f)
+		{
+			dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(-glm::normalize(_openPos - _closedPos) * pStep * 2 );
+		}
+		else
+		{
+			forward = true;
+		}
+	}
 
-void PushBlockBehaviour::AddPressurePlate(GameObject * plate)
-{
-	plates.push_back(plate);
 }
 
 void PushBlockBehaviour::InitializePositions()
@@ -72,6 +64,13 @@ bool PushBlockBehaviour::CheckPlates()
 	}
 }
 
+
+ //LUA
 void PushBlockBehaviour::SetOpenPos(glm::vec3 translateUp) {
 	_openPos = _owner->getLocalPosition() + translateUp;
+}
+
+void PushBlockBehaviour::AddPressurePlate(GameObject * plate)
+{
+	plates.push_back(plate);
 }

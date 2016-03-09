@@ -42,7 +42,7 @@ void AbstractGame::initialize() {
 void AbstractGame::_initializeWindow() {
 	cout << "Initializing window..." << endl;
 	_window = new sf::RenderWindow( sf::VideoMode(800,600), "My Game!", sf::Style::Default, sf::ContextSettings(24,8,0,3,3));
-	_window->setVerticalSyncEnabled(false);
+	_window->setVerticalSyncEnabled(true);
     cout << "Window initialized." << endl << endl;
 }
 
@@ -114,9 +114,9 @@ void AbstractGame::run()
 		float deltaTime = currentTime - lastTime;
 		accumulatedTime += deltaTime;
 
-		while (accumulatedTime > 20.0f) {
+		while (accumulatedTime > 5.0f) {
 			_fixedUpdate();
-			accumulatedTime -= 20.0f;
+			accumulatedTime -= 5.0f;
 			//count++;
 		}
 
