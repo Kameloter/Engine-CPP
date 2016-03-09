@@ -24,7 +24,13 @@ TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, Texture* pNorm
 	_lazyInitializeShader();
 }
 
-TextureLitMaterial::~TextureLitMaterial() {}
+TextureLitMaterial::~TextureLitMaterial() 
+{
+	cout << "DESTROYED TextureLitMaterial "  << endl;
+	delete _shader;
+	_shader = NULL;
+
+}
 
 void TextureLitMaterial::_lazyInitializeShader() {
     if (!_shader) {
@@ -61,10 +67,12 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
     for (int i =0; i < pWorld->getLightCount(); i++)
     {
 		
+		//cout <<"lightcount ->> " << pWorld->getLightCount() << endl;
 
             Light* temp = pWorld->getLightAt(i);
         switch(temp->type){
             case Light::LightType::Directional:
+				//cout << "dasdasdasdas" << endl;
                 glUniform3fv(_shader->getUniformLocation("dirLight.direction"),1, glm::value_ptr(((DirectionalLight*)temp)->direction));
                 glUniform3fv(_shader->getUniformLocation("dirLight.ambient"),1, glm::value_ptr(temp->ambient));
                 glUniform3fv(_shader->getUniformLocation("dirLight.diffuse"),1,glm::value_ptr(temp->diffuse));

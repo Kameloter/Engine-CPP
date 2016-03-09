@@ -33,11 +33,19 @@ Camera* World::getMainCamera () {
 }
 void World::CleanUpworld()
 {
+	//for (int i = 0; i < _lights.size(); i++)
+	//{
+	//	delete _lights[i];
+	//}
+	_lights.clear();
+
 	while (_children.size() > 0) {
 		GameObject* child = _children[0];
 		remove(child);
 		delete child;
 	}
+
+
 }
 
 void World::CleanObjectFromWorld(GameObject * object)

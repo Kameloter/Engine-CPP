@@ -9,6 +9,7 @@ using namespace std;
 #include "mge/core/World.hpp"
 #include "mge/behaviours/AbstractBehaviour.hpp"
 #include "mge/core/collision/BoxTrigger.h"
+#include "mge/materials/AbstractMaterial.hpp"
 
 GameObject::GameObject(std::string pName, glm::vec3 pPosition )
 :	_name( pName ), _transform( glm::translate( pPosition ) ),  _parent(NULL), _children(),
@@ -20,15 +21,19 @@ GameObject::GameObject(std::string pName, glm::vec3 pPosition )
 
 GameObject::~GameObject()
 {
-    //detach all children
-    cout << "GC running on:" << _name << endl;
+	//detach all children
+	cout << "GC running on:" << _name << endl;
 	delete _behaviour;
-    while (_children.size() > 0) {
-        GameObject* child = _children[0];
-        remove (child);
-        delete child;
-    }
-    //do not forget to delete behaviour, material, mesh, collider manually if required!
+
+	if (_material != NULL)
+		delete _material;
+
+	while (_children.size() > 0) {
+		GameObject* child = _children[0];
+		remove(child);
+		delete child;
+	}
+	//do not forget to delete behaviour, material, mesh, collider manually if required!
 }
 
 void GameObject::setName (std::string pName)

@@ -91,8 +91,8 @@ void XmlReader::SetupLevelGeometry(std::string pLevelName)
     GameObject * root = new GameObject(pLevelName,glm::vec3(0,0,0));
     root->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + ".obj"));
 
-	//root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_norm.png"), 0.1f));
-	root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Level1_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + "Level1_norm.png"), 0.1f));
+	root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + "level_norm.png"), 0.1f));
+	//root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Level1_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + "Level1_norm.png"), 0.1f));
 
 	_world->add(root);
 
@@ -413,7 +413,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			camera->setLocalPosition(glm::vec3(0, 2, 0));
 			camera->setBehaviour(new FPCamera(1.0f, 1.0f, player));
 
-			StaticGameObject * flashLight = new StaticGameObject("FlashLight", glm::vec3(0, 0, 0), _world, true);
+			StaticGameObject * flashLight = new StaticGameObject("FLASHLIGHT - OBJECT", glm::vec3(0, 0, 0), _world, true);
 			_world->add(flashLight);
 			flashLight->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Flashlight.obj"));
 			flashLight->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_diffuse.jpg") , Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_normal.jpg"),Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_specular.jpg"),0.1f));
@@ -424,7 +424,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			flashLight->scale(glm::vec3(0.1f));
 			flashLight->rotate(glm::radians(-90.f), glm::vec3(0, 1, 0));
 
-			Light *slight = new SpotLight("Flashlight-light2", glm::vec3(40, 2, 35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
+			Light *slight = new SpotLight("FLASHLIGHT - POINT LIGHT", glm::vec3(40, 2, 35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
+			_world->add(slight);
 			slight->setParent(flashLight);
 			slight->setLocalPosition(-2.5f * flashLight->getForward());
 			_world->AddLight(slight);

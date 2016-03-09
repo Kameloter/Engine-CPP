@@ -58,7 +58,7 @@ void LevelManager::SwitchToLevel(GameLevels pToLevel)
 		return;
 
 	DestroyLevel(currentlevel);
-	std::cout << "destroywd level"<<std::endl;
+	std::cout << "destroyed level" << currentlevel  <<std::endl;
 	switch (pToLevel)
 	{
 	case Menu:
@@ -110,18 +110,20 @@ void LevelManager::BuildLevel(GameLevels pLevel)
 		break;
 	}
 }
-StaticGameObject * testtrig = nullptr;
+
 void LevelManager::DestroyLevel(GameLevels pLevel)
 {
-	testtrig = nullptr;
 	switch (pLevel)
 	{
 	case Menu:
 		cout << " Menu destroyed " << endl;
+
+		_world->CleanUpPhysicsWorld();
 		//cleanup menu
 		break;
 	case HUB:
 		cout << " HUB destroyed " << endl;
+		_world->CleanUpPhysicsWorld();
 		// Do something special so hub doesnt get destroyed completely
 		// or maybe store info in a class and use that info to create it again (so doors are closed after you complete level 1 )
 		break;
@@ -153,6 +155,10 @@ void LevelManager::Build_menu()
 
 void LevelManager::Build_level_hub()
 {
+	Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
+	_world->add(dirLight);
+	_world->AddLight(dirLight);
+
 	//Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
 	//_world->AddLight(dirLight);
 
@@ -162,21 +168,26 @@ void LevelManager::Build_level_hub()
 	xmlReader->LoadSubtitleTriggers("triggers_level_hub");
 	//LUAManager::InitializeFile(_world);
 	cout << " Build level hub " << endl;
+
+	if (_world != nullptr)
+		cout << _world->getLightCount() << endl;
 }
 
 sf::SoundBuffer ambientBuffer;
 sf::Sound soundAmbient;
 void LevelManager::Build_level_1()
-{
-	//Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
-	//_world->AddLight(dirLight);
+{	
 	cout << " Build level 1 " << endl;
 
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_01");
 	xmlReader->LoadInteractables("interactables");
 	xmlReader->LoadSubtitleTriggers("triggers_level_01");
-	LUAManager::InitializeFile(_world); 
+	LUAManager::InitializeFile(_world);
+
+	if (_world != nullptr)
+		cout << _world->getLightCount() << endl;
+
 	
 	//if (!ambientBuffer.loadFromFile(config::MGE_SOUND_PATH + "ambience.wav"))
 	//{

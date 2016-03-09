@@ -95,7 +95,6 @@ void main( void )
 
 vec3 getDirectionalLight(DirLight light, vec3 n, vec3 view, vec3 diffSample)
 {
-     
     vec3 lightDirection = normalize(-light.direction);
 
     vec3 ambientTerm = light.ambient * diffSample;

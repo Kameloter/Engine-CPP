@@ -145,7 +145,7 @@ void PhysicsWorld::CleanUpPhysicsWorld()
 	//	delete _rigidbodyGameObjects[i];
 	//}
 	_rigidbodyGameObjects.clear();
-	_rigidbodyGameObjects.shrink_to_fit();
+	//_rigidbodyGameObjects.shrink_to_fit();
 	//std::cout << "Cleaning physics world rigidbodyes - cleaned   " << "size " << _rigidbodyGameObjects.size() <<  std::endl;
 
 
@@ -156,7 +156,7 @@ void PhysicsWorld::CleanUpPhysicsWorld()
 	//	delete _staticGameObjects[i];
 	//}
 	_staticGameObjects.clear();
-	_staticGameObjects.shrink_to_fit();
+	//_staticGameObjects.shrink_to_fit();
 	//std::cout << "Cleaning physics world static bodies - cleaned   " << "size " << _staticGameObjects.size() << std::endl;
 	//free rigidbody memory ?
 }
