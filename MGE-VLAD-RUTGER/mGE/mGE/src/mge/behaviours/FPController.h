@@ -20,6 +20,7 @@ class FPController : public AbstractBehaviour
     private:
         float _moveSpeed;
         float _turnSpeed;
+		bool _grounded = true;
 };
 
 #endif // FPCONTROLLER_H

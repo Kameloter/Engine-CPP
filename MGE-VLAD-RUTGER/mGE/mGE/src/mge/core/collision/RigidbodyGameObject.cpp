@@ -38,16 +38,7 @@ void RigidbodyGameObject::moveRb(glm::vec3 pPos)
 
 void RigidbodyGameObject::updateRigidBody()
 {
-		//if (_name == "Player")
-		//{
-		//	glm::vec3 translate;
-		//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) translate += getForward() *2 ;
-		//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) translate -= getForward()* 2;
-		//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) translate -= getRight() *2;
-		//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) translate += getRight() *2;
-		//	//if (abs(translate.x) == 1 && abs(translate.z) == 1) translate *= 0.707f; else translate *= 1;
-		//	if (glm::length(translate)> 0) moveRb(translate);
-		//}
+		
 
 		neV3 rbPos = _rigidbody->GetPos();
 		glm::vec3 toGLMpos = glm::vec3(rbPos[0], rbPos[1], rbPos[2]);
@@ -62,10 +53,10 @@ void RigidbodyGameObject::updateRigidBody()
 		//				toGLMpos.x,			    toGLMpos.y,				toGLMpos.z, 1
 		//	));
 
-		neV3 rbVel;
+	/*	neV3 rbVel;
 		rbVel.Set(_rigidbody->GetVelocity());
-		glm::vec3 glmRbVel(rbVel[0], rbVel[1], rbVel[2]);
-
+		glm::vec3 glmRbVel(rbVel[0], rbVel[1], rbVel[2]);*/
+		
 		setLocalPosition(toGLMpos);
 		
 }

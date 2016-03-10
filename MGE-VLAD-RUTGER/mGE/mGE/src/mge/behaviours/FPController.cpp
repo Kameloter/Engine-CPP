@@ -4,6 +4,7 @@
 #include "mge/core/GameObject.hpp"
 #include <SFML/Graphics.hpp>
 #include "mge/core/collision/RigidbodyGameObject.h"
+
 GameObject* _camera;
 neV3 jump;
 FPController::FPController(float pMoveSpeed, float pTurnSpeed, GameObject * pCamera, InputType pInputType)
@@ -20,10 +21,19 @@ FPController::~FPController()
 {
 
 }
-bool _grounded = true;
+
 bool _canPress = false;
 
-void FPController::update(float pStep){
+float minimaly = 0;
+void FPController::update(float pStep) {
+	neV3 rv;
+	rv.Set(dynamic_cast<RigidbodyGameObject*>(_owner)->GetRigidBody()->GetVelocity());
+	glm::vec3 rbVel(rv[0], rv[1], rv[2]);
+	if (rbVel != glm::vec3(0))
+	{
+		std::cout << "Player vel " << rbVel << std::endl;
+	}
+
 
 	if (!_inAction) {
 		glm::vec3 translate;
@@ -57,43 +67,34 @@ void FPController::update(float pStep){
 			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 				_canPress = true;
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && _canPress && _grounded) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && _canPress && _grounded && glm::abs(rbVel.y) < 0.05f) {
 
 				dynamic_cast<RigidbodyGameObject*>(_owner)->GetRigidBody()->ApplyImpulse(jump);
-				_grounded = true;
+				_grounded = false;
 				_canPress = false;
 			}
 
 			break;
 
 		}
+
 		if (glm::length(translate) != 0) {
 			dynamic_cast<RigidbodyGameObject*>(_owner)->moveRb(translate);
+			minimaly = rbVel.y;
 		}
-		else {
-			//dynamic_cast<RigidbodyGameObject*>(_owner)->moveRb(glm::vec3(0, translate.y, 0));
+		
+		
+		if (rbVel.y < -6)
+		{
+			if (rbVel.y > -7)
+			{
+				_grounded = true;
+
+			}
 		}
-		// std::cout << "FPcontroller Input - > " << translate << std::endl;
-   // _owner->translate(translate); // - >> Move character on input.
-//    _owner->translate(glm::vec3(0,-0.1f,0)); // -> small gravity;
-
-   // if(_owner->getLocalPosition().y < -5.0f) _owner->setLocalPosition(glm::vec3(0,4,0));
-  //  glm::vec3 ownerLocPos  = _owner->getLocalPosition();
-//    if (!(ownerLocPos.x > -1.1f && ownerLocPos.x<1.1f && ownerLocPos.z >-1.1f && ownerLocPos.z<1.1f)){
-//
-//        if(ownerLocPos.y <= 1) _owner->setLocalPosition(glm::vec3(ownerLocPos.x,1,ownerLocPos.z));
-//    }
-
-   //  if(ownerLocPos.y >= 1 && ownerLocPos.y < 1.5f) _grounded = true;
-	// if(ownerLocPos.y <= 1) _owner->setLocalPosition(glm::vec3(ownerLocPos.x,1,ownerLocPos.z));
-//    if(ownerLocPos.y <= -2.0f){
-//        _owner->setLocalPosition(glm::vec3(-7,0,0));
-//    }
+		dynamic_cast<FPCamera*>(_camera->getBehaviour())->_inAction = _inAction;
 
 	}
-
-	dynamic_cast<FPCamera*>(_camera->getBehaviour())->_inAction = _inAction;
-
 }
 
 

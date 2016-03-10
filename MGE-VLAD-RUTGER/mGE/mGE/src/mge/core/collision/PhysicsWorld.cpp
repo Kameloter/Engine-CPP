@@ -163,12 +163,12 @@ void PhysicsWorld::CleanUpPhysicsWorld()
 
 void PhysicsWorld::CleanObject(GameObject * object)
 {
-	std::cout << " physics world clean object  ---- "  << object->getName() << std::endl;
+	//std::cout << " physics world clean object  ---- "  << object->getName() << std::endl;
 
 	_staticGameObjects.erase(std::remove(_staticGameObjects.begin(), _staticGameObjects.end(), object), _staticGameObjects.end());
-	std::cout << " static objects cleaned  " << object->getName() << std::endl;
+	//std::cout << " static objects cleaned  " << object->getName() << std::endl;
 	_triggerManager->cleanObject(object);
-	std::cout << " trigger manager  cleaned  " << object->getName() << std::endl;
+	//std::cout << " trigger manager  cleaned  " << object->getName() << std::endl;
 
 	World::CleanObjectFromWorld(object);
 	
