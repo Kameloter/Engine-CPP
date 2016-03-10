@@ -92,19 +92,9 @@ void FPController::update(float pStep) {
 		std::cout << Timer::now() << std::endl;
 		if (Timer::now() > startTime + 2)
 		{
-			if(rbVel.y < -7)
 			_grounded = true;
-			
 		}
-		
-		/*if (rbVel.y < -6)
-		{
-			if (rbVel.y > -7)
-			{
-				_grounded = true;
 
-			}
-		}*/
 		dynamic_cast<FPCamera*>(_camera->getBehaviour())->_inAction = _inAction;
 
 	}
