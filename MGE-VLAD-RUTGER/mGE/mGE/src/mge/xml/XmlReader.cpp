@@ -197,12 +197,18 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			dynamic_cast<StatueBehaviour*>(obj->getBehaviour())->SetPlayer(_world->getRigidObjects()[0]);
 			_world->add(obj);
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			glm::vec3 center = obj->getLocalPosition();
+
+			glm::vec3 minbound(center.x - colSize.x/2, center.y - colSize.y / 2, center.z - colSize.z / 2);
+			glm::vec3 maxbound(center.x + colSize.x/2, center.y + colSize.y / 2, center.z + colSize.z/ 2);
+			obj->SetBounds(minbound, maxbound);
+
 			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 
 			f32 mass = 30;
 			obj->GetRigidBody()->SetInertiaTensor(neBoxInertiaTensor(colSize.x, colSize.y, colSize.z, mass));
 			obj->GetRigidBody()->SetMass(mass);
-			obj->GetRigidBody()->SetAngularDamping(0.05f);
+			obj->GetRigidBody()->SetAngularDamping(1.0f);
 		}
 		break;
 		case 1:
@@ -214,8 +220,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			_world->add(obj);
 
 			glm::vec3 center2 = obj->getLocalPosition();
-			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
-			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
+			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 1.5f, center2.z - 0.5f);
+			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 1.5f, center2.z + 0.5f);
 			obj->SetBounds(minbound2, maxbound2);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
@@ -236,7 +242,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 
-			obj->setBehaviour(new CollectableBehaviour());
+			obj->setBehaviour(new CollectableBehaviour(false));
 			_world->add(obj);
 		}
 		break;
@@ -271,19 +277,13 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setBehaviour(new SpikeBehaviour());
 			_world->add(obj);
 
-
-
-
 			if (_rotationsInteractables[i].z > 0) {
 				obj->rotate(glm::radians(_rotationsInteractables[i].z), glm::vec3(0, 0, 1));
 				glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
 				glm::vec3 center2 = obj->getLocalPosition();
 				glm::vec3 minbound2(center2.x - colSize.y, center2.y - colSize.x, center2.z - colSize.z);
 				glm::vec3 maxbound2(center2.x + colSize.y, center2.y + colSize.x, center2.z + colSize.z);
-				//std::cout << "minbound = " << minbound2 << "  maxbound =" << maxbound2 << std::endl;
 				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
-				//obj->SetBounds(glm::vec3(minbound2.y,minbound2.z,minbound2.x), glm::vec3(maxbound2.y, maxbound2.z, maxbound2.x));
-
 				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			}
 			else
@@ -337,7 +337,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 
-			obj->setBehaviour(new CollectableBehaviour());
+			obj->setBehaviour(new CollectableBehaviour(true));
 		}
 		break;
 		case 7:

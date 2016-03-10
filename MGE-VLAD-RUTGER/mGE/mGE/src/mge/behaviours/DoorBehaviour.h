@@ -14,11 +14,13 @@ class DoorBehaviour : public AbstractBehaviour
          bool _activated;
          void SetOpenPos (glm::vec3 translateUp);
 		 void AddPressurePlate(GameObject * plate);
+		 void SetKeysNeeded(int amount);
 		 void InitializePositions();
     protected:
     private:
 		
 		std::vector<GameObject*> plates;
+		int keysNeeded = 0;
 		bool CheckPlates();
 
         glm::vec3 _openPos;

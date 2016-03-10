@@ -61,6 +61,8 @@ int LUAManager::InitializeFile(PhysicsWorld * pWorld){
 	lua_setglobal(lua, "SetOpenVectorBlock");
 	lua_pushcfunction(lua, SetOpenVectorSpike);
 	lua_setglobal(lua, "SetOpenVectorSpike");
+	lua_pushcfunction(lua, SetKeyNeededDoor);
+	lua_setglobal(lua, "SetKeyNeededDoor");
 
     if (luaL_loadfile(lua, "assets/mge/lua/Room1.lua") || lua_pcall(lua, 0, 0, 0)) {
         printf("error: %s", lua_tostring(lua, -1));
@@ -151,6 +153,16 @@ int LUAManager::AddPressurePlateToBlock(lua_State * L)
 
 	dynamic_cast<PushBlockBehaviour*>(door->getBehaviour())->AddPressurePlate(plate);
 
+	return 0;
+}
+
+int LUAManager::SetKeyNeededDoor(lua_State * L)
+{
+	std::cout << "jawhole" << std::endl;
+	string doorName = lua_tostring(L, 1);
+	int amount = lua_tonumber(L, 2);
+	StaticGameObject * door = FindStaticObject(doorName);
+	dynamic_cast<DoorBehaviour*>(door->getBehaviour())->SetKeysNeeded(amount);
 	return 0;
 }
 

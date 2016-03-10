@@ -26,6 +26,8 @@ public:
 	void setWorldWindow(PhysicsWorld * pWorld, sf::Window * pWindow);
 	 
 	 void SwitchToLevel(GameLevels pToLevel);
+
+	 void ReloadLevel();
 private:
 	void BuildLevel(GameLevels pLevel);
 	void DestroyLevel(GameLevels pLevel);

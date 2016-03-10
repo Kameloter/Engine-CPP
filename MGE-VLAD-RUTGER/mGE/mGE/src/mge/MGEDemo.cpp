@@ -90,8 +90,8 @@ void MGEDemo::_render() {
 	if (StatsHolder::PlayerDied == true)
 	{
 		StatsHolder::PlayerDied = false;
-		LevelManager::getInstance().SwitchToLevel(GameLevels::HUB);
-		LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
+		LevelManager::getInstance().ReloadLevel();
+	//	LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
 	}
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::O) && !press)
 	{

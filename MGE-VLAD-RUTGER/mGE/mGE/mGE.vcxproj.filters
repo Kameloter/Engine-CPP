@@ -99,9 +99,6 @@
     <ClInclude Include="src\mge\behaviours\FPController.h">
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
-    <ClInclude Include="src\mge\behaviours\KeysBehaviour.hpp">
-      <Filter>Header Files\behaviours</Filter>
-    </ClInclude>
     <ClInclude Include="src\mge\behaviours\KeysBehaviour2.hpp">
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
@@ -276,19 +273,19 @@
     <ClInclude Include="src\mge\behaviours\PushBlockBehaviour.h">
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
-    <ClInclude Include="src\mge\behaviours\SpikeBehaviour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\mge\behaviours\SubtitleBehaviour.h">
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
-    <ClInclude Include="src\mge\behaviours\DeathBehaviour.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\mge\behaviours\SceneSwitchBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
     </ClInclude>
     <ClInclude Include="src\mge\behaviours\WinBehaviour.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\behaviours</Filter>
     </ClInclude>
-    <ClInclude Include="src\mge\behaviours\SceneSwitchBehaviour.h">
+    <ClInclude Include="src\mge\behaviours\SpikeBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\DeathBehaviour.h">
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
   </ItemGroup>
@@ -553,19 +550,19 @@
     <ClCompile Include="src\mge\behaviours\PushBlockBehaviour.cpp">
       <Filter>Source Files\behaviours</Filter>
     </ClCompile>
-    <ClCompile Include="src\mge\behaviours\SpikeBehaviour.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\mge\behaviours\SubtitleBehaviour.cpp">
       <Filter>Source Files\behaviours</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mge\behaviours\WinBehaviour.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\mge\behaviours\DeathBehaviour.cpp">
       <Filter>Source Files\behaviours</Filter>
     </ClCompile>
     <ClCompile Include="src\mge\behaviours\SceneSwitchBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\SpikeBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\WinBehaviour.cpp">
       <Filter>Source Files\behaviours</Filter>
     </ClCompile>
   </ItemGroup>

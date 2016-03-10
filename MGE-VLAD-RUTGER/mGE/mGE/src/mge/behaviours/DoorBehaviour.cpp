@@ -6,6 +6,8 @@
 #include "mge/behaviours/PressurePlateBehaviour.h"
 #include "mge\core\collision/StaticGameObject.h"
 
+#include "mge/StatsHolder.h"
+
 DoorBehaviour::DoorBehaviour()
 {
     _activated = false;
@@ -33,6 +35,11 @@ void DoorBehaviour::AddPressurePlate(GameObject * plate)
 	plates.push_back(plate);
 }
 
+void DoorBehaviour::SetKeysNeeded(int amount)
+{
+	keysNeeded = amount;
+}
+
 void DoorBehaviour::InitializePositions()
 {
 	_closedPos = _owner->getLocalPosition();
@@ -48,7 +55,7 @@ bool DoorBehaviour::CheckPlates()
 		}
 	}
 
-	if (count == plates.size()) {
+	if (count == plates.size() && StatsHolder::getKeyCount()>= keysNeeded) {
 		return true;
 	}
 	else

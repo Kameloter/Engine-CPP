@@ -26,7 +26,6 @@
     <ClInclude Include="src\mge\behaviours\DoorBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\FPCamera.h" />
     <ClInclude Include="src\mge\behaviours\FPController.h" />
-    <ClInclude Include="src\mge\behaviours\KeysBehaviour.hpp" />
     <ClInclude Include="src\mge\behaviours\KeysBehaviour2.hpp" />
     <ClInclude Include="src\mge\behaviours\LookAt.hpp" />
     <ClInclude Include="src\mge\behaviours\Orbit.hpp" />

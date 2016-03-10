@@ -59,30 +59,37 @@ void LevelManager::SwitchToLevel(GameLevels pToLevel)
 
 	DestroyLevel(currentlevel);
 	std::cout << "destroyed level" << currentlevel  <<std::endl;
-	switch (pToLevel)
-	{
-	case Menu:
-		BuildLevel(Menu);
-		break;
-	case HUB:
-		BuildLevel(HUB);
-		break;
-	case Level1:
-		BuildLevel(Level1);
-		break;
-	case Level2:
-		BuildLevel(Level2);
-		break;
-	case Level3:
-		BuildLevel(Level3);
-		break;
-	case Level4:
-		BuildLevel(Level4);
-		break;
-	default:
-		break;
-	}
+	
+	BuildLevel(pToLevel);
+	//switch (pToLevel)
+	//{
+	//case Menu:
+	//	BuildLevel(Menu);
+	//	break;
+	//case HUB:
+	//	BuildLevel(HUB);
+	//	break;
+	//case Level1:
+	//	BuildLevel(Level1);
+	//	break;
+	//case Level2:
+	//	BuildLevel(Level2);
+	//	break;
+	//case Level3:
+	//	BuildLevel(Level3);
+	//	break;
+	//case Level4:
+	//	BuildLevel(Level4);
+	//	break;
+	//default:
+	//	break;
+	//}
 	currentlevel = pToLevel;
+}
+void LevelManager::ReloadLevel()
+{
+	DestroyLevel(currentlevel);
+	BuildLevel(currentlevel);
 }
 void LevelManager::BuildLevel(GameLevels pLevel)
 {

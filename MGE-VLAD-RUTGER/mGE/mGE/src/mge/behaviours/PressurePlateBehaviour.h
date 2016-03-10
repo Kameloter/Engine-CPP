@@ -14,8 +14,11 @@ public:
 	bool _activated = false;
 
 	void SetStatue(GameObject * pStatue);
+
+	virtual void OnCollision(Collision collision);
 	
 private:
+	bool hit;
 	GameObject * _statue;
 };
 

@@ -12,6 +12,7 @@
 
 SpikeBehaviour::SpikeBehaviour()
 {
+	hit = false;
 }
 
 
@@ -40,13 +41,7 @@ void SpikeBehaviour::update(float pStep) {
 		{
 			forward = true;
 		}
-	}
-
-
-	if (dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
-	{
-		StatsHolder::PlayerDied = true;
-	}			
+	}	
 }
 
 void SpikeBehaviour::InitializePositions()
@@ -57,5 +52,16 @@ void SpikeBehaviour::InitializePositions()
 
 void SpikeBehaviour::SetOpenPos(glm::vec3 translateUp) {
 	_openPos = _owner->getLocalPosition() + translateUp;
+}
+
+void SpikeBehaviour::OnCollision(Collision collision)
+{
+	//std::cout << collision.getHitBy() << std::endl;
+
+	if (collision.getHitBy() == "Player" && !hit)
+	{
+		StatsHolder::PlayerDied = true;
+		hit = true;
+	}
 }
 
