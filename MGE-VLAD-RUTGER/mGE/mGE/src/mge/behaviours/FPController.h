@@ -16,6 +16,7 @@ class FPController : public AbstractBehaviour
         virtual ~FPController();
         virtual void update( float step );
 		bool _inAction = false;
+		float startTime;
     protected:
     private:
         float _moveSpeed;

@@ -4,10 +4,12 @@
 #include "mge/core/GameObject.hpp"
 #include <SFML/Graphics.hpp>
 #include "mge/core/collision/RigidbodyGameObject.h"
+#include "mge/core/Timer.hpp"
 
 GameObject* _camera;
 neV3 jump;
-FPController::FPController(float pMoveSpeed, float pTurnSpeed, GameObject * pCamera, InputType pInputType)
+FPController::FPController(float pMoveSpeed, float pTurnSpeed, GameObject * pCamera, InputType pInputType):
+	startTime(0)
 {
     _moveSpeed = pMoveSpeed;
     _turnSpeed = pTurnSpeed;
@@ -54,6 +56,7 @@ void FPController::update(float pStep) {
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && _canPress && _grounded) {
 				translate.y += 4;
+				startTime = Timer::now();
 				_grounded = false;
 				_canPress = false;
 			}
@@ -67,9 +70,10 @@ void FPController::update(float pStep) {
 			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 				_canPress = true;
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && _canPress && _grounded && glm::abs(rbVel.y) < 0.05f) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && _canPress && _grounded /*&& glm::abs(rbVel.y) < 0.05f*/) {
 
 				dynamic_cast<RigidbodyGameObject*>(_owner)->GetRigidBody()->ApplyImpulse(jump);
+				startTime = Timer::now();
 				_grounded = false;
 				_canPress = false;
 			}
@@ -82,16 +86,25 @@ void FPController::update(float pStep) {
 			dynamic_cast<RigidbodyGameObject*>(_owner)->moveRb(translate);
 			minimaly = rbVel.y;
 		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
+			std::cout << "start time ->>> "<<startTime << std::endl;
+
+		std::cout << Timer::now() << std::endl;
+		if (Timer::now() > startTime + 2)
+		{
+			if(rbVel.y < -7)
+			_grounded = true;
+			
+		}
 		
-		
-		if (rbVel.y < -6)
+		/*if (rbVel.y < -6)
 		{
 			if (rbVel.y > -7)
 			{
 				_grounded = true;
 
 			}
-		}
+		}*/
 		dynamic_cast<FPCamera*>(_camera->getBehaviour())->_inAction = _inAction;
 
 	}
