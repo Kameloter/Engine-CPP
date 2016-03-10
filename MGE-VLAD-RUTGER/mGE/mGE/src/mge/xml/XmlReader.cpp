@@ -13,6 +13,7 @@
 #include "mge/materials/TextureLitMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/materials/TextureNormalMaterial.hpp"
+#include "mge/materials/TerrainMaterial.hpp"
 
 #include "mge/core/light/SpotLight.h"
 #include "mge/core/light/PointLight.h"
@@ -396,6 +397,14 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 			Player * player = new Player("Player", _positionsInteractables[i], _world, camera);
 			_world->add(player);
+
+			GameObject * lava = new GameObject("lava", _positionsInteractables[i]);
+			_world->add(lava);
+			lava->setMesh(Mesh::load(config::MGE_MODEL_PATH + "cube.obj"));
+			lava->setMaterial(new TerrainMaterial(Texture::load(config::MGE_TEXTURE_PATH + "lava.jpg")));
+		//	lava->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+			lava->setParent(player);
+			lava->setLocalPosition(glm::vec3(0, 0, -5));
 
 			camera->setParent(player);
 			camera->setLocalPosition(glm::vec3(0, 2, 0));

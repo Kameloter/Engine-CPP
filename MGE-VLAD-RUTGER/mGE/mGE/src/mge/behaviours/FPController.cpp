@@ -31,10 +31,10 @@ void FPController::update(float pStep) {
 	neV3 rv;
 	rv.Set(dynamic_cast<RigidbodyGameObject*>(_owner)->GetRigidBody()->GetVelocity());
 	glm::vec3 rbVel(rv[0], rv[1], rv[2]);
-	if (rbVel != glm::vec3(0))
+	/*if (rbVel != glm::vec3(0))
 	{
 		std::cout << "Player vel " << rbVel << std::endl;
-	}
+	}*/
 
 
 	if (!_inAction) {
@@ -86,9 +86,7 @@ void FPController::update(float pStep) {
 			dynamic_cast<RigidbodyGameObject*>(_owner)->moveRb(translate);
 			minimaly = rbVel.y;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
-			std::cout << "start time ->>> "<<startTime << std::endl;
-
+	
 		std::cout << Timer::now() << std::endl;
 		if (Timer::now() > startTime + 2)
 		{

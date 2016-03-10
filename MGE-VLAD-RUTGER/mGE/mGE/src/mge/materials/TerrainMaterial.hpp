@@ -11,9 +11,8 @@
 class TerrainMaterial : public AbstractMaterial
 {
     public:
-        TerrainMaterial (Texture* pDiffuseTextureR,Texture* pDiffuseTextureG,
-                         Texture* pDiffuseTextureB,Texture* pDiffuseTextureA,
-                         Texture* pSplatMap,Texture* pHeightMap);
+        TerrainMaterial (Texture* pDiffuseTextureG
+                      );
         virtual ~TerrainMaterial ();
         virtual void render(World* pWorld, GameObject* pGameObject, Camera* pCamera);
 

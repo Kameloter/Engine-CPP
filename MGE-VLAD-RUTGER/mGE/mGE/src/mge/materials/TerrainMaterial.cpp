@@ -16,12 +16,9 @@ GLint TerrainMaterial::_uDiffuseTextureA = 0;
 GLint TerrainMaterial::_uSplatMap = 0;
 GLint TerrainMaterial::_uHeightMap = 0;
 
-TerrainMaterial::TerrainMaterial(Texture* pDiffuseTextureR,Texture* pDiffuseTextureG,
-                                 Texture* pDiffuseTextureB,Texture* pDiffuseTextureA,
-                                 Texture* pSplatMap,Texture* pHeightMap):
-    _diffuseTextureR(pDiffuseTextureR),_diffuseTextureG(pDiffuseTextureG),
-    _diffuseTextureB(pDiffuseTextureB),_diffuseTextureA(pDiffuseTextureA),
-    _splatMap(pSplatMap),_heightMap(pHeightMap) {
+TerrainMaterial::TerrainMaterial(Texture* pDiffuseTextureG):
+    _diffuseTextureG(pDiffuseTextureG)
+   {
     _lazyInitializeShader();
 }
 
@@ -33,12 +30,12 @@ void TerrainMaterial::_lazyInitializeShader() {
         _shader->addShader(GL_VERTEX_SHADER, config::MGE_SHADER_PATH+"terrain.vs");
         _shader->addShader(GL_FRAGMENT_SHADER, config::MGE_SHADER_PATH+"terrain.fs");
         _shader->finalize();
-        _uDiffuseTextureR = _shader->getUniformLocation("tex_DiffuseR");
+     //   _uDiffuseTextureR = _shader->getUniformLocation("tex_DiffuseR");
         _uDiffuseTextureG = _shader->getUniformLocation("tex_DiffuseG");
-        _uDiffuseTextureB = _shader->getUniformLocation("tex_DiffuseB");
-        _uDiffuseTextureA = _shader->getUniformLocation("tex_DiffuseA");
-        _uHeightMap = _shader->getUniformLocation("heightMap");
-        _uSplatMap = _shader->getUniformLocation("splatMap");
+      //  _uDiffuseTextureB = _shader->getUniformLocation("tex_DiffuseB");
+      //  _uDiffuseTextureA = _shader->getUniformLocation("tex_DiffuseA");
+    //    _uHeightMap = _shader->getUniformLocation("heightMap");
+     //   _uSplatMap = _shader->getUniformLocation("splatMap");
     }
 }
 
@@ -53,12 +50,12 @@ void TerrainMaterial::render(World* pWorld, GameObject* pGameObject, Camera* pCa
     if (!_diffuseTextureA) return;
 
     _shader->use();
-    _shader->setTexture(_uDiffuseTextureR,0,_diffuseTextureR->getId());
+  //  _shader->setTexture(_uDiffuseTextureR,0,_diffuseTextureR->getId());
     _shader->setTexture(_uDiffuseTextureG,1,_diffuseTextureG->getId());
-    _shader->setTexture(_uDiffuseTextureB,2,_diffuseTextureB->getId());
-    _shader->setTexture(_uDiffuseTextureA,3,_diffuseTextureA->getId());
-    _shader->setTexture(_uHeightMap,4,_heightMap->getId());
-    _shader->setTexture(_uSplatMap,5,_splatMap->getId());
+ //   _shader->setTexture(_uDiffuseTextureB,2,_diffuseTextureB->getId());
+ //   _shader->setTexture(_uDiffuseTextureA,3,_diffuseTextureA->getId());
+ //   _shader->setTexture(_uHeightMap,4,_heightMap->getId());
+//    _shader->setTexture(_uSplatMap,5,_splatMap->getId());
 
     glUniform1f(_shader->getUniformLocation("time"),Timer::now());
 
