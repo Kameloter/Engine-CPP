@@ -19,6 +19,7 @@ using namespace std;
 #include "mge/behaviours/PressurePlateBehaviour.h"
 #include "mge/behaviours/PushBlockBehaviour.h"
 #include "mge/behaviours/SpikeBehaviour.h"
+#include "mge/behaviours/GhostBehaviour.h"
 
 
 #include "mge/core/collision/TriggerManager.h"
@@ -63,6 +64,8 @@ int LUAManager::InitializeFile(PhysicsWorld * pWorld){
 	lua_setglobal(lua, "SetOpenVectorSpike");
 	lua_pushcfunction(lua, SetKeyNeededDoor);
 	lua_setglobal(lua, "SetKeyNeededDoor");
+	lua_pushcfunction(lua, SetBeginEndGhost);
+	lua_setglobal(lua, "SetBeginEndGhost");
 
     if (luaL_loadfile(lua, "assets/mge/lua/Room1.lua") || lua_pcall(lua, 0, 0, 0)) {
         printf("error: %s", lua_tostring(lua, -1));
@@ -163,6 +166,19 @@ int LUAManager::SetKeyNeededDoor(lua_State * L)
 	int amount = lua_tonumber(L, 2);
 	StaticGameObject * door = FindStaticObject(doorName);
 	dynamic_cast<DoorBehaviour*>(door->getBehaviour())->SetKeysNeeded(amount);
+	return 0;
+}
+
+int LUAManager::SetBeginEndGhost(lua_State * L)
+{
+	string ghostName = lua_tostring(L, 1);
+	glm::vec3 openPos = glm::vec3(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4));
+	glm::vec3 closedPos = glm::vec3(lua_tonumber(L, 5), lua_tonumber(L, 6), lua_tonumber(L, 7));
+
+	StaticGameObject * ghost = FindStaticTriggerObject(ghostName);
+	std::cout << ghost->getName() << openPos << closedPos << std::endl;
+
+	dynamic_cast<GhostBehaviour*>(ghost->getBehaviour())->setBeginEnd(openPos,closedPos);
 	return 0;
 }
 

@@ -226,8 +226,9 @@ void LevelManager::Build_level_3()
 
 void LevelManager::Build_level_4()
 {
-	//Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
-	//_world->AddLight(dirLight);
+	Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
+	_world->add(dirLight);
+	_world->AddLight(dirLight);
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_04");
 	xmlReader->LoadInteractables("interactables_level_04");

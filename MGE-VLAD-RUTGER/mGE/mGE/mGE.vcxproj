@@ -26,6 +26,7 @@
     <ClInclude Include="src\mge\behaviours\DoorBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\FPCamera.h" />
     <ClInclude Include="src\mge\behaviours\FPController.h" />
+    <ClInclude Include="src\mge\behaviours\GhostBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\KeysBehaviour2.hpp" />
     <ClInclude Include="src\mge\behaviours\LookAt.hpp" />
     <ClInclude Include="src\mge\behaviours\Orbit.hpp" />
@@ -125,6 +126,7 @@
     <ClCompile Include="src\mge\behaviours\DoorBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\FPCamera.cpp" />
     <ClCompile Include="src\mge\behaviours\FPController.cpp" />
+    <ClCompile Include="src\mge\behaviours\GhostBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\KeysBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\KeysBehaviour2.cpp" />
     <ClCompile Include="src\mge\behaviours\LookAt.cpp" />

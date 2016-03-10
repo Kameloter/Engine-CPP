@@ -150,4 +150,9 @@
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="0"/>
 	</Object>
+	<Object name="Ghost_01">
+		<Position X="27.0" Y="0.5" Z="36.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="12"/>
+	</Object>
 </GameObjects>

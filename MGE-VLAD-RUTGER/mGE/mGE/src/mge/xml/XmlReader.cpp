@@ -33,6 +33,7 @@
 #include "mge/behaviours/DeathBehaviour.h"
 #include "mge/SubtitleManager.h"
 #include "mge/behaviours/SceneSwitchBehaviour.h"
+#include "mge/behaviours/GhostBehaviour.h"
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -374,29 +375,16 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		case 9:
 		{
 
-			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, false);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "secret_path.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
 			_world->add(obj);
-
-			glm::vec3 center2 = obj->getLocalPosition();
-			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
-			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
-			obj->SetBounds(minbound2, maxbound2);
-
 		
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 
-			if (_rotationsInteractables[i].y > 0) {
+			if (_rotationsInteractables[i].y > 0) 
 				obj->rotate(glm::radians(90.0f), glm::vec3(0, 1, 0));
-				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
-			}
-			else
-			{
-				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
-			}
-
-			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+		
 		}
 		break;
 
@@ -456,6 +444,52 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 		}
 		break;
+
+		case 12:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Ghost.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 1, 0)));
+			obj->setBehaviour(new GhostBehaviour());
+			_world->add(obj);
+
+			if (_rotationsInteractables[i].z > 0) {
+				obj->rotate(glm::radians(_rotationsInteractables[i].z), glm::vec3(0, 0, 1));
+				glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
+				glm::vec3 center2 = obj->getLocalPosition();
+				glm::vec3 minbound2(center2.x - colSize.y, center2.y - colSize.x, center2.z - colSize.z);
+				glm::vec3 maxbound2(center2.x + colSize.y, center2.y + colSize.x, center2.z + colSize.z);
+				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+			else
+			{
+				glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
+				glm::vec3 center2 = obj->getLocalPosition();
+				glm::vec3 minbound2(center2.x - colSize.x, center2.y - colSize.y, center2.z - colSize.z);
+				glm::vec3 maxbound2(center2.x + colSize.x, center2.y + colSize.y, center2.z + colSize.z);
+				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+			dynamic_cast<GhostBehaviour*>(obj->getBehaviour())->InitializePositions();
+			/*StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world,true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Ghost.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+
+			obj->setBehaviour(new GhostBehaviour());
+*/
+		/*	glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
+			glm::vec3 center2 = obj->getLocalPosition();
+			glm::vec3 minbound2(center2.x - colSize.x, center2.y - colSize.y, center2.z - colSize.z);
+			glm::vec3 maxbound2(center2.x + colSize.x, center2.y + colSize.y, center2.z + colSize.z);
+			obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);*/
+
+			
+
+		}
+		break;
+
 		default:
 			break;
 		}
