@@ -71,44 +71,44 @@
 		<Object_Type Type="8"/>
 	</Object>
 	<Object name="Bridge_Broken_01">
-		<Position X="-27.0" Y="-0.0876811444759" Z="15.0"/>
+		<Position X="-27.0" Y="-0.263455674476" Z="15.0"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="16"/>
 	</Object>
 	<Object name="Bridge_Broken_03">
-		<Position X="-15.0" Y="-0.0876811444759" Z="-9.0"/>
+		<Position X="-15.0" Y="-0.263455674476" Z="-9.0"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="16"/>
 	</Object>
 	<Object name="Bridge_Broken_02">
-		<Position X="-44.5" Y="-0.0876811444759" Z="-21.0"/>
+		<Position X="-44.5" Y="-0.263455674476" Z="-21.0"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="16"/>
 	</Object>
 	<Object name="Bridge_Broken_04">
-		<Position X="-24.0" Y="-0.0876811444759" Z="-27.0"/>
+		<Position X="-24.0" Y="-0.263455674476" Z="-27.0"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="16"/>
 	</Object>
 	<Object name="Bridge_Broken_05">
-		<Position X="12.0" Y="-0.0876811444759" Z="-15.0"/>
+		<Position X="12.0" Y="-0.263455674476" Z="-15.0"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="16"/>
 	</Object>
 	<Object name="Shooting_Trap_01">
 		<Position X="61.2812942257" Y="2.62277719378" Z="-15.7602829748"/>
 		<Rotation X="0.0" Y="0.0" Z="90.0"/>
-		<Object_Type Type="4"/>
+		<Object_Type Type="5"/>
 	</Object>
 	<Object name="Shooting_Trap_02">
 		<Position X="61.2812942257" Y="2.62277719378" Z="-26.0373299053"/>
 		<Rotation X="0.0" Y="0.0" Z="90.0"/>
-		<Object_Type Type="4"/>
+		<Object_Type Type="5"/>
 	</Object>
 	<Object name="Shooting_Trap_03">
 		<Position X="52.4590972897" Y="2.62277719378" Z="-33.6440649514"/>
 		<Rotation X="0.0" Y="0.0" Z="-90.0"/>
-		<Object_Type Type="4"/>
+		<Object_Type Type="5"/>
 	</Object>
 	<Object name="Step">
 		<Position X="72.1820760568" Y="0.683504360812" Z="-41.4267573405"/>
