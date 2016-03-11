@@ -12,13 +12,12 @@ out vec4 fragment_color;
 
 void main( void ) {
 
-    float factorX = sin(time / 25);
-    float factorY = cos(time / 25);
+    float factorX = sin(time / 20);
+    float factorY = cos(time / 20);
 
     vec2 changeUv = texCoord;
-    vec2 dis1 = texture (tex_DiffuseG,vec2(texCoord.x + factorX, texCoord.y + factorY)).rg  * .1f;
-    vec2 dis2 = texture (tex_DiffuseG,vec2(-texCoord.x + factorX, texCoord.y - factorY)).rg * .1f;
-    vec2 disT = dis1 + dis2;
+    vec2 dis1 = vec2(texCoord.x + factorX, texCoord.y + factorY)  * 4f;
+    vec2 disT = dis1 ;
 
     changeUv += disT;
 
@@ -26,7 +25,7 @@ void main( void ) {
     vec4 finalColor = vec4(0.f);
 
  //   finalColor += texture(tex_DiffuseR,texCoord) * splatVector.r;
-    finalColor += texture(tex_DiffuseG,changeUv) ;//* splatVector.g;
+    finalColor += texture(tex_DiffuseG,changeUv).rgb ;//* splatVector.g;
  //   finalColor += texture(tex_DiffuseB,texCoord) * splatVector.b;
  //   finalColor += texture(tex_DiffuseA,texCoord) * splatVector.a;
 

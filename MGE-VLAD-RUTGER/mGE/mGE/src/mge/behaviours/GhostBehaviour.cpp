@@ -11,6 +11,7 @@
 
 GhostBehaviour::GhostBehaviour()
 {
+
 }
 
 
@@ -20,7 +21,10 @@ GhostBehaviour::~GhostBehaviour()
 
 void GhostBehaviour::update(float pStep)
 {
+
 	if (forward) {
+
+
 		if (glm::distance(_owner->getWorldPosition(), _openPos) > 0.5f) {
 			dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(glm::normalize(_openPos - _closedPos) * pStep * 3);
 		}
@@ -40,6 +44,13 @@ void GhostBehaviour::update(float pStep)
 			forward = true;
 		}
 	}
+	
+	glm::vec3 sine;
+	sine = _owner->getWorldPosition();
+	sine.y = sin(sine.x) * 5;
+	dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(glm::normalize(sine) );
+
+
 }
 
 void GhostBehaviour::InitializePositions()

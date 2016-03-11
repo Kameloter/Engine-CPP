@@ -7,7 +7,7 @@ AbstractMaterial::AbstractMaterial()
 
 AbstractMaterial::~AbstractMaterial()
 {
-	std::cout << " mat cleaned" << std::endl;
+	//std::cout << " mat cleaned" << std::endl;
 }
 
 

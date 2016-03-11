@@ -168,6 +168,10 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample)
 
 vec3 getSpotLight(SpotLight light, vec3 n, vec3 view,vec3 diffSample)
 {
+//	float distanceToPlayer = length(light.position - vertices);
+//	if ( distanceToPlayer > 20)
+//		 return vec3(0);
+
     vec3 lightDirection = normalize(light.position - vertices);
 
     vec3 ambientTerm = light.ambient * diffSample;

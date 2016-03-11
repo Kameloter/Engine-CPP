@@ -26,7 +26,7 @@ TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, Texture* pNorm
 
 TextureLitMaterial::~TextureLitMaterial() 
 {
-	cout << "DESTROYED TextureLitMaterial "  << endl;
+	//cout << "DESTROYED TextureLitMaterial "  << endl;
 	delete _shader;
 	_shader = NULL;
 

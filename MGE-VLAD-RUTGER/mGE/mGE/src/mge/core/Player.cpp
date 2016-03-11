@@ -18,8 +18,8 @@ Player::Player(std::string pName, glm::vec3 pPosition, PhysicsWorld* pWorld, Gam
 	this->setBehaviour(new FPController(60.0f, 1.0f, _cam, FPController::InputType::WASD));
 
 	glm::vec3 center = this->getLocalPosition();
-	glm::vec3 minbound(center.x - 0.5f, center.y - 0.5f, center.z - 0.5f);
-	glm::vec3 maxbound(center.x + 0.5f, center.y + 0.5f, center.z + 0.5f);
+	glm::vec3 minbound(center.x - 0.5f, center.y - 1.5f, center.z - 1);
+	glm::vec3 maxbound(center.x + 0.5f, center.y + 1.5f, center.z + 1);
 	this->SetBounds(minbound, maxbound);
 
 	this->AddBoxCollider(1, 1, 1);

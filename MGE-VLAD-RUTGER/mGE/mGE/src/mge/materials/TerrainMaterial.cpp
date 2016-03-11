@@ -47,7 +47,7 @@ void TerrainMaterial::setHeightMapTexture (Texture* pHeightMap) {
 }
 
 void TerrainMaterial::render(World* pWorld, GameObject* pGameObject, Camera* pCamera) {
-    if (!_diffuseTextureA) return;
+    if (!_diffuseTextureG) return;
 
     _shader->use();
   //  _shader->setTexture(_uDiffuseTextureR,0,_diffuseTextureR->getId());
