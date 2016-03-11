@@ -49,6 +49,7 @@ uniform DirLight dirLight;
 
 
 uniform bool mat_useSpecMap;
+uniform bool calculateDirLight;
 uniform float mat_shininess;
 uniform sampler2D mat_diffuse;
 uniform sampler2D mat_normal;
@@ -80,6 +81,8 @@ void main( void )
 
 
     vec3 finalColor = vec3(0);
+
+	if (calculateDirLight)
     finalColor = getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
 
  

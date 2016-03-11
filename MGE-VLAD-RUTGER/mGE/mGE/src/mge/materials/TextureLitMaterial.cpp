@@ -27,8 +27,8 @@ TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, Texture* pNorm
 TextureLitMaterial::~TextureLitMaterial() 
 {
 	//cout << "DESTROYED TextureLitMaterial "  << endl;
-	delete _shader;
-	_shader = NULL;
+	//delete _shader;
+	//_shader = NULL;
 
 }
 
@@ -53,10 +53,16 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
     // set texture slots
     _shader->setTexture(_shader->getUniformLocation("mat_diffuse"),0,_diffuseTexture->getId());
 	_shader->setTexture(_shader->getUniformLocation("mat_normal"), 1, _normalTexture->getId());
-	if(specMapOn)_shader->setTexture(_shader->getUniformLocation("mat_specular"),2,_specularTexture->getId());
-
+	if (specMapOn) {
+		_shader->setTexture(_shader->getUniformLocation("mat_specular"), 2, _specularTexture->getId());
+		glUniform1i(_shader->getUniformLocation("mat_useSpecMap"), 1);
+	}
+	else
+	{
+		glUniform1i(_shader->getUniformLocation("mat_useSpecMap"), 0);
+	}
 	// tell shader what specularity and shininess to use
-	glUniform1i(_shader->getUniformLocation("mat_useSpecMap"),specMapOn);
+
     glUniform1f (_shader->getUniformLocation("mat_shininess"), _shininess);
 	//Camera position --> needs optimization  
     glUniform3fv(_shader->getUniformLocation("cameraPosition"),1, glm::value_ptr( pCamera->getWorldPosition()));
@@ -64,6 +70,8 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
 	
 	int pointCount = 0;
     int spotCount = 0;
+	int dirCount = 0;
+
     for (int i =0; i < pWorld->getLightCount(); i++)
     {
 		
@@ -72,6 +80,7 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
             Light* temp = pWorld->getLightAt(i);
         switch(temp->type){
             case Light::LightType::Directional:
+				dirCount++;
 				//cout << "dasdasdasdas" << endl;
                 glUniform3fv(_shader->getUniformLocation("dirLight.direction"),1, glm::value_ptr(((DirectionalLight*)temp)->direction));
                 glUniform3fv(_shader->getUniformLocation("dirLight.ambient"),1, glm::value_ptr(temp->ambient));
@@ -120,7 +129,11 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
 
 	//glUniform1i(_shader->getUniformLocation("spotLightCount"), spotCount);
 	glUniform1i(_shader->getUniformLocation("pointLightCount"), pointCount);
-	
+	if(dirCount==1)
+		glUniform1i(_shader->getUniformLocation("calculateDirLight"), 1);
+	else
+		glUniform1i(_shader->getUniformLocation("calculateDirLight"), 0);
+
     //pass in all MVP matrices separately
     glUniformMatrix4fv ( _shader->getUniformLocation("mat_Proj"),   1, GL_FALSE, glm::value_ptr(pCamera->getProjection()));
     glUniformMatrix4fv ( _shader->getUniformLocation("mat_View"),         1, GL_FALSE, glm::value_ptr(glm::inverse(pCamera->getWorldTransform())));

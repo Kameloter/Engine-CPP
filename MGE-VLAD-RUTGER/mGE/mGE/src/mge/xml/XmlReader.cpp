@@ -219,8 +219,10 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		case 1:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+		
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "pressurePlate.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(0, 1, 0)));
+		    obj->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "pplatebird_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "pplatebird_NRM.png"), 0.1f));
+
 			obj->setBehaviour(new PressurePlateBehaviour());
 			_world->add(obj);
 
@@ -237,7 +239,9 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], glm::vec3(_positionsInteractables[i].x, _positionsInteractables[i].y - 1.0f, _positionsInteractables[i].z), _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "coin.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			//obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			obj->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "coin_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "coin_NRM.png"), 0.1f));
+
 
 			glm::vec3 center2 = obj->getLocalPosition();
 			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
@@ -278,7 +282,9 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "traps.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+			obj->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "spikes_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "trap_normal.jpg"), 0.1f));
+
+			//obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
 			obj->setBehaviour(new SpikeBehaviour());
 			_world->add(obj);
 
@@ -380,7 +386,10 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, false);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "secret_path.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+			obj->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "hiddenpassage_DIFF (TEMP, tiled).png"), Texture::load(config::MGE_TEXTURE_PATH + "hiddenpassage_NRM.png"), 0.1f));
+
+			
+			//obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
 			_world->add(obj);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());

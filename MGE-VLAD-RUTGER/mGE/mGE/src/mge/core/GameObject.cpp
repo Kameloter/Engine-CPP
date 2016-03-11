@@ -26,7 +26,11 @@ GameObject::~GameObject()
 	delete _behaviour;
 
 	if (_material != NULL)
+	{
 		delete _material;
+		_material = NULL;
+	}
+		
 
 	while (_children.size() > 0) {
 		GameObject* child = _children[0];
