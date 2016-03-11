@@ -60,13 +60,18 @@ void MGEDemo::_initializeScene()
 
 
 
-	SubtitleManager::addSubtitle("Subtitles_01", "Maybe I can find something in here to open the door!");	//4sec
-	SubtitleManager::addSubtitle("Subtitles_02", "Hmm, a nice souvenir for at home!\n If I ever find the way out of here that is…");	//5sec
-	SubtitleManager::addSubtitle("Subtitles_03", "I’ll have to be careful here.. \nBut it seems like there should be a way across.");//	5sec
-	SubtitleManager::addSubtitle("Subtitles_04", "Nice..");	//	3sec
-	SubtitleManager::addSubtitle("Subtitles_05", "This room looks safe, and that object \nseems like it would fit perfectly in the big gate! \nI should take it with me.");//	8sec
-	SubtitleManager::addSubtitle("Subtitles_06", "Let’s hope this gate will take me out of here."); //5 sec
-
+	SubtitleManager::addSubtitle("Subtitles_01", "Maybe I can find something in here to open the door!",4.0f);	//4sec
+	SubtitleManager::addSubtitle("Subtitles_02", "Hmm, a nice souvenir for at home!\n If I ever find the way out of here that is…",5.0f);	//5sec
+	SubtitleManager::addSubtitle("Subtitles_03", "I’ll have to be careful here.. \nBut it seems like there should be a way across.",5.0f);//	5sec
+	SubtitleManager::addSubtitle("Subtitles_04", "Nice..",3.0f);	//	3sec
+	SubtitleManager::addSubtitle("Subtitles_05", "This room looks safe, and that object \nseems like it would fit perfectly in the big gate! \nI should take it with me.",8.0f);//	8sec
+	SubtitleManager::addSubtitle("Subtitles_06", "Let’s hope this gate will take me out of here.",5.0f); //5 sec
+	
+	SubtitleManager::addSubtitle("HUB_01", "\"... I feel so dizzy, I should be glad i didn't break anything \nfrom that fall! Lets get back on my feet.\"", 8.0f);
+	SubtitleManager::addSubtitle("Tutorial_01", "\"Use the keys W, A, S, D to move!\nUse mouse to look around !\"", 8.0f);
+	SubtitleManager::addSubtitle("HUB_02", "\"I need to get back to my team and continue finding\n the answer to the mayan prophecy that threatens our world!\"", 8.0f);
+	SubtitleManager::addSubtitle("HUB_03", "\"But wait, this room seems very promising. \nI should explore a little and see what I can find.\"", 6.0f);
+	SubtitleManager::addSubtitle("Tutorial_02", "\"Use E to interact with objects you find.\"", 8.0f);
 
 
 	
@@ -84,7 +89,8 @@ void MGEDemo::_render() {
 		
 		if (mainMenu->ButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME !"))
 		{
-			LevelManager::getInstance().SwitchToLevel(GameLevels::Level2);
+			LevelManager::getInstance().SwitchToLevel(GameLevels::HUB);
+		//	timePassed = Timer::now();
 		}
 	}
 	if (StatsHolder::PlayerDied == true)
@@ -93,6 +99,10 @@ void MGEDemo::_render() {
 		LevelManager::getInstance().ReloadLevel();
 	//	LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
 	}
+
+	
+	
+
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::O) && !press)
 	{
 		press = true;

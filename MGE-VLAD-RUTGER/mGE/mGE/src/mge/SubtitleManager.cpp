@@ -51,7 +51,7 @@ void SubtitleManager::resetText(std::string s, float t)
 }
 
 
- void SubtitleManager::addSubtitle(std::string pGameObject, std::string pSubtitle)
+ void SubtitleManager::addSubtitle(std::string pGameObject, std::string pSubtitle, float showtime)
 {
 	Subtitle * sub = 0;
 
@@ -59,10 +59,9 @@ void SubtitleManager::resetText(std::string s, float t)
 
 	if (subIterator == _subtitles.end()) 
 	{
-		sub = new Subtitle(pSubtitle);
+		sub = new Subtitle(pSubtitle, showtime);
 		std::cout << "Subtitle for object ->  " << pGameObject << " loaded. With content \n  " <<
 			pSubtitle << std::endl;
-	
 		_subtitles[pGameObject] = sub;
 	}
 	else {
@@ -70,7 +69,7 @@ void SubtitleManager::resetText(std::string s, float t)
 	}
 }
 
-void SubtitleManager::playSubtitle(std::string sub, float showTime)
+void SubtitleManager::playSubtitle(std::string sub,bool tutorialSub)
 {
 	Subtitle * sub2 = 0;
 	std::map<std::string, Subtitle*>::iterator myIter = _subtitles.find(sub);
@@ -89,12 +88,17 @@ void SubtitleManager::playSubtitle(std::string sub, float showTime)
 	_subFont.loadFromFile(config::MGE_FONT_PATH + "arial.ttf");
 	_subText.setFont(_subFont);
 	_subText.setString(sub2->subtitle);
-	_subText.setPosition(sf::Vector2f(250, 500));
-	_subText.setColor(sf::Color::White);	
+	_subText.setPosition(sf::Vector2f(200, 500));
+
+	if(tutorialSub)
+		_subText.setColor(sf::Color::Yellow);
+	else
+		_subText.setColor(sf::Color::White);
+
 	_subText.setCharacterSize(20);
 
 
-	waitTime = showTime;
+	waitTime = sub2->duration;
 	showSubtitle = true;
 
 }

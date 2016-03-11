@@ -40,7 +40,8 @@
 //Util
 #include "mge/util/Color.h"
 #include "mge/config.hpp"
-
+#include "mge\core\Timer.hpp"
+#include "mge/SubtitleManager.h"
 
 LevelManager::LevelManager() 
 {
@@ -159,6 +160,8 @@ void LevelManager::Build_menu()
 {
 	cout << " Menu Build " << endl;
 }
+float subStartTime = 0;
+float lastSubTime = 0;
 
 void LevelManager::Build_level_hub()
 {
@@ -173,6 +176,7 @@ void LevelManager::Build_level_hub()
 	xmlReader->LoadLevel("level_hub");
 	xmlReader->LoadInteractables("interactables_level_hub");
 	xmlReader->LoadSubtitleTriggers("triggers_level_hub");
+	subStartTime = Timer::now();
 	//LUAManager::InitializeFile(_world);
 	cout << " Build level hub " << endl;
 
@@ -238,9 +242,51 @@ void LevelManager::Build_level_4()
 
 	std::cout << "LOADED level 4 bIATIHT" << std::endl;
 }
+bool s_1 = false;
+bool s_2 = false;
+bool s_3 = false;
+bool s_4 = false;
+bool s_5 = false;
 
 void LevelManager::testUpdate()
 {
+	
+		if (Timer::now() > subStartTime + 10 && !s_1)
+		{
+			SubtitleManager::playSubtitle("HUB_01");	
+			subStartTime = Timer::now();
+			s_1 = true;
+		
+		}
+		else  if (Timer::now() > subStartTime + 10 && !s_2)
+
+		{
+			SubtitleManager::playSubtitle("Tutorial_01",true);
+			subStartTime = Timer::now();
+			s_2 = true;
+		}
+		else  if (Timer::now() > subStartTime + 10 && !s_3)
+
+		{
+			SubtitleManager::playSubtitle("HUB_02");
+			subStartTime = Timer::now();
+			s_3 = true;
+		}
+		else  if (Timer::now() > subStartTime + 10 && !s_4)
+
+		{
+			SubtitleManager::playSubtitle("HUB_03");
+			subStartTime = Timer::now();
+			s_4 = true;
+		}
+		else  if (Timer::now() > subStartTime + 10 && !s_5)
+
+		{
+			SubtitleManager::playSubtitle("Tutorial_02",true);
+			subStartTime = Timer::now();
+			s_5 = true;
+		}
+
 	
 }
 

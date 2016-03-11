@@ -12,10 +12,10 @@ public:
 	
 	static void createSubtitles();
 	static void update(float pStep);
-	static void playSubtitle(std::string sub, float showTime);
+	static void playSubtitle(std::string sub, bool tutorialSub = false);
 	static void draw(sf::RenderWindow * pWindow);
 	static void resetText(std::string s, float t);
-	static void addSubtitle(std::string pGameObject, std::string pSubtitle);
+	static void addSubtitle(std::string pGameObject, std::string pSubtitle, float showtime);
 
 private:
 
