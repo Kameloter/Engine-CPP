@@ -5,4 +5,49 @@
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="10"/>
 	</Object>
+	<Object name="coffin_01">
+		<Position X="5.87299885295" Y="1.83798730373" Z="-44.9936586763"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="coffin_02">
+		<Position X="21.1317768577" Y="1.83798730373" Z="-44.9936586763"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="coffin_03">
+		<Position X="20.429947257" Y="1.83798730373" Z="-14.0326196606"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="coffin_04">
+		<Position X="6.42994725704" Y="1.83798730373" Z="-14.0326196606"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="coffin_05">
+		<Position X="13.429947257" Y="1.83798730373" Z="-22.9999995232"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="PushStatue">
+		<Position X="13.5" Y="2.95490986297" Z="-1.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="0"/>
+	</Object>
+	<Object name="Pressure_Plate_01">
+		<Position X="13.5" Y="0.0" Z="-15.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="1"/>
+	</Object>
+	<Object name="Statue_PushStatue">
+		<Position X="-13.7" Y="8.69996300659" Z="-13.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="0"/>
+	</Object>
+	<Object name="Statue_PushStatue1">
+		<Position X="40.8" Y="8.69996300659" Z="-13.5"/>
+		<Rotation X="0.0" Y="270.0" Z="0.0"/>
+		<Object_Type Type="0"/>
+	</Object>
 </GameObjects>

@@ -62,29 +62,6 @@ void LevelManager::SwitchToLevel(GameLevels pToLevel)
 	std::cout << "destroyed level" << currentlevel  <<std::endl;
 	
 	BuildLevel(pToLevel);
-	//switch (pToLevel)
-	//{
-	//case Menu:
-	//	BuildLevel(Menu);
-	//	break;
-	//case HUB:
-	//	BuildLevel(HUB);
-	//	break;
-	//case Level1:
-	//	BuildLevel(Level1);
-	//	break;
-	//case Level2:
-	//	BuildLevel(Level2);
-	//	break;
-	//case Level3:
-	//	BuildLevel(Level3);
-	//	break;
-	//case Level4:
-	//	BuildLevel(Level4);
-	//	break;
-	//default:
-	//	break;
-	//}
 	currentlevel = pToLevel;
 }
 void LevelManager::ReloadLevel()
@@ -101,6 +78,9 @@ void LevelManager::BuildLevel(GameLevels pLevel)
 		break;
 	case HUB:
 		Build_level_hub();
+		break;
+	case HUBTUTORIAL:
+		Build_level_hub_tutorial();
 		break;
 	case Level1:
 		Build_level_1();
@@ -135,6 +115,13 @@ void LevelManager::DestroyLevel(GameLevels pLevel)
 		// Do something special so hub doesnt get destroyed completely
 		// or maybe store info in a class and use that info to create it again (so doors are closed after you complete level 1 )
 		break;
+
+	case HUBTUTORIAL:
+		cout << " HUB destroyed " << endl;
+		_world->CleanUpPhysicsWorld();
+		// Do something special so hub doesnt get destroyed completely
+		// or maybe store info in a class and use that info to create it again (so doors are closed after you complete level 1 )
+		break;
 	case Level1:
 		cout << " Level 1 destroyed " << endl;
 		_world->CleanUpPhysicsWorld();
@@ -163,30 +150,35 @@ void LevelManager::Build_menu()
 float subStartTime = 0;
 float lastSubTime = 0;
 bool tutorialStart = false;
+
+
 void LevelManager::Build_level_hub()
 {
-	Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
-	_world->add(dirLight);
-	_world->AddLight(dirLight);
 
-	//Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
-	//_world->AddLight(dirLight);
+	XmlReader * xmlReader = new XmlReader(_world);
+	xmlReader->LoadLevel("level_hub");
+	xmlReader->LoadInteractables("interactables_level_hub2");
+	xmlReader->LoadSubtitleTriggers("triggers_level_hub");
+
+	tutorialStart = true;
+	LUAManager::InitializeFile(_world,"level_hub");
+}
+
+void LevelManager::Build_level_hub_tutorial()
+{
 
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_hub");
 	xmlReader->LoadInteractables("interactables_level_hub");
 	xmlReader->LoadSubtitleTriggers("triggers_level_hub");
-	//subStartTime = Timer::now();
-	tutorialStart = true;
-	//LUAManager::InitializeFile(_world);
-	cout << " Build level hub " << endl;
 
-	if (_world != nullptr)
-		cout << _world->getLightCount() << endl;
+	tutorialStart = true;
+	LUAManager::InitializeFile(_world, "level_hub");
 }
 
 sf::SoundBuffer ambientBuffer;
 sf::Sound soundAmbient;
+
 void LevelManager::Build_level_1()
 {	
 	cout << " Build level 1 " << endl;

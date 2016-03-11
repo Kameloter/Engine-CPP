@@ -3,7 +3,7 @@
 using namespace std;
 enum GameLevels
 {
-	Idle,Menu, HUB, Level1, Level2, Level3, Level4
+	Idle,Menu, HUB, HUBTUTORIAL, Level1, Level2, Level3, Level4
 };
 
 class PhysicsWorld;
@@ -34,6 +34,7 @@ private:
 
 	void Build_menu();
 	void Build_level_hub();
+	void Build_level_hub_tutorial();
 	void Build_level_1();
 	void Build_level_2();
 	void Build_level_3();
