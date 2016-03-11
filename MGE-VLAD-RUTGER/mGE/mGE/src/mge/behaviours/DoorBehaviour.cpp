@@ -55,12 +55,10 @@ bool DoorBehaviour::CheckPlates()
 	}
 
 	if (count == plates.size() && StatsHolder::getKeyCount()>= keysNeeded) {
-		std::cout << "activated" << std::endl;
 		return true;
 	}
 	else
 	{
-		std::cout << "not activated" << std::endl;
 		return false;
 	}
 }

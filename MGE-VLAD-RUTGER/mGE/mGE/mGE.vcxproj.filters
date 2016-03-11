@@ -289,7 +289,10 @@
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
     <ClInclude Include="src\mge\behaviours\GhostBehaviour.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\behaviours\BrokenBridgeBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -569,7 +572,10 @@
       <Filter>Source Files\behaviours</Filter>
     </ClCompile>
     <ClCompile Include="src\mge\behaviours\GhostBehaviour.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\BrokenBridgeBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

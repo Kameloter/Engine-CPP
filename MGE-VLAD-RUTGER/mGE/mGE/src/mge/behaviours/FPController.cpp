@@ -87,7 +87,7 @@ void FPController::update(float pStep) {
 			minimaly = rbVel.y;
 		}
 	
-		std::cout << Timer::now() << std::endl;
+		//std::cout << Timer::now() << std::endl;
 		if (Timer::now() > startTime + 2)
 		{
 			_grounded = true;

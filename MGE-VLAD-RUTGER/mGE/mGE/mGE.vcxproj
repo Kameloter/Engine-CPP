@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="src\mge\behaviours\AbstractBehaviour.hpp" />
     <ClInclude Include="src\mge\behaviours\BoxBehaviour.h" />
+    <ClInclude Include="src\mge\behaviours\BrokenBridgeBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\CollectableBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\DeathBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\DoorBehaviour.h" />
@@ -121,6 +122,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mge\behaviours\AbstractBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\BoxBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\BrokenBridgeBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\CollectableBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\DeathBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\DoorBehaviour.cpp" />
