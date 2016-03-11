@@ -10,6 +10,7 @@
 #include "mge/core/Player.h"
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/materials/ColorMaterial.hpp"
+#include "mge/materials/BasicTextureLight.hpp"
 #include "mge/materials/TextureLitMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/materials/TextureNormalMaterial.hpp"
@@ -196,7 +197,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			RigidbodyGameObject * obj = new RigidbodyGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "statue.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+	//		obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+			obj->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "statue_DIFF (TEMP).png"),0.1f));
 			obj->setBehaviour(new StatueBehaviour());
 
 			_world->add(obj);

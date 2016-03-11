@@ -24,7 +24,7 @@ void SpikeBehaviour::update(float pStep) {
 
 	if (forward) {
 		if (glm::distance(_owner->getWorldPosition(), _openPos) > 0.5f) {
-			dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(glm::normalize(_openPos - _closedPos) / 25);
+			dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(glm::normalize(_openPos - _closedPos) * pStep * 2);
 		}
 		else
 		{
@@ -35,7 +35,7 @@ void SpikeBehaviour::update(float pStep) {
 	{
 		if (glm::distance(_owner->getWorldPosition(), _closedPos) > 0.5f)
 		{
-			dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(-glm::normalize(_openPos - _closedPos) / 25);
+			dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(-glm::normalize(_openPos - _closedPos)* 2 * pStep);
 		}
 		else
 		{
