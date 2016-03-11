@@ -51,12 +51,12 @@
 		<Object_Type Type="0"/>
 	</Object>
 	<Object name="Gate3x3_01">
-		<Position X="-14.0" Y="13.5" Z="-4.5"/>
+		<Position X="-14.0" Y="4.5" Z="-4.5"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
 		<Object_Type Type="17"/>
 	</Object>
 	<Object name="Gate3x3_02">
-		<Position X="-14.0" Y="13.5" Z="-22.5"/>
+		<Position X="-14.0" Y="4.5" Z="-22.5"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
 		<Object_Type Type="17"/>
 	</Object>

@@ -166,7 +166,6 @@ void LevelManager::Build_level_hub()
 
 void LevelManager::Build_level_hub_tutorial()
 {
-
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_hub");
 	xmlReader->LoadInteractables("interactables_level_hub");
