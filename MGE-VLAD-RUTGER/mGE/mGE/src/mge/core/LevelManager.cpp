@@ -162,7 +162,7 @@ void LevelManager::Build_menu()
 }
 float subStartTime = 0;
 float lastSubTime = 0;
-
+bool tutorialStart = false;
 void LevelManager::Build_level_hub()
 {
 	Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
@@ -176,7 +176,8 @@ void LevelManager::Build_level_hub()
 	xmlReader->LoadLevel("level_hub");
 	xmlReader->LoadInteractables("interactables_level_hub");
 	xmlReader->LoadSubtitleTriggers("triggers_level_hub");
-	subStartTime = Timer::now();
+	//subStartTime = Timer::now();
+	tutorialStart = true;
 	//LUAManager::InitializeFile(_world);
 	cout << " Build level hub " << endl;
 
@@ -250,18 +251,18 @@ bool s_5 = false;
 
 void LevelManager::testUpdate()
 {
-	
-		if (Timer::now() > subStartTime + 10 && !s_1)
+	if (tutorialStart) {
+		if (Timer::now() > subStartTime + 5 && !s_1)
 		{
-			SubtitleManager::playSubtitle("HUB_01");	
+			SubtitleManager::playSubtitle("HUB_01");
 			subStartTime = Timer::now();
 			s_1 = true;
-		
+
 		}
 		else  if (Timer::now() > subStartTime + 10 && !s_2)
 
 		{
-			SubtitleManager::playSubtitle("Tutorial_01",true);
+			SubtitleManager::playSubtitle("Tutorial_01", true);
 			subStartTime = Timer::now();
 			s_2 = true;
 		}
@@ -282,12 +283,12 @@ void LevelManager::testUpdate()
 		else  if (Timer::now() > subStartTime + 10 && !s_5)
 
 		{
-			SubtitleManager::playSubtitle("Tutorial_02",true);
+			SubtitleManager::playSubtitle("Tutorial_02", true);
 			subStartTime = Timer::now();
 			s_5 = true;
 		}
 
-	
+	}
 }
 
 void LevelManager::setWorldWindow(PhysicsWorld * pWorld, sf::Window * pWindow)
