@@ -25,8 +25,6 @@ void PressurePlateBehaviour::SetStatue(GameObject * pStatue) {
 
 void PressurePlateBehaviour::OnCollision(Collision collision)
 {
-	//std::cout << collision.getHitBy() << std::endl;
-
 	if (collision.getHitBy() == _statue->getName() && !hit)
 	{
 		_activated = true;

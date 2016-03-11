@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<GameObjects>
+	<Object name="level_hub">
+		<Position Y="1.5" X="-64.5" Z="16.5"/>
+		<ColSize X="0.5" Y="21.0" Z="9.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="death_trig_01">
+		<Position Y="-7.88565588287" X="-15.0804528424" Z="-2.32875756705"/>
+		<ColSize X="72.0" Y="1.22023929646" Z="75.5"/>
+		<Object_Type Type="1"/>
+	</Object>
+</GameObjects>

@@ -21,7 +21,6 @@ void DeathBehaviour::update(float pStep)
 
 void DeathBehaviour::OnCollision(Collision collision)
 {
-	//::cout << collision.getHitBy()  << std::endl;
 	if (collision.getHitBy() == "Player" && !hit)
 	{
 		hit = true;

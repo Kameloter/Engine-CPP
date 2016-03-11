@@ -20,7 +20,7 @@ TriggerBehaviour::~TriggerBehaviour()
 void TriggerBehaviour::update(float pStep){
   if (glm::distance(_owner->getWorldPosition(), _box->getWorldPosition())<.25f){
       _activated = true;
-      _doorBehaviour->_activated = true;
+//      _doorBehaviour->_activated = true;
       //_box->getBehaviour()->
 
       //_door->getBehaviour().

@@ -44,7 +44,7 @@ LUAManager::~LUAManager()
     //dtor
 }
 
-int LUAManager::InitializeFile(PhysicsWorld * pWorld){
+int LUAManager::InitializeFile(PhysicsWorld * pWorld, const char* fileName){
 
 	setObjects(pWorld->getStaticObjects(), pWorld->getRigidObjects(),pWorld->_triggerManager->getStaticTriggerObjects());
     lua = luaL_newstate();
@@ -67,7 +67,12 @@ int LUAManager::InitializeFile(PhysicsWorld * pWorld){
 	lua_pushcfunction(lua, SetBeginEndGhost);
 	lua_setglobal(lua, "SetBeginEndGhost");
 
-    if (luaL_loadfile(lua, "assets/mge/lua/Room1.lua") || lua_pcall(lua, 0, 0, 0)) {
+	std::string path = "assets/mge/lua/";
+	path += fileName;
+	path += ".lua";
+	const char* fullpath = path.c_str();
+
+    if (luaL_loadfile(lua, fullpath) || lua_pcall(lua, 0, 0, 0)) {
         printf("error: %s", lua_tostring(lua, -1));
         return -1;
     }
@@ -136,6 +141,7 @@ int LUAManager::SetOpenVectorSpike(lua_State * L)
 
 int LUAManager::AddPressurePlateToDoor(lua_State * L)
 {
+	cout << "helooooo" << endl;
 	string doorName = lua_tostring(L, 1);
 	string plateName = lua_tostring(L, 2);
 

@@ -190,11 +190,7 @@ void LevelManager::Build_level_1()
 	xmlReader->LoadLevel("level_01");
 	xmlReader->LoadInteractables("interactables");
 	xmlReader->LoadSubtitleTriggers("triggers_level_01");
-	LUAManager::InitializeFile(_world);
-
-	if (_world != nullptr)
-		cout << _world->getLightCount() << endl;
-
+	LUAManager::InitializeFile(_world,"level_01");
 	
 	//if (!ambientBuffer.loadFromFile(config::MGE_SOUND_PATH + "ambience.wav"))
 	//{
@@ -208,11 +204,15 @@ void LevelManager::Build_level_1()
 
 void LevelManager::Build_level_2()
 {
+	Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
+	_world->add(dirLight);
+	_world->AddLight(dirLight);
+
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_02");
 	xmlReader->LoadInteractables("interactables_level_02");
 	xmlReader->LoadSubtitleTriggers("triggers_level_02");
-	//LUAManager::InitializeFile(_world);
+	LUAManager::InitializeFile(_world,"level_02");
 }
 
 void LevelManager::Build_level_3()
@@ -229,6 +229,7 @@ void LevelManager::Build_level_4()
 	Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
 	_world->add(dirLight);
 	_world->AddLight(dirLight);
+
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_04");
 	xmlReader->LoadInteractables("interactables_level_04");

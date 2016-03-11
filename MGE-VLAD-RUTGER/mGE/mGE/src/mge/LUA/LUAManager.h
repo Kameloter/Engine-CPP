@@ -16,8 +16,8 @@ class LUAManager
 {
     public:
         static lua_State * L;
-      //  static void InitializeRoomFile();
-        static int InitializeFile(PhysicsWorld *pWorld);
+        static int InitializeFile(PhysicsWorld *pWorld, const char* fileName);
+
         static int CreateCube(lua_State * L);
 		static int ConnectStatueToPlate(lua_State * L);
 		static int SetOpenVector(lua_State * L);
