@@ -71,7 +71,7 @@ void MGEDemo::_initializeScene()
 	SubtitleManager::addSubtitle("Tutorial_01", "\"Use the keys W, A, S, D to move!\nUse mouse to look around !\"", 8.0f);
 	SubtitleManager::addSubtitle("HUB_02", "\"I need to get back to my team and continue finding\n the answer to the mayan prophecy that threatens our world!\"", 8.0f);
 	SubtitleManager::addSubtitle("HUB_03", "\"But wait, this room seems very promising. \nI should explore a little and see what I can find.\"", 6.0f);
-	SubtitleManager::addSubtitle("Tutorial_02", "\"Use E to interact with objects you find.\"", 8.0f);
+	SubtitleManager::addSubtitle("Tutorial_02", "\"'Ill better push that statue on the pressure plate\"", 8.0f);
 
 
 	
