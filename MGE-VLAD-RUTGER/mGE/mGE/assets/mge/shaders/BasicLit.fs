@@ -51,6 +51,7 @@ uniform DirLight dirLight;
 uniform bool mat_useSpecMap;
 uniform bool calculateDirLight;
 uniform float mat_shininess;
+
 uniform sampler2D mat_diffuse;
 uniform sampler2D mat_normal;
 uniform sampler2D mat_specular;
@@ -61,20 +62,17 @@ uniform sampler2D mat_specular;
 uniform vec3 cameraPosition;
 
 in vec3 vertices;
-in mat3 TBN;
 in vec2 uvs;
-//in vec3 normals;
+in vec3 normals;
 
 out vec4 fragment_color;
 
 void main( void )
 {
 
-    vec3 normal = texture(mat_normal, uvs).rgb;
-	normal = normalize(normal * 2.0 - 1.0);
-	normal = normalize(TBN * normal);
+  
 
-	//vec3 normN = normalize(normals);
+	vec3 normN = normalize(normals);
 
     vec3 viewDirection = normalize(cameraPosition - vertices);
 	vec3 sampledDiffuse = texture(mat_diffuse, uvs).rgb;
@@ -84,15 +82,15 @@ void main( void )
 
 	if (calculateDirLight)
 	{
-		finalColor += getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
+		finalColor += getDirectionalLight(dirLight,normN,viewDirection,sampledDiffuse);
 	}
  
   //  for(int i = 0; i < pointLightCount; i++)
   //  {
-       // finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
+       // finalColor += getPointLight(pointLight[i],normN,viewDirection, sampledDiffuse);
  //   }
 	 
-    finalColor += getSpotLight(spotLight[0], normal, viewDirection,sampledDiffuse);
+    finalColor += getSpotLight(spotLight[0], normN, viewDirection,sampledDiffuse);
 	fragment_color = vec4(finalColor,1);
 
 }

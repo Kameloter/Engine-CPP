@@ -29,12 +29,13 @@ void main( void ){
     T = normalize(T - dot(T, N) * N); // re-orthogonalize T with respect to N
 
     vec3 B = cross(T, N);  // then retrieve perpendicular vector B with the cross product of T and N		
-				 
+	
+
 	if(dot(cross(T,N), B) > 0.0f)
 	{
 		T *= -1;
 	}
 
-    TBN = mat3(T, B, N);
 
+    TBN = mat3(T, B, N);
 }

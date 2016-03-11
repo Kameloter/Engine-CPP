@@ -294,6 +294,9 @@
     <ClInclude Include="src\mge\behaviours\BrokenBridgeBehaviour.h">
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\materials\BasicTextureLight.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -366,6 +369,12 @@
       <Filter>Resource Files\shaders</Filter>
     </None>
     <None Include="assets\mge\shaders\wobble.vs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\BasicLit.fs">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="assets\mge\shaders\BasicLit.vs">
       <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>
@@ -576,6 +585,9 @@
     </ClCompile>
     <ClCompile Include="src\mge\behaviours\BrokenBridgeBehaviour.cpp">
       <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\BasicTextureLight.cpp">
+      <Filter>Source Files\materials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

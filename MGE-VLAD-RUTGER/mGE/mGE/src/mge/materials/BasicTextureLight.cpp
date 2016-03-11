@@ -1,6 +1,6 @@
 #include <glm.hpp>
 
-#include "mge/materials/TextureLitMaterial.hpp"
+#include "mge/materials/BasicTextureLight.hpp"
 #include "mge/core/Texture.hpp"
 #include "mge/core/Camera.hpp"
 #include "mge/core/World.hpp"
@@ -10,21 +10,21 @@
 #include "mge/core/light/PointLight.h"
 #include "mge/config.hpp"
 
-ShaderProgram* TextureLitMaterial::_shader = NULL;
+ShaderProgram* BasicTextureLit::_shader = NULL;
 
-TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, Texture* pNormalTexture, float pShininess) :
-	_diffuseTexture(pDiffuseTexture), _normalTexture(pNormalTexture), specMapOn(false), _specularTexture(0),_shininess(pShininess)
+BasicTextureLit::BasicTextureLit(Texture * pDiffuseTexture, float pShininess) :
+	_diffuseTexture(pDiffuseTexture), specMapOn(false), _specularTexture(0),_shininess(pShininess)
 {
     _lazyInitializeShader();
 }
 
-TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, Texture* pNormalTexture, Texture* pSpecularTexture, float pShininess) :
-	_diffuseTexture(pDiffuseTexture), _normalTexture(pNormalTexture), specMapOn(true), _specularTexture(pSpecularTexture),_shininess(pShininess)
+BasicTextureLit::BasicTextureLit(Texture * pDiffuseTexture, Texture* pSpecularTexture, float pShininess) :
+	_diffuseTexture(pDiffuseTexture), specMapOn(true), _specularTexture(pSpecularTexture),_shininess(pShininess)
 {
 	_lazyInitializeShader();
 }
 
-TextureLitMaterial::~TextureLitMaterial() 
+BasicTextureLit::~BasicTextureLit()
 {
 	//cout << "DESTROYED TextureLitMaterial "  << endl;
 	//delete _shader;
@@ -32,27 +32,27 @@ TextureLitMaterial::~TextureLitMaterial()
 
 }
 
-void TextureLitMaterial::_lazyInitializeShader() {
+void BasicTextureLit::_lazyInitializeShader() {
     if (!_shader) {
         _shader = new ShaderProgram();
-        _shader->addShader(GL_VERTEX_SHADER, config::MGE_SHADER_PATH+"TextureLit.vs");
-        _shader->addShader(GL_FRAGMENT_SHADER, config::MGE_SHADER_PATH+"TextureLit.fs");
+        _shader->addShader(GL_VERTEX_SHADER, config::MGE_SHADER_PATH+"BasicLit.vs");
+        _shader->addShader(GL_FRAGMENT_SHADER, config::MGE_SHADER_PATH+"BasicLit.fs");
         _shader->finalize();
     }
 }
 
-void TextureLitMaterial::setDiffuseTexture (Texture* pDiffuseTexture) {
+void BasicTextureLit::setDiffuseTexture (Texture* pDiffuseTexture) {
     _diffuseTexture = pDiffuseTexture;
 }
 
-void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* pCamera) {
+void BasicTextureLit::render(World* pWorld, GameObject* pGameObject, Camera* pCamera) {
     if (!_diffuseTexture) return;
 
     _shader->use();
 
     // set texture slots
     _shader->setTexture(_shader->getUniformLocation("mat_diffuse"),0,_diffuseTexture->getId());
-	_shader->setTexture(_shader->getUniformLocation("mat_normal"), 1, _normalTexture->getId());
+	//_shader->setTexture(_shader->getUniformLocation("mat_normal"), 1, _normalTexture->getId());
 	if (specMapOn) {
 		_shader->setTexture(_shader->getUniformLocation("mat_specular"), 2, _specularTexture->getId());
 		glUniform1i(_shader->getUniformLocation("mat_useSpecMap"), 1);
@@ -146,8 +146,8 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
     pGameObject->getMesh()->streamToOpenGL(
         _shader->getAttribLocation("vertex"),
         _shader->getAttribLocation("normal"),
-        _shader->getAttribLocation("uv"),
-		_shader->getAttribLocation("tangent")
+        _shader->getAttribLocation("uv")
+		
     );
 }
 
