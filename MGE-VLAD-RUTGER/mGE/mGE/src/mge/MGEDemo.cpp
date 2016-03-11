@@ -89,8 +89,7 @@ void MGEDemo::_render() {
 		
 		if (mainMenu->ButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME !"))
 		{
-			LevelManager::getInstance().SwitchToLevel(GameLevels::HUB);
-		//	timePassed = Timer::now();
+			LevelManager::getInstance().SwitchToLevel(GameLevels::HUBTUTORIAL);
 		}
 	}
 	if (StatsHolder::PlayerDied == true)
