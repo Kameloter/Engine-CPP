@@ -507,7 +507,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Ghost.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 1, 0)));
-			//obj->setBehaviour(new GhostBehaviour());
+			obj->setBehaviour(new GhostBehaviour());
 			_world->add(obj);
 
 			if (_rotationsInteractables[i].z > 0) {
