@@ -31,12 +31,12 @@
 		<Object_Type Type="14"/>
 	</Object>
 	<Object name="PushStatue">
-		<Position X="13.5" Y="2.95490986297" Z="-14.9814427722"/>
+		<Position X="13.5" Y="2.95490986297" Z="-15.0"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="0"/>
 	</Object>
 	<Object name="Pressure_Plate_01">
-		<Position X="13.5" Y="-0.0584231781193" Z="-15.0"/>
+		<Position X="13.5" Y="0.0" Z="-15.0"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="1"/>
 	</Object>
@@ -49,5 +49,25 @@
 		<Position X="40.8" Y="8.69996300659" Z="-13.5"/>
 		<Rotation X="0.0" Y="270.0" Z="0.0"/>
 		<Object_Type Type="0"/>
+	</Object>
+	<Object name="Gate3x3_01">
+		<Position X="-14.0" Y="13.5" Z="-4.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="17"/>
+	</Object>
+	<Object name="Gate3x3_02">
+		<Position X="-14.0" Y="13.5" Z="-22.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="17"/>
+	</Object>
+	<Object name="Gate3x3_04">
+		<Position X="41.0" Y="4.5" Z="-22.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="17"/>
+	</Object>
+	<Object name="Gate3x3_03">
+		<Position X="41.0" Y="4.5" Z="-4.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="17"/>
 	</Object>
 </GameObjects>

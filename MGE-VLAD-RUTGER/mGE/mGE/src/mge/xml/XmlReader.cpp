@@ -577,6 +577,30 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		}
 		break;
 
+		case 17: 
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "gate3x3.obj"));
+			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+
+			obj->setBehaviour(new DoorBehaviour());
+			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+
+			if (_rotationsInteractables[i].y > 0) {
+				obj->rotate(glm::radians(90.0f), glm::vec3(0, 1, 0));
+				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
+			}
+			else
+			{
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+			_world->add(obj);
+
+		}
+		break;
+
 		default:
 			break;
 		}
