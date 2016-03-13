@@ -98,17 +98,17 @@
 	<Object name="Shooting_Trap_01">
 		<Position X="61.2812942257" Y="2.62277719378" Z="-15.7602829748"/>
 		<Rotation X="0.0" Y="0.0" Z="90.0"/>
-		<Object_Type Type="5"/>
+		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Shooting_Trap_02">
 		<Position X="61.2812942257" Y="2.62277719378" Z="-26.0373299053"/>
 		<Rotation X="0.0" Y="0.0" Z="90.0"/>
-		<Object_Type Type="5"/>
+		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Shooting_Trap_03">
 		<Position X="52.4590972897" Y="2.62277719378" Z="-33.6440649514"/>
 		<Rotation X="0.0" Y="0.0" Z="-90.0"/>
-		<Object_Type Type="5"/>
+		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Step">
 		<Position X="72.1820760568" Y="0.683504360812" Z="-41.4267573405"/>

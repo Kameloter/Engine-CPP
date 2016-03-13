@@ -96,7 +96,6 @@ void MGEDemo::_render() {
 	{
 		StatsHolder::PlayerDied = false;
 		LevelManager::getInstance().ReloadLevel();
-	//	LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
 	}
 
 	

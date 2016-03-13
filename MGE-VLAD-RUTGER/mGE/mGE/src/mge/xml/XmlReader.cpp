@@ -261,7 +261,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "pushblock.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0.5f)));
+			obj->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "pushblock_DIFF(TEMP).png"), 0.1f));
 			obj->setBehaviour(new PushBlockBehaviour());
 
 			_world->add(obj);
@@ -286,7 +286,6 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "traps.obj"));
 			obj->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "spikes_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "trap_normal.jpg"), 0.1f));
 
-			//obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
 			obj->setBehaviour(new SpikeBehaviour());
 			_world->add(obj);
 
@@ -308,6 +307,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
 				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			}
+
 			dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();
 		}
 		break;
@@ -496,7 +496,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "coffin_01.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
+			obj->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "coffin_DIFF(TEMP).png"), 0.1f));
 
 			_world->add(obj);
 

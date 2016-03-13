@@ -154,6 +154,9 @@ bool tutorialStart = false;
 
 void LevelManager::Build_level_hub()
 {
+	DirectionalLight * light = new DirectionalLight("light", glm::vec3(40, 5, 35), glm::vec3(-1, 1, -0.5f), glm::vec3(0.05), glm::vec3(0.05), glm::vec3(0.1f));
+	_world->add(light);
+	_world->AddLight(light);
 
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_hub");
@@ -166,6 +169,10 @@ void LevelManager::Build_level_hub()
 
 void LevelManager::Build_level_hub_tutorial()
 {
+	DirectionalLight * light = new DirectionalLight("light", glm::vec3(40, 5, 35), glm::vec3(-1, 1, -0.5f), glm::vec3(0.05), glm::vec3(0.05), glm::vec3(0.1f));
+	_world->add(light);
+	_world->AddLight(light);
+
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_hub");
 	xmlReader->LoadInteractables("interactables_level_hub");
@@ -180,6 +187,10 @@ sf::Sound soundAmbient;
 
 void LevelManager::Build_level_1()
 {	
+	DirectionalLight * light = new DirectionalLight("light", glm::vec3(40, 5, 35), glm::vec3(-1, 1, -0.5f), glm::vec3(0.05), glm::vec3(0.05), glm::vec3(0.1f));
+	_world->add(light);
+	_world->AddLight(light);
+
 	cout << " Build level 1 " << endl;
 
 	XmlReader * xmlReader = new XmlReader(_world);
@@ -200,9 +211,9 @@ void LevelManager::Build_level_1()
 
 void LevelManager::Build_level_2()
 {
-	Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
-	_world->add(dirLight);
-	_world->AddLight(dirLight);
+	DirectionalLight * light = new DirectionalLight("light", glm::vec3(40, 5, 35), glm::vec3(-1, 1, -0.5f), glm::vec3(0.05), glm::vec3(0.05), glm::vec3(0.1f));
+	_world->add(light);
+	_world->AddLight(light);
 
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_02");
