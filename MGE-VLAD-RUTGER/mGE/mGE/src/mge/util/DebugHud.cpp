@@ -40,6 +40,17 @@ void DebugHud::_createDebugHud() {
 	_winText.setCharacterSize(16);
 	_winText.setColor(sf::Color::White);
 
+	_renderTimeText.setString("");
+	_renderTimeText.setFont(_font);
+	_renderTimeText.setCharacterSize(12);
+	_renderTimeText.setColor(sf::Color::White);
+
+
+	_updateTimeText.setString("");
+	_updateTimeText.setFont(_font);
+	_updateTimeText.setCharacterSize(12);
+	_updateTimeText.setColor(sf::Color::White);
+
 
 }
 
@@ -53,6 +64,17 @@ void DebugHud::setWinTextInfo(std::string pInfo) {
 	_winText.setPosition(10 ,100);
 }
 
+void DebugHud::setPerformanceDebugInfo(std::string renderTime, std::string updateTime)
+{
+	_renderTimeText.setString(renderTime);
+	_renderTimeText.setPosition(10, 30);
+
+	_updateTimeText.setString(updateTime);
+	_updateTimeText.setPosition(10, 50);
+
+
+}
+
 void DebugHud::draw()
 {
 	//glDisable( GL_CULL_FACE );
@@ -60,5 +82,7 @@ void DebugHud::draw()
     _window->pushGLStates();
     _window->draw(_debugText);
     _window->draw(_winText);
+	_window->draw(_renderTimeText);
+	_window->draw(_updateTimeText);
 	_window->popGLStates();
 }

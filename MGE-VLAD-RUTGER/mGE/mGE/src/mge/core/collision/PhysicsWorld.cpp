@@ -29,7 +29,7 @@ PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObject
 
 	//Generate gravity
 	neV3 gravity;
-	gravity.Set(.0f, -10.0f, .0f);
+	gravity.Set(.0f, -15.0f, .0f);
 
 	//start the physics simulation
 	_physicsSimulator = neSimulator::CreateSimulator(simulatorSize, NULL, &gravity);

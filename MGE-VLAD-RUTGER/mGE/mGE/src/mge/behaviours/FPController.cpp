@@ -88,7 +88,7 @@ void FPController::update(float pStep) {
 		}
 	
 		//std::cout << Timer::now() << std::endl;
-		if (Timer::now() > startTime + 2)
+		if (Timer::now() > startTime + 1.5)
 		{
 			_grounded = true;
 		}

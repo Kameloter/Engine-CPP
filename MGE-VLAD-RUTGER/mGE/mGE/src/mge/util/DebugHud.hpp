@@ -14,6 +14,7 @@ class DebugHud
 		void setDebugInfo (std::string pInfo);
 		void setWinTextInfo (std::string pInfo);
 
+		void setPerformanceDebugInfo(std::string renderTime, std::string updateTime);
 
 	private:
 		sf::RenderWindow * _window;
@@ -23,8 +24,8 @@ class DebugHud
         sf::Font _font;
         sf::Text _debugText;
         sf::Text _winText;
-
-
+		sf::Text _renderTimeText;
+		sf::Text _updateTimeText;
 		sf::Text _subToShow;
 
         void _createDebugHud();
