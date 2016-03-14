@@ -67,6 +67,10 @@ class AbstractGame
 		Renderer* _renderer;        //the renderer class to render the world
 		PhysicsWorld* _world;              //the root game object that represents our scene
 		bool _running;
+
+		//used for debugging.
+		double updateTime;
+		double renderTime;
 };
 
 #endif // ABSTRACTGAME_H

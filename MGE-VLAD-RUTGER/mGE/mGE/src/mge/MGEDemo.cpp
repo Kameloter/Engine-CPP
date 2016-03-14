@@ -69,12 +69,10 @@ void MGEDemo::_initializeScene()
 	
 	SubtitleManager::addSubtitle("HUB_01", "\"... I feel so dizzy, I should be glad i didn't break anything \nfrom that fall! Lets get back on my feet.\"", 8.0f);
 	SubtitleManager::addSubtitle("Tutorial_01", "\"Use the keys W, A, S, D to move!\nUse mouse to look around !\"", 8.0f);
+	SubtitleManager::addSubtitle("Tutorial_02", "\"Use the key SPACE to jump!\"", 8.0f);
 	SubtitleManager::addSubtitle("HUB_02", "\"I need to get back to my team and continue finding\n the answer to the mayan prophecy that threatens our world!\"", 8.0f);
 	SubtitleManager::addSubtitle("HUB_03", "\"But wait, this room seems very promising. \nI should explore a little and see what I can find.\"", 6.0f);
-	SubtitleManager::addSubtitle("Tutorial_02", "\"'Ill better push that statue on the pressure plate\"", 8.0f);
-
-
-	
+	SubtitleManager::addSubtitle("Tutorial_03", "\"'Ill better push that statue on the pressure plate\"", 8.0f);
 
 }
 
@@ -89,7 +87,7 @@ void MGEDemo::_render() {
 		
 		if (mainMenu->ButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME !"))
 		{
-			LevelManager::getInstance().SwitchToLevel(GameLevels::HUBTUTORIAL);
+			LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
 		}
 	}
 	if (StatsHolder::PlayerDied == true)
@@ -117,6 +115,8 @@ void MGEDemo::_render() {
 
 }
 
+float lastUpdateTime = 0;
+
 void MGEDemo::_updateHud() {
     string debugInfo = "";
     debugInfo += string ("FPS:") + std::to_string(FPS::getFPS())+"\n";
@@ -125,6 +125,13 @@ void MGEDemo::_updateHud() {
 
     _hud->setDebugInfo(debugInfo);
 	_hud->setWinTextInfo("Score : " + std::to_string(StatsHolder::getScore()));
+
+	if (Timer::now() > lastUpdateTime + 0.1f)
+	{
+		_hud->setPerformanceDebugInfo("Render time: " + std::to_string((int)renderTime), "Update time: " + std::to_string((int)updateTime));
+		lastUpdateTime = Timer::now();
+	}
+
     _hud->draw();
 }
 

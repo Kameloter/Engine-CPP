@@ -283,7 +283,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		case 4:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
-			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "traps.obj"));
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "SpikesWall.obj"));
 			obj->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "spikes_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "trap_normal.jpg"), 0.1f));
 
 			obj->setBehaviour(new SpikeBehaviour());
@@ -313,33 +313,15 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		break;
 		case 5:
 		{
-			/*StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
-			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Spikes.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
-			_world->add(obj);
-
-			glm::vec3 center2 = obj->getLocalPosition();
-			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
-			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
-			obj->SetBounds(minbound2, maxbound2);
-
-			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
-
-			if (_rotationsInteractables[i].x > 0) {
-			obj->rotate(glm::radians(90.0f), glm::vec3(1, 0, 0));
-			obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
-			}
-			else
-			{
-			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
-			}*/
+			//
 		}
 		break;
 		case 6:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
-			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key1.obj"));
+			obj->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "keyred_DIFF.png"), 0.1f));
+
 			_world->add(obj);
 
 			glm::vec3 center2 = obj->getLocalPosition();
@@ -390,8 +372,6 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "secret_path.obj"));
 			obj->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "hiddenpassage_DIFF (TEMP, tiled).png"), Texture::load(config::MGE_TEXTURE_PATH + "hiddenpassage_NRM.png"), 0.1f));
 
-			
-			//obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0)));
 			_world->add(obj);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
@@ -409,6 +389,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			_world->setMainCamera(camera);
 
 			Player * player = new Player("Player", _positionsInteractables[i], _world, camera);
+			player->rotate(glm::radians(_rotationsInteractables[i].y), glm::vec3(0, 1, 0));
 			_world->add(player);
 
 			//GameObject * lava = new GameObject("lava", _positionsInteractables[i]);
@@ -583,7 +564,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "gate3x3.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			obj->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gatebig_DIFF (TEMP).png"), Texture::load(config::MGE_TEXTURE_PATH + "gatebig_NRM.png"), 0.1f));
 
 			obj->setBehaviour(new DoorBehaviour());
 			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
@@ -606,7 +587,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		default:
 			break;
 		}
-
+		std::cout << "loaded-> " << _namesInteractables[i] << std::endl;
 	}
 
 	cout << "Interactable geometry loaded.... " << endl;

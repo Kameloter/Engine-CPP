@@ -135,7 +135,6 @@ void AbstractGame::run()
 		
 		clock_t startUpdate;
 		startUpdate = clock();
-		double updateTime;
 	
         _update();
 
@@ -143,7 +142,6 @@ void AbstractGame::run()
 
 		clock_t startRender;
 		startRender = clock();
-		double renderTime;
 
         _render();
 

@@ -250,6 +250,7 @@ bool s_2 = false;
 bool s_3 = false;
 bool s_4 = false;
 bool s_5 = false;
+bool s_6 = false;
 
 void LevelManager::testUpdate()
 {
@@ -268,6 +269,14 @@ void LevelManager::testUpdate()
 			subStartTime = Timer::now();
 			s_2 = true;
 		}
+		else  if (Timer::now() > subStartTime + 10 && !s_6)
+
+		{
+			SubtitleManager::playSubtitle("Tutorial_02", true);
+			subStartTime = Timer::now();
+			s_6 = true;
+		}
+
 		else  if (Timer::now() > subStartTime + 10 && !s_3)
 
 		{
@@ -285,10 +294,11 @@ void LevelManager::testUpdate()
 		else  if (Timer::now() > subStartTime + 10 && !s_5)
 
 		{
-			SubtitleManager::playSubtitle("Tutorial_02", true);
+			SubtitleManager::playSubtitle("Tutorial_03", true);
 			subStartTime = Timer::now();
 			s_5 = true;
 		}
+
 
 	}
 }
