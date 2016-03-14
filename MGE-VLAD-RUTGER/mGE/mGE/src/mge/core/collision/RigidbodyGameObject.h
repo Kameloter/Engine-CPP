@@ -13,6 +13,8 @@ public:
 	void updateRigidBody();
 	void moveRb(glm::vec3 pPos);
 	void AddBoxCollider(float pW, float pH, float pD);
+	void removeRigidBody();
+	void deleteObject();
 	neRigidBody * GetRigidBody();
 
 protected:

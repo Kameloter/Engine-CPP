@@ -21,13 +21,10 @@ using namespace std;
 #include "mge/behaviours/SpikeBehaviour.h"
 #include "mge/behaviours/GhostBehaviour.h"
 
-
 #include "mge/core/collision/TriggerManager.h"
 
 
 lua_State * lua;
-
-
 
 std::vector<RigidbodyGameObject *> LUAManager::rigidObjects;
 std::vector<StaticGameObject *> LUAManager::staticObjects;

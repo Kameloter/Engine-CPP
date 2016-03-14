@@ -225,12 +225,12 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "pressurePlate.obj"));
 		    obj->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "pplatebird_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "pplatebird_NRM.png"), 0.1f));
 
-			obj->setBehaviour(new PressurePlateBehaviour());
+			obj->setBehaviour(new PressurePlateBehaviour(_world));
 			_world->add(obj);
 
 			glm::vec3 center2 = obj->getLocalPosition();
-			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 1.5f, center2.z - 0.5f);
-			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 1.5f, center2.z + 0.5f);
+			glm::vec3 minbound2(center2.x - 0.2f, center2.y - 1.5f, center2.z - 0.2f);
+			glm::vec3 maxbound2(center2.x + 0.2f, center2.y + 1.5f, center2.z + 0.2f);
 			obj->SetBounds(minbound2, maxbound2);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
@@ -289,8 +289,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setBehaviour(new SpikeBehaviour());
 			_world->add(obj);
 
-			if (_rotationsInteractables[i].z > 0) {
-				obj->rotate(glm::radians(_rotationsInteractables[i].z), glm::vec3(0, 0, 1));
+			if (_rotationsInteractables[i].y > 0) {
+				obj->rotate(glm::radians(_rotationsInteractables[i].y), glm::vec3(0, 1, 0));
 				glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
 				glm::vec3 center2 = obj->getLocalPosition();
 				glm::vec3 minbound2(center2.x - colSize.y, center2.y - colSize.x, center2.z - colSize.z);

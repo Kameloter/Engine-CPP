@@ -7,17 +7,17 @@
 	</Object>
 	<Object name="Shooting_Trap_03">
 		<Position X="-33.612488138" Y="3.04345089141" Z="13.5"/>
-		<Rotation X="0.0" Y="0.0" Z="180.0"/>
+		<Rotation X="0.0" Y="90.0" Z="180.0"/>
 		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Shooting_Trap_02">
 		<Position X="-33.612488138" Y="3.04345089141" Z="7.5"/>
-		<Rotation X="0.0" Y="0.0" Z="180.0"/>
+		<Rotation X="0.0" Y="90.0" Z="180.0"/>
 		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Shooting_Trap_01">
 		<Position X="-39.4602514906" Y="3.04345089141" Z="-1.5"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Rotation X="0.0" Y="270.0" Z="0.0"/>
 		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Player">
@@ -271,7 +271,7 @@
 		<Object_Type Type="13"/>
 	</Object>
 	<Object name="Step_024">
-		<Position X="-35.294691701" Y="4.21508845259" Z="34.5639353533"/>
+		<Position X="-35.2946929932" Y="4.21508836746" Z="34.5639343262"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
 		<Object_Type Type="13"/>
 	</Object>

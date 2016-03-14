@@ -19,6 +19,7 @@ RigidbodyGameObject::RigidbodyGameObject(std::string pName, glm::vec3 pPosition,
 RigidbodyGameObject::~RigidbodyGameObject()
 {
 	_world->freeMemory(_rigidbody);
+	
 //	std::cout << _name << "<-- Rigid body cleaned" << std::endl;
 
 	//delete _trigger;
@@ -38,8 +39,6 @@ void RigidbodyGameObject::moveRb(glm::vec3 pPos)
 
 void RigidbodyGameObject::updateRigidBody()
 {
-		
-
 		neV3 rbPos = _rigidbody->GetPos();
 		glm::vec3 toGLMpos = glm::vec3(rbPos[0], rbPos[1], rbPos[2]);
 
@@ -71,6 +70,17 @@ void RigidbodyGameObject::AddBoxCollider(float pW, float pH, float pD)
 
 	_trigger = new BoxTrigger(_minBounds, _maxBounds);
 	_world->addMovingTrigger(this);
+}
+
+void RigidbodyGameObject::removeRigidBody()
+{
+	_world->freeMemory(_rigidbody);
+}
+
+void RigidbodyGameObject::deleteObject()
+{
+	_world->CleanObject(this);
+	delete _trigger;
 }
 
 neRigidBody* RigidbodyGameObject::GetRigidBody()

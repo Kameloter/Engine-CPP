@@ -4,10 +4,12 @@
 #include "mge/behaviours/AbstractBehaviour.hpp"
 #include <SFML/Graphics.hpp>
 
+class PhysicsWorld;
+
 class PressurePlateBehaviour : public AbstractBehaviour
 {
 public:
-	PressurePlateBehaviour();
+	PressurePlateBehaviour(PhysicsWorld * world);
 	~PressurePlateBehaviour();
 	virtual void update(float step);
 
@@ -20,5 +22,6 @@ public:
 private:
 	bool hit;
 	GameObject * _statue;
+	PhysicsWorld * _world;
 };
 
