@@ -27,7 +27,7 @@ GameObject::~GameObject()
 
 	if (_material != NULL)
 	{
-		delete _material;
+		//delete _material;
 		_material = NULL;
 	}
 		
