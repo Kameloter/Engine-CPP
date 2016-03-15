@@ -14,6 +14,7 @@
 #include "mge/materials/TextureLitMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/materials/TextureNormalMaterial.hpp"
+#include "mge/materials/TerrainMaterial.hpp"
 
 #include "mge/core/light/SpotLight.h"
 #include "mge/core/light/PointLight.h"
@@ -52,6 +53,7 @@ AbstractMaterial * coffinMaterial;
 AbstractMaterial * gateBigMaterial;
 AbstractMaterial * bridge1Material;
 AbstractMaterial * stepMaterial;
+AbstractMaterial * terrainMaterial;
 
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
@@ -69,6 +71,8 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	gateBigMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gatebig_DIFF (TEMP).png"), Texture::load(config::MGE_TEXTURE_PATH + "gatebig_NRM.png"), 0.1f);
 	bridge1Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_NRM.png"), 0.1f);
 	stepMaterial = new BasicTextureLit (Texture::load(config::MGE_TEXTURE_PATH + "step_DIFF.png"), 0.1f);
+	terrainMaterial = new TerrainMaterial(Texture::load(config::MGE_TEXTURE_PATH + "lava.jpg"));
+
 }
 
 XmlReader::~XmlReader()
@@ -676,7 +680,8 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 			obj->SetBounds(minbound2, maxbound2);
 
 			obj->AddBoxCollider(0, 0, 0);
-
+			obj->setMaterial(terrainMaterial);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "lava_mesh.obj"));
 			obj->setBehaviour(new DeathBehaviour());
 
 		}
