@@ -39,22 +39,19 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample);
 vec3 getSpotLight(SpotLight light, vec3 n, vec3 view, vec3 diffSample);
 
 
-//uniform int spotLightCount;
 uniform int pointLightCount;
 
 
 uniform PointLight pointLight[50];
-uniform SpotLight spotLight[15];
+uniform SpotLight spotLight;
 uniform DirLight dirLight;
 
 
 uniform bool mat_useSpecMap;
-uniform bool calculateDirLight;
 uniform float mat_shininess;
 
-uniform sampler2D mat_diffuse;
-uniform sampler2D mat_normal;
-uniform sampler2D mat_specular;
+uniform sampler2D diffuseMap;
+uniform sampler2D specularMap;
 
 
 
@@ -75,22 +72,23 @@ void main( void )
 	vec3 normN = normalize(normals);
 
     vec3 viewDirection = normalize(cameraPosition - vertices);
-	vec3 sampledDiffuse = texture(mat_diffuse, uvs).rgb;
+	vec3 sampledDiffuse = texture(diffuseMap, uvs).rgb;
 
 
     vec3 finalColor = vec3(0);
 
-	if (calculateDirLight)
-	{
-		finalColor += getDirectionalLight(dirLight,normN,viewDirection,sampledDiffuse);
-	}
+
+	finalColor += getDirectionalLight(dirLight,normN,viewDirection,sampledDiffuse);
+
+	
+
  
   //  for(int i = 0; i < pointLightCount; i++)
   //  {
        // finalColor += getPointLight(pointLight[i],normN,viewDirection, sampledDiffuse);
  //   }
 	 
-    finalColor += getSpotLight(spotLight[0], normN, viewDirection,sampledDiffuse);
+    finalColor += getSpotLight(spotLight, normN, viewDirection,sampledDiffuse);
 	fragment_color = vec4(finalColor,1);
 
 }
@@ -118,7 +116,7 @@ vec3 getDirectionalLight(DirLight light, vec3 n, vec3 view, vec3 diffSample)
 		specular = pow(specular, 32);
 		if(mat_useSpecMap)
 		  {
-		    specularTerm = light.specular * specular * vec3(texture(mat_specular, uvs)) * mat_shininess;
+		    specularTerm = light.specular * specular * vec3(texture(specularMap, uvs)) * mat_shininess;
 		  }else{
 		    specularTerm = light.specular * specular * mat_shininess;
 			}
@@ -150,7 +148,7 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample)
 		specular = pow(specular, mat_shininess);
 		if(mat_useSpecMap)
 		  {
-		    specularTerm = light.specular * specular * vec3(texture(mat_specular, uvs)) * mat_shininess;
+		    specularTerm = light.specular * specular * vec3(texture(specularMap, uvs)) * mat_shininess;
 		  }else{
 		    specularTerm = light.specular * specular * mat_shininess;
 			}
@@ -193,7 +191,7 @@ vec3 getSpotLight(SpotLight light, vec3 n, vec3 view,vec3 diffSample)
 		specular = pow(specular, mat_shininess);
 		if(mat_useSpecMap)
 		  {
-		    specularTerm = light.specular * specular * vec3(texture(mat_specular, uvs)) * mat_shininess;
+		    specularTerm = light.specular * specular * vec3(texture(specularMap, uvs)) * mat_shininess;
 		  }else{
 		    specularTerm = light.specular * specular * mat_shininess;
 			}

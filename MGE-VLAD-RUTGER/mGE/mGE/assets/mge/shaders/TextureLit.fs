@@ -44,16 +44,16 @@ uniform int pointLightCount;
 
 
 uniform PointLight pointLight[50];
-uniform SpotLight spotLight[15];
+uniform SpotLight spotLight;
 uniform DirLight dirLight;
 
 
 uniform bool mat_useSpecMap;
-uniform bool calculateDirLight;
 uniform float mat_shininess;
-uniform sampler2D mat_diffuse;
-uniform sampler2D mat_normal;
-uniform sampler2D mat_specular;
+
+uniform sampler2D diffuseMap;
+uniform sampler2D normalMap;
+uniform sampler2D specularMap;
 
 
 
@@ -63,36 +63,37 @@ uniform vec3 cameraPosition;
 in vec3 vertices;
 in mat3 TBN;
 in vec2 uvs;
-//in vec3 normals;
+
 
 out vec4 fragment_color;
 
 void main( void )
 {
 
-    vec3 normal = texture(mat_normal, uvs).rgb;
+    vec3 normal = texture(normalMap, uvs).rgb;
 	normal = normalize(normal * 2.0 - 1.0);
 	normal = normalize(TBN * normal);
 
 	//vec3 normN = normalize(normals);
 
     vec3 viewDirection = normalize(cameraPosition - vertices);
-	vec3 sampledDiffuse = texture(mat_diffuse, uvs).rgb;
+	vec3 sampledDiffuse = texture(diffuseMap, uvs).rgb;
 
 
     vec3 finalColor = vec3(0);
 
-	if (calculateDirLight)
-	{
-		finalColor += getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
-	}
+
+	finalColor += getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
  
+
+
+
   //  for(int i = 0; i < pointLightCount; i++)
   //  {
        // finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
  //   }
 	 
-    finalColor += getSpotLight(spotLight[0], normal, viewDirection,sampledDiffuse);
+    finalColor += getSpotLight(spotLight, normal, viewDirection,sampledDiffuse);
 	fragment_color = vec4(finalColor,1);
 
 }
@@ -120,7 +121,7 @@ vec3 getDirectionalLight(DirLight light, vec3 n, vec3 view, vec3 diffSample)
 		specular = pow(specular, 32);
 		if(mat_useSpecMap)
 		  {
-		    specularTerm = light.specular * specular * vec3(texture(mat_specular, uvs)) * mat_shininess;
+		    specularTerm = light.specular * specular * vec3(texture(specularMap, uvs)) * mat_shininess;
 		  }else{
 		    specularTerm = light.specular * specular * mat_shininess;
 			}
@@ -152,7 +153,7 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample)
 		specular = pow(specular, mat_shininess);
 		if(mat_useSpecMap)
 		  {
-		    specularTerm = light.specular * specular * vec3(texture(mat_specular, uvs)) * mat_shininess;
+		    specularTerm = light.specular * specular * vec3(texture(specularMap, uvs)) * mat_shininess;
 		  }else{
 		    specularTerm = light.specular * specular * mat_shininess;
 			}
@@ -161,7 +162,7 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample)
    
     //Attenuation
     float distance = length(light.position - vertices);
-    float attenuation = 1.0f / (light.constant + light.linear * distance + light.quadratic * pow(distance,2));
+    float attenuation = 1.0f / (1 + light.linear * distance + light.quadratic * pow(distance,2));
 
     ambientTerm *= attenuation;
     diffuseTerm *= attenuation;
@@ -195,7 +196,7 @@ vec3 getSpotLight(SpotLight light, vec3 n, vec3 view,vec3 diffSample)
 		specular = pow(specular, mat_shininess);
 		if(mat_useSpecMap)
 		  {
-		    specularTerm = light.specular * specular * vec3(texture(mat_specular, uvs)) * mat_shininess;
+		    specularTerm = light.specular * specular * vec3(texture(specularMap, uvs)) * mat_shininess;
 		  }else{
 		    specularTerm = light.specular * specular * mat_shininess;
 			}
@@ -204,7 +205,7 @@ vec3 getSpotLight(SpotLight light, vec3 n, vec3 view,vec3 diffSample)
 
     //attenuation
     float distance = length(light.position - vertices);
-    float attenuation = 1.f / (light.constant + light.linear * distance + light.quadratic * pow(distance,2));
+    float attenuation = 1.f / (1 + light.linear * distance + light.quadratic * pow(distance,2));
 
 
     //spot area

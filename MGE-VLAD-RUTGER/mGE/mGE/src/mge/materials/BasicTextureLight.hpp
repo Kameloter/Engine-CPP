@@ -19,6 +19,7 @@ class BasicTextureLit : public AbstractMaterial
        
     protected:
     private:
+		void _cacheUniformsAttributes();
         static ShaderProgram* _shader;
         static void _lazyInitializeShader();
 
@@ -27,5 +28,41 @@ class BasicTextureLit : public AbstractMaterial
 		Texture* _normalTexture;
 		bool specMapOn;
         float _shininess;
+
+		float _pointLightInnerCutOff;
+		float _pointLightOuterCutOff;
+
+
+
+		GLuint _uViewMat;
+		GLuint _uProjMat;
+		GLuint _uModelMat;
+
+
+		GLuint _uCameraPosition;
+		GLuint _uDiffuseMap;
+		GLuint _uSpecularMap;
+		GLuint _uUseSpecularMap;
+		GLuint _uMaterialShininess;
+
+
+		GLuint _uDirLight_Dir;
+		GLuint _uDirLight_Ambient;
+		GLuint _uDirLight_Diffuse;
+		GLuint _uDirLight_Specular;
+
+		GLuint _uSpotLight_Pos;
+		GLuint _uSpotLight_Dir;
+		GLuint _uSpotLight_Ambient;
+		GLuint _uSpotLight_Diffuse;
+		GLuint _uSpotLight_Specular;
+		GLuint _uSpotLight_Linear;
+		GLuint _uSpotLight_Quadratic;
+		GLuint _uSpotLight_InnerCutOff;
+		GLuint _uSpotLight_OutterCutOff;
+
+		GLuint _aVertex;
+		GLuint _aNormal;
+		GLuint _aUv;
 };
 
