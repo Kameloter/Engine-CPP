@@ -23,7 +23,7 @@ void SpawnPointBehaviour::update(float pStep)
 
 void SpawnPointBehaviour::OnCollision(Collision collision)
 {
-	if (collision.getHitBy() == "Player" && !hit)
+	if (collision.getHitBy()->getName() == "Player" && !hit)
 	{
 		StatsHolder::setSpawnPos(_owner->getLocalPosition() + glm::vec3(0, 2, 0));
 		hit = true;

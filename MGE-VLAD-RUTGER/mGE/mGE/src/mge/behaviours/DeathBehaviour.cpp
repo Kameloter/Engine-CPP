@@ -21,15 +21,22 @@ void DeathBehaviour::update(float pStep)
 
 void DeathBehaviour::OnCollision(Collision collision)
 {
-	if (collision.getHitBy() == "Player" && !hit)
+	if (collision.getHitBy()->getName() == "Player" && !hit)
 	{
 		std::cout << "player died" << std::endl;
-		/*glm::vec3 spawnPos = StatsHolder::getSpawnPos();
-		neV3 Pos;
-		Pos.Set( spawnPos.x,spawnPos.y,spawnPos.z);*/
-		//_player->GetRigidBody()->SetPos(Pos);
+		std::cout << collision.getHitBy()->getName() << std::endl;
 
-		hit = true;
+		glm::vec3 spawnPos = StatsHolder::getSpawnPos();
+		neV3 Pos;
+		Pos.Set( spawnPos.x,spawnPos.y -4.5f,spawnPos.z);
+
+		neV3 vel;
+		vel.Set(0, 0, 0);
+
+		dynamic_cast<RigidbodyGameObject*>(collision.getHitBy())->GetRigidBody()->SetPos(Pos);
+		dynamic_cast<RigidbodyGameObject*>(collision.getHitBy())->GetRigidBody()->SetVelocity(vel);
+
+		//hit = true;
 		//StatsHolder::PlayerDied = true;
 	}
 }

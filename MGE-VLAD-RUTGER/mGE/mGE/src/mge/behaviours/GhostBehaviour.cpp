@@ -54,7 +54,7 @@ void GhostBehaviour::InitializePositions()
 
 void GhostBehaviour::OnCollision(Collision collision)
 {
-	if (collision.getHitBy() == "Player" && !hit)
+	if (collision.getHitBy()->getName() == "Player" && !hit)
 	{
 		StatsHolder::PlayerDied = true;
 		hit = true;

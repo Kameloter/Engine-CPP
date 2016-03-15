@@ -30,7 +30,7 @@ void CollectableBehaviour::update(float pStep)
 void CollectableBehaviour::OnCollision(Collision collision)
 {
 	//::cout << collision.getHitBy()  << std::endl;
-	if (collision.getHitBy() == "Player" && !hit)
+	if (collision.getHitBy()->getName() == "Player" && !hit)
 	{
 		hit = true;
 

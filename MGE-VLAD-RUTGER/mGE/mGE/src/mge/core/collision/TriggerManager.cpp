@@ -64,7 +64,7 @@ void TriggerManager::runPhysics(float pDelta)
 			
             if(collisionInfo.getIsColliding())
             {
-				collisionInfo.setInfo(true, _movingTriggers[i]->getName());
+				collisionInfo.setInfo(true, _movingTriggers[i]);
                 //  std::cout << "THERE IS COLLISION " << std::endl;
 			/*	  _movingTriggers[i]->getTrigger()->collisionInfo->setInfo(true, _triggers[j]->getName());
 				  _triggers[j]->getTrigger()->collisionInfo->setInfo(true, _movingTriggers[i]->getName());*/

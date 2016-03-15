@@ -23,7 +23,7 @@ void SceneSwitchBehaviour::update(float pStep)
 
 void SceneSwitchBehaviour::OnCollision(Collision collision)
 {
-	if (collision.getHitBy() == "Player" && !hit)
+	if (collision.getHitBy()->getName() == "Player" && !hit)
 	{
 		std::cout << "WHAHHAH" << std::endl;
 		hit = true;

@@ -34,7 +34,7 @@ void PressurePlateBehaviour::SetStatue(GameObject * pStatue) {
 
 void PressurePlateBehaviour::OnCollision(Collision collision)
 {
-	if (collision.getHitBy() == _statue->getName() && !hit)
+	if (collision.getHitBy()->getName() == _statue->getName() && !hit)
 	{
 		_activated = true;
 		hit = true;

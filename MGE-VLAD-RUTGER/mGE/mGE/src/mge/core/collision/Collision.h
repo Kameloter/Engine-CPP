@@ -1,6 +1,8 @@
 #ifndef COLLISION_H
 #define COLLISION_H
 
+class GameObject;
+
 class Collision
 {
     public:
@@ -10,14 +12,15 @@ class Collision
       //  virtual ~Collision() {}
     inline bool getIsColliding() { return _collides; }
     inline float getCollisionDistance()  { return _collisionDistance; }
-	inline std::string getHitBy() 
+	
+	inline GameObject * getHitBy() 
 	{ 
-		if (_hitBy != "")
+		if (_hitBy != NULL)
 			return _hitBy;
 		else
-			return "null";
+			return NULL;
 	}
-	inline bool OnTriggerEnter(std::string ifHitBy)
+	/*inline bool OnTriggerEnter(std::string ifHitBy)
 	{
 		if (_hitBy == "")
 		{
@@ -36,9 +39,9 @@ class Collision
 		{
 			return false;
 		}
-	}
+	}*/
 
-	inline void setInfo(bool pColliding, std::string pHitBy) { _collides = pColliding; _hitBy = pHitBy; }
+	inline void setInfo(bool pColliding, GameObject * pHitBy) { _collides = pColliding; _hitBy = pHitBy; }
     protected:
     private:
        bool _collides;
@@ -46,7 +49,8 @@ class Collision
 
 	   bool _enteredTrigger = false;
 
-		std::string _hitBy;
+	   GameObject * _hitBy;
+		//std::string _hitBy;
 
 
 };

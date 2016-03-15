@@ -17,17 +17,12 @@ SubtitleBehaviour::~SubtitleBehaviour()
 void SubtitleBehaviour::update(float pStep)
 {
 	
- 	//std::cout << dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->getMaxBounds() << std::endl;
-	if (dynamic_cast<StaticGameObject*>(_owner)->getTrigger()->collisionInfo->OnTriggerEnter("Player"))
-	{
-		
-	}
 }
 
 void SubtitleBehaviour::OnCollision(Collision collision)
 {
 	//::cout << collision.getHitBy()  << std::endl;
-	if (collision.getHitBy() == "Player" && !hit)
+	if (collision.getHitBy()->getName() == "Player" && !hit)
 	{
 		hit = true;
 		std::cout << " Hitting playerr :) " << std::endl;

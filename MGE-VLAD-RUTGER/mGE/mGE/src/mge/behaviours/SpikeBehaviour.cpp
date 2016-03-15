@@ -58,7 +58,7 @@ void SpikeBehaviour::OnCollision(Collision collision)
 {
 	//std::cout << collision.getHitBy() << std::endl;
 
-	if (collision.getHitBy() == "Player" && !hit)
+	if (collision.getHitBy()->getName() == "Player" && !hit)
 	{
 		StatsHolder::PlayerDied = true;
 		hit = true;
