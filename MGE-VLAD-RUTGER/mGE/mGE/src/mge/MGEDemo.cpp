@@ -89,7 +89,7 @@ void MGEDemo::_render() {
 		
 		if (mainMenu->ButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME !"))
 		{
-			LevelManager::getInstance().SwitchToLevel(GameLevels::HUB);
+			LevelManager::getInstance().SwitchToLevel(GameLevels::HUBTUTORIAL);
 		}
 	}
 	if (StatsHolder::PlayerDied == true)
@@ -97,21 +97,6 @@ void MGEDemo::_render() {
 		StatsHolder::PlayerDied = false;
 		LevelManager::getInstance().ReloadLevel();
 	}
-
-	
-	
-
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::O) && !press)
-	{
-		press = true;
-		std::cout << " press " << std::endl;
-		SubtitleManager::playSubtitle("Trigger1", 5.0f);
-	}*/
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) levelManager->SwitchToLevel(GameLevels::Menu);
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) levelManager->SwitchToLevel(GameLevels::HUB);
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) levelManager->SwitchToLevel(GameLevels::Level1);
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) levelManager->SwitchToLevel(GameLevels::Level2);
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) _world->CleanUpPhysicsWorld();
 
 	levelManager->testUpdate();
 

@@ -45,6 +45,15 @@ void PressurePlateBehaviour::OnCollision(Collision collision)
 		obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "statue.obj"));
 		obj->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "statue_DIFF (TEMP).png"), 0.1f));
 
+		glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+		glm::vec3 center = obj->getLocalPosition();
+
+		glm::vec3 minbound(center.x - colSize.x / 2, center.y - colSize.y / 2, center.z - colSize.z / 2);
+		glm::vec3 maxbound(center.x + colSize.x / 2, center.y + colSize.y / 2, center.z + colSize.z / 2);
+		obj->SetBounds(minbound, maxbound);
+
+		obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+
 		_world->add(obj);
 	}
 }
