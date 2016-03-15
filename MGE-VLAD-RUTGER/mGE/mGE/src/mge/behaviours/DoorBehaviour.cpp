@@ -42,7 +42,7 @@ void DoorBehaviour::SetKeysNeeded(int amount)
 void DoorBehaviour::InitializePositions()
 {
 	_closedPos = _owner->getLocalPosition();
-	_openPos = _owner->getLocalPosition() + glm::vec3(0, 3, 0);
+	_openPos = _owner->getLocalPosition() + glm::vec3(0, 5, 0);
 }
 
 bool DoorBehaviour::CheckPlates()
