@@ -35,6 +35,7 @@
     <ClInclude Include="src\mge\behaviours\PushBlockBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\RotatingBehaviour.hpp" />
     <ClInclude Include="src\mge\behaviours\SceneSwitchBehaviour.h" />
+    <ClInclude Include="src\mge\behaviours\SpawnPointBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\SpikeBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\StatueBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\SubtitleBehaviour.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="src\mge\behaviours\PushBlockBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\RotatingBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\SceneSwitchBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\SpawnPointBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\SpikeBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\StatueBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\SubtitleBehaviour.cpp" />

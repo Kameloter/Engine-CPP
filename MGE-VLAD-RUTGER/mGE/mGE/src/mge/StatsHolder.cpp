@@ -4,6 +4,7 @@
 int StatsHolder::_score;
 bool StatsHolder::PlayerDied = false;
 int StatsHolder::_keyCount = 0;
+glm::vec3 StatsHolder::_spawnPos = glm::vec3(0,0,0);
 
 StatsHolder::StatsHolder()
 {
@@ -31,4 +32,15 @@ int StatsHolder::getScore()
 int StatsHolder::getKeyCount()
 {
 	return _keyCount;
+}
+
+void StatsHolder::setSpawnPos(glm::vec3 pos)
+{
+	std::cout << pos << std::endl;
+	_spawnPos = pos;
+}
+
+glm::vec3 StatsHolder::getSpawnPos()
+{
+	return _spawnPos;
 }

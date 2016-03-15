@@ -23,8 +23,13 @@ void DeathBehaviour::OnCollision(Collision collision)
 {
 	if (collision.getHitBy() == "Player" && !hit)
 	{
+		std::cout << "player died" << std::endl;
+		/*glm::vec3 spawnPos = StatsHolder::getSpawnPos();
+		neV3 Pos;
+		Pos.Set( spawnPos.x,spawnPos.y,spawnPos.z);*/
+		//_player->GetRigidBody()->SetPos(Pos);
+
 		hit = true;
-		std::cout << " Hitting playerr :) " << std::endl;
-		StatsHolder::PlayerDied = true;
+		//StatsHolder::PlayerDied = true;
 	}
 }

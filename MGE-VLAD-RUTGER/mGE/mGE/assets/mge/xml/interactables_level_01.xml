@@ -1,5 +1,10 @@
 <?xml version="1.0" ?>
 <GameObjects>
+	<Object name="Player">
+		<Position X="44.8861593356" Y="0.648198818894" Z="34.793805164"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="10"/>
+	</Object>
 	<Object name="Shooting_Trap_04">
 		<Position X="28.5689137993" Y="0.410095633096" Z="-28.7594579222"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
@@ -19,11 +24,6 @@
 		<Position X="-39.4602514906" Y="3.04345089141" Z="-1.5"/>
 		<Rotation X="0.0" Y="270.0" Z="0.0"/>
 		<Object_Type Type="4"/>
-	</Object>
-	<Object name="Player">
-		<Position X="44.8861593356" Y="0.648198818894" Z="34.793805164"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="10"/>
 	</Object>
 	<Object name="Statue_02">
 		<Position X="-19.3119159177" Y="2.94558105381" Z="-27.0397563632"/>
@@ -105,8 +105,18 @@
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="2"/>
 	</Object>
+	<Object name="Coin_012">
+		<Position X="10.5" Y="1.41501639142" Z="20.218269652"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Coin_013">
+		<Position X="1.5" Y="1.41501639142" Z="20.218269652"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="2"/>
+	</Object>
 	<Object name="Bridge_03">
-		<Position X="-6.0" Y="3.7" Z="-26.9"/>
+		<Position X="-0.712623644454" Y="3.7" Z="-26.9"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="3"/>
 	</Object>
@@ -115,13 +125,8 @@
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
 		<Object_Type Type="3"/>
 	</Object>
-	<Object name="Bridge_01">
-		<Position X="22.2835776542" Y="-1.84181269645" Z="-8.0"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="11"/>
-	</Object>
 	<Object name="Secret_Exit_02">
-		<Position X="24.6" Y="5.5" Z="-7.5"/>
+		<Position X="24.1781703276" Y="5.5" Z="-7.5"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="9"/>
 	</Object>
@@ -136,7 +141,7 @@
 		<Object_Type Type="9"/>
 	</Object>
 	<Object name="Secret_Enterance_02">
-		<Position X="35.4" Y="5.5" Z="-7.5"/>
+		<Position X="35.817269359" Y="5.5" Z="-7.5"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="9"/>
 	</Object>
@@ -186,42 +191,17 @@
 		<Object_Type Type="13"/>
 	</Object>
 	<Object name="Step_07">
-		<Position X="10.8515123049" Y="-4.55990935575" Z="21.6193202016"/>
+		<Position X="9.1938239163" Y="-4.55990935575" Z="34.5684195889"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="13"/>
 	</Object>
 	<Object name="Step_08">
-		<Position X="10.8515123049" Y="-5.94210132454" Z="22.7868086064"/>
+		<Position X="7.44398283672" Y="-5.94210132454" Z="35.1089210928"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="13"/>
 	</Object>
 	<Object name="Step_09">
-		<Position X="10.8515123049" Y="-5.25848463149" Z="22.2325320279"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step_010">
-		<Position X="7.9846462175" Y="-3.88940415139" Z="21.6193202016"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step_011">
-		<Position X="6.75568992954" Y="-3.2114140615" Z="21.7455084872"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step_012">
-		<Position X="5.87415208464" Y="-2.33730873987" Z="21.6793038328"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step_013">
-		<Position X="5.0001672359" Y="-1.70060128272" Z="21.6793038328"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step_014">
-		<Position X="4.18344032951" Y="-0.966763592652" Z="21.6523533437"/>
+		<Position X="8.27414896618" Y="-5.25848463149" Z="34.5546445143"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="13"/>
 	</Object>
@@ -284,5 +264,50 @@
 		<Position X="-33.8099578492" Y="2.8328964838" Z="34.5770002627"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
 		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step_027">
+		<Position X="10.35429134" Y="-2.96496838742" Z="34.4208008767"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step_028">
+		<Position X="11.1844574695" Y="-2.28135169436" Z="34.5546445143"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step_029">
+		<Position X="12.1041324196" Y="-1.58277641862" Z="34.5684195889"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Coffin">
+		<Position X="20.3628185541" Y="1.83798730373" Z="2.15636012751"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin1">
+		<Position X="20.3628185541" Y="1.83798730373" Z="-17.0040577408"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin2">
+		<Position X="5.86281855413" Y="1.74889774773" Z="19.2671889413"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin3">
+		<Position X="-18.9349679491" Y="1.74889774773" Z="28.9191371377"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin4">
+		<Position X="-52.9409275586" Y="1.74889774773" Z="28.9191371377"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Bridge_01">
+		<Position X="22.25" Y="-0.48771108813" Z="-8.0"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="11"/>
 	</Object>
 </GameObjects>

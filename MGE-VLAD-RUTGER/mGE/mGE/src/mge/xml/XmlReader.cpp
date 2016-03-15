@@ -36,6 +36,7 @@
 #include "mge/behaviours/SceneSwitchBehaviour.h"
 #include "mge/behaviours/GhostBehaviour.h"
 #include "mge/behaviours/BrokenBridgeBehaviour.h"
+#include "mge/behaviours/SpawnPointBehaviour.h"
 
  #include "mge/materials/TerrainMaterial.hpp" 
 
@@ -49,6 +50,8 @@ AbstractMaterial * hiddenPassageMaterial;
 AbstractMaterial * flashLightMaterial;
 AbstractMaterial * coffinMaterial;
 AbstractMaterial * gateBigMaterial;
+AbstractMaterial * bridge1Material;
+
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -63,6 +66,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	flashLightMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_diffuse.jpg"), Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_normal.jpg"), Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_specular.jpg"), 0.1f);
 	coffinMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "coffin_DIFF(TEMP).png"), 0.1f);
 	gateBigMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gatebig_DIFF (TEMP).png"), Texture::load(config::MGE_TEXTURE_PATH + "gatebig_NRM.png"), 0.1f);
+	bridge1Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_NRM.png"), 0.1f);
 }
 
 XmlReader::~XmlReader()
@@ -426,8 +430,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		case 11:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
-			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "bridge.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Bridge1.obj"));
+			obj->setMaterial(bridge1Material);
 
 			obj->setBehaviour(new DoorBehaviour());
 			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
@@ -635,6 +639,8 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 			StaticGameObject * obj = new StaticGameObject(_subtitleTriggerName[i], _subtitleTriggerPosition[i], _world, true);
 			_world->add(obj);
 
+			std::cout << _subtitleTriggerPosition[i].x << std::endl;
+
 			glm::vec3 center2 = obj->getLocalPosition();
 			glm::vec3 triggerSize = _subtitleTriggerSize[i] / 2;
 			glm::vec3 minbound2(center2.x - triggerSize.x, center2.y - triggerSize.y, center2.z - triggerSize.z);
@@ -688,17 +694,21 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 		{
 			StaticGameObject * obj = new StaticGameObject(_subtitleTriggerName[i], _subtitleTriggerPosition[i], _world, true);
 			_world->add(obj);
+	
 
 			glm::vec3 center2 = obj->getLocalPosition();
 			glm::vec3 triggerSize = _subtitleTriggerSize[i] / 2;
 			glm::vec3 minbound2(center2.x - triggerSize.x, center2.y - triggerSize.y, center2.z - triggerSize.z);
 			glm::vec3 maxbound2(center2.x + triggerSize.x, center2.y + triggerSize.y, center2.z + triggerSize.z);
+		
+			std::cout << minbound2 << maxbound2 << std::endl;
 			obj->SetBounds(minbound2, maxbound2);
+
 
 			obj->AddBoxCollider(0, 0, 0);
 
-		//	obj->setBehaviour(new SceneSwitchBehaviour());
-
+			obj->setBehaviour(new SpawnPointBehaviour());
+	
 		}
 		break;
 		}
