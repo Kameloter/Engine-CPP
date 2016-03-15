@@ -180,6 +180,8 @@ void LevelManager::Build_level_hub_tutorial()
 
 	tutorialStart = true;
 	LUAManager::InitializeFile(_world, "level_hub");
+
+	delete xmlReader;
 }
 
 sf::SoundBuffer ambientBuffer;
@@ -206,7 +208,7 @@ void LevelManager::Build_level_1()
 	//soundAmbient.setBuffer(ambientBuffer);
 	//soundAmbient.setLoop(true);
 	//soundAmbient.play();
-
+	delete xmlReader;
 }
 
 void LevelManager::Build_level_2()
@@ -214,12 +216,14 @@ void LevelManager::Build_level_2()
 	DirectionalLight * light = new DirectionalLight("light", glm::vec3(40, 5, 35), glm::vec3(-1, 1, -0.5f), glm::vec3(0.05), glm::vec3(0.05), glm::vec3(0.1f));
 	_world->add(light);
 	_world->AddLight(light);
-
 	XmlReader * xmlReader = new XmlReader(_world);
+
 	xmlReader->LoadLevel("level_02");
 	xmlReader->LoadInteractables("interactables_level_02");
 	xmlReader->LoadSubtitleTriggers("triggers_level_02");
 	LUAManager::InitializeFile(_world,"level_02");
+
+	delete xmlReader;
 }
 
 void LevelManager::Build_level_3()
@@ -229,6 +233,8 @@ void LevelManager::Build_level_3()
 	xmlReader->LoadInteractables("interactables_level_03");
 	xmlReader->LoadSubtitleTriggers("triggers_level_03");
 	//LUAManager::InitializeFile(_world);
+
+	delete xmlReader;
 }
 
 void LevelManager::Build_level_4()
@@ -244,6 +250,8 @@ void LevelManager::Build_level_4()
 	//LUAManager::InitializeFile(_world);
 
 	std::cout << "LOADED level 4 bIATIHT" << std::endl;
+
+	//delete xmlReader;
 }
 bool s_1 = false;
 bool s_2 = false;
@@ -307,5 +315,6 @@ void LevelManager::setWorldWindow(PhysicsWorld * pWorld, sf::Window * pWindow)
 {
 	_world = pWorld;
 	_window = pWindow;
+//	xmlReader = new XmlReader(_world);
 }
 

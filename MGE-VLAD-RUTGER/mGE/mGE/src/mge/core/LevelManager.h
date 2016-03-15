@@ -7,6 +7,8 @@ enum GameLevels
 };
 
 class PhysicsWorld;
+//class XmlReader;
+
 class LevelManager
 {
 public:
@@ -39,6 +41,8 @@ private:
 	void Build_level_2();
 	void Build_level_3();
 	void Build_level_4();
+
+
 
 
 	PhysicsWorld * _world;

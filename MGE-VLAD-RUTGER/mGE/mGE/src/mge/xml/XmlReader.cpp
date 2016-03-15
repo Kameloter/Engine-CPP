@@ -51,6 +51,7 @@ AbstractMaterial * flashLightMaterial;
 AbstractMaterial * coffinMaterial;
 AbstractMaterial * gateBigMaterial;
 AbstractMaterial * bridge1Material;
+AbstractMaterial * stepMaterial;
 
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
@@ -67,6 +68,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	coffinMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "coffin_DIFF(TEMP).png"), 0.1f);
 	gateBigMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gatebig_DIFF (TEMP).png"), Texture::load(config::MGE_TEXTURE_PATH + "gatebig_NRM.png"), 0.1f);
 	bridge1Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_NRM.png"), 0.1f);
+	stepMaterial = new BasicTextureLit (Texture::load(config::MGE_TEXTURE_PATH + "step_DIFF.png"), 0.1f);
 }
 
 XmlReader::~XmlReader()
@@ -111,6 +113,7 @@ void XmlReader::LoadLevel(const char* pLevelName)
 {
 	Read(pLevelName);
 	SetupLevelGeometry(pLevelName);
+	//clean yup xml lists
 }
 
 void XmlReader::SetupLevelGeometry(std::string pLevelName)
@@ -124,9 +127,14 @@ void XmlReader::SetupLevelGeometry(std::string pLevelName)
 	
 	_world->add(root);
 
+	//GameObject * sand = new GameObject(pLevelName + "sand" + ".obj", glm::vec3(0, 0, 0));
+	//sand->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + "_sand" + ".obj"));
+
+	//sand->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH +"sand_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "sand_NRM.png"), 0.1f));
+	//_world->add(sand);
+
 	for (int i = 0; i < _names.size(); i++)
 	{
-		//cout << _positions[i] << _names[i]<< _scales[i]<< endl;
 		StaticGameObject* obj = new StaticGameObject(_names[i], _positions[i], _world);
 
 		glm::vec3 boxColSize(_scales[i]);
@@ -162,12 +170,14 @@ void XmlReader::LoadInteractables(const char* pName)
 {
 	ReadInteractables(pName);
 	SetupInteractableGeometry(pName);
+	//clean yup xml lists
 }
 
 void XmlReader::LoadSubtitleTriggers(const char * pLevelName)
 {
 	ReadSubtitleTriggers(pLevelName);
 	SetupSubtitleTriggers(pLevelName);
+	//clean yup xml lists
 }
 
 void XmlReader::ReadInteractables(const char* pFileName)
@@ -459,8 +469,8 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		case 13:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, false);
-			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "step_01.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(0, 0, 1)));
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Step.obj"));
+			obj->setMaterial(stepMaterial);
 			_world->add(obj);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);

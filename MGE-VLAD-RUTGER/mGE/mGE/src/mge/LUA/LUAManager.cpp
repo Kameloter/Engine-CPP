@@ -187,6 +187,10 @@ int LUAManager::SetBeginEndGhost(lua_State * L)
 
 void LUAManager::setObjects(std::vector<StaticGameObject*> pStaticObjects, std::vector<RigidbodyGameObject*> pRigidObjects, std::vector<GameObject*> pTriggerStatic)
 {
+	rigidObjects.clear();
+	staticObjects.clear();
+	staticTriggerObjects.clear();
+
 	rigidObjects = pRigidObjects;
 	staticObjects = pStaticObjects;
 	staticTriggerObjects = pTriggerStatic;
