@@ -1,10 +1,5 @@
 <?xml version="1.0" ?>
 <GameObjects>
-	<Object name="Player">
-		<Position X="44.8861593356" Y="0.648198818894" Z="34.793805164"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="10"/>
-	</Object>
 	<Object name="Shooting_Trap_04">
 		<Position X="28.5689137993" Y="0.410095633096" Z="-28.7594579222"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
@@ -24,6 +19,11 @@
 		<Position X="-39.4602514906" Y="3.04345089141" Z="-1.5"/>
 		<Rotation X="0.0" Y="270.0" Z="0.0"/>
 		<Object_Type Type="4"/>
+	</Object>
+	<Object name="Player">
+		<Position X="44.8861593356" Y="0.648198818894" Z="34.793805164"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="10"/>
 	</Object>
 	<Object name="Statue_02">
 		<Position X="-19.3119159177" Y="2.94558105381" Z="-27.0397563632"/>

@@ -20,12 +20,12 @@ DoorBehaviour::~DoorBehaviour()
 void DoorBehaviour::update(float pStep){
 	if (CheckPlates()) {
 		if (glm::distance(_owner->getWorldPosition(), _openPos)>0.5f) {
-			dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(glm::normalize(_openPos - _closedPos)/25);
+			dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(glm::normalize(_openPos - _closedPos) * pStep );
 		}
 	}
 	else if (glm::distance(_owner->getWorldPosition(), _closedPos)>0.5f)
 	{
-		dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(-glm::normalize(_openPos - _closedPos) / 25);
+		dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(-glm::normalize(_openPos - _closedPos) * pStep );
 	}
 }
 

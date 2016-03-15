@@ -6,6 +6,7 @@
 #include "SFML\Audio.hpp"
 #include "mge/config.hpp"
 #include "mge/StatsHolder.h"
+#include "mge/SubtitleManager.h"
 
 
 SpawnPointBehaviour::SpawnPointBehaviour()
@@ -26,6 +27,7 @@ void SpawnPointBehaviour::OnCollision(Collision collision)
 	if (collision.getHitBy()->getName() == "Player" && !hit)
 	{
 		StatsHolder::setSpawnPos(_owner->getLocalPosition() + glm::vec3(0, 2, 0));
+		SubtitleManager::playSubtitle("HUB_04");
 		hit = true;
 	}
 }
