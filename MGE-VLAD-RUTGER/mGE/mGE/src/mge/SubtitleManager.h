@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "glm.hpp"
 class Subtitle;
 class SubtitleManager
 {
@@ -12,7 +13,8 @@ public:
 	
 	static void createSubtitles();
 	static void update(float pStep);
-	static void playSubtitle(std::string sub, bool tutorialSub = false);
+	static void playSubtitle(std::string sub,glm::vec2 pTextPos, sf::Color pTextColor = sf::Color::White);
+	static void playSubtitle(std::string sub, sf::Color pTextColor = sf::Color::White);
 	static void draw(sf::RenderWindow * pWindow);
 	static void resetText(std::string s, float t);
 	static void addSubtitle(std::string pGameObject, std::string pSubtitle, float showtime);

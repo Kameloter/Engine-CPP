@@ -273,14 +273,14 @@ void LevelManager::testUpdate()
 		else  if (Timer::now() > subStartTime + 10 && !s_2)
 
 		{
-			SubtitleManager::playSubtitle("Tutorial_01", true);
+			SubtitleManager::playSubtitle("Tutorial_01",sf::Color::Yellow);
 			subStartTime = Timer::now();
 			s_2 = true;
 		}
 		else  if (Timer::now() > subStartTime + 10 && !s_6)
 
 		{
-			SubtitleManager::playSubtitle("Tutorial_02", true);
+			SubtitleManager::playSubtitle("Tutorial_02",sf::Color::Yellow);
 			subStartTime = Timer::now();
 			s_6 = true;
 		}
@@ -288,7 +288,7 @@ void LevelManager::testUpdate()
 		else  if (Timer::now() > subStartTime + 10 && !s_3)
 
 		{
-			SubtitleManager::playSubtitle("HUB_02");
+			SubtitleManager::playSubtitle("HUB_02",sf::Color::White);
 			subStartTime = Timer::now();
 			s_3 = true;
 		}
@@ -302,7 +302,7 @@ void LevelManager::testUpdate()
 		else  if (Timer::now() > subStartTime + 10 && !s_5)
 
 		{
-			SubtitleManager::playSubtitle("Tutorial_03", true);
+			SubtitleManager::playSubtitle("Tutorial_03",sf::Color::Yellow);
 			subStartTime = Timer::now();
 			s_5 = true;
 		}

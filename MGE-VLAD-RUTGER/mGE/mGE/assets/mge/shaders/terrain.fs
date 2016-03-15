@@ -22,12 +22,12 @@ void main( void ) {
     changeUv += disT;
 
   //  vec4 splatVector = texture(splatMap,texCoord);
-    vec4 finalColor = vec4(0.f);
+    vec3 finalColor = vec3(0.f);
 
  //   finalColor += texture(tex_DiffuseR,texCoord) * splatVector.r;
     finalColor += texture(tex_DiffuseG,changeUv).rgb ;//* splatVector.g;
  //   finalColor += texture(tex_DiffuseB,texCoord) * splatVector.b;
  //   finalColor += texture(tex_DiffuseA,texCoord) * splatVector.a;
 
-	fragment_color = finalColor;
+	fragment_color = vec4(finalColor,1.0f);
 }

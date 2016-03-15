@@ -69,7 +69,7 @@ void SubtitleManager::resetText(std::string s, float t)
 	}
 }
 
-void SubtitleManager::playSubtitle(std::string sub,bool tutorialSub)
+void SubtitleManager::playSubtitle(std::string sub,glm::vec2 pTextPos, sf::Color pTextColor)
 {
 	Subtitle * sub2 = 0;
 	std::map<std::string, Subtitle*>::iterator myIter = _subtitles.find(sub);
@@ -88,12 +88,45 @@ void SubtitleManager::playSubtitle(std::string sub,bool tutorialSub)
 	_subFont.loadFromFile(config::MGE_FONT_PATH + "arial.ttf");
 	_subText.setFont(_subFont);
 	_subText.setString(sub2->subtitle);
+	_subText.setPosition(sf::Vector2f(pTextPos.x, pTextPos.y));
+
+
+		_subText.setColor(pTextColor);
+
+
+	_subText.setCharacterSize(20);
+
+
+	waitTime = sub2->duration;
+	showSubtitle = true;
+
+}
+
+
+void SubtitleManager::playSubtitle(std::string sub, sf::Color pTextColor)
+{
+	Subtitle * sub2 = 0;
+	std::map<std::string, Subtitle*>::iterator myIter = _subtitles.find(sub);
+	if (myIter == _subtitles.end()) // if iterator is at the end then he did not find existing mesh
+	{
+		std::cout << " no sub like dat bro  .. returning" << std::endl;
+		return;
+	}
+	else {
+		sub2 = myIter->second;
+	}
+
+
+	//std::map<std::string, Subtitle*>::iterator meshIterator = _subtitles.find(sub);
+
+	_subFont.loadFromFile(config::MGE_FONT_PATH + "arial.ttf");
+	_subText.setFont(_subFont);
+	_subText.setString(sub2->subtitle);
 	_subText.setPosition(sf::Vector2f(200, 500));
 
-	if(tutorialSub)
-		_subText.setColor(sf::Color::Yellow);
-	else
-		_subText.setColor(sf::Color::White);
+
+	_subText.setColor(pTextColor);
+
 
 	_subText.setCharacterSize(20);
 
