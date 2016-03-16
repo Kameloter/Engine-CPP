@@ -41,7 +41,7 @@ void AbstractGame::initialize() {
 
 void AbstractGame::_initializeWindow() {
 	cout << "Initializing window..." << endl;
-	_window = new sf::RenderWindow( sf::VideoMode(1366,768), "My Game!", sf::Style::Fullscreen, sf::ContextSettings(24,8,0,3,3));
+	_window = new sf::RenderWindow( sf::VideoMode(800,600), "My Game!", sf::Style::Default, sf::ContextSettings(24,8,0,3,3));
 	_window->setVerticalSyncEnabled(false);
     cout << "Window initialized." << endl << endl;
 }
@@ -97,7 +97,7 @@ void AbstractGame::_initializePhysiscs() {
  //   cout << "Physics initialized." << endl << endl;
 }
 
-///LOOP 
+///LOOP
 
 void AbstractGame::run()
 {
@@ -110,7 +110,17 @@ void AbstractGame::run()
 
 	while (_running) {
 
-		
+		float currentTime = clock();
+		float deltaTime = currentTime - lastTime;
+		accumulatedTime += deltaTime;
+
+		while (accumulatedTime > 5.0f) {
+			_fixedUpdate();
+			accumulatedTime -= 5.0f;
+			//count++;
+		}
+
+		lastTime = currentTime;
 
 	/*	if (count == 50) {
 			cout << "dsad" << endl;
@@ -129,20 +139,6 @@ void AbstractGame::run()
         _update();
 
 		updateTime = (std::clock() - startUpdate) / (double)(CLOCKS_PER_SEC / 1000);
-
-
-		float currentTime = clock();
-		float deltaTime = currentTime - lastTime;
-		accumulatedTime += deltaTime;
-
-		while (accumulatedTime > 5.0f) {
-			_fixedUpdate();
-			accumulatedTime -= 5.0f;
-			//count++;
-		}
-
-		lastTime = currentTime;
-
 
 		clock_t startRender;
 		startRender = clock();
