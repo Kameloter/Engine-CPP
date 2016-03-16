@@ -195,6 +195,9 @@ void LevelManager::Build_level_1()
 
 	cout << " Build level 1 " << endl;
 
+
+
+
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_01");
 	xmlReader->LoadInteractables("interactables_level_01");
@@ -315,6 +318,5 @@ void LevelManager::setWorldWindow(PhysicsWorld * pWorld, sf::Window * pWindow)
 {
 	_world = pWorld;
 	_window = pWindow;
-//	xmlReader = new XmlReader(_world);
 }
 

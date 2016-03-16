@@ -1,27 +1,22 @@
 <?xml version="1.0" ?>
 <GameObjects>
-	<Object name="Shooting_Trap_04">
-		<Position X="28.5689137993" Y="0.410095633096" Z="-28.7594579222"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="4"/>
-	</Object>
 	<Object name="Shooting_Trap_03">
-		<Position X="-33.612488138" Y="3.04345089141" Z="13.5"/>
+		<Position X="-33.612488138" Y="2.04345089141" Z="13.5"/>
 		<Rotation X="0.0" Y="90.0" Z="180.0"/>
 		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Shooting_Trap_02">
-		<Position X="-33.612488138" Y="3.04345089141" Z="7.5"/>
+		<Position X="-33.612488138" Y="2.04345089141" Z="7.5"/>
 		<Rotation X="0.0" Y="90.0" Z="180.0"/>
 		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Shooting_Trap_01">
-		<Position X="-39.4602514906" Y="3.04345089141" Z="-1.5"/>
+		<Position X="-39.4602514906" Y="2.04345089141" Z="-1.5"/>
 		<Rotation X="0.0" Y="270.0" Z="0.0"/>
 		<Object_Type Type="4"/>
 	</Object>
 	<Object name="Player">
-		<Position X="44.8861593356" Y="0.648198818894" Z="34.793805164"/>
+		<Position X="-39.4602514906" Y="25.04345089141" Z="-1.5"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
 		<Object_Type Type="10"/>
 	</Object>

@@ -54,6 +54,7 @@ AbstractMaterial * gateBigMaterial;
 AbstractMaterial * bridge1Material;
 AbstractMaterial * stepMaterial;
 AbstractMaterial * terrainMaterial;
+AbstractMaterial * spikeWallMaterial;
 
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
@@ -72,6 +73,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	bridge1Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_NRM.png"), 0.1f);
 	stepMaterial = new BasicTextureLit (Texture::load(config::MGE_TEXTURE_PATH + "step_DIFF.png"), 0.1f);
 	terrainMaterial = new TerrainMaterial(Texture::load(config::MGE_TEXTURE_PATH + "lava.jpg"));
+	spikeWallMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "spikescover_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "spikescover_NRM.png"), 0.1f);
 
 }
 
@@ -324,12 +326,19 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setBehaviour(new SpikeBehaviour());
 			_world->add(obj);
 
+			StaticGameObject * obj2 = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj2->setMesh(Mesh::load(config::MGE_MODEL_PATH + "CoverWalls.obj"));
+			obj2->setMaterial(spikeWallMaterial);
+
+			_world->add(obj2);
+
 			if (_rotationsInteractables[i].y > 0) {
 				obj->rotate(glm::radians(_rotationsInteractables[i].y), glm::vec3(0, 1, 0));
+				obj2->rotate(glm::radians(_rotationsInteractables[i].y), glm::vec3(0, 1, 0));
 				glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
 				glm::vec3 center2 = obj->getLocalPosition();
-				glm::vec3 minbound2(center2.x - colSize.y, center2.y - colSize.x, center2.z - colSize.z);
-				glm::vec3 maxbound2(center2.x + colSize.y, center2.y + colSize.x, center2.z + colSize.z);
+				glm::vec3 minbound2(center2.x - colSize.z, center2.y - colSize.x, center2.z - colSize.x);
+				glm::vec3 maxbound2(center2.x + colSize.z, center2.y + colSize.x, center2.z + colSize.x);
 				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
 				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			}
@@ -341,6 +350,13 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 				glm::vec3 maxbound2(center2.x + colSize.x, center2.y + colSize.y, center2.z + colSize.z);
 				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
 				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+
+			if (_rotationsInteractables[i].y == 270) {
+				obj2->translate(obj2->getWorldForward() * -2.55f);
+			}
+			else if (_rotationsInteractables[i].y == 90){
+				obj2->translate(obj2->getWorldForward() * -3.65f);
 			}
 
 			dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();

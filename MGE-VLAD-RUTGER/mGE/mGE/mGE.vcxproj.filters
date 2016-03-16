@@ -225,9 +225,6 @@
     <ClInclude Include="src\mge\core\collision\PhysicsWorld.h">
       <Filter>Header Files\core\collision</Filter>
     </ClInclude>
-    <ClInclude Include="src\mge\xml\XmlReader.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
     <ClInclude Include="src\mge\behaviours\StatueBehaviour.h">
       <Filter>Header Files\behaviours</Filter>
     </ClInclude>
@@ -299,6 +296,9 @@
     </ClInclude>
     <ClInclude Include="src\mge\behaviours\SpawnPointBehaviour.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mge\xml\XmlReader.h">
+      <Filter>Header Files\xml</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -526,9 +526,6 @@
     <ClCompile Include="src\mge\core\collision\PhysicsWorld.cpp">
       <Filter>Source Files\core\collision</Filter>
     </ClCompile>
-    <ClCompile Include="src\mge\xml\XmlReader.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
     <ClCompile Include="src\mge\behaviours\StatueBehaviour.cpp">
       <Filter>Source Files\behaviours</Filter>
     </ClCompile>
@@ -594,6 +591,9 @@
     </ClCompile>
     <ClCompile Include="src\mge\behaviours\SpawnPointBehaviour.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\xml\XmlReader.cpp">
+      <Filter>Source Files\xml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
