@@ -24,7 +24,7 @@ sf::Sound sound;
 
 void CollectableBehaviour::update(float pStep) 
 {
-
+	_owner->rotate(pStep, glm::vec3(0, 1, 0));
 }
 
 void CollectableBehaviour::OnCollision(Collision collision)

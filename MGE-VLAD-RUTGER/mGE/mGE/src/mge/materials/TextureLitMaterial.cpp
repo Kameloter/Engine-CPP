@@ -13,7 +13,7 @@
 ShaderProgram* TextureLitMaterial::_shader = NULL;
 
 TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, Texture* pNormalTexture, float pShininess) :
-	_diffuseTexture(pDiffuseTexture), _normalTexture(pNormalTexture), specMapOn(false), _specularTexture(0),_shininess(pShininess)
+	_diffuseTexture(pDiffuseTexture), _normalTexture(pNormalTexture), specMapOn(false), _specularTexture(0),_shininess(pShininess), cachePointLights(false)
 {
     _lazyInitializeShader();
 	_cacheUniformsAttributes();
@@ -21,7 +21,7 @@ TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, Texture* pNorm
 }
 
 TextureLitMaterial::TextureLitMaterial(Texture * pDiffuseTexture, Texture* pNormalTexture, Texture* pSpecularTexture, float pShininess) :
-	_diffuseTexture(pDiffuseTexture), _normalTexture(pNormalTexture), specMapOn(true), _specularTexture(pSpecularTexture),_shininess(pShininess)
+	_diffuseTexture(pDiffuseTexture), _normalTexture(pNormalTexture), specMapOn(true), _specularTexture(pSpecularTexture),_shininess(pShininess), cachePointLights(false)
 {
 	_lazyInitializeShader();
 	_cacheUniformsAttributes();
@@ -91,7 +91,33 @@ void TextureLitMaterial::setDiffuseTexture (Texture* pDiffuseTexture) {
     _diffuseTexture = pDiffuseTexture;
 }
 
-void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* pCamera) {
+void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* pCamera) { 
+	if (!cachePointLights)
+	{
+		int count = 0;
+		for (int i = 0; i < pWorld->getLightCount(); i++)
+		{
+			Light* temp = pWorld->getLightAt(i);
+			switch (temp->type) 
+			{
+				case Light::LightType::Point:
+				{
+					count++;
+					std::string num = "pointLight[" + std::to_string(count - 1) + "].";
+
+				   	 _uPointLight_Pos[count - 1] = _shader->getUniformLocation(num + "position");
+					 _uPointLight_Ambient[count - 1] = _shader->getUniformLocation(num + "ambient");
+					 _uPointLight_Diffuse[count - 1] = _shader->getUniformLocation(num + "diffuse");
+					 _uPointLight_Specular[count - 1] = _shader->getUniformLocation(num + "specular");
+					
+					break;
+				}
+			}
+		}
+
+		cachePointLights = true;
+	}
+
     if (!_diffuseTexture || !_normalTexture) return;
 
     _shader->use();
@@ -109,14 +135,10 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
 		glUniform1f(_uMaterialShininess, _shininess);
 	}
 
-	//Camera position --> needs optimization  
     glUniform3fv(_uCameraPosition,1, glm::value_ptr( pCamera->getWorldPosition()));
    
-	
-	/*int pointCount = 0;
-    int spotCount = 0;*/
-	//int dirCount = 0;
-    for (int i =0; i < pWorld->getLightCount(); i++)
+	int pointCount = 0;
+	for (int i =0; i < pWorld->getLightCount(); i++)
     {
 		
 		//cout <<"lightcount ->> " << pWorld->getLightCount() << endl;
@@ -131,24 +153,23 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
                 glUniform3fv(_uDirLight_Diffuse,1,glm::value_ptr(temp->diffuse));
                 glUniform3fv(_uDirLight_Specular,1, glm::value_ptr(temp->specular));
                 break;
-    //        case Light::LightType::Point:
-    //            {
-    //              pointCount++;
-				// // std::cout <<"POINTCOUNT ->"<< pointCount << std::endl;
-    //            std::string num = "pointLight[" + std::to_string(pointCount - 1) + "].";
+            case Light::LightType::Point:
+                {
+                  pointCount++;
+				 // std::cout <<"POINTCOUNT ->"<< pointCount << std::endl;
+              //  std::string num = "pointLight[" + std::to_string(pointCount - 1) + "].";
 
-    //            glUniform3fv(_shader->getUniformLocation(num + "position"),1, glm::value_ptr(temp->getWorldPosition()));
-				////glUniform3fv(_shader->getUniformLocation(num + "direction"), 1, glm::value_ptr(-temp->getUp()));
+                glUniform3fv(_uPointLight_Pos[pointCount - 1],1, glm::value_ptr(temp->getWorldPosition()));
 
-    //            glUniform3fv(_shader->getUniformLocation(num + "ambient"),1, glm::value_ptr(temp->ambient));
-    //            glUniform3fv(_shader->getUniformLocation(num + "diffuse"),1,glm::value_ptr(temp->diffuse));
-    //            glUniform3fv(_shader->getUniformLocation(num + "specular"),1, glm::value_ptr(temp->specular));
+                glUniform3fv(_uPointLight_Ambient[pointCount - 1],1, glm::value_ptr(temp->ambient));
+                glUniform3fv(_uPointLight_Diffuse[pointCount - 1],1,glm::value_ptr(temp->diffuse));
+                glUniform3fv(_uPointLight_Specular[pointCount - 1],1, glm::value_ptr(temp->specular));
 
-    //            glUniform1f (_shader->getUniformLocation(num + "constant"), 1.f);
-    //            glUniform1f (_shader->getUniformLocation(num + "linear"), 0.09f);
-    //            glUniform1f (_shader->getUniformLocation(num + "quadratic"), 0.032f);
-    //            }
-    //            break;
+          /*      glUniform1f (_shader->getUniformLocation(num + "constant"), 1.f);
+                glUniform1f (_shader->getUniformLocation(num + "linear"), 0.09f);
+                glUniform1f (_shader->getUniformLocation(num + "quadratic"), 0.032f);*/
+                }
+                break;
             case Light::LightType::Spot:
                 {
 					glUniform3fv(_uSpotLight_Pos, 1, glm::value_ptr(temp->getWorldPosition()));
@@ -168,7 +189,7 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
     }
 
 	//glUniform1i(_shader->getUniformLocation("spotLightCount"), spotCount);
-//	glUniform1i(_shader->getUniformLocation("pointLightCount"), pointCount);
+	glUniform1i(_shader->getUniformLocation("pointLightCount"), pointCount);
 
 	//if (dirCount == 1)
 	//{

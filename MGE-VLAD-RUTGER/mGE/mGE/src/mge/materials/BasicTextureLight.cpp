@@ -13,7 +13,7 @@
 ShaderProgram* BasicTextureLit::_shader = NULL;
 
 BasicTextureLit::BasicTextureLit(Texture * pDiffuseTexture, float pShininess) :
-	_diffuseTexture(pDiffuseTexture), specMapOn(false), _specularTexture(0),_shininess(pShininess)
+	_diffuseTexture(pDiffuseTexture), specMapOn(false), _specularTexture(0),_shininess(pShininess), cachePointLights(false)
 {
     _lazyInitializeShader();
 
@@ -21,7 +21,7 @@ BasicTextureLit::BasicTextureLit(Texture * pDiffuseTexture, float pShininess) :
 }
 
 BasicTextureLit::BasicTextureLit(Texture * pDiffuseTexture, Texture* pSpecularTexture, float pShininess) :
-	_diffuseTexture(pDiffuseTexture), specMapOn(true), _specularTexture(pSpecularTexture),_shininess(pShininess)
+	_diffuseTexture(pDiffuseTexture), specMapOn(true), _specularTexture(pSpecularTexture),_shininess(pShininess),cachePointLights(false)
 {
 	_lazyInitializeShader();
 	_cacheUniformsAttributes();
@@ -87,6 +87,34 @@ void BasicTextureLit::setDiffuseTexture (Texture* pDiffuseTexture) {
 }
 
 void BasicTextureLit::render(World* pWorld, GameObject* pGameObject, Camera* pCamera) {
+
+	if (!cachePointLights)
+	{
+		int count = 0;
+		for (int i = 0; i < pWorld->getLightCount(); i++)
+		{
+			Light* temp = pWorld->getLightAt(i);
+			switch (temp->type)
+			{
+			case Light::LightType::Point:
+			{
+				count++;
+				std::string num = "pointLight[" + std::to_string(count - 1) + "].";
+
+				_uPointLight_Pos[count - 1] = _shader->getUniformLocation(num + "position");
+				_uPointLight_Ambient[count - 1] = _shader->getUniformLocation(num + "ambient");
+				_uPointLight_Diffuse[count - 1] = _shader->getUniformLocation(num + "diffuse");
+				_uPointLight_Specular[count - 1] = _shader->getUniformLocation(num + "specular");
+
+				break;
+			}
+			}
+		}
+
+		cachePointLights = true;
+	}
+
+
     if (!_diffuseTexture) return;
 
     _shader->use();
@@ -109,14 +137,11 @@ void BasicTextureLit::render(World* pWorld, GameObject* pGameObject, Camera* pCa
 	//Camera position --> needs optimization  
 	glUniform3fv(_uCameraPosition, 1, glm::value_ptr(pCamera->getWorldPosition()));
 
-	
-	/*int pointCount = 0;
-    int spotCount = 0;
-	int dirCount = 0;*/
 
+	int pointCount = 0;
     for (int i =0; i < pWorld->getLightCount(); i++)
     {
-		
+	
 		//cout <<"lightcount ->> " << pWorld->getLightCount() << endl;
 
         Light* temp = pWorld->getLightAt(i);
@@ -129,24 +154,16 @@ void BasicTextureLit::render(World* pWorld, GameObject* pGameObject, Camera* pCa
 				glUniform3fv(_uDirLight_Diffuse, 1, glm::value_ptr(temp->diffuse));
 				glUniform3fv(_uDirLight_Specular, 1, glm::value_ptr(temp->specular));
                 break;
-    //        case Light::LightType::Point:
-    //            {
-    //              pointCount++;
-				// // std::cout <<"POINTCOUNT ->"<< pointCount << std::endl;
-    //            std::string num = "pointLight[" + std::to_string(pointCount - 1) + "].";
+            case Light::LightType::Point:
+                {
+                  pointCount++;
+				  glUniform3fv(_uPointLight_Pos[pointCount - 1], 1, glm::value_ptr(temp->getWorldPosition()));
 
-    //            glUniform3fv(_shader->getUniformLocation(num + "position"),1, glm::value_ptr(temp->getWorldPosition()));
-				////glUniform3fv(_shader->getUniformLocation(num + "direction"), 1, glm::value_ptr(-temp->getUp()));
-
-    //            glUniform3fv(_shader->getUniformLocation(num + "ambient"),1, glm::value_ptr(temp->ambient));
-    //            glUniform3fv(_shader->getUniformLocation(num + "diffuse"),1,glm::value_ptr(temp->diffuse));
-    //            glUniform3fv(_shader->getUniformLocation(num + "specular"),1, glm::value_ptr(temp->specular));
-
-    //            //glUniform1f (_shader->getUniformLocation(num + "constant"), 1.f);
-    //            glUniform1f (_shader->getUniformLocation(num + "linear"), 0.09f);
-    //            glUniform1f (_shader->getUniformLocation(num + "quadratic"), 0.032f);
-    //            }
-    //            break;
+				  glUniform3fv(_uPointLight_Ambient[pointCount - 1], 1, glm::value_ptr(temp->ambient));
+				  glUniform3fv(_uPointLight_Diffuse[pointCount - 1], 1, glm::value_ptr(temp->diffuse));
+				  glUniform3fv(_uPointLight_Specular[pointCount - 1], 1, glm::value_ptr(temp->specular));
+                }
+                break;
             case Light::LightType::Spot:
                 {
 					glUniform3fv(_uSpotLight_Pos, 1, glm::value_ptr(temp->getWorldPosition()));

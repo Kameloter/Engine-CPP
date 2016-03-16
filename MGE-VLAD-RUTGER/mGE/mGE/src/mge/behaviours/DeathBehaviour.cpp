@@ -2,6 +2,7 @@
 #include "mge/core/collision/BoxTrigger.h"
 #include "mge/core/collision/Collision.h"
 #include "mge/core/collision/StaticGameObject.h"
+#include "mge/core/collision/RigidbodyGameObject.h"
 #include "mge/StatsHolder.h"
 
 
@@ -23,8 +24,6 @@ void DeathBehaviour::OnCollision(Collision collision)
 {
 	if (collision.getHitBy()->getName() == "Player" && !hit)
 	{
-		std::cout << "player died" << std::endl;
-		std::cout << collision.getHitBy()->getName() << std::endl;
 
 		glm::vec3 spawnPos = StatsHolder::getSpawnPos();
 		neV3 Pos;
@@ -35,8 +34,5 @@ void DeathBehaviour::OnCollision(Collision collision)
 
 		dynamic_cast<RigidbodyGameObject*>(collision.getHitBy())->GetRigidBody()->SetPos(Pos);
 		dynamic_cast<RigidbodyGameObject*>(collision.getHitBy())->GetRigidBody()->SetVelocity(vel);
-
-		//hit = true;
-		//StatsHolder::PlayerDied = true;
 	}
 }

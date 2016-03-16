@@ -1,6 +1,5 @@
 #pragma once
 #include "AbstractBehaviour.hpp"
-#include "mge/core/collision/RigidbodyGameObject.h"
 class DeathBehaviour :
 	public AbstractBehaviour
 {

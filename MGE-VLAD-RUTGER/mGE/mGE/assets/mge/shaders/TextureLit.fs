@@ -14,7 +14,6 @@ struct PointLight {
     vec3 specular;
 
     float quadratic;
-    float constant;
     float linear;
 };
 
@@ -30,7 +29,6 @@ struct SpotLight {
     vec3 specular;
 
     float quadratic;
-    float constant;
     float linear;
 };
 
@@ -39,7 +37,6 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample);
 vec3 getSpotLight(SpotLight light, vec3 n, vec3 view, vec3 diffSample);
 
 
-//uniform int spotLightCount;
 uniform int pointLightCount;
 
 
@@ -88,10 +85,10 @@ void main( void )
 
 
 
-  //  for(int i = 0; i < pointLightCount; i++)
-  //  {
-       // finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
- //   }
+    for(int i = 0; i < pointLightCount; i++)
+    {
+       finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
+    }
 	 
     finalColor += getSpotLight(spotLight, normal, viewDirection,sampledDiffuse);
 	fragment_color = vec4(finalColor,1);
@@ -162,7 +159,7 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample)
    
     //Attenuation
     float distance = length(light.position - vertices);
-    float attenuation = 1.0f / (1 + light.linear * distance + light.quadratic * pow(distance,2));
+    float attenuation = 1.0f / (1 + spotLight.linear * distance + spotLight.quadratic * pow(distance,2));
 
     ambientTerm *= attenuation;
     diffuseTerm *= attenuation;

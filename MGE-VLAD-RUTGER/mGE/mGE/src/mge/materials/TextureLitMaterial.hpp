@@ -30,7 +30,7 @@ class TextureLitMaterial : public AbstractMaterial
 		Texture* _normalTexture;
 		bool specMapOn;
         float _shininess;
-
+		bool cachePointLights;
 
 		float _pointLightInnerCutOff;
 		float _pointLightOuterCutOff;
@@ -52,6 +52,15 @@ class TextureLitMaterial : public AbstractMaterial
 		GLuint _uDirLight_Ambient;
 		GLuint _uDirLight_Diffuse;
 		GLuint _uDirLight_Specular;
+
+
+		GLuint _uPointLight_Pos[25];
+		GLuint _uPointLight_Ambient[25];
+		GLuint _uPointLight_Diffuse[25];
+		GLuint _uPointLight_Specular[25];
+
+
+
 
 		GLuint _uSpotLight_Pos;
 		GLuint _uSpotLight_Dir;
