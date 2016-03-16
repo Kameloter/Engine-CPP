@@ -159,7 +159,7 @@ vec3 getPointLight(PointLight light, vec3 n, vec3 view, vec3 diffSample)
    
     //Attenuation
     float distance = length(light.position - vertices);
-    float attenuation = 1.0f / (1 + 0.36f * distance + 0.128f * pow(distance,2));
+    float attenuation = 1.0f / (1 + 0.22f * distance + 0.20 * pow(distance,2));
 
     ambientTerm *= attenuation;
     diffuseTerm *= attenuation;
