@@ -125,7 +125,7 @@ void MGEDemo::_updateHud() {
 
 	if (Timer::now() > lastUpdateTime + 0.1f)
 	{
-		_hud->setPerformanceDebugInfo("Render time: " + std::to_string((int)renderTime), "Update time: " + std::to_string((int)updateTime));
+		_hud->setPerformanceDebugInfo("Render time: " + std::to_string((int)renderTime), "Update time: " + std::to_string((int)updateTime), "Triangle count:" + std::to_string(triangleCount), "Draw Calls:" + std::to_string(drawCalls));
 		lastUpdateTime = Timer::now();
 	}
 

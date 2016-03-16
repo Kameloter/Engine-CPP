@@ -18,7 +18,7 @@ class Mesh
 	public:
 		Mesh(std::string pId);
 		virtual ~Mesh();
-
+		inline int getTriangleCount() const { return (_indices.size() / 3.0f); }
         /**
          * Loads a mesh from an .obj file. The file has to have:
          * vertexes, uvs, normals and face indexes. See load source
@@ -33,6 +33,7 @@ class Mesh
         void streamToOpenGL(GLint pVerticesAttrib, GLint pNormalsAttrib, GLint pUVsAttrib,GLint pTangentAttrib);
 		void calculateTangents();
         void renderDebugInfo(glm::mat4& pModelMatrix, World* pWorld);
+	
 		glm::vec3 GetColliderSize();
 	protected:
 		static std::map<std::string, Mesh*> _meshes;

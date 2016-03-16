@@ -13,7 +13,8 @@ class Renderer
 	public:
 		Renderer();
 		virtual ~Renderer();
-
+		inline int getDrawCalls() const { return drawCalls; }
+		inline int getTriangleCount() const { return currentlyRenderedTrianles; }
         //render whole world
         void render (World* pWorld);
 
@@ -22,6 +23,10 @@ class Renderer
 
         //utility call
         void setClearColor (int pR, int pG, int pB);
+
+private:
+	int currentlyRenderedTrianles;
+	int drawCalls;
 };
 
 #endif // RENDERER_H

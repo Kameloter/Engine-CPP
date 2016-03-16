@@ -33,7 +33,8 @@ class AbstractGame
         virtual void initialize();
         //run the actual process of updating all objects, rendering them and processing events
         virtual void run();
-
+		int drawCalls;
+		int triangleCount;
     protected:
 
         //methods above delegate behaviour to the methods below so that you can override it in a subclass

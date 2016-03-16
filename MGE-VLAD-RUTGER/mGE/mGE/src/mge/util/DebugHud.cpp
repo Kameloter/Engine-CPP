@@ -52,6 +52,17 @@ void DebugHud::_createDebugHud() {
 	_updateTimeText.setColor(sf::Color::White);
 
 
+	_triangleCountText.setString("");
+	_triangleCountText.setFont(_font);
+	_triangleCountText.setCharacterSize(12);
+	_triangleCountText.setColor(sf::Color::White);
+
+	_drawCallsText.setString("");
+	_drawCallsText.setFont(_font);
+	_drawCallsText.setCharacterSize(12);
+	_drawCallsText.setColor(sf::Color::White);
+
+
 }
 
 void DebugHud::setDebugInfo(std::string pInfo) {
@@ -64,7 +75,7 @@ void DebugHud::setWinTextInfo(std::string pInfo) {
 	_winText.setPosition(10 ,100);
 }
 
-void DebugHud::setPerformanceDebugInfo(std::string renderTime, std::string updateTime)
+void DebugHud::setPerformanceDebugInfo(std::string renderTime, std::string updateTime, std::string triangleCount, std::string drawCalls)
 {
 	_renderTimeText.setString(renderTime);
 	_renderTimeText.setPosition(10, 30);
@@ -72,6 +83,11 @@ void DebugHud::setPerformanceDebugInfo(std::string renderTime, std::string updat
 	_updateTimeText.setString(updateTime);
 	_updateTimeText.setPosition(10, 50);
 
+	_triangleCountText.setString(triangleCount);
+	_triangleCountText.setPosition(10, 70);
+
+	_drawCallsText.setString(drawCalls);
+	_drawCallsText.setPosition(10, 90);
 
 }
 
@@ -84,5 +100,7 @@ void DebugHud::draw()
     _window->draw(_winText);
 	_window->draw(_renderTimeText);
 	_window->draw(_updateTimeText);
+	_window->draw(_triangleCountText);
+	_window->draw(_drawCallsText);
 	_window->popGLStates();
 }

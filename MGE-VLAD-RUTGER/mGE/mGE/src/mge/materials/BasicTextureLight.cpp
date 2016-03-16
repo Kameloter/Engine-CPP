@@ -131,8 +131,7 @@ void BasicTextureLit::render(World* pWorld, GameObject* pGameObject, Camera* pCa
 		glUniform1i(_uUseSpecularMap, 0);
 		glUniform1f(_uMaterialShininess, _shininess);
 	}
-	// tell shader what specularity and shininess to use
-
+	
   
 	//Camera position --> needs optimization  
 	glUniform3fv(_uCameraPosition, 1, glm::value_ptr(pCamera->getWorldPosition()));
@@ -183,7 +182,7 @@ void BasicTextureLit::render(World* pWorld, GameObject* pGameObject, Camera* pCa
     }
 
 	//glUniform1i(_shader->getUniformLocation("spotLightCount"), spotCount);
-//	glUniform1i(_shader->getUniformLocation("pointLightCount"), pointCount);
+	glUniform1i(_shader->getUniformLocation("pointLightCount"), pointCount);
 	//if(dirCount==1)
 	//	glUniform1i(_shader->getUniformLocation("calculateDirLight"), 1);
 	//else
