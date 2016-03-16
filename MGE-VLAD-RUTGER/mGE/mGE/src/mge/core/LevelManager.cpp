@@ -192,7 +192,7 @@ sf::Sound soundAmbient;
 void LevelManager::Build_level_1()
 {	
 
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < 1; i++)
 	{
 		PointLight  * pointLight = new PointLight("pointLight", glm::vec3(0 + i * 5, 0, 0 + i * 5 + 2 / 3), glm::vec3(2), glm::vec3(1), glm::vec3(0.1f));
 		_world->add(pointLight);

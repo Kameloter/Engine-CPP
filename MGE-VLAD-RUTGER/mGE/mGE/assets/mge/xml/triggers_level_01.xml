@@ -36,8 +36,8 @@
 		<Object_Type Type="2"/>
 	</Object>
 	<Object name="Checkpoint_01">
-		<Position X="13.565488219" Y="3.55175221101" Z="-8.31091981332"/>
-		<ColSize X="9.13646867894" Y="10.0501155468" Z="9.10353284169"/>
+		<Position X="20.3000889784" Y="3.55175221101" Z="10.040442885"/>
+		<ColSize X="10.5" Y="10.0501155468" Z="10.5"/>
 		<Object_Type Type="3"/>
 	</Object>
 	<Object name="Checkpoint_03">
@@ -51,8 +51,23 @@
 		<Object_Type Type="3"/>
 	</Object>
 	<Object name="Death_01">
-		<Position X="-9.91617034251" Y="-2.35506880234" Z="-5.21006607673"/>
-		<ColSize X="41.8306605122" Y="0.411429610764" Z="46.2987031018"/>
+		<Position X="-9.91617034251" Y="-3.44896005313" Z="-5.21006607673"/>
+		<ColSize X="42.0" Y="0.5" Z="46.0"/>
 		<Object_Type Type="1"/>
+	</Object>
+	<Object name="Trap_Trigger_01">
+		<Position X="-44.8612166642" Y="3.55175221101" Z="-7.76410385745"/>
+		<ColSize X="6.5" Y="10.0" Z="10.0"/>
+		<Object_Type Type="4"/>
+	</Object>
+	<Object name="Trap_Trigger_02">
+		<Position X="-27.3612166642" Y="3.55175221101" Z="2.98589614255"/>
+		<ColSize X="8.0" Y="10.0" Z="7.0"/>
+		<Object_Type Type="4"/>
+	</Object>
+	<Object name="Trap_Trigger_03">
+		<Position X="-27.3612166642" Y="3.55175221101" Z="10.4858961425"/>
+		<ColSize X="8.0" Y="10.0" Z="4.0"/>
+		<Object_Type Type="4"/>
 	</Object>
 </GameObjects>

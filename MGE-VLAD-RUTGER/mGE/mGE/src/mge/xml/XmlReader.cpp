@@ -39,7 +39,7 @@
 #include "mge/behaviours/BrokenBridgeBehaviour.h"
 #include "mge/behaviours/SpawnPointBehaviour.h"
 
- #include "mge/materials/TerrainMaterial.hpp" 
+#include "mge/materials/TerrainMaterial.hpp" 
 
 AbstractMaterial * pressurePlateMaterial;
 AbstractMaterial * statueMaterial;
@@ -56,6 +56,7 @@ AbstractMaterial * stepMaterial;
 AbstractMaterial * terrainMaterial;
 AbstractMaterial * spikeWallMaterial;
 AbstractMaterial * brokenBridgeMaterial;
+AbstractMaterial * pedeStalMaterial;
 
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
@@ -72,10 +73,11 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	coffinMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "coffin_DIFF(TEMP).png"), 0.1f);
 	gateBigMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gatebig_DIFF (TEMP).png"), Texture::load(config::MGE_TEXTURE_PATH + "gatebig_NRM.png"), 0.1f);
 	bridge1Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_NRM.png"), 0.1f);
-	stepMaterial = new BasicTextureLit (Texture::load(config::MGE_TEXTURE_PATH + "step_DIFF.png"), 0.1f);
+	stepMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "step_DIFF.png"), 0.1f);
 	terrainMaterial = new TerrainMaterial(Texture::load(config::MGE_TEXTURE_PATH + "lava.jpg"));
 	spikeWallMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "spikescover_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "spikescover_NRM.png"), 0.1f);
 	brokenBridgeMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_NRM.png"), 0.1f);
+	pedeStalMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "pedestal_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "pedestal_NRM.png"), 0.1f);
 }
 
 XmlReader::~XmlReader()
@@ -131,13 +133,13 @@ void XmlReader::SetupLevelGeometry(std::string pLevelName)
 	root->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + ".obj"));
 
 	root->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + pLevelName + "_diff.png"), Texture::load(config::MGE_TEXTURE_PATH + "level_norm.png"), 0.1f));
-	
+
 	_world->add(root);
 
 	GameObject * sand = new GameObject(pLevelName + "sand" + ".obj", glm::vec3(0, 0, 0));
 	sand->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + "_sand" + ".obj"));
 
-	sand->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH +"sand_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "sand_NRM.png"), 0.1f));
+	sand->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "sand_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "sand_NRM.png"), 0.1f));
 	_world->add(sand);
 
 	GameObject * ceiling = new GameObject(pLevelName + "ceiling" + ".obj", glm::vec3(0, 0, 0));
@@ -265,9 +267,9 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		case 1:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
-		
+
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "pressurePlate.obj"));
-		    obj->setMaterial(pressurePlateMaterial);
+			obj->setMaterial(pressurePlateMaterial);
 
 			obj->setBehaviour(new PressurePlateBehaviour(_world));
 			_world->add(obj);
@@ -329,7 +331,93 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "SpikesWall.obj"));
 			obj->setMaterial(spikesMaterial);
 
-			obj->setBehaviour(new SpikeBehaviour());
+			//obj->setBehaviour(new SpikeBehaviour());
+			_world->add(obj);
+
+			StaticGameObject * obj2 = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj2->setMesh(Mesh::load(config::MGE_MODEL_PATH + "CoverWalls.obj"));
+			obj2->setMaterial(spikeWallMaterial);
+
+			_world->add(obj2);
+
+			if (_rotationsInteractables[i].y > 0) {
+				obj->rotate(glm::radians(_rotationsInteractables[i].y), glm::vec3(0, 1, 0));
+				obj2->rotate(glm::radians(_rotationsInteractables[i].y), glm::vec3(0, 1, 0));
+				glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
+				glm::vec3 center2 = obj->getLocalPosition();
+				glm::vec3 minbound2(center2.x - colSize.z, center2.y - colSize.x, center2.z - colSize.x);
+				glm::vec3 maxbound2(center2.x + colSize.z, center2.y + colSize.x, center2.z + colSize.x);
+				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+
+			else
+			{
+				glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
+				glm::vec3 center2 = obj->getLocalPosition();
+				glm::vec3 minbound2(center2.x - colSize.x, center2.y - colSize.y, center2.z - colSize.z);
+				glm::vec3 maxbound2(center2.x + colSize.x, center2.y + colSize.y, center2.z + colSize.z);
+				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+			obj2->translate(obj2->getWorldForward() * -2.5f);
+
+		//	dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();
+
+		}
+		break;
+
+		case 5:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "pushblock2.obj"));
+			obj->setMaterial(pushBlockMaterial);
+			obj->setBehaviour(new PushBlockBehaviour());
+
+			_world->add(obj);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+
+			if (_rotationsInteractables[i].y > 0) {
+				obj->rotate(glm::radians(90.0f), glm::vec3(0, 1, 0));
+				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
+			}
+			else
+			{
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
+
+			dynamic_cast<PushBlockBehaviour*>(obj->getBehaviour())->InitializePositions();
+		}
+		break;
+
+		case 6:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key1.obj"));
+			obj->setMaterial(keyMaterial);
+
+			_world->add(obj);
+
+			glm::vec3 center2 = obj->getLocalPosition();
+			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
+			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
+			obj->SetBounds(minbound2, maxbound2);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+
+			obj->setBehaviour(new CollectableBehaviour(true));
+		}
+		break;
+
+		case 7:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "SpikesWall.obj"));
+			obj->setMaterial(spikesMaterial);
+
+			//obj->setBehaviour(new SpikeBehaviour());
 			_world->add(obj);
 
 			StaticGameObject * obj2 = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
@@ -359,34 +447,9 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			}
 
-			if (_rotationsInteractables[i].y == 270) {
-				obj2->translate(obj2->getWorldForward() * -2.55f);
-			}
-			else if (_rotationsInteractables[i].y == 90){
-				obj2->translate(obj2->getWorldForward() * -3.65f);
-			}
+			obj2->translate(obj2->getWorldForward() * -2.5f);
 
-			dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();
-		}
-		break;
-	
-		case 6:
-		{
-			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
-			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "key1.obj"));
-			obj->setMaterial(keyMaterial);
-
-			_world->add(obj);
-
-			glm::vec3 center2 = obj->getLocalPosition();
-			glm::vec3 minbound2(center2.x - 0.5f, center2.y - 0.5f, center2.z - 0.5f);
-			glm::vec3 maxbound2(center2.x + 0.5f, center2.y + 0.5f, center2.z + 0.5f);
-			obj->SetBounds(minbound2, maxbound2);
-
-			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
-			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
-
-			obj->setBehaviour(new CollectableBehaviour(true));
+		//	dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();
 		}
 		break;
 
@@ -568,7 +631,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "bridge_broken_01.obj"));
 			obj->setMaterial(brokenBridgeMaterial);
 
-		
+
 			_world->add(obj);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
@@ -591,7 +654,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			glm::vec3 maxbound2(center2.x + 1.0f, center2.y + 1.0f, center2.z + 1.0f);
 			trigger->SetBounds(minbound2, maxbound2);
 
-			trigger->AddBoxCollider(1,1,1);
+			trigger->AddBoxCollider(1, 1, 1);
 
 			trigger->setBehaviour(new BrokenBridgeBehaviour(obj));
 			_world->add(trigger);
@@ -599,7 +662,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		}
 		break;
 
-		case 17: 
+		case 17:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "gate3x3.obj"));
@@ -732,13 +795,13 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 		{
 			StaticGameObject * obj = new StaticGameObject(_subtitleTriggerName[i], _subtitleTriggerPosition[i], _world, true);
 			_world->add(obj);
-	
+
 
 			glm::vec3 center2 = obj->getLocalPosition();
 			glm::vec3 triggerSize = _subtitleTriggerSize[i] / 2;
 			glm::vec3 minbound2(center2.x - triggerSize.x, center2.y - triggerSize.y, center2.z - triggerSize.z);
 			glm::vec3 maxbound2(center2.x + triggerSize.x, center2.y + triggerSize.y, center2.z + triggerSize.z);
-		
+
 			std::cout << minbound2 << maxbound2 << std::endl;
 			obj->SetBounds(minbound2, maxbound2);
 
@@ -746,7 +809,7 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 			obj->AddBoxCollider(0, 0, 0);
 
 			obj->setBehaviour(new SpawnPointBehaviour());
-	
+
 		}
 		break;
 		}
