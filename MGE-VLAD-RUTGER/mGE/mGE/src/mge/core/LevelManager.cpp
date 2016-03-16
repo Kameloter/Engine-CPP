@@ -226,6 +226,8 @@ void LevelManager::Build_level_2()
 	xmlReader->LoadSubtitleTriggers("triggers_level_02");
 	LUAManager::InitializeFile(_world,"level_02");
 
+
+
 	delete xmlReader;
 }
 

@@ -47,18 +47,6 @@ void MGEDemo::_initializeScene()
 	LevelManager::getInstance().SwitchToLevel(GameLevels::Menu);
 	mainMenu = new MainMenu(_window);
 
-	
-
-
-	
-
-	//GameObject * cubeNormal = new GameObject("normalmap", glm::vec3(0, 2, 0));
-	//cubeNormal->setMesh(cubeMeshF);
-	//cubeNormal->setMaterial(normalMapMaterial2);
-	////	cubeNormal->scale(glm::vec3(0.1f));
-	//_world->add(cubeNormal);
-
-
 
 	SubtitleManager::addSubtitle("Subtitles_01", "Maybe I can find something in here to open the door!",4.0f);	//4sec
 	SubtitleManager::addSubtitle("Subtitles_02", "Hmm, a nice souvenir for at home!\n If I ever find the way out of here that is…",5.0f);	//5sec
@@ -86,10 +74,9 @@ void MGEDemo::_render() {
 	_updateHud();
 	if (LevelManager::getInstance().currentlevel == GameLevels::Menu)
 	{
-		
 		if (mainMenu->ButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME !"))
 		{
-			LevelManager::getInstance().SwitchToLevel(GameLevels::HUBTUTORIAL);
+			LevelManager::getInstance().SwitchToLevel(GameLevels::HUB);
 		}
 	}
 	if (StatsHolder::PlayerDied == true)

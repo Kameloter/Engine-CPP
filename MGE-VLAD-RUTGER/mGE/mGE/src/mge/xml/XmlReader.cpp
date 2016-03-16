@@ -55,13 +55,14 @@ AbstractMaterial * bridge1Material;
 AbstractMaterial * stepMaterial;
 AbstractMaterial * terrainMaterial;
 AbstractMaterial * spikeWallMaterial;
+AbstractMaterial * brokenBridgeMaterial;
 
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
 {
 	pressurePlateMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "pplatebird_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "pplatebird_NRM.png"), 0.1f);
-	statueMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "statue_DIFF (TEMP).png"), 0.1f);
+	statueMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "statue_DIFF (TEMP).png"), Texture::load(config::MGE_TEXTURE_PATH + "statue_NRM.png"), 0.1f);
 	coinMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "coin_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "coin_NRM.png"), 0.1f);
 	pushBlockMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "pushblock_DIFF(TEMP).png"), 0.1f);
 	spikesMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "spikes_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "trap_normal.jpg"), 0.1f);
@@ -74,7 +75,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	stepMaterial = new BasicTextureLit (Texture::load(config::MGE_TEXTURE_PATH + "step_DIFF.png"), 0.1f);
 	terrainMaterial = new TerrainMaterial(Texture::load(config::MGE_TEXTURE_PATH + "lava.jpg"));
 	spikeWallMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "spikescover_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "spikescover_NRM.png"), 0.1f);
-
+	brokenBridgeMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_NRM.png"), 0.1f);
 }
 
 XmlReader::~XmlReader()
@@ -565,7 +566,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "bridge_broken_01.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0, 0.5f)));
+			obj->setMaterial(brokenBridgeMaterial);
 
 		
 			_world->add(obj);
