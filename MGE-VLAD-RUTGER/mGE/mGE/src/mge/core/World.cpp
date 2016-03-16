@@ -44,8 +44,6 @@ void World::CleanUpworld()
 		remove(child);
 		delete child;
 	}
-
-
 }
 
 void World::CleanObjectFromWorld(GameObject * object)

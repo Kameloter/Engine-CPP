@@ -57,6 +57,7 @@ AbstractMaterial * terrainMaterial;
 AbstractMaterial * spikeWallMaterial;
 AbstractMaterial * brokenBridgeMaterial;
 AbstractMaterial * pedeStalMaterial;
+AbstractMaterial * torchMaterial;
 
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
@@ -78,6 +79,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	spikeWallMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "spikescover_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "spikescover_NRM.png"), 0.1f);
 	brokenBridgeMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_NRM.png"), 0.1f);
 	pedeStalMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "pedestal_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "pedestal_NRM.png"), 0.1f);
+	torchMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "torch_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "torch_NRM.png"), 0.1f);
 }
 
 XmlReader::~XmlReader()
@@ -681,6 +683,48 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			{
 				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			}
+			_world->add(obj);
+
+		}
+		break;
+
+		case 18:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Torch.obj"));
+			obj->setMaterial(torchMaterial);
+			obj->rotate(glm::radians(_rotationsInteractables[i].y), glm::vec3(0, 1, 0));
+
+			PointLight  * pointLight = new PointLight("pointLight", glm::vec3(_positionsInteractables[i]), glm::vec3(1,0.7f,0), glm::vec3(1,0.7f,0), glm::vec3(0.1f));
+			_world->add(pointLight);
+			_world->AddLight(pointLight);
+
+			/*obj->setBehaviour(new DoorBehaviour());
+			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+
+			if (_rotationsInteractables[i].y > 0) {
+		
+				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
+			}
+			else
+			{
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}*/
+			_world->add(obj);
+		}
+		break;
+
+		case 20:
+		{
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Fence.obj"));
+			obj->setMaterial(gateBigMaterial);
+
+			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
+
+			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			_world->add(obj);
 
 		}
