@@ -89,14 +89,8 @@ void SubtitleManager::playSubtitle(std::string sub,glm::vec2 pTextPos, sf::Color
 	_subText.setFont(_subFont);
 	_subText.setString(sub2->subtitle);
 	_subText.setPosition(sf::Vector2f(pTextPos.x, pTextPos.y));
-
-
-		_subText.setColor(pTextColor);
-
-
+	_subText.setColor(pTextColor);
 	_subText.setCharacterSize(20);
-
-
 	waitTime = sub2->duration;
 	showSubtitle = true;
 
@@ -126,11 +120,7 @@ void SubtitleManager::playSubtitle(std::string sub, sf::Color pTextColor)
 
 
 	_subText.setColor(pTextColor);
-
-
 	_subText.setCharacterSize(20);
-
-
 	waitTime = sub2->duration;
 	showSubtitle = true;
 
