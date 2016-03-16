@@ -133,11 +133,16 @@ void XmlReader::SetupLevelGeometry(std::string pLevelName)
 	
 	_world->add(root);
 
-	//GameObject * sand = new GameObject(pLevelName + "sand" + ".obj", glm::vec3(0, 0, 0));
-	//sand->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + "_sand" + ".obj"));
+	GameObject * sand = new GameObject(pLevelName + "sand" + ".obj", glm::vec3(0, 0, 0));
+	sand->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + "_sand" + ".obj"));
 
-	//sand->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH +"sand_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "sand_NRM.png"), 0.1f));
-	//_world->add(sand);
+	sand->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH +"sand_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "sand_NRM.png"), 0.1f));
+	_world->add(sand);
+
+	GameObject * ceiling = new GameObject(pLevelName + "ceiling" + ".obj", glm::vec3(0, 0, 0));
+	ceiling->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + "_ceiling" + ".obj"));
+	ceiling->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "ceiling_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "ceiling_NRM.png"), 0.1f));
+	_world->add(ceiling);
 
 	for (int i = 0; i < _names.size(); i++)
 	{
@@ -387,7 +392,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		case 8:
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
-			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "gate.obj"));
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Gate2x2.obj"));
 			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
 
 			obj->setBehaviour(new DoorBehaviour());
