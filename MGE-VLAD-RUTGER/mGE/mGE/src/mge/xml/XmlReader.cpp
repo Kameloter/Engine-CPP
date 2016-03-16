@@ -342,6 +342,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 				obj->SetBounds(glm::vec3(minbound2.x, minbound2.y, minbound2.z), glm::vec3(maxbound2.x, maxbound2.y, maxbound2.z));
 				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			}
+
 			else
 			{
 				glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize() / 2);
