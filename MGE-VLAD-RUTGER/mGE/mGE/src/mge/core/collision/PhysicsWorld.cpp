@@ -132,42 +132,22 @@ std::vector<StaticGameObject*> PhysicsWorld::getStaticObjects()
 
 void PhysicsWorld::CleanUpPhysicsWorld()
 {
-	//std::cout << "Cleaning world " << std::endl;
+
 	World::CleanUpworld();
-	//std::cout << "World cleaned. " << std::endl;
 
 	_triggerManager->cleanUp();
-
-	//std::cout << "Cleaning physics world rigidbodyes " << std::endl;
-	//clear list with physics objects ...
-	//for (int i = 0; i < _rigidbodyGameObjects.size(); i++)
-	//{
-	//	delete _rigidbodyGameObjects[i];
-	//}
 	_rigidbodyGameObjects.clear();
-	//_rigidbodyGameObjects.shrink_to_fit();
-	//std::cout << "Cleaning physics world rigidbodyes - cleaned   " << "size " << _rigidbodyGameObjects.size() <<  std::endl;
 
-
-
-	//std::cout << "Cleaning physics world static bodies " << std::endl;
-	//for (int i = 0; i < _staticGameObjects.size(); i++)
-	//{
-	//	delete _staticGameObjects[i];
-	//}
 	_staticGameObjects.clear();
-	//_staticGameObjects.shrink_to_fit();
-	//std::cout << "Cleaning physics world static bodies - cleaned   " << "size " << _staticGameObjects.size() << std::endl;
-	//free rigidbody memory ?
 }
 
-void PhysicsWorld::CleanObject(GameObject * object)
+void PhysicsWorld::cleanStaticObject(GameObject * object)
 {
 	//std::cout << " physics world clean object  ---- "  << object->getName() << std::endl;
 
 	_staticGameObjects.erase(std::remove(_staticGameObjects.begin(), _staticGameObjects.end(), object), _staticGameObjects.end());
 	//std::cout << " static objects cleaned  " << object->getName() << std::endl;
-	_triggerManager->cleanObject(object);
+	_triggerManager->cleanStaticObject(object);
 	//std::cout << " trigger manager  cleaned  " << object->getName() << std::endl;
 
 	World::CleanObjectFromWorld(object);
@@ -177,6 +157,16 @@ void PhysicsWorld::CleanObject(GameObject * object)
 	//std::cout << " Cleaning individual physic obbect from list " << std::endl;
 	//_staticGameObjects.erase(std::remove(_staticGameObjects.begin(), _staticGameObjects.end(), object),_staticGameObjects.end());
 	
+}
+
+void PhysicsWorld::cleanMovingObject(GameObject * object)
+{
+	_rigidbodyGameObjects.erase(std::remove(_rigidbodyGameObjects.begin(), _rigidbodyGameObjects.end(), object), _rigidbodyGameObjects.end());
+	//std::cout << " static objects cleaned  " << object->getName() << std::endl;
+	_triggerManager->cleanMovingObject(object);
+	//std::cout << " trigger manager  cleaned  " << object->getName() << std::endl;
+
+	World::CleanObjectFromWorld(object);
 }
 
 void PhysicsWorld::freeMemory(neRigidBody* pNeRb)

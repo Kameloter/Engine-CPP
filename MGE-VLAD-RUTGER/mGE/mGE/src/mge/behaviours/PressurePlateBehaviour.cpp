@@ -38,10 +38,12 @@ void PressurePlateBehaviour::OnCollision(Collision collision)
 	{
 		_activated = true;
 		hit = true;
-		neRigidBody * rigidbody = dynamic_cast<RigidbodyGameObject*>(_statue)->GetRigidBody();
+		/*neRigidBody * rigidbody = dynamic_cast<RigidbodyGameObject*>(_statue)->GetRigidBody();*/
 		dynamic_cast<RigidbodyGameObject*>(_statue)->deleteObject();
+		delete dynamic_cast<RigidbodyGameObject*>(_statue);
 
 		StaticGameObject * obj = new StaticGameObject("collider", _owner->getLocalPosition() + glm::vec3(0,3,0) ,_world);
+		_world->add(obj);
 		obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "statue.obj"));
 		obj->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "statue_DIFF (TEMP).png"), 0.1f));
 
@@ -54,7 +56,7 @@ void PressurePlateBehaviour::OnCollision(Collision collision)
 
 		obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 
-		_world->add(obj);
+		
 	}
 }
 

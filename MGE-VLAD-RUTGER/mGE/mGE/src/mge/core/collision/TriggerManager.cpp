@@ -22,10 +22,15 @@ void TriggerManager::addMovingTrigger(GameObject * object)
 {
 	_movingTriggers.push_back(object);
 }
-void TriggerManager::cleanObject(GameObject * object)
+void TriggerManager::cleanStaticObject(GameObject * object)
 {
 	//std::cout << " Cleaning individual object trigger from list "<< std::endl;
 	_triggers.erase(std::remove(_triggers.begin(), _triggers.end(), object), _triggers.end());
+}
+
+void TriggerManager::cleanMovingObject(GameObject * object)
+{
+	_movingTriggers.erase(std::remove(_movingTriggers.begin(), _movingTriggers.end(), object), _movingTriggers.end());
 }
 
 

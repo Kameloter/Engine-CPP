@@ -6,7 +6,7 @@
 #include "SFML\Audio.hpp"
 #include "mge/config.hpp"
 #include "mge/StatsHolder.h"
-
+#include "mge/core/SoundManager.h"
 
 CollectableBehaviour::CollectableBehaviour(bool key)
 {
@@ -34,14 +34,15 @@ void CollectableBehaviour::OnCollision(Collision collision)
 	{
 		hit = true;
 
-		buffer;
+		/*buffer;
 		if (!buffer.loadFromFile(config::MGE_SOUND_PATH + "victory.wav"))
 		{
 			std::cout << " cant load sound " << std::endl;
 		}
 
 		sound.setBuffer(buffer);
-		sound.play();
+		sound.play();*/
+		SoundManager::getInstance().PlaySound("coin");
 
 		std::cout << " Picked up " << std::endl;
 		if (_key) { 

@@ -79,12 +79,12 @@ Mesh* Mesh::load(string pFileName)
 	if (meshIterator == _meshes.end()) // if iterator is at the end then he did not find existing mesh
 	{
 		mesh = _loadFromFile(pFileName);
-		std::cout << "Mesh " << pFileName << " loaded." << std::endl;
-		std::cout << "Caching mesh." << std::endl;
+		//std::cout << "Mesh " << pFileName << " loaded." << std::endl;
+		//std::cout << "Caching mesh." << std::endl;
 		_meshes[pFileName] = mesh;
 	}
 	else {
-		std::cout << "Returning cached mesh " << pFileName << std::endl;
+		//std::cout << "Returning cached mesh " << pFileName << std::endl;
 		mesh = meshIterator->second;
 	}
 	return mesh;
@@ -215,7 +215,7 @@ Mesh* Mesh::_loadFromFile(std::string pFileName)
 		mesh->_colliderSize = mesh->calculateColSize();
 		mesh->calculateTangents();
 		mesh->_buffer();
-		cout << "Mesh loaded and buffered:" << (mesh->_indices.size() / 3.0f) << " triangles." << endl;
+		//cout << "Mesh loaded and buffered:" << (mesh->_indices.size() / 3.0f) << " triangles." << endl;
 		return mesh;
 	}
 	else {

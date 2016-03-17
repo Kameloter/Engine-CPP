@@ -7,7 +7,7 @@ using namespace std;
 #include "mge/core/collision/PhysicsWorld.h"
 #include "mge/core/LevelManager.h"
 #include "mge/UI/MainMenu.h"
-
+#include "mge/core/SoundManager.h"
 #include "mge/StatsHolder.h"
 #include "mge/core/FadeManager.h"
 //
@@ -75,7 +75,7 @@ void MGEDemo::_initializeScene()
 	SubtitleManager::addSubtitle("Tutorial_03", "\"'Ill better push that statue on the pressure plate\"", 8.0f);
 	
 	SubtitleManager::addSubtitle("HUB_04", "\"'CheckPoints Reached\"", 4.0f);
-
+	SoundManager::getInstance().LoadSounds();
 }
 
 bool press = false;
@@ -89,7 +89,7 @@ void MGEDemo::_render() {
 		
 		if (mainMenu->StartButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME "))
 		{
-			LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
+			LevelManager::getInstance().SwitchToLevel(GameLevels::HUBTUTORIAL);
 		}
 
 		/*if (mainMenu->ButtonPressed(_window->getSize().x / 2, (_window->getSize().y / 2) + 200, " QUIT GAME "))

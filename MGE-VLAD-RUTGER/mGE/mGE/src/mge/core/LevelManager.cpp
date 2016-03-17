@@ -172,7 +172,7 @@ void LevelManager::Build_level_hub()
 	xmlReader->LoadInteractables("interactables_level_hub2");
 	xmlReader->LoadSubtitleTriggers("triggers_level_hub");
 
-	tutorialStart = true;
+	
 	LUAManager::InitializeFile(_world,"level_hub");
 }
 

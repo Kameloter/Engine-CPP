@@ -79,7 +79,7 @@ void RigidbodyGameObject::removeRigidBody()
 
 void RigidbodyGameObject::deleteObject()
 {
-	_world->CleanObject(this);
+	_world->cleanMovingObject(this);
 	delete _trigger;
 }
 

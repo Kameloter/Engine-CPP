@@ -31,7 +31,8 @@ class PhysicsWorld : public World
 
 		virtual void CleanUpPhysicsWorld();
 
-		virtual void CleanObject(GameObject * object);
+		virtual void cleanStaticObject(GameObject * object);
+		virtual void cleanMovingObject(GameObject * object);
     protected:
     private:
 		std::vector<RigidbodyGameObject*> _rigidbodyGameObjects;

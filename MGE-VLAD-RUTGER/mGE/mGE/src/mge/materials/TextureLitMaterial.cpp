@@ -191,16 +191,7 @@ void TextureLitMaterial::render(World* pWorld, GameObject* pGameObject, Camera* 
 	//glUniform1i(_shader->getUniformLocation("spotLightCount"), spotCount);
 	glUniform1i(_shader->getUniformLocation("pointLightCount"), pointCount);
 
-	//if (dirCount == 1)
-	//{
-	//	glUniform1i(_shader->getUniformLocation("calculateDirLight"), 1);
-	//}
-	//	
-	//else
-	//{
-	//	glUniform1i(_shader->getUniformLocation("calculateDirLight"), 0);
-	//}
-	
+
 
 
     //pass in all MVP matrices separately

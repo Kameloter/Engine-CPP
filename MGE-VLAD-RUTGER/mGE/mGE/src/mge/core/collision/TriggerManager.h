@@ -15,7 +15,8 @@ class TriggerManager
         void addStaticTrigger(GameObject * pObject);
 		void addMovingTrigger(GameObject * pObject);
 		void cleanUp();
-		void cleanObject(GameObject * object);
+		void cleanStaticObject(GameObject * object);
+		void cleanMovingObject(GameObject * object);
 		/*void addObject(StaticGameObject * pObject);
 
         void addRbObject (RigidbodyGameObject * pObject);*/
