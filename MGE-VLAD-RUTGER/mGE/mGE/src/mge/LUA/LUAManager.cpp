@@ -20,6 +20,7 @@ using namespace std;
 #include "mge/behaviours/PushBlockBehaviour.h"
 #include "mge/behaviours/SpikeBehaviour.h"
 #include "mge/behaviours/GhostBehaviour.h"
+#include "mge/behaviours/TrapTriggerBehaviour.h"
 
 #include "mge/core/collision/TriggerManager.h"
 
@@ -63,6 +64,8 @@ int LUAManager::InitializeFile(PhysicsWorld * pWorld, const char* fileName){
 	lua_setglobal(lua, "SetKeyNeededDoor");
 	lua_pushcfunction(lua, SetBeginEndGhost);
 	lua_setglobal(lua, "SetBeginEndGhost");
+	lua_pushcfunction(lua, SetTrapTrigger);
+	lua_setglobal(lua, "SetTrapTrigger");
 
 	std::string path = "assets/mge/lua/";
 	path += fileName;
@@ -182,6 +185,20 @@ int LUAManager::SetBeginEndGhost(lua_State * L)
 	std::cout << ghost->getName() << openPos << closedPos << std::endl;
 
 	dynamic_cast<GhostBehaviour*>(ghost->getBehaviour())->setBeginEnd(openPos,closedPos);
+	return 0;
+}
+
+int LUAManager::SetTrapTrigger(lua_State * L)
+{
+	string trapName = lua_tostring(L, 1);
+	string triggerName = lua_tostring(L, 2);
+
+	StaticGameObject * trap = FindStaticTriggerObject(trapName);
+	StaticGameObject * trigger = FindStaticTriggerObject(triggerName);
+
+	std::cout << trap->getName() << " + " << trigger->getName() << std::endl;
+
+	dynamic_cast<TrapTriggerBehaviour*>(trigger->getBehaviour())->SetTrap(trap);
 	return 0;
 }
 

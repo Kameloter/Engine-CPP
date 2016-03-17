@@ -37,6 +37,7 @@
 #include "mge/behaviours/SceneSwitchBehaviour.h"
 #include "mge/behaviours/GhostBehaviour.h"
 #include "mge/behaviours/BrokenBridgeBehaviour.h"
+#include "mge/behaviours/TrapTriggerBehaviour.h"
 #include "mge/behaviours/SpawnPointBehaviour.h"
 
 #include "mge/materials/TerrainMaterial.hpp" 
@@ -333,7 +334,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "SpikesWall.obj"));
 			obj->setMaterial(spikesMaterial);
 
-			//obj->setBehaviour(new SpikeBehaviour());
+			obj->setBehaviour(new SpikeBehaviour(true));
 			_world->add(obj);
 
 			StaticGameObject * obj2 = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
@@ -364,7 +365,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			}
 			obj2->translate(obj2->getWorldForward() * -2.5f);
 
-		//	dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();
+			dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();
 
 		}
 		break;
@@ -419,7 +420,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "SpikesWall.obj"));
 			obj->setMaterial(spikesMaterial);
 
-			//obj->setBehaviour(new SpikeBehaviour());
+			obj->setBehaviour(new SpikeBehaviour(false));
 			_world->add(obj);
 
 			StaticGameObject * obj2 = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
@@ -451,7 +452,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 			obj2->translate(obj2->getWorldForward() * -2.5f);
 
-		//	dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();
+			dynamic_cast<SpikeBehaviour*>(obj->getBehaviour())->InitializePositions();
 		}
 		break;
 
@@ -712,6 +713,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			{
 				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
 			}*/
+
 			_world->add(obj);
 		}
 		break;
@@ -853,6 +855,28 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 			obj->AddBoxCollider(0, 0, 0);
 
 			obj->setBehaviour(new SpawnPointBehaviour());
+
+		}
+		break;
+
+		case 4: //traptrigger
+		{
+			StaticGameObject * obj = new StaticGameObject(_subtitleTriggerName[i], _subtitleTriggerPosition[i], _world, true);
+			_world->add(obj);
+
+
+			glm::vec3 center2 = obj->getLocalPosition();
+			glm::vec3 triggerSize = _subtitleTriggerSize[i] / 2;
+			glm::vec3 minbound2(center2.x - triggerSize.x, center2.y - triggerSize.y, center2.z - triggerSize.z);
+			glm::vec3 maxbound2(center2.x + triggerSize.x, center2.y + triggerSize.y, center2.z + triggerSize.z);
+
+			std::cout << minbound2 << maxbound2 << std::endl;
+			obj->SetBounds(minbound2, maxbound2);
+
+
+			obj->AddBoxCollider(0, 0, 0);
+
+			obj->setBehaviour(new TrapTriggerBehaviour());
 
 		}
 		break;

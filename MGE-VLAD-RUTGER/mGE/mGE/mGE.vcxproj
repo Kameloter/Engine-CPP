@@ -39,6 +39,7 @@
     <ClInclude Include="src\mge\behaviours\SpikeBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\StatueBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\SubtitleBehaviour.h" />
+    <ClInclude Include="src\mge\behaviours\TrapTriggerBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\TriggerBehaviour.h" />
     <ClInclude Include="src\mge\behaviours\WinBehaviour.h" />
     <ClInclude Include="src\mge\config.hpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="src\mge\behaviours\SpikeBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\StatueBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\SubtitleBehaviour.cpp" />
+    <ClCompile Include="src\mge\behaviours\TrapTriggerBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\TriggerBehaviour.cpp" />
     <ClCompile Include="src\mge\behaviours\WinBehaviour.cpp" />
     <ClCompile Include="src\mge\core\AbstractGame.cpp" />

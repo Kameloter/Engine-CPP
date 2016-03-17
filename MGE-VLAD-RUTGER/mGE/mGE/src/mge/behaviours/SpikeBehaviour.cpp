@@ -11,9 +11,10 @@
 #include "mge/StatsHolder.h"
 
 
-SpikeBehaviour::SpikeBehaviour()
+SpikeBehaviour::SpikeBehaviour(bool once)
 {
 	hit = false;
+	_once = once;
 }
 
 
@@ -22,27 +23,58 @@ SpikeBehaviour::~SpikeBehaviour()
 }
 
 void SpikeBehaviour::update(float pStep) {
-
-	if (forward) {
-		if (glm::distance(_owner->getWorldPosition(), _openPos) > 0.5f) {
-			dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(glm::normalize(_openPos - _closedPos) * pStep * 2);
+	if (!_once) {
+		if (forward) {
+			if (glm::distance(_owner->getWorldPosition(), _openPos) > 0.5f) {
+				dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(glm::normalize(_openPos - _closedPos) * pStep * 2);
+			}
+			else
+			{
+				forward = false;
+			}
 		}
 		else
 		{
-			forward = false;
+			if (glm::distance(_owner->getWorldPosition(), _closedPos) > 0.5f)
+			{
+				dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(-glm::normalize(_openPos - _closedPos) * 2 * pStep);
+			}
+			else
+			{
+				forward = true;
+			}
 		}
 	}
 	else
 	{
-		if (glm::distance(_owner->getWorldPosition(), _closedPos) > 0.5f)
-		{
-			dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(-glm::normalize(_openPos - _closedPos)* 2 * pStep);
+		if (_activated) {
+		//	std::cout << "im here" << std::endl;
+			if (forward) {
+			//	std::cout << "now im here" << std::endl;
+				if (glm::distance(_owner->getWorldPosition(), _openPos) > 0.5f) {
+				//	std::cout << "and now im here" << std::endl;
+					dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(glm::normalize(_openPos - _closedPos) * pStep * 5);
+				}
+				else
+				{
+					forward = false;
+					finish = true;
+				}
+			}
+			else
+			{
+				if (glm::distance(_owner->getWorldPosition(), _closedPos) > 0.5f)
+				{
+					dynamic_cast<StaticGameObject*>(_owner)->moveTriggerObject(-glm::normalize(_openPos - _closedPos) * 2 * pStep);
+				}
+				else
+				{
+					forward = true;
+					if (finish) _activated = false;
+				}
+			}
 		}
-		else
-		{
-			forward = true;
-		}
-	}	
+	}
 }
 
 void SpikeBehaviour::InitializePositions()

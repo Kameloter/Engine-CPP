@@ -27,6 +27,7 @@ class LUAManager
 		static int AddPressurePlateToBlock(lua_State * L);
 		static int SetKeyNeededDoor(lua_State * L);
 		static int SetBeginEndGhost(lua_State * L);
+		static int SetTrapTrigger(lua_State * L);
 
 
 		static void setObjects(std::vector<StaticGameObject *> pStaticObjects, std::vector<RigidbodyGameObject *> pRigidObjects, std::vector<GameObject*> pTriggerStatic);
