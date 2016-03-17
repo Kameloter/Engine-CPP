@@ -1,10 +1,5 @@
 <?xml version="1.0" ?>
 <GameObjects>
-	<Object name="Player">
-	<Position X="-62.3463" Y="24.6228" Z="-29.0"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="10"/>
-	</Object>
 	<Object name="Door_02">
 		<Position X="-25.0" Y="9.0" Z="-51.0"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
@@ -624,5 +619,10 @@
 		<Position X="36.0516609766" Y="6.43722319981" Z="-53.3122417406"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
 		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Player">
+		<Position X="-62.3463" Y="24.6228" Z="-29.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="10"/>
 	</Object>
 </GameObjects>

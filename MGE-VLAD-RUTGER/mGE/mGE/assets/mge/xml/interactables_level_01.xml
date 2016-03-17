@@ -40,11 +40,6 @@
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
 		<Object_Type Type="7"/>
 	</Object>
-	<Object name="Player">
-		<Position X="44" Y="0.6" Z="34.5"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="10"/>
-	</Object>
 	<Object name="Pushblock2">
 		<Position X="1.52675925102" Y="2.21875088381" Z="-24.5817123763"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
@@ -494,5 +489,10 @@
 		<Position X="-18.5518481295" Y="0.49959591615" Z="-18.2502272879"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="20"/>
+	</Object>
+		<Object name="Player">
+		<Position X="44" Y="0.6" Z="34.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="10"/>
 	</Object>
 </GameObjects>
