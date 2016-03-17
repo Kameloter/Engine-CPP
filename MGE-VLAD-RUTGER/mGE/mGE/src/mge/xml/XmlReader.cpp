@@ -69,6 +69,7 @@ AbstractMaterial * ghostBackMaterial;
 AbstractMaterial * fadeScreenMaterial;
 AbstractMaterial * gate2x2Material;
 AbstractMaterial * armMaterial;
+AbstractMaterial * stairMaterial;
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -85,7 +86,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	gateBigMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gatebig_DIFF (TEMP).png"), Texture::load(config::MGE_TEXTURE_PATH + "gatebig_NRM.png"), 0.1f);
 	bridge1Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_NRM.png"), 0.1f);
 	stepMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "step_DIFF.png"), 0.1f);
-	terrainMaterial = new TerrainMaterial(Texture::load(config::MGE_TEXTURE_PATH + "lava.jpg"));
+	terrainMaterial = new TerrainMaterial(Texture::load(config::MGE_TEXTURE_PATH + "lava_DIFF.PNG"));
 	spikeWallMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "spikescover_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "spikescover_NRM.png"), 0.1f);
 	brokenBridgeMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_NRM.png"), 0.1f);
 	pedeStalMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "pedestal_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "pedestal_NRM.png"), 0.1f);
@@ -95,6 +96,8 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	fadeScreenMaterial = new FadeScreenMaterial(glm::vec3(0,0,0));
 	gate2x2Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gate2x2_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "gate2x2_NRM.png"), 0.1f);
 	armMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Arm_Color.png"), Texture::load(config::MGE_TEXTURE_PATH + "Arm_Normal.png"), Texture::load(config::MGE_TEXTURE_PATH + "Arm_Specular.png"), 0.1f);
+	stairMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "stairs_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "stairs_NRM.png"), 0.1f);
+
 }
 
 XmlReader::~XmlReader()
@@ -588,7 +591,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, false);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Stairs.obj"));
-			obj->setMaterial(stepMaterial);
+			obj->setMaterial(stairMaterial);
 			obj->rotate(glm::radians(_rotationsInteractables[i].y) , glm::vec3(0,1,0));
 			_world->add(obj);
 		}
