@@ -9,7 +9,7 @@ using namespace std;
 #include "mge/UI/MainMenu.h"
 
 #include "mge/StatsHolder.h"
-
+#include "mge/core/FadeManager.h"
 //
 ////collision
 //#include "mge/core/collision/Collider.h"
@@ -109,7 +109,7 @@ void MGEDemo::_render() {
 	}
 
 	levelManager->testUpdate();
-
+	FadeManager::updateFadeScreen();
 }
 
 float lastUpdateTime = 0;
@@ -119,7 +119,14 @@ void MGEDemo::_updateHud() {
     debugInfo += string ("FPS:") + std::to_string(FPS::getFPS())+"\n";
 	SubtitleManager::update(Timer::deltaTime());
 	SubtitleManager::draw(_window);
-
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+	{
+		FadeManager::setFade(false);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
+	{
+		FadeManager::setFade(true);
+	}
     _hud->setDebugInfo(debugInfo);
 	_hud->setWinTextInfo("Score : " + std::to_string(StatsHolder::getScore()));
 
