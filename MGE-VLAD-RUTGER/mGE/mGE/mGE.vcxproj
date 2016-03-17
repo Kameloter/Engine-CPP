@@ -52,6 +52,7 @@
     <ClInclude Include="src\mge\core\collision\RigidbodyGameObject.h" />
     <ClInclude Include="src\mge\core\collision\StaticGameObject.h" />
     <ClInclude Include="src\mge\core\DirectionalLight.h" />
+    <ClInclude Include="src\mge\core\FadeManager.h" />
     <ClInclude Include="src\mge\core\FPS.hpp" />
     <ClInclude Include="src\mge\core\GameObject.hpp" />
     <ClInclude Include="src\mge\core\LevelManager.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="src\mge\core\collision\PhysicsWorld.cpp" />
     <ClCompile Include="src\mge\core\collision\RigidbodyGameObject.cpp" />
     <ClCompile Include="src\mge\core\collision\StaticGameObject.cpp" />
+    <ClCompile Include="src\mge\core\FadeManager.cpp" />
     <ClCompile Include="src\mge\core\FPS.cpp" />
     <ClCompile Include="src\mge\core\GameObject.cpp" />
     <ClCompile Include="src\mge\core\LevelManager.cpp" />

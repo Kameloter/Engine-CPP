@@ -42,6 +42,10 @@
 
 #include "mge/materials/TerrainMaterial.hpp" 
 
+#include "mge/materials/FadeScreenMaterial.hpp"
+#include "mge/core/FadeManager.h"
+
+
 AbstractMaterial * pressurePlateMaterial;
 AbstractMaterial * statueMaterial;
 AbstractMaterial * coinMaterial;
@@ -154,6 +158,7 @@ void XmlReader::SetupLevelGeometry(std::string pLevelName)
 	ceiling->setMesh(Mesh::load(config::MGE_MODEL_PATH + pLevelName + "_ceiling" + ".obj"));
 	ceiling->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "ceiling_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "ceiling_NRM.png"), 0.1f));
 	_world->add(ceiling);
+
 
 	for (int i = 0; i < _names.size(); i++)
 	{
@@ -531,6 +536,16 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			slight->setParent(flashLight);
 			slight->setLocalPosition(-2.5f * flashLight->getForward());
 			_world->AddLight(slight);
+
+			GameObject * fadeScreen = new GameObject("fadeScreen", _positionsInteractables[i]);
+			_world->add(fadeScreen);
+			fadeScreen->scale(glm::vec3(1, 5, 5));
+			fadeScreen->rotate(glm::radians(90.0f), glm::vec3(1, 0, 0));
+			fadeScreen->setMesh(Mesh::load(config::MGE_MODEL_PATH + "plane.obj"));
+			fadeScreen->setParent(camera);
+			fadeScreen->setMaterial(new FadeScreenMaterial(glm::vec3(0)));
+			fadeScreen->setLocalPosition(glm::vec3(0, 0, -1));
+			FadeManager::setFadeScreen(fadeScreen);
 
 		}
 		break;
