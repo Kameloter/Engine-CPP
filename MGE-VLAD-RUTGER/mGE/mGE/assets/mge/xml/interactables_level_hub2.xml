@@ -1,10 +1,5 @@
 <?xml version="1.0" ?>
 <GameObjects>
-	<Object name="Player">
-		<Position X="13.5" Y="2.0" Z="13.3426984116"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="10"/>
-	</Object>
 	<Object name="PushStatue">
 		<Position X="13.5" Y="2.95490986297" Z="-15.0"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
@@ -102,12 +97,17 @@
 	</Object>
 	<Object name="Gate3x3_06">
 		<Position X="12.1488244459" Y="4.74952672274" Z="21.9749776569"/>
-		<Rotation X="333.115" Y="90.0" Z="0.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="17"/>
 	</Object>
 	<Object name="Gate3x3_05">
 		<Position X="13.5" Y="4.5" Z="-40.5"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="17"/>
+	</Object>
+		<Object name="Player">
+		<Position X="13.5" Y="2.0" Z="13.3426984116"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="10"/>
 	</Object>
 </GameObjects>
