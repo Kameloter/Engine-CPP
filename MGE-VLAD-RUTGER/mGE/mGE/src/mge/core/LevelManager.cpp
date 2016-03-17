@@ -21,6 +21,7 @@
 
 //Additional materials
 #include "mge/materials/TextureNormalMaterial.hpp"
+#include "mge/materials/BasicTextureLight.hpp"
 #include "mge/materials/ColorMaterial.hpp"
 #include "mge/materials/TextureLitMaterial.hpp"
 
@@ -154,9 +155,17 @@ bool tutorialStart = false;
 
 void LevelManager::Build_level_hub()
 {
-	DirectionalLight * light = new DirectionalLight("light", glm::vec3(40, 5, 35), glm::vec3(-1, 1, -0.5f), glm::vec3(0.05), glm::vec3(0.05), glm::vec3(0.1f));
-	_world->add(light);
-	_world->AddLight(light);
+	StaticGameObject * coffins = new StaticGameObject("coffins", glm::vec3(0), _world);
+	coffins->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Coffins.obj"));
+	coffins->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "coffin_DIFF(TEMP).png"), 0.1f));
+
+	_world->add(coffins);
+
+	StaticGameObject * exitBlock = new StaticGameObject("exitblock", glm::vec3(0), _world);
+	exitBlock->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Exit_Block.obj"));
+	exitBlock->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "step_DIFF.png"), 0.1f));
+
+	_world->add(exitBlock);
 
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_hub");
@@ -169,11 +178,17 @@ void LevelManager::Build_level_hub()
 
 void LevelManager::Build_level_hub_tutorial()
 {
+	StaticGameObject * coffins = new StaticGameObject("coffins", glm::vec3(0), _world);
+	coffins->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Coffins.obj"));
+	coffins->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "coffin_DIFF(TEMP).png"), 0.1f));
 
+	_world->add(coffins);
 
-	DirectionalLight * light = new DirectionalLight("light", glm::vec3(40, 5, 35), glm::vec3(-1, 1, -0.5f), glm::vec3(0.05), glm::vec3(0.05), glm::vec3(0.1f));
-	_world->add(light);
-	_world->AddLight(light);
+	StaticGameObject * exitBlock = new StaticGameObject("exitblock", glm::vec3(0), _world);
+	exitBlock->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Exit_Block.obj"));
+	exitBlock->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "step_DIFF.png"), 0.1f));
+
+	_world->add(exitBlock);
 
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_hub");
@@ -191,22 +206,7 @@ sf::Sound soundAmbient;
 
 void LevelManager::Build_level_1()
 {	
-
-	//for (size_t i = 0; i < 10; i++)
-	//{
-	//	PointLight  * pointLight = new PointLight("pointLight", glm::vec3(0 + i * 5, 0, 0 + i * 5 + 2 / 3), glm::vec3(2), glm::vec3(1), glm::vec3(0.1f));
-	//	_world->add(pointLight);
-	//	_world->AddLight(pointLight);
-	//}
-
-	//DirectionalLight * light = new DirectionalLight("light", glm::vec3(40, 5, 35), glm::vec3(-1, 1, -0.5f), glm::vec3(0.05), glm::vec3(0.05), glm::vec3(0.1f));
-	//_world->add(light);
-	//_world->AddLight(light);
-
 	cout << " Build level 1 " << endl;
-
-
-
 
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_01");
@@ -226,9 +226,13 @@ void LevelManager::Build_level_1()
 
 void LevelManager::Build_level_2()
 {
-	DirectionalLight * light = new DirectionalLight("light", glm::vec3(40, 5, 35), glm::vec3(-1, 1, -0.5f), glm::vec3(0.05), glm::vec3(0.05), glm::vec3(0.1f));
-	_world->add(light);
-	_world->AddLight(light);
+	StaticGameObject * bridge = new StaticGameObject("bridge", glm::vec3(0), _world);
+	bridge->setMesh(Mesh::load(config::MGE_MODEL_PATH + "bridge_lvl2.obj"));
+	bridge->setMaterial(new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_NRM.png"), 0.1f));
+	
+
+	_world->add(bridge);
+
 	XmlReader * xmlReader = new XmlReader(_world);
 
 	xmlReader->LoadLevel("level_02");
@@ -254,9 +258,6 @@ void LevelManager::Build_level_3()
 
 void LevelManager::Build_level_4()
 {
-	Light *dirLight = new DirectionalLight("Directional Light", glm::vec3(0, 0, 0), glm::vec3(0, -1, 2), glm::vec3(0.3), glm::vec3(1), glm::vec3(1));
-	_world->add(dirLight);
-	_world->AddLight(dirLight);
 
 	XmlReader * xmlReader = new XmlReader(_world);
 	xmlReader->LoadLevel("level_04");

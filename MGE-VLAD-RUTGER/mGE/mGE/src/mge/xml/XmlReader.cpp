@@ -59,6 +59,8 @@ AbstractMaterial * spikeWallMaterial;
 AbstractMaterial * brokenBridgeMaterial;
 AbstractMaterial * pedeStalMaterial;
 AbstractMaterial * torchMaterial;
+AbstractMaterial * ghostMaterial;
+AbstractMaterial * ghostBackMaterial;
 
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
@@ -81,6 +83,9 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	brokenBridgeMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "brokenbridge_NRM.png"), 0.1f);
 	pedeStalMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "pedestal_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "pedestal_NRM.png"), 0.1f);
 	torchMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "torch_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "torch_NRM.png"), 0.1f);
+	ghostMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Ghost_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "Ghost_NRM.png"), 0.1f);
+	ghostBackMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "ghostback_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "ghostback_NRM.png"), 0.1f);
+
 }
 
 XmlReader::~XmlReader()
@@ -555,7 +560,11 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 		case 12:
 		{
-
+			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, false);
+			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Stairs.obj"));
+			obj->setMaterial(stepMaterial);
+			obj->rotate(glm::radians(_rotationsInteractables[i].y) , glm::vec3(0,1,0));
+			_world->add(obj);
 		}
 		break;
 
@@ -604,9 +613,18 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world, true);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Ghost.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 1, 0)));
+			obj->setMaterial(ghostMaterial);
 			obj->setBehaviour(new GhostBehaviour());
+			obj->rotate(glm::radians(180.0f), glm::vec3(0, 1, 0));
 			_world->add(obj);
+
+			StaticGameObject * obj2 = new StaticGameObject(_namesInteractables[i] + "back", _positionsInteractables[i], _world, true);
+			obj2->setMesh(Mesh::load(config::MGE_MODEL_PATH + "ghostback.obj"));
+			obj2->setMaterial(ghostBackMaterial);
+			_world->add(obj2);
+
+			obj2->setParent(obj);
+			obj2->setLocalPosition(glm::vec3(0));
 
 			if (_rotationsInteractables[i].z > 0) {
 				obj->rotate(glm::radians(_rotationsInteractables[i].z), glm::vec3(0, 0, 1));
@@ -700,20 +718,6 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			_world->add(pointLight);
 			_world->AddLight(pointLight);
 
-			/*obj->setBehaviour(new DoorBehaviour());
-			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
-
-			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
-
-			if (_rotationsInteractables[i].y > 0) {
-		
-				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
-			}
-			else
-			{
-				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
-			}*/
-
 			_world->add(obj);
 		}
 		break;
@@ -726,7 +730,14 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 
-			obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			if (_rotationsInteractables[i].y > 0) {
+				obj->rotate(glm::radians(90.0f), glm::vec3(0, 1, 0));
+				obj->AddBoxCollider(colSize.z, colSize.y, colSize.x);
+			}
+			else
+			{
+				obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
+			}
 			_world->add(obj);
 
 		}

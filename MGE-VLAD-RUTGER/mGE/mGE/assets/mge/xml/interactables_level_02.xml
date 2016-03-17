@@ -1,9 +1,359 @@
 <?xml version="1.0" ?>
 <GameObjects>
 	<Object name="Player">
-		<Position X="61.2812942257" Y="20.62277719378" Z="-15.7602829748"/>
+	<Position X="-62.3463" Y="24.6228" Z="-29.0"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="10"/>
+	</Object>
+	<Object name="Door_02">
+		<Position X="-25.0" Y="9.0" Z="-51.0"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="8"/>
+	</Object>
+	<Object name="Bridge_Broken_05">
+		<Position X="12.0" Y="-0.263455674476" Z="-15.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="16"/>
+	</Object>
+	<Object name="Bridge_Broken_04">
+		<Position X="-24.0" Y="-0.263455674476" Z="-27.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="16"/>
+	</Object>
+	<Object name="Bridge_Broken_02">
+		<Position X="-44.5" Y="-0.263455674476" Z="-21.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="16"/>
+	</Object>
+	<Object name="Bridge_Broken_03">
+		<Position X="-15.0" Y="-0.263455674476" Z="-9.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="16"/>
+	</Object>
+	<Object name="Bridge_Broken_01">
+		<Position X="-27.0" Y="-0.263455674476" Z="15.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="16"/>
+	</Object>
+	<Object name="Coffin_02">
+		<Position X="36.3136054034" Y="1.82608894411" Z="6.03693220578"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin_03">
+		<Position X="36.3136054034" Y="1.82608894411" Z="18.074739768"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin_05">
+		<Position X="26.9014671737" Y="7.84564097265" Z="-43.5032942734"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin_04">
+		<Position X="26.2653445239" Y="1.82608894411" Z="18.074739768"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin_01">
+		<Position X="26.2653445239" Y="1.82608894411" Z="6.03693220578"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin_06">
+		<Position X="10.6722218887" Y="1.82608894411" Z="-45.0115831126"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin_07">
+		<Position X="10.6722218887" Y="1.82608894411" Z="-56.9317923861"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin_08">
+		<Position X="-12.0788826548" Y="1.82608894411" Z="-61.0700670864"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Coffin_09">
+		<Position X="-12.0788826548" Y="1.82608894411" Z="-40.9668878676"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="14"/>
+	</Object>
+	<Object name="Step">
+		<Position X="70.3376876125" Y="0.685302384399" Z="-41.5304429499"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step1">
+		<Position X="70.1917162673" Y="1.44622440236" Z="-41.4468177297"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step2">
+		<Position X="70.2619592974" Y="0.575349224622" Z="-40.6130020292"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step3">
+		<Position X="70.5090111243" Y="0.683504360812" Z="-35.9647142894"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step4">
+		<Position X="70.359020908" Y="0.609430802625" Z="-37.1712465628"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step5">
+		<Position X="70.4433028549" Y="1.44622440236" Z="-36.0864460243"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step6">
+		<Position X="69.1406776823" Y="3.76811890515" Z="-33.0974024188"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step7">
+		<Position X="69.1839047201" Y="3.0053988636" Z="-33.1426449361"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step8">
+		<Position X="69.5229799632" Y="2.89447060209" Z="-33.5312414592"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step9">
+		<Position X="65.2787855904" Y="1.38315341169" Z="-18.21669361"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step10">
+		<Position X="65.5359685196" Y="0.620433370144" Z="-19.6866387632"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step11">
+		<Position X="65.3288003424" Y="0.164704370409" Z="-20.3680421291"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step13">
+		<Position X="68.4365468411" Y="3.43383606159" Z="-22.5536149987"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step14">
+		<Position X="68.4988442193" Y="4.58619201592" Z="-24.142776378"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step15">
+		<Position X="-14.4746454007" Y="0.404593174754" Z="-52.009287012"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step16">
+		<Position X="-14.5879810971" Y="0.606794466782" Z="-49.767356165"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step17">
+		<Position X="-14.6738753797" Y="1.47329150022" Z="-49.876923802"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step18">
+		<Position X="-17.8709485878" Y="4.44343293853" Z="-47.0983324468"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step19">
+		<Position X="-17.5947599323" Y="3.57693590509" Z="-46.8946714219"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step20">
+		<Position X="-17.2858841341" Y="3.44543171747" Z="-48.9673468005"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step21">
+		<Position X="-17.6621444535" Y="3.29271288301" Z="-53.5417341619"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step22">
+		<Position X="-17.3836714626" Y="3.57693590509" Z="-55.2037690906"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step23">
+		<Position X="-17.7741901872" Y="4.44343293853" Z="-55.1965366978"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step24">
+		<Position X="48.6427664645" Y="1.61479888487" Z="-18.3981317849"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step25">
+		<Position X="48.5959979412" Y="0.749659803585" Z="-18.3597038597"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step26">
+		<Position X="48.7261075726" Y="0.535977637634" Z="-20.4921269235"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step27">
+		<Position X="45.7740409358" Y="3.11483989243" Z="-23.752818475"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step28">
+		<Position X="45.6921200748" Y="3.35541609677" Z="-23.1240892618"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step29">
+		<Position X="45.7229496576" Y="4.35463853691" Z="-23.8136541002"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step30">
+		<Position X="55.3648992131" Y="1.40130408548" Z="-8.9948846566"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step31">
+		<Position X="55.4634805935" Y="-0.0432414122819" Z="-9.11437487424"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step32">
+		<Position X="54.5350308194" Y="0.382365263228" Z="-10.415702721"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step33">
+		<Position X="58.660439767" Y="2.98647901557" Z="-6.1697416781"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step34">
+		<Position X="59.3579497339" Y="3.27785551565" Z="-7.11128947489"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step35">
+		<Position X="58.7782653802" Y="4.37477672676" Z="-6.11398805248"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step37">
+		<Position X="33.7819596409" Y="0.38202529689" Z="-9.737482225"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step38">
+		<Position X="32.8268475468" Y="1.40130408548" Z="-8.9948846566"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step39">
+		<Position X="31.4851540409" Y="0.396025792871" Z="-9.69667302422"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step40">
+		<Position X="25.5574552947" Y="3.13829185486" Z="-6.2064971506"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step41">
+		<Position X="25.4292374549" Y="4.41077921992" Z="-6.06346800579"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step42">
+		<Position X="24.5993690613" Y="3.35894664143" Z="-7.29180769706"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step43">
+		<Position X="41.0660790894" Y="3.01125633047" Z="-6.19275776216"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step44">
+		<Position X="41.1773683716" Y="4.41077921992" Z="-6.06346800579"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step45">
+		<Position X="41.4300641652" Y="3.43385038758" Z="-7.07536775154"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step46">
+		<Position X="-40.8233055616" Y="-8.50658538963" Z="8.66837616821"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step47">
+		<Position X="-41.8774476706" Y="-8.41341376102" Z="8.7941168297"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step48">
+		<Position X="-41.5886085351" Y="-7.57972478258" Z="8.64796430703"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step55">
+		<Position X="70.4681963413" Y="4.43201866961" Z="-44.7879604524"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step57">
+		<Position X="70.5384393714" Y="3.56114349187" Z="-43.9541447519"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step58">
+		<Position X="-46.8683784707" Y="-5.52904469863" Z="8.66837616821"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step59">
+		<Position X="-47.6336814441" Y="-4.60218409157" Z="8.64796430703"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step60">
+		<Position X="-47.9225205797" Y="-5.43587307002" Z="8.7941168297"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step61">
+		<Position X="-53.7102187644" Y="-2.47795915237" Z="8.7941168297"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step62">
+		<Position X="-53.4213796289" Y="-1.64427017392" Z="8.64796430703"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
+	</Object>
+	<Object name="Step63">
+		<Position X="-52.6560766555" Y="-2.57113078097" Z="8.66837616821"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="13"/>
 	</Object>
 	<Object name="Coin_01">
 		<Position X="57.483553294" Y="7.70448101889" Z="-2.76950667325"/>
@@ -65,335 +415,35 @@
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="2"/>
 	</Object>
-	<Object name="Door_02">
-		<Position X="-25.0" Y="9.0" Z="-51.0"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="8"/>
-	</Object>
-	<Object name="Bridge_Broken_01">
-		<Position X="-27.0" Y="-0.263455674476" Z="15.0"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="16"/>
-	</Object>
-	<Object name="Bridge_Broken_03">
-		<Position X="-15.0" Y="-0.263455674476" Z="-9.0"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="16"/>
-	</Object>
-	<Object name="Bridge_Broken_02">
-		<Position X="-44.5" Y="-0.263455674476" Z="-21.0"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="16"/>
-	</Object>
-	<Object name="Bridge_Broken_04">
-		<Position X="-24.0" Y="-0.263455674476" Z="-27.0"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="16"/>
-	</Object>
-	<Object name="Bridge_Broken_05">
-		<Position X="12.0" Y="-0.263455674476" Z="-15.0"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="16"/>
+	<Object name="Normal_Trap_01">
+		<Position X="62.2813" Y="2.6228" Z="-16.0"/>
+		<Rotation X="0.0" Y="270.0" Z="0.0"/>
+		<Object_Type Type="7"/>
 	</Object>
 	<Object name="Shooting_Trap_01">
-		<Position X="61.2812942257" Y="2.62277719378" Z="-15.7602829748"/>
+		<Position X="62.5" Y="2.6228" Z="-26.0"/>
 		<Rotation X="0.0" Y="270.0" Z="0.0"/>
 		<Object_Type Type="4"/>
 	</Object>
-	<Object name="Shooting_Trap_02">
-		<Position X="61.2812942257" Y="2.62277719378" Z="-26.0373299053"/>
+	<Object name="Normal_Trap_02">
+		<Position X="51.5" Y="2.6228" Z="-33.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="7"/>
+	</Object>
+	<Object name="Normal_Trap_03">
+		<Position X="-51.7187" Y="8.6228" Z="-45.0"/>
 		<Rotation X="0.0" Y="270.0" Z="0.0"/>
-		<Object_Type Type="4"/>
+		<Object_Type Type="7"/>
 	</Object>
-	<Object name="Shooting_Trap_03">
-		<Position X="52.4590972897" Y="2.62277719378" Z="-33.6440649514"/>
+	<Object name="Normal_Trap_04">
+		<Position X="-62.3463" Y="8.6228" Z="-38.0"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="4"/>
+		<Object_Type Type="7"/>
 	</Object>
-	<Object name="Step">
-		<Position X="72.1820760568" Y="0.683504360812" Z="-41.2601684724"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step1">
-		<Position X="69.8796570165" Y="1.44622440236" Z="-41.7329487265"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step2">
-		<Position X="70.2619592974" Y="0.227775361077" Z="-40.6130020292"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step3">
-		<Position X="70.7459763061" Y="0.683504360812" Z="-36.5972012114"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step4">
-		<Position X="70.2619592974" Y="0.227775361077" Z="-37.2805473795"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step5">
-		<Position X="70.4433028549" Y="1.44622440236" Z="-35.7970539624"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step6">
-		<Position X="69.1406776823" Y="3.76811890515" Z="-32.9935102852"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step7">
-		<Position X="71.4430967226" Y="3.0053988636" Z="-33.6327199919"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step8">
-		<Position X="69.5229799632" Y="2.54966986386" Z="-33.5312414592"/>
+	<Object name="Normal_Trap_05">
+		<Position X="-62.3463" Y="8.6228" Z="-29.0"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step9">
-		<Position X="65.2787855904" Y="1.38315341169" Z="-18.21669361"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step10">
-		<Position X="65.5359685196" Y="0.620433370144" Z="-19.6866387632"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step11">
-		<Position X="65.3288003424" Y="0.164704370409" Z="-20.3680421291"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step12">
-		<Position X="68.9337441034" Y="3.97159846801" Z="-22.4091739487"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step13">
-		<Position X="67.4826219175" Y="3.14997597492" Z="-22.5536149987"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step14">
-		<Position X="68.6765611741" Y="4.58619201592" Z="-24.142776378"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step15">
-		<Position X="-14.8322902108" Y="0.0128261154512" Z="-52.4895429784"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step16">
-		<Position X="-14.3834891614" Y="0.606794466782" Z="-50.7938262535"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step17">
-		<Position X="-14.565603428" Y="1.47329150022" Z="-49.1483518623"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step18">
-		<Position X="-17.8709485878" Y="4.44343293853" Z="-46.1659761806"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step19">
-		<Position X="-17.5947599323" Y="3.57693590509" Z="-47.8114505718"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step20">
-		<Position X="-17.2858841341" Y="2.98296755376" Z="-49.5071672967"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step21">
-		<Position X="-17.2858841341" Y="2.98296755376" Z="-52.9737769451"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step22">
-		<Position X="-17.5802313836" Y="3.57693590509" Z="-54.5441464889"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step23">
-		<Position X="-17.7741901872" Y="4.44343293853" Z="-55.7807871121"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step24">
-		<Position X="48.5459831892" Y="1.64088603132" Z="-18.166199714"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step25">
-		<Position X="48.5959979412" Y="0.749659803585" Z="-19.2739506678"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step26">
-		<Position X="48.6794936335" Y="0.107717726375" Z="-20.9865320379"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step27">
-		<Position X="46.408304602" Y="3.59191849536" Z="-23.3260105683"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step28">
-		<Position X="45.6921200748" Y="3.13618949562" Z="-23.1240892618"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step29">
-		<Position X="45.7229496576" Y="4.35463853691" Z="-23.8136541002"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step30">
-		<Position X="55.3648992131" Y="1.40130408548" Z="-8.9948846566"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step31">
-		<Position X="56.0502541575" Y="0.638584043929" Z="-9.86725334946"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step32">
-		<Position X="54.5350308194" Y="0.182855044194" Z="-10.415702721"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step33">
-		<Position X="56.0502541575" Y="3.61205668521" Z="-6.56284010337"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step34">
-		<Position X="54.5350308194" Y="3.15632768548" Z="-7.11128947489"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step35">
-		<Position X="58.6991175165" Y="4.37477672676" Z="-6.11398805248"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step36">
-		<Position X="59.079334607" Y="3.61205668521" Z="-6.56284010337"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step37">
-		<Position X="33.5122024912" Y="0.638584043929" Z="-9.86725334946"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step38">
-		<Position X="32.8268475468" Y="1.40130408548" Z="-8.9948846566"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step39">
-		<Position X="31.4851540409" Y="0.182855044194" Z="-9.74720852788"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step40">
-		<Position X="26.1145923993" Y="3.64805917837" Z="-6.93583669865"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step41">
-		<Position X="25.4292374549" Y="4.41077921992" Z="-6.06346800579"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step42">
-		<Position X="24.5993690613" Y="3.19233017864" Z="-7.48428607017"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step43">
-		<Position X="40.5134888384" Y="3.64805917837" Z="-6.93583669865"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step44">
-		<Position X="41.1773683716" Y="4.41077921992" Z="-6.06346800579"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Step45">
-		<Position X="41.4300641652" Y="3.19233017864" Z="-7.48428607017"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
-	</Object>
-	<Object name="Coffin_02">
-		<Position X="36.3136054034" Y="1.82608894411" Z="6.03693220578"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="Coffin_03">
-		<Position X="36.3136054034" Y="1.82608894411" Z="18.074739768"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="Coffin_05">
-		<Position X="26.9014671737" Y="7.84564097265" Z="-43.5032942734"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="Coffin_04">
-		<Position X="26.2653445239" Y="1.82608894411" Z="18.074739768"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="Coffin_01">
-		<Position X="26.2653445239" Y="1.82608894411" Z="6.03693220578"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="Coffin_06">
-		<Position X="10.6722218887" Y="1.82608894411" Z="-45.0115831126"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="Coffin_07">
-		<Position X="10.6722218887" Y="1.82608894411" Z="-56.9317923861"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="Coffin_08">
-		<Position X="-12.0788826548" Y="1.82608894411" Z="-61.0700670864"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="Coffin_09">
-		<Position X="-12.0788826548" Y="1.82608894411" Z="-40.9668878676"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="Le_Key_02">
-		<Position X="-21.1012836621" Y="7.14575860634" Z="-51.1797176696"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="6"/>
-	</Object>
-	<Object name="Door_01">
-		<Position X="42.9040429661" Y="2.94776999782" Z="12.0"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="8"/>
+		<Object_Type Type="7"/>
 	</Object>
 	<Object name="enemy_02">
 		<Position X="33.1946980391" Y="0.585287378951" Z="-48.4587374154"/>
@@ -401,17 +451,12 @@
 		<Object_Type Type="15"/>
 	</Object>
 	<Object name="enemy_01">
-		<Position X="40.5501190617" Y="0.585287378951" Z="-18.0818122614"/>
+		<Position X="40.5501190617" Y="0.585287378951" Z="-22.0818122614"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="15"/>
 	</Object>
-	<Object name="Secret_Wall_01">
-		<Position X="53.305137878" Y="5.48203813869" Z="-20.8864287186"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="9"/>
-	</Object>
-	<Object name="Secret_Wall_02">
-		<Position X="60.5935882917" Y="5.48203813869" Z="-20.8864287186"/>
+	<Object name="Secret_Wall_04">
+		<Position X="70.3020645939" Y="5.48203813869" Z="-42.079393469"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="9"/>
 	</Object>
@@ -420,54 +465,164 @@
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
 		<Object_Type Type="9"/>
 	</Object>
-	<Object name="Secret_Wall_04">
-		<Position X="70.3020645939" Y="5.48203813869" Z="-42.079393469"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+	<Object name="Secret_Wall_02">
+		<Position X="60.3169588792" Y="5.48203813869" Z="-20.8864287186"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="9"/>
 	</Object>
-	<Object name="Step46">
-		<Position X="-41.6658941975" Y="-9.04019016734" Z="7.59970725439"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
+	<Object name="Secret_Wall_01">
+		<Position X="53.7409752141" Y="5.48203813869" Z="-20.8864287186"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="9"/>
 	</Object>
-	<Object name="Step47">
-		<Position X="-41.2170931481" Y="-8.44622181601" Z="9.29542397925"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
+	<Object name="Torch3">
+		<Position X="-15.0" Y="4.0" Z="-33.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="18"/>
 	</Object>
-	<Object name="Step48">
-		<Position X="-41.3992074147" Y="-7.57972478258" Z="10.9408983704"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
+	<Object name="Torch1">
+		<Position X="9.0" Y="4.0" Z="-30.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="18"/>
 	</Object>
-	<Object name="Step49">
-		<Position X="-47.654984582" Y="-6.15714936126" Z="7.59970725439"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
+	<Object name="Torch2">
+		<Position X="-40.0" Y="4.0" Z="-30.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="18"/>
 	</Object>
-	<Object name="Step50">
-		<Position X="-47.2061835326" Y="-5.56318100993" Z="9.29542397925"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
+	<Object name="Torch4">
+		<Position X="31.5" Y="4.0" Z="3.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="18"/>
 	</Object>
-	<Object name="Step51">
-		<Position X="-47.3882977992" Y="-4.69668397649" Z="10.9408983704"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
+	<Object name="Torch5">
+		<Position X="31.5" Y="4.0" Z="20.9999483183"/>
+		<Rotation X="0.0" Y="180.0" Z="0.0"/>
+		<Object_Type Type="18"/>
 	</Object>
-	<Object name="Step52">
-		<Position X="-53.4325757912" Y="-1.52329873308" Z="10.795045244"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
+	<Object name="Torch6">
+		<Position X="69.0" Y="4.0" Z="1.0"/>
+		<Rotation X="0.0" Y="270.0" Z="0.0"/>
+		<Object_Type Type="18"/>
 	</Object>
-	<Object name="Step53">
-		<Position X="-53.2504615246" Y="-2.38979576652" Z="9.14957085282"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
+	<Object name="Torch7">
+		<Position X="81.0" Y="4.0" Z="-26.0"/>
+		<Rotation X="0.0" Y="270.0" Z="0.0"/>
+		<Object_Type Type="18"/>
 	</Object>
-	<Object name="Step54">
-		<Position X="-53.699262574" Y="-2.98376411785" Z="7.45385412796"/>
+	<Object name="Torch8">
+		<Position X="52.0" Y="9.0" Z="0.0"/>
+		<Rotation X="0.0" Y="180.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch9">
+		<Position X="33.0" Y="9.0" Z="0.0"/>
+		<Rotation X="0.0" Y="180.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch10">
+		<Position X="-24.0" Y="9.0" Z="-55.0"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="13"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch11">
+		<Position X="-24.0" Y="9.0" Z="-47.0"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch12">
+		<Position X="-60.0" Y="9.0" Z="-42.0"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch13">
+		<Position X="-58.0" Y="4.0" Z="21.0"/>
+		<Rotation X="0.0" Y="180.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch14">
+		<Position X="-15.0" Y="4.0" Z="33.0"/>
+		<Rotation X="0.0" Y="180.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Stairs">
+		<Position X="-66.0" Y="0.0" Z="16.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="12"/>
+	</Object>
+	<Object name="Torch15">
+		<Position X="28.5" Y="9.0" Z="-36.0"/>
+		<Rotation X="0.0" Y="180.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Key_02">
+		<Position X="-20.5" Y="7.0" Z="-51.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="6"/>
+	</Object>
+	<Object name="Fence">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-39.7297488234"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence1">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-40.8419968657"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence2">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-43.098220966"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence3">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-41.9859729237"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence4">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-45.3544450663"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence5">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-44.242197024"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence6">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-47.6106691666"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence7">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-46.4984211243"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence8">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-49.8668932669"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence9">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-48.7546452246"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence10">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-52.1231173672"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence11">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-51.0108693249"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
+	</Object>
+	<Object name="Fence12">
+		<Position X="36.0516609766" Y="6.43722319981" Z="-53.3122417406"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="20"/>
 	</Object>
 </GameObjects>

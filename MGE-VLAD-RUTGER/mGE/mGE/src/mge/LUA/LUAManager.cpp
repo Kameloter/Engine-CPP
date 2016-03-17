@@ -103,8 +103,6 @@ int LUAManager::ConnectStatueToPlate(lua_State * L)
 	StaticGameObject * plate = FindStaticTriggerObject(plateName);
 	RigidbodyGameObject * statue = FindRigidObject(statueName);
 
-	std::cout << plate->getName() << " + " << statue->getName() << std::endl;
-
 	dynamic_cast<PressurePlateBehaviour*>(plate->getBehaviour())->SetStatue(statue);
 	return 0;
 }
@@ -141,7 +139,6 @@ int LUAManager::SetOpenVectorSpike(lua_State * L)
 
 int LUAManager::AddPressurePlateToDoor(lua_State * L)
 {
-	cout << "helooooo" << endl;
 	string doorName = lua_tostring(L, 1);
 	string plateName = lua_tostring(L, 2);
 
@@ -182,7 +179,6 @@ int LUAManager::SetBeginEndGhost(lua_State * L)
 	glm::vec3 closedPos = glm::vec3(lua_tonumber(L, 5), lua_tonumber(L, 6), lua_tonumber(L, 7));
 
 	StaticGameObject * ghost = FindStaticTriggerObject(ghostName);
-	std::cout << ghost->getName() << openPos << closedPos << std::endl;
 
 	dynamic_cast<GhostBehaviour*>(ghost->getBehaviour())->setBeginEnd(openPos,closedPos);
 	return 0;
@@ -195,8 +191,6 @@ int LUAManager::SetTrapTrigger(lua_State * L)
 
 	StaticGameObject * trap = FindStaticTriggerObject(trapName);
 	StaticGameObject * trigger = FindStaticTriggerObject(triggerName);
-
-	std::cout << trap->getName() << " + " << trigger->getName() << std::endl;
 
 	dynamic_cast<TrapTriggerBehaviour*>(trigger->getBehaviour())->SetTrap(trap);
 	return 0;

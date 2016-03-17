@@ -516,4 +516,8 @@
 		<Position X="12.0" Y="-0.253857739331" Z="24.0"/>
 		<ColSize X="6.0" Y="0.5" Z="6.0"/>
 	</Object>
+	 <Object name="Collider_0129">
+		<Position X="36.4070139868" Y="6.0" Z="-46.5564935671"/>
+		<ColSize X="0.907901283403" Y="12.0" Z="17.4927569081"/>
+	</Object>
 </GameObjects>

@@ -1,34 +1,9 @@
 <?xml version="1.0" ?>
 <GameObjects>
 	<Object name="Player">
-		<Position X="13.5" Y="2.0" Z="15.0"/>
+		<Position X="13.5" Y="2.0" Z="13.3426984116"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="10"/>
-	</Object>
-	<Object name="coffin_01">
-		<Position X="5.87299885295" Y="1.83798730373" Z="-44.9936586763"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="coffin_02">
-		<Position X="21.1317768577" Y="1.83798730373" Z="-44.9936586763"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="coffin_03">
-		<Position X="20.429947257" Y="1.83798730373" Z="-14.0326196606"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="coffin_04">
-		<Position X="6.42994725704" Y="1.83798730373" Z="-14.0326196606"/>
-		<Rotation X="0.0" Y="90.0" Z="0.0"/>
-		<Object_Type Type="14"/>
-	</Object>
-	<Object name="coffin_05">
-		<Position X="13.429947257" Y="1.83798730373" Z="-22.9999995232"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
-		<Object_Type Type="14"/>
 	</Object>
 	<Object name="PushStatue">
 		<Position X="13.5" Y="2.95490986297" Z="-15.0"/>
@@ -68,6 +43,71 @@
 	<Object name="Gate3x3_03">
 		<Position X="41.0" Y="4.5" Z="-4.5"/>
 		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="17"/>
+	</Object>
+	<Object name="Pedestrel_01">
+		<Position X="13.5" Y="0.0" Z="-29.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="19"/>
+	</Object>
+	<Object name="Torch1">
+		<Position X="22.0" Y="11.0" Z="-39.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch2">
+		<Position X="5.0" Y="11.0" Z="-39.0"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch3">
+		<Position X="5.0" Y="7.5" Z="9.0"/>
+		<Rotation X="0.0" Y="180.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch4">
+		<Position X="22.0" Y="7.5" Z="9.0"/>
+		<Rotation X="0.0" Y="180.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch5">
+		<Position X="-12.0" Y="4.64557070666" Z="-13.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Torch6">
+		<Position X="39.0" Y="4.64557070666" Z="-13.5"/>
+		<Rotation X="0.0" Y="270.0" Z="0.0"/>
+		<Object_Type Type="18"/>
+	</Object>
+	<Object name="Stairs">
+		<Position X="72.0" Y="-12.0" Z="-4.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="12"/>
+	</Object>
+	<Object name="Stairs1">
+		<Position X="72.0" Y="-12.0" Z="-22.5"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
+		<Object_Type Type="12"/>
+	</Object>
+	<Object name="Stairs2">
+		<Position X="-45.0" Y="-12.0" Z="-22.5"/>
+		<Rotation X="0.0" Y="270.0" Z="0.0"/>
+		<Object_Type Type="12"/>
+	</Object>
+	<Object name="Stairs3">
+		<Position X="-45.0" Y="-12.0" Z="-4.5"/>
+		<Rotation X="0.0" Y="270.0" Z="0.0"/>
+		<Object_Type Type="12"/>
+	</Object>
+	<Object name="Gate3x3_06">
+		<Position X="12.1488244459" Y="4.74952672274" Z="21.9749776569"/>
+		<Rotation X="333.115" Y="90.0" Z="0.0"/>
+		<Object_Type Type="17"/>
+	</Object>
+	<Object name="Gate3x3_05">
+		<Position X="13.5" Y="4.5" Z="-40.5"/>
+		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="17"/>
 	</Object>
 </GameObjects>

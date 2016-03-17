@@ -1,13 +1,58 @@
 <?xml version="1.0" ?>
 <GameObjects>
 	<Object name="level_hub">
-		<Position Y="1.5" X="-64.5" Z="16.5"/>
+		<Position X="-64.5" Y="1.5" Z="16.5"/>
 		<ColSize X="0.5" Y="21.0" Z="9.0"/>
 		<Object_Type Type="2"/>
+	</Object>
+	<Object name="subtitles_trigger_02">
+		<Position X="14.5932150272" Y="3.20092717529" Z="10.286069747"/>
+		<ColSize X="23.3130969845" Y="6.0" Z="23.3130969845"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="subtitles_trigger_01">
+		<Position X="-15.1524713614" Y="3.20092717529" Z="15.1540882005"/>
+		<ColSize X="6.0" Y="6.0" Z="6.0"/>
+		<Object_Type Type="2"/>
+	</Object>
+	<Object name="Trap_Trigger_01">
+		<Position X="56.9942881495" Y="3.20092717529" Z="-28.9872776238"/>
+		<ColSize X="6.0" Y="6.0" Z="3.5"/>
+		<Object_Type Type="4"/>
+	</Object>
+	<Object name="checkpoint_trigger_01">
+		<Position X="-14.9810527834" Y="4.83097699966" Z="0.139797165922"/>
+		<ColSize X="10.0" Y="10.05" Z="10.0"/>
+		<Object_Type Type="3"/>
+	</Object>
+	<Object name="checkpoint_trigger_02">
+		<Position X="48.888541568" Y="5.69032702183" Z="11.5329652857"/>
+		<ColSize X="10.0" Y="10.05" Z="10.0"/>
+		<Object_Type Type="3"/>
+	</Object>
+	<Object name="checkpoint_trigger_03">
+		<Position X="44.7199741089" Y="10.6821004199" Z="-2.86947911266"/>
+		<ColSize X="10.0" Y="10.05" Z="10.0"/>
+		<Object_Type Type="3"/>
+	</Object>
+	<Object name="checkpoint_trigger_04">
+		<Position X="-2.48422685401" Y="4.91760679448" Z="-50.8684993386"/>
+		<ColSize X="10.0" Y="10.05" Z="10.0"/>
+		<Object_Type Type="3"/>
+	</Object>
+	<Object name="checkpoint_trigger_05">
+		<Position X="-57.9248195155" Y="10.344086761" Z="-3.58435943968"/>
+		<ColSize X="10.0" Y="10.05" Z="10.0"/>
+		<Object_Type Type="3"/>
 	</Object>
 	<Object name="death_trig_01">
 		<Position Y="-7.88565588287" X="-15.0804528424" Z="-2.32875756705"/>
 		<ColSize X="72.0" Y="1.22023929646" Z="75.5"/>
 		<Object_Type Type="1"/>
+	</Object>
+	<Object name="checkpoint_trigger_06">
+		<Position X="-52.4119206861" Y="4.83097699966" Z="16.1225905856"/>
+		<ColSize X="10.0" Y="10.05" Z="10.0"/>
+		<Object_Type Type="3"/>
 	</Object>
 </GameObjects>

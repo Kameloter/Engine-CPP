@@ -23,7 +23,7 @@ void BrokenBridgeBehaviour::update(float pStep)
 {
 	if (hit) {
 		timer += pStep;
-		if (timer >= 2.0f && timer < 5.0f) {
+		if (timer >= 1.0f && timer < 5.0f) {
 			dynamic_cast<StaticGameObject*>(_bridge)->moveStaticObject(glm::vec3(0,-1,0) * pStep * 5);
 		}
 	}

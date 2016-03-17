@@ -294,14 +294,14 @@
     <ClInclude Include="src\mge\materials\BasicTextureLight.hpp">
       <Filter>Header Files\materials</Filter>
     </ClInclude>
-    <ClInclude Include="src\mge\behaviours\SpawnPointBehaviour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\mge\xml\XmlReader.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\behaviours\SpawnPointBehaviour.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
     <ClInclude Include="src\mge\behaviours\TrapTriggerBehaviour.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\behaviours</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -592,14 +592,14 @@
     <ClCompile Include="src\mge\materials\BasicTextureLight.cpp">
       <Filter>Source Files\materials</Filter>
     </ClCompile>
-    <ClCompile Include="src\mge\behaviours\SpawnPointBehaviour.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\mge\xml\XmlReader.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="src\mge\behaviours\TrapTriggerBehaviour.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\behaviours\SpawnPointBehaviour.cpp">
+      <Filter>Source Files\behaviours</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

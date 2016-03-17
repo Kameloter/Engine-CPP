@@ -23,7 +23,6 @@ SetOpenVectorSpike("Shooting_Trap_02",5,0,0);
 SetOpenVectorSpike("Shooting_Trap_03",5,0,0);
 
 SetKeyNeededDoor("Door_02",1);
---SetBeginEndGhost("Ghost_01",27,0.5,36, 20,0.5,36);
 end
 
 
