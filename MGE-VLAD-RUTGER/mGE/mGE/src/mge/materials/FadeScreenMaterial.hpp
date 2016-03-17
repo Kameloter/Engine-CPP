@@ -10,7 +10,7 @@
 class FadeScreenMaterial : public AbstractMaterial
 {
     public:
-		FadeScreenMaterial(glm::vec3 pColor = glm::vec3(1,0,0));
+		FadeScreenMaterial(glm::vec3 pColor);
         virtual ~FadeScreenMaterial();
         virtual void render(World* pWorld, GameObject* pGameObject, Camera* pCamera);
 		void setRenderImage(bool value);

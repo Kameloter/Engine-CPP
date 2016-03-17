@@ -75,6 +75,7 @@
     <ClInclude Include="src\mge\materials\AbstractMaterial.hpp" />
     <ClInclude Include="src\mge\materials\BasicTextureLight.hpp" />
     <ClInclude Include="src\mge\materials\ColorMaterial.hpp" />
+    <ClInclude Include="src\mge\materials\FadeScreenMaterial.hpp" />
     <ClInclude Include="src\mge\materials\FragLitColorMaterial.hpp" />
     <ClInclude Include="src\mge\materials\PointLightAttenuationMaterial.hpp" />
     <ClInclude Include="src\mge\materials\PointLightMaterial.hpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="src\mge\materials\AbstractMaterial.cpp" />
     <ClCompile Include="src\mge\materials\BasicTextureLight.cpp" />
     <ClCompile Include="src\mge\materials\ColorMaterial.cpp" />
+    <ClCompile Include="src\mge\materials\FadeScreenMaterial.cpp" />
     <ClCompile Include="src\mge\materials\FragLitColorMaterial.cpp" />
     <ClCompile Include="src\mge\materials\PointLightAttenuationMaterial.cpp" />
     <ClCompile Include="src\mge\materials\PointLightMaterial.cpp" />

@@ -1,6 +1,5 @@
 #include <glm.hpp>
-
-#include "mge/materials/FadeScreenMaterial.hpp"
+#include "FadeScreenMaterial.hpp"
 #include "mge/config.hpp"
 #include "mge/core/Camera.hpp"
 #include "mge/core/Mesh.hpp"
@@ -16,9 +15,10 @@ GLint FadeScreenMaterial::_aNormal = 0;
 GLint FadeScreenMaterial::_aUV = 0;
 GLuint FadeScreenMaterial::_uAlpha = 0;
 
-FadeScreenMaterial::FadeScreenMaterial(glm::vec3 pDiffuseColor):_diffuseColor (pDiffuseColor),_alpha(1)
+
+FadeScreenMaterial::FadeScreenMaterial(glm::vec3 pDiffuseColor) :_diffuseColor(pDiffuseColor), _alpha(1), _renderImage(true)
 {
-	_renderImage = true;
+	
     //every time we create an instance of colormaterial we check if the corresponding shader has already been loaded
     _lazyInitializeShader();
 }

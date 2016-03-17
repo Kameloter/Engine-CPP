@@ -1,6 +1,7 @@
 #include "FadeManager.h"
 #include "mge/core/Timer.hpp"
 #include "mge/core/GameObject.hpp"
+
 #include "mge/materials/FadeScreenMaterial.hpp"
 
 bool FadeManager::_fade = false;

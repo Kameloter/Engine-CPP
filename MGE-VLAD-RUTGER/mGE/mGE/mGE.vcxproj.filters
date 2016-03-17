@@ -306,6 +306,9 @@
     <ClInclude Include="src\mge\core\FadeManager.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\materials\FadeScreenMaterial.hpp">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -605,7 +608,10 @@
       <Filter>Source Files\behaviours</Filter>
     </ClCompile>
     <ClCompile Include="src\mge\core\FadeManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\materials\FadeScreenMaterial.cpp">
+      <Filter>Source Files\materials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

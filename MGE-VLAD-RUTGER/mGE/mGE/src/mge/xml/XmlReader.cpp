@@ -40,6 +40,7 @@
 #include "mge/behaviours/TrapTriggerBehaviour.h"
 #include "mge/behaviours/SpawnPointBehaviour.h"
 
+
 #include "mge/materials/TerrainMaterial.hpp" 
 
 #include "mge/materials/FadeScreenMaterial.hpp"
@@ -65,7 +66,7 @@ AbstractMaterial * pedeStalMaterial;
 AbstractMaterial * torchMaterial;
 AbstractMaterial * ghostMaterial;
 AbstractMaterial * ghostBackMaterial;
-
+AbstractMaterial * fadeScreenMaterial;
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -89,6 +90,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	torchMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "torch_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "torch_NRM.png"), 0.1f);
 	ghostMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Ghost_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "Ghost_NRM.png"), 0.1f);
 	ghostBackMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "ghostback_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "ghostback_NRM.png"), 0.1f);
+	fadeScreenMaterial = new FadeScreenMaterial(glm::vec3(0,0,0));
 
 }
 
@@ -248,7 +250,14 @@ void XmlReader::ReadInteractables(const char* pFileName)
 void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 {
 	cout << " Setting up level geometry..." << endl;
-
+	GameObject * fadeScreen = new GameObject("fadeScreen", glm::vec3(45,1,35));
+	_world->add(fadeScreen);
+	fadeScreen->scale(glm::vec3(1, 5, 5));
+	fadeScreen->rotate(glm::radians(90.0f), glm::vec3(1, 0, 0));
+	fadeScreen->setMesh(Mesh::load(config::MGE_MODEL_PATH + "plane.obj"));
+	//fadeScreen->setParent(camera);
+	fadeScreen->setMaterial(new TextureMaterial(Texture::load(config::MGE_TEXTURE_PATH + "test_alpha.png")));
+	fadeScreen->setLocalPosition(glm::vec3(0, 0, -5));
 	for (int i = 0; i < _namesInteractables.size(); i++)
 	{
 		switch (_typeInteractables[i])
@@ -537,15 +546,18 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			slight->setLocalPosition(-2.5f * flashLight->getForward());
 			_world->AddLight(slight);
 
-			GameObject * fadeScreen = new GameObject("fadeScreen", _positionsInteractables[i]);
+			/*GameObject * fadeScreen = new GameObject("fadeScreen", _positionsInteractables[i]);
 			_world->add(fadeScreen);
 			fadeScreen->scale(glm::vec3(1, 5, 5));
 			fadeScreen->rotate(glm::radians(90.0f), glm::vec3(1, 0, 0));
 			fadeScreen->setMesh(Mesh::load(config::MGE_MODEL_PATH + "plane.obj"));
 			fadeScreen->setParent(camera);
-			fadeScreen->setMaterial(new FadeScreenMaterial(glm::vec3(0)));
+			fadeScreen->setMaterial(fadeScreenMaterial);
 			fadeScreen->setLocalPosition(glm::vec3(0, 0, -1));
-			FadeManager::setFadeScreen(fadeScreen);
+			FadeManager::setFadeScreen(fadeScreen);*/
+		
+		
+			
 
 		}
 		break;
