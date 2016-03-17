@@ -309,12 +309,6 @@
     <ClInclude Include="src\mge\materials\FadeScreenMaterial.hpp">
       <Filter>Header Files\materials</Filter>
     </ClInclude>
-    <ClInclude Include="src\mge\core\SoundManager.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\mge\core\Sound.h">
-      <Filter>Header Files\core</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -452,6 +446,9 @@
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="src\mge\core\ShaderProgram.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\core\Sound.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="src\mge\core\Texture.cpp">
@@ -615,12 +612,6 @@
     </ClCompile>
     <ClCompile Include="src\mge\materials\FadeScreenMaterial.cpp">
       <Filter>Source Files\materials</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mge\core\SoundManager.cpp">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mge\core\Sound.cpp">
-      <Filter>Source Files\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
