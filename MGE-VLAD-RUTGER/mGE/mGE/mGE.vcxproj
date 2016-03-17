@@ -66,8 +66,6 @@
     <ClInclude Include="src\mge\core\Player.h" />
     <ClInclude Include="src\mge\core\Renderer.hpp" />
     <ClInclude Include="src\mge\core\ShaderProgram.hpp" />
-    <ClInclude Include="src\mge\core\Sound.h" />
-    <ClInclude Include="src\mge\core\SoundManager.h" />
     <ClInclude Include="src\mge\core\Texture.hpp" />
     <ClInclude Include="src\mge\core\Timer.hpp" />
     <ClInclude Include="src\mge\core\World.hpp" />
@@ -174,7 +172,6 @@
     <ClCompile Include="src\mge\core\Renderer.cpp" />
     <ClCompile Include="src\mge\core\ShaderProgram.cpp" />
     <ClCompile Include="src\mge\core\Sound.cpp" />
-    <ClCompile Include="src\mge\core\SoundManager.cpp" />
     <ClCompile Include="src\mge\core\Texture.cpp" />
     <ClCompile Include="src\mge\core\Timer.cpp" />
     <ClCompile Include="src\mge\core\World.cpp" />
