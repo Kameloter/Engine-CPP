@@ -89,7 +89,7 @@ void MGEDemo::_render() {
 		
 		if (mainMenu->StartButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME "))
 		{
-			LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
+			LevelManager::getInstance().SwitchToLevel(GameLevels::HUBTUTORIAL);
 		}
 
 		/*if (mainMenu->ButtonPressed(_window->getSize().x / 2, (_window->getSize().y / 2) + 200, " QUIT GAME "))

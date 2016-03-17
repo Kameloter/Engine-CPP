@@ -67,6 +67,7 @@ AbstractMaterial * torchMaterial;
 AbstractMaterial * ghostMaterial;
 AbstractMaterial * ghostBackMaterial;
 AbstractMaterial * fadeScreenMaterial;
+AbstractMaterial * gate2x2Material;
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -79,7 +80,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	keyMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "keyred_DIFF.png"), 0.1f);
 	hiddenPassageMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "hiddenpassage_DIFF (TEMP, tiled).png"), Texture::load(config::MGE_TEXTURE_PATH + "hiddenpassage_NRM.png"), 0.1f);
 	flashLightMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_diffuse.jpg"), Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_normal.jpg"), Texture::load(config::MGE_TEXTURE_PATH + "Flashlight_specular.jpg"), 0.1f);
-	coffinMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "coffin_DIFF(TEMP).png"), 0.1f);
+	coffinMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "coffin_DIFF(TEMP).png"), Texture::load(config::MGE_TEXTURE_PATH + "coffin_NRM.png"), 0.1f);
 	gateBigMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gatebig_DIFF (TEMP).png"), Texture::load(config::MGE_TEXTURE_PATH + "gatebig_NRM.png"), 0.1f);
 	bridge1Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "bridgelv1_NRM.png"), 0.1f);
 	stepMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "step_DIFF.png"), 0.1f);
@@ -91,6 +92,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	ghostMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Ghost_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "Ghost_NRM.png"), 0.1f);
 	ghostBackMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "ghostback_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "ghostback_NRM.png"), 0.1f);
 	fadeScreenMaterial = new FadeScreenMaterial(glm::vec3(0,0,0));
+	gate2x2Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gate2x2_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "gate2x2_NRM.png"), 0.1f);
 
 }
 
@@ -479,7 +481,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Gate2x2.obj"));
-			obj->setMaterial(new ColorMaterial(glm::vec3(1, 0.923f, 0)));
+			obj->setMaterial(gate2x2Material);
 
 			obj->setBehaviour(new DoorBehaviour());
 			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
@@ -546,7 +548,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			slight->setLocalPosition(-2.5f * flashLight->getForward());
 			_world->AddLight(slight);
 
-			/*GameObject * fadeScreen = new GameObject("fadeScreen", _positionsInteractables[i]);
+			GameObject * fadeScreen = new GameObject("fadeScreen", _positionsInteractables[i]);
 			_world->add(fadeScreen);
 			fadeScreen->scale(glm::vec3(1, 5, 5));
 			fadeScreen->rotate(glm::radians(90.0f), glm::vec3(1, 0, 0));
@@ -554,11 +556,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			fadeScreen->setParent(camera);
 			fadeScreen->setMaterial(fadeScreenMaterial);
 			fadeScreen->setLocalPosition(glm::vec3(0, 0, -1));
-			FadeManager::setFadeScreen(fadeScreen);*/
-		
-		
-			
-
+			FadeManager::setFadeScreen(fadeScreen);
 		}
 		break;
 

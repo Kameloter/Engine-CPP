@@ -74,24 +74,24 @@ void main( void )
 	//vec3 normN = normalize(normals);
 
     vec3 viewDirection = normalize(cameraPosition - vertices);
-	vec3 sampledDiffuse = texture(diffuseMap, uvs).rgb;
+	vec4 sampledDiffuse = texture(diffuseMap, uvs).rgba;
 
 
     vec3 finalColor = vec3(0);
 
 
-	finalColor += getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse);
+	finalColor += getDirectionalLight(dirLight,normal,viewDirection,sampledDiffuse.rgb);
  
 
 
 
     for(int i = 0; i < pointLightCount; i++)
     {
-       finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse);
+       finalColor += getPointLight(pointLight[i],normal,viewDirection, sampledDiffuse.rgb);
     }
 	 
-    finalColor += getSpotLight(spotLight, normal, viewDirection,sampledDiffuse);
-	fragment_color = vec4(finalColor,1);
+    finalColor += getSpotLight(spotLight, normal, viewDirection,sampledDiffuse.rgb);
+	fragment_color = vec4(finalColor,sampledDiffuse.a);
 
 }
 

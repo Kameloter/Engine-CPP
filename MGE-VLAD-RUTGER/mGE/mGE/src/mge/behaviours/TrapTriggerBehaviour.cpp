@@ -23,7 +23,7 @@ void TrapTriggerBehaviour::update(float pStep)
 {
 	if (hit && !triggered) {
 		timer += pStep;
-		if (timer >= 1.0f) {
+		if (timer >= 2.0f) {
 			dynamic_cast<SpikeBehaviour*>(_trap->getBehaviour())->_activated = true;
 			triggered = true;
 		}
