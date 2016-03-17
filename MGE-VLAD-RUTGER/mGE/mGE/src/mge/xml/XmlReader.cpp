@@ -68,6 +68,7 @@ AbstractMaterial * ghostMaterial;
 AbstractMaterial * ghostBackMaterial;
 AbstractMaterial * fadeScreenMaterial;
 AbstractMaterial * gate2x2Material;
+AbstractMaterial * armMaterial;
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -93,7 +94,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	ghostBackMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "ghostback_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "ghostback_NRM.png"), 0.1f);
 	fadeScreenMaterial = new FadeScreenMaterial(glm::vec3(0,0,0));
 	gate2x2Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gate2x2_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "gate2x2_NRM.png"), 0.1f);
-
+	armMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Arm_Color.png"), Texture::load(config::MGE_TEXTURE_PATH + "Arm_Normal.png"), Texture::load(config::MGE_TEXTURE_PATH + "Arm_Specular.png"), 0.1f);
 }
 
 XmlReader::~XmlReader()
@@ -537,10 +538,18 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			flashLight->setMaterial(flashLightMaterial);
 
 			flashLight->setParent(camera);
-			flashLight->setLocalPosition(camera->getForward() - glm::vec3(0, 0.5f, 0) + camera->getRight() / 2.0f);
-
-			flashLight->scale(glm::vec3(0.1f));
+			flashLight->setLocalPosition(glm::vec3(1,-0.55f,-0.25f));
+			//flashLight->setLocalPosition(camera->getForward() - glm::vec3(0, 0.5f, 0) + camera->getRight() / 2.0f);
 			flashLight->rotate(glm::radians(-90.f), glm::vec3(0, 1, 0));
+
+			StaticGameObject * arm = new StaticGameObject("arm - OBJECT", glm::vec3(0, 0, 0), _world, true);
+			_world->add(arm);
+			arm->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Arm_Flashlight.obj"));
+			arm->setMaterial(armMaterial);
+
+			arm->setParent(camera);
+			arm->setLocalPosition(glm::vec3(1, -0.55f, -0.25f));
+			arm->rotate(glm::radians(-90.f), glm::vec3(0, 1, 0));
 
 			Light *slight = new SpotLight("FLASHLIGHT - POINT LIGHT", glm::vec3(40, 2, 35), glm::vec3(.3), glm::vec3(1, 1, 1), glm::vec3(0.1));
 			_world->add(slight);

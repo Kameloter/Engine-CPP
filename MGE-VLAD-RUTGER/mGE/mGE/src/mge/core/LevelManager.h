@@ -42,9 +42,6 @@ private:
 	void Build_level_3();
 	void Build_level_4();
 
-
-
-
 	PhysicsWorld * _world;
 	sf::Window * _window;
 	
