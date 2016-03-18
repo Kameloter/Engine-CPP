@@ -14,6 +14,7 @@
 #include "mge/config.hpp"
 
 #include "mge/materials/BasicTextureLight.hpp"
+#include "mge/core/SoundManager.h"
 
 PressurePlateBehaviour::PressurePlateBehaviour(PhysicsWorld * world)
 {	
@@ -36,6 +37,7 @@ void PressurePlateBehaviour::OnCollision(Collision collision)
 {
 	if (collision.getHitBy()->getName() == _statue->getName() && !hit)
 	{
+		SoundManager::getInstance().PlaySound("mechclick");
 		_activated = true;
 		hit = true;
 		/*neRigidBody * rigidbody = dynamic_cast<RigidbodyGameObject*>(_statue)->GetRigidBody();*/
@@ -55,8 +57,6 @@ void PressurePlateBehaviour::OnCollision(Collision collision)
 		obj->SetBounds(minbound, maxbound);
 
 		obj->AddBoxCollider(colSize.x, colSize.y, colSize.z);
-
-		
 	}
 }
 

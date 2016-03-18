@@ -2,13 +2,13 @@
 #include <glm.hpp>
 #include "mge/core/GameObject.hpp"
 #include <SFML/Graphics.hpp>
-
+#include <SFML/Audio.hpp>
 FPCamera::FPCamera(float pMoveSpeed, float pTurnSpeed, GameObject * pPlayer)
 {
     _moveSpeed = pMoveSpeed;
     _turnSpeed = pTurnSpeed;
     _player = pPlayer;
-
+	sf::Listener::setDirection(1,0,0);
 }
 
 FPCamera::~FPCamera()
@@ -16,6 +16,9 @@ FPCamera::~FPCamera()
     //dtor
 }
 void FPCamera::update(float pStep){
+
+	glm::vec3 pos = _owner->getWorldPosition();
+	sf::Listener::setPosition(pos.x, pos.y,pos.z);
 
 	if (!_inAction) {
 		glm::mat4 ownerTransform = _owner->getTransform();

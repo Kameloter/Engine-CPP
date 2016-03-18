@@ -7,6 +7,8 @@
 #include "mge/core/Camera.hpp"
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/xml/XmlReader.h"
+#include "mge/core/SoundManager.h"
+
 //Lights and gameobjects
 #include "mge/core/GameObject.hpp"
 #include "mge/core/Player.h"
@@ -155,6 +157,7 @@ bool tutorialStart = false;
 
 void LevelManager::Build_level_hub()
 {
+	
 	StaticGameObject * coffins = new StaticGameObject("coffins", glm::vec3(0), _world);
 	coffins->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Coffins.obj"));
 	coffins->setMaterial(new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "coffin_DIFF(TEMP).png"), 0.1f));

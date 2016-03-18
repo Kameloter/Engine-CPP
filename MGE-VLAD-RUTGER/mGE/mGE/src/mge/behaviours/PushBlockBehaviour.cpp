@@ -5,6 +5,8 @@
 #include "mge/behaviours/PressurePlateBehaviour.h"
 #include "mge\core\collision/StaticGameObject.h"
 
+#include "mge/core/SoundManager.h"
+
 
 
 PushBlockBehaviour::PushBlockBehaviour()
@@ -16,10 +18,17 @@ PushBlockBehaviour::~PushBlockBehaviour()
 {
 }
 
+
 void PushBlockBehaviour::update(float pStep) {
+	//distance()
+
 	if (forward) {
 		if (glm::distance(_owner->getWorldPosition(), _openPos) > 0.5f) {
 			dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(( glm::normalize(_openPos - _closedPos))* pStep * 15);
+			if (play) {
+				SoundManager::getInstance().PlaySound(_owner->getName());
+				play = false;
+			}
 		}
 		else
 		{
@@ -31,6 +40,7 @@ void PushBlockBehaviour::update(float pStep) {
 		if (glm::distance(_owner->getWorldPosition(), _closedPos) > 0.5f)
 		{
 			dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(-glm::normalize(_openPos - _closedPos) * pStep * 2 );
+			play = true;
 		}
 		else
 		{

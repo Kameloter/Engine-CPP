@@ -8,6 +8,8 @@
 
 #include "mge/StatsHolder.h"
 
+#include "mge/core/SoundManager.h"
+
 DoorBehaviour::DoorBehaviour()
 {
 }
@@ -21,6 +23,16 @@ void DoorBehaviour::update(float pStep){
 	if (CheckPlates()) {
 		if (glm::distance(_owner->getWorldPosition(), _openPos)>0.5f) {
 			dynamic_cast<StaticGameObject*>(_owner)->moveStaticObject(glm::normalize(_openPos - _closedPos) * pStep * 2 );
+			
+			if (!SoundManager::getInstance().IsPlaying(_owner->getName())) {
+				SoundManager::getInstance().PlaySound(_owner->getName());
+			}
+		}
+		else
+		{
+			if (SoundManager::getInstance().IsPlaying(_owner->getName())) {
+				SoundManager::getInstance().StopSound(_owner->getName());
+			}
 		}
 	}
 	else if (glm::distance(_owner->getWorldPosition(), _closedPos)>0.5f)

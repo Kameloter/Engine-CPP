@@ -4,6 +4,7 @@
 #include "mge/core/collision/StaticGameObject.h"
 #include "mge/core/collision/RigidbodyGameObject.h"
 #include "mge/StatsHolder.h"
+#include "mge/core/SoundManager.h"
 
 
 DeathBehaviour::DeathBehaviour()
@@ -34,5 +35,6 @@ void DeathBehaviour::OnCollision(Collision collision)
 
 		dynamic_cast<RigidbodyGameObject*>(collision.getHitBy())->GetRigidBody()->SetPos(Pos);
 		dynamic_cast<RigidbodyGameObject*>(collision.getHitBy())->GetRigidBody()->SetVelocity(vel);
+		SoundManager::getInstance().PlaySound("death");
 	}
 }

@@ -45,6 +45,8 @@
 
 #include "mge/materials/FadeScreenMaterial.hpp"
 #include "mge/core/FadeManager.h"
+#include "mge/core/SoundManager.h"
+
 
 
 AbstractMaterial * pressurePlateMaterial;
@@ -70,6 +72,7 @@ AbstractMaterial * fadeScreenMaterial;
 AbstractMaterial * gate2x2Material;
 AbstractMaterial * armMaterial;
 AbstractMaterial * stairMaterial;
+AbstractMaterial * fenceMaterial;
 
 XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	_world(pWorld)
@@ -77,7 +80,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	pressurePlateMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "pplatebird_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "pplatebird_NRM.png"), 0.1f);
 	statueMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "statue_DIFF (TEMP).png"), Texture::load(config::MGE_TEXTURE_PATH + "statue_NRM.png"), 0.1f);
 	coinMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "coin_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "coin_NRM.png"), 0.1f);
-	pushBlockMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "pushblock_DIFF(TEMP).png"), 0.1f);
+	pushBlockMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "pushblock2_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "pushblock2_NRM.png"), 0.1f);
 	spikesMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "spikes_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "trap_normal.jpg"), 0.1f);
 	keyMaterial = new BasicTextureLit(Texture::load(config::MGE_TEXTURE_PATH + "keyred_DIFF.png"), 0.1f);
 	hiddenPassageMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "hiddenpassage_DIFF (TEMP, tiled).png"), Texture::load(config::MGE_TEXTURE_PATH + "hiddenpassage_NRM.png"), 0.1f);
@@ -97,7 +100,7 @@ XmlReader::XmlReader(PhysicsWorld* pWorld) :
 	gate2x2Material = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "gate2x2_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "gate2x2_NRM.png"), 0.1f);
 	armMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "Arm_Color.png"), Texture::load(config::MGE_TEXTURE_PATH + "Arm_Normal.png"), Texture::load(config::MGE_TEXTURE_PATH + "Arm_Specular.png"), 0.1f);
 	stairMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "stairs_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "stairs_NRM.png"), 0.1f);
-
+	fenceMaterial = new TextureLitMaterial(Texture::load(config::MGE_TEXTURE_PATH + "fence_DIFF.png"), Texture::load(config::MGE_TEXTURE_PATH + "fence_NRM.png"), 0.1f);
 }
 
 XmlReader::~XmlReader()
@@ -147,6 +150,7 @@ void XmlReader::LoadLevel(const char* pLevelName)
 
 void XmlReader::SetupLevelGeometry(std::string pLevelName)
 {
+	SoundManager::getInstance().PlaySound("ambience");
 	cout << " Setting up level geometry..." << endl;
 	//Create root geometry
 	GameObject * root = new GameObject(pLevelName, glm::vec3(0, 0, 0));
@@ -332,6 +336,9 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 			_world->add(obj);
 
+			SoundManager::getInstance().LoadSound(config::MGE_SOUND_PATH + "Pushing Block.wav", _namesInteractables[i]);
+			SoundManager::getInstance().EditSound(_namesInteractables[i], 100, _positionsInteractables[i]);
+
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 
 			if (_rotationsInteractables[i].y > 0) {
@@ -396,6 +403,9 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setBehaviour(new PushBlockBehaviour());
 
 			_world->add(obj);
+
+			SoundManager::getInstance().LoadSound(config::MGE_SOUND_PATH + "Pushing Block.wav", _namesInteractables[i]);
+			SoundManager::getInstance().EditSound(_namesInteractables[i], 100, _positionsInteractables[i]);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 
@@ -482,6 +492,9 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 			obj->setBehaviour(new DoorBehaviour());
 			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
+
+			SoundManager::getInstance().LoadSound(config::MGE_SOUND_PATH + "Gate.wav", _namesInteractables[i]);
+			SoundManager::getInstance().EditSound(_namesInteractables[i], 100, _positionsInteractables[i],true);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 
@@ -572,6 +585,9 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 
 			obj->setBehaviour(new DoorBehaviour());
 			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
+
+			SoundManager::getInstance().LoadSound(config::MGE_SOUND_PATH + "Gate.wav", _namesInteractables[i]);
+			SoundManager::getInstance().EditSound(_namesInteractables[i], 100, _positionsInteractables[i],true);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 
@@ -718,8 +734,12 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "gate3x3.obj"));
 			obj->setMaterial(gateBigMaterial);
 
+
 			obj->setBehaviour(new DoorBehaviour());
 			dynamic_cast<DoorBehaviour*>(obj->getBehaviour())->InitializePositions();
+
+			SoundManager::getInstance().LoadSound(config::MGE_SOUND_PATH + "Gate.wav", _namesInteractables[i]);
+			SoundManager::getInstance().EditSound(_namesInteractables[i], 100, _positionsInteractables[i]);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 
@@ -755,7 +775,7 @@ void XmlReader::SetupInteractableGeometry(std::string pLevelName)
 		{
 			StaticGameObject * obj = new StaticGameObject(_namesInteractables[i], _positionsInteractables[i], _world);
 			obj->setMesh(Mesh::load(config::MGE_MODEL_PATH + "Fence.obj"));
-			obj->setMaterial(gateBigMaterial);
+			obj->setMaterial(fenceMaterial);
 
 			glm::vec3 colSize = glm::vec3(obj->getMesh()->GetColliderSize());
 
@@ -844,6 +864,11 @@ void XmlReader::SetupSubtitleTriggers(std::string pLevelname)
 
 			StaticGameObject * obj = new StaticGameObject(_subtitleTriggerName[i], _subtitleTriggerPosition[i], _world, true);
 			_world->add(obj);
+
+			SoundManager::getInstance().LoadSound(config::MGE_SOUND_PATH + "Lava.wav", _namesInteractables[i]);
+			SoundManager::getInstance().EditSound(_namesInteractables[i], 100, _positionsInteractables[i],true);
+			SoundManager::getInstance().PlaySound(_namesInteractables[i]);
+
 
 			glm::vec3 center2 = obj->getLocalPosition();
 			glm::vec3 triggerSize = _subtitleTriggerSize[i] / 2;

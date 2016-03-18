@@ -10,10 +10,8 @@ public:
 	StatueBehaviour();
 	~StatueBehaviour();
 	virtual void update(float step);
-	void SetPlayer(GameObject * pPlayer);
 private:
-	GameObject * _player;
-	bool _isCarried;
-	bool _canPress;
+	glm::vec3 oldPos = glm::vec3(0,0,0);
+	float timer = 0.0f;
 };
 

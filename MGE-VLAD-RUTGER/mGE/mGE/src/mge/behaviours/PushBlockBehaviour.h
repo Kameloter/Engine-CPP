@@ -21,5 +21,6 @@ private:
 	glm::vec3 _openPos;
 	glm::vec3 _closedPos;
 	glm::vec3 _translateUp;
+	bool play = true;
 };
 

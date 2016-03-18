@@ -1,6 +1,8 @@
 #pragma once
 #include <map>
 #include <iostream>
+#include <glm.hpp>
+
 
 using namespace std;
 class Sound;
@@ -20,6 +22,9 @@ public:
 
 	void LoadSound(std::string pFilename, std::string key);
 	void PlaySound(std::string key);
+	void StopSound(std::string key);
+	void EditSound(std::string key, float volume, glm::vec3 pos, bool loop = false);
+	bool IsPlaying(std::string key);
 
 	void LoadSounds();
 
