@@ -43,6 +43,7 @@ void World::CleanUpworld()
 		GameObject* child = _children[0];
 		remove(child);
 		delete child;
+		child = nullptr;
 	}
 }
 
@@ -50,8 +51,9 @@ void World::CleanObjectFromWorld(GameObject * object)
 {
 	std::cout << "Removing object from world !!!.  " << object->getName() << std::endl;
 	
-
+	std::cout << "size" << _children.size() << std::endl;
 	_children.erase(std::remove(_children.begin(), _children.end(), object), _children.end());
+	std::cout << "size" << _children.size() << std::endl;
 	//delete object;
 }
 

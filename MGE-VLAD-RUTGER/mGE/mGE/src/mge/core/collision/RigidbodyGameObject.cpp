@@ -22,7 +22,8 @@ RigidbodyGameObject::~RigidbodyGameObject()
 	
 //	std::cout << _name << "<-- Rigid body cleaned" << std::endl;
 
-	//delete _trigger;
+	delete _trigger;
+	_trigger = nullptr;
 	//std::cout << "trigger of  " << _name << "cleaned " << std::endl;
 }
 
@@ -80,7 +81,7 @@ void RigidbodyGameObject::removeRigidBody()
 void RigidbodyGameObject::deleteObject()
 {
 	_world->cleanMovingObject(this);
-	delete _trigger;
+
 }
 
 neRigidBody* RigidbodyGameObject::GetRigidBody()

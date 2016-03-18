@@ -9,6 +9,11 @@
 SceneSwitchBehaviour::SceneSwitchBehaviour()
 {
 	hit = false;
+	 switchToHUB = false;
+	 switchToLevel1 = false;
+	 switchToLevel2 = false;
+	 switchToLevel3 = false;
+	 switchToLevel4 = false;
 }
 
 
@@ -18,7 +23,40 @@ SceneSwitchBehaviour::~SceneSwitchBehaviour()
 
 void SceneSwitchBehaviour::update(float pStep)
 {
+	if (hit)
+	{
+	
+		if (switchToHUB)
+		{
+			LevelManager::getInstance().SwitchToLevel(GameLevels::HUB);
+			switchToHUB = false;
+		}
+			
+		if (switchToLevel1) 
+		{
+			LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
+			switchToLevel1 = false;
+		}
 
+		if (switchToLevel2)
+		{
+			LevelManager::getInstance().SwitchToLevel(GameLevels::Level2);
+			switchToLevel2 = false;
+		}
+
+		if (switchToLevel3)
+		{
+			LevelManager::getInstance().SwitchToLevel(GameLevels::Level3);
+			switchToLevel3 = false;
+		}
+
+		if (switchToLevel4)
+		{
+			LevelManager::getInstance().SwitchToLevel(GameLevels::Level4);
+			switchToLevel4 = false;
+		}
+
+	}
 }
 
 void SceneSwitchBehaviour::OnCollision(Collision collision)
@@ -31,15 +69,15 @@ void SceneSwitchBehaviour::OnCollision(Collision collision)
 		string ownerName = _owner->getName();
 
 		if (ownerName == "level_hub") {
-			LevelManager::getInstance().SwitchToLevel(GameLevels::HUB);
+			switchToHUB = true;
 		} else if (ownerName == "level_01") {
-			LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
+			switchToLevel1 = true;
 		} else if (ownerName == "level_02") {
-			LevelManager::getInstance().SwitchToLevel(GameLevels::Level2);
+			switchToLevel2 = true;
 		} else if (ownerName == "level_03") {
-			LevelManager::getInstance().SwitchToLevel(GameLevels::Level3);
+			switchToLevel3 = true;
 		} else if (ownerName == "level_04") {
-			LevelManager::getInstance().SwitchToLevel(GameLevels::Level4);
+			switchToLevel4 = true;
 		}
 	}
 }

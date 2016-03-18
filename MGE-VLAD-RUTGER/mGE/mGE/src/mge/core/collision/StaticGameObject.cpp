@@ -37,8 +37,9 @@ StaticGameObject::~StaticGameObject()
 
 	if (_trigger != nullptr)
 	{
-		_world->cleanStaticObject(this);
+		
 		delete _trigger;
+		_trigger = nullptr;
 	//	std::cout << "trigger of  " << _name << "cleaned " << std::endl;
 
 	}
@@ -71,6 +72,11 @@ void StaticGameObject::moveStaticObject(glm::vec3 pTranslate)
 void StaticGameObject::moveTriggerObject(glm::vec3 pTranslate)
 {
 	setLocalPosition(getLocalPosition()+ pTranslate);
+}
+
+void StaticGameObject::deleteStaticObj()
+{
+	_world->cleanStaticObject(this);
 }
 
 void StaticGameObject::updateStaticBody()

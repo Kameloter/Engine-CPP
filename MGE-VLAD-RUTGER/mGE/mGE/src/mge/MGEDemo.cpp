@@ -86,18 +86,18 @@ void MGEDemo::_render() {
 	_updateHud();
 	if (LevelManager::getInstance().currentlevel == GameLevels::Menu)
 	{
-		
-		if (mainMenu->StartButtonPressed(_window->getSize().x / 2 ,_window->getSize().y / 2, " START GAME "))
+		mainMenu->update();
+		if (mainMenu->StartButtonPressed())
 		{
 			LevelManager::getInstance().SwitchToLevel(GameLevels::HUBTUTORIAL);
 		}
 
-		/*if (mainMenu->ButtonPressed(_window->getSize().x / 2, (_window->getSize().y / 2) + 200, " QUIT GAME "))
+		if (mainMenu->QuitButtonPressed())
 		{
 			_world->CleanUpPhysicsWorld();
 			_window->close();
 			_running = false;
-		}*/
+		}
 	}
 
 

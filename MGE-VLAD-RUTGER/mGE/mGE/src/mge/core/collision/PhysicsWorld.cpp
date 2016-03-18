@@ -100,10 +100,12 @@ void PhysicsWorld::fixedUpdate()
 void  PhysicsWorld::addStaticTrigger(GameObject * pGameObject)
 {
 	_triggerManager->addStaticTrigger(pGameObject);
+	_staticGameObjects.push_back(dynamic_cast<StaticGameObject*>(pGameObject));
 }
 void  PhysicsWorld::addMovingTrigger(GameObject * pGameObject)
 {
 	_triggerManager->addMovingTrigger(pGameObject);
+
 }
 
 
@@ -139,13 +141,18 @@ void PhysicsWorld::CleanUpPhysicsWorld()
 	_rigidbodyGameObjects.clear();
 
 	_staticGameObjects.clear();
-}
+
+	std::cout << " CLEANED OBJECTS " << _staticGameObjects.size() << " <- S  " << _rigidbodyGameObjects.size() << " <- RB " << std::endl;
+} 
 
 void PhysicsWorld::cleanStaticObject(GameObject * object)
 {
+	
 	//std::cout << " physics world clean object  ---- "  << object->getName() << std::endl;
-
+	std::cout << " Static obj count "<<_staticGameObjects.size() << std::endl;
 	_staticGameObjects.erase(std::remove(_staticGameObjects.begin(), _staticGameObjects.end(), object), _staticGameObjects.end());
+	
+	std::cout << " count " << _staticGameObjects.size() << std::endl;
 	//std::cout << " static objects cleaned  " << object->getName() << std::endl;
 	_triggerManager->cleanStaticObject(object);
 	//std::cout << " trigger manager  cleaned  " << object->getName() << std::endl;
@@ -161,7 +168,9 @@ void PhysicsWorld::cleanStaticObject(GameObject * object)
 
 void PhysicsWorld::cleanMovingObject(GameObject * object)
 {
+	std::cout << " Moving rb obj count " << _rigidbodyGameObjects.size() << std::endl;
 	_rigidbodyGameObjects.erase(std::remove(_rigidbodyGameObjects.begin(), _rigidbodyGameObjects.end(), object), _rigidbodyGameObjects.end());
+	std::cout << " Moving rb obj count " << _rigidbodyGameObjects.size() << std::endl;
 	//std::cout << " static objects cleaned  " << object->getName() << std::endl;
 	_triggerManager->cleanMovingObject(object);
 	//std::cout << " trigger manager  cleaned  " << object->getName() << std::endl;

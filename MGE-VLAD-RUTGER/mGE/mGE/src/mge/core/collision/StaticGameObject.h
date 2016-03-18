@@ -14,7 +14,7 @@ public:
 	void updateStaticBody();
 	void moveStaticObject(glm::vec3 ptranslate);
 	void moveTriggerObject(glm::vec3 ptranslate);
-
+	void deleteStaticObj();
 	neAnimatedBody * getAnimBody();
 
 

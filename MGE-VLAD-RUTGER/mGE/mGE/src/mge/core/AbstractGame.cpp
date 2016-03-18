@@ -41,7 +41,7 @@ void AbstractGame::initialize() {
 
 void AbstractGame::_initializeWindow() {
 	cout << "Initializing window..." << endl;
-	_window = new sf::RenderWindow( sf::VideoMode(800,600), "My Game!", sf::Style::Default, sf::ContextSettings(24,8,0,3,3));
+	_window = new sf::RenderWindow( sf::VideoMode(1366,768), "My Game!", sf::Style::Fullscreen, sf::ContextSettings(24,8,0,3,3));
 	_window->setVerticalSyncEnabled(false);
     cout << "Window initialized." << endl << endl;
 }
@@ -85,7 +85,7 @@ void AbstractGame::_initializeRenderer() {
 void AbstractGame::_initializeWorld() {
     //setup our own world
 	cout << "Initializing world..." << endl;
-	_world = new PhysicsWorld(250, 20);
+	_world = new PhysicsWorld(300, 20);
 
     cout << "Physics World initialized." << endl << endl;
 }

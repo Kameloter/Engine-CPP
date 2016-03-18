@@ -12,5 +12,12 @@ public:
 
 private:
 	bool hit;
+
+
+	bool switchToHUB;
+	bool switchToLevel1;
+	bool switchToLevel2;
+	bool switchToLevel3;
+	bool switchToLevel4;;
 };
 

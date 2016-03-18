@@ -25,12 +25,16 @@ void TriggerManager::addMovingTrigger(GameObject * object)
 void TriggerManager::cleanStaticObject(GameObject * object)
 {
 	//std::cout << " Cleaning individual object trigger from list "<< std::endl;
+	std::cout << " Static trig count " << _triggers.size() << std::endl;
 	_triggers.erase(std::remove(_triggers.begin(), _triggers.end(), object), _triggers.end());
+	std::cout << " Static trig count " << _triggers.size() << std::endl;
 }
 
 void TriggerManager::cleanMovingObject(GameObject * object)
 {
+	std::cout << " Moving Trig count " << _movingTriggers.size() << std::endl;
 	_movingTriggers.erase(std::remove(_movingTriggers.begin(), _movingTriggers.end(), object), _movingTriggers.end());
+	std::cout << " Moving Trig count " << _movingTriggers.size() << std::endl;
 }
 
 
@@ -45,9 +49,9 @@ std::vector<GameObject*> TriggerManager::getStaticTriggerObjects()
 void TriggerManager::cleanUp()
 {
 	_triggers.clear();
-	_triggers.shrink_to_fit();
+	//_triggers.shrink_to_fit();
 	_movingTriggers.clear();
-	_movingTriggers.shrink_to_fit();
+	//_movingTriggers.shrink_to_fit();
 	std::cout << " Triggers and moving triggers cleared " << std::endl;
 }
 void TriggerManager::runPhysics(float pDelta)

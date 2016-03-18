@@ -4,10 +4,10 @@ using namespace std;
 #include <cstdio>
 #include <GL/glew.h>
 #include <SFML/Graphics/Text.hpp>
-#include "MainMenu.h"
+#include "PauseMenu.h"
 #include "mge/config.hpp"
 
-MainMenu::MainMenu(sf::RenderWindow* window) :
+PauseMenu::PauseMenu(sf::RenderWindow* window) :
 	_window(window)
 {
 	assert(_window != NULL);
@@ -53,11 +53,11 @@ MainMenu::MainMenu(sf::RenderWindow* window) :
 }
 
 
-MainMenu::~MainMenu()
+PauseMenu::~PauseMenu()
 {
 }
 
-bool MainMenu::ButtonPressed(int x, int y, int width , int height)
+bool PauseMenu::ButtonPressed(int x, int y, int width , int height)
 {
 
 	
@@ -83,7 +83,7 @@ bool MainMenu::ButtonPressed(int x, int y, int width , int height)
 
 }
 
-bool MainMenu::StartButtonPressed()
+bool PauseMenu::StartButtonPressed()
 {
 	if (!ButtonPressed(startBcacheX, startBCacheY, startBcacheWIDTH, startBCacheHEIGHT)) { startHighlight = false; return false; }
 
@@ -92,7 +92,7 @@ bool MainMenu::StartButtonPressed()
 	return sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
 }
 
-bool MainMenu::QuitButtonPressed()
+bool PauseMenu::QuitButtonPressed()
 {
 	if (!ButtonPressed(quitBcacheX, quitBCacheY, quitBcacheWIDTH, quitBCacheHEIGHT)) { quitHighlight = false; return false; }
 
@@ -101,7 +101,7 @@ bool MainMenu::QuitButtonPressed()
 	return sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
 }
 
-void MainMenu::update()
+void PauseMenu::update()
 {
 	glActiveTexture(GL_TEXTURE0);
 	_window->pushGLStates();

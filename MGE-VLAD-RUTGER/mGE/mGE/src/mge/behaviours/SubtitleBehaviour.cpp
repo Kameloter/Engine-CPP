@@ -28,6 +28,7 @@ void SubtitleBehaviour::OnCollision(Collision collision)
 		std::cout << " Hitting playerr :) " << std::endl;
 		std::cout << " Playing subtitle on object  " << _owner->getName() << std::endl;
 		SubtitleManager::playSubtitle(_owner->getName());
+		dynamic_cast<StaticGameObject*>(_owner)->deleteStaticObj();
 		delete dynamic_cast<StaticGameObject*>(_owner);
 	}
 }

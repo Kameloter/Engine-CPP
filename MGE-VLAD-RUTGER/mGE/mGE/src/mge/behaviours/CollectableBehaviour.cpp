@@ -51,6 +51,7 @@ void CollectableBehaviour::OnCollision(Collision collision)
 		else {
 			StatsHolder::increaseScore(1);
 		}
+		dynamic_cast<StaticGameObject*>(_owner)->deleteStaticObj();
 		delete dynamic_cast<StaticGameObject*>(_owner);
 	}
 }
