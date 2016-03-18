@@ -14,30 +14,33 @@ PauseMenu::PauseMenu(sf::RenderWindow* window) :
 	SCREEN_HEIGHT = _window->getSize().y;
 	SCREEN_WIDTH = _window->getSize().x;
 
-	startButton.loadFromFile(config::MGE_TEXTURE_PATH + "startButton.png");
-	startButtonH.loadFromFile(config::MGE_TEXTURE_PATH + "startButtonH.png");
+	continueButton.loadFromFile(config::MGE_TEXTURE_PATH + "continueButton.png");
+	continueButtonH.loadFromFile(config::MGE_TEXTURE_PATH + "continueButtonH.png");
 	quitButton.loadFromFile(config::MGE_TEXTURE_PATH + "quitButton.png");
 	quitButtonH.loadFromFile(config::MGE_TEXTURE_PATH + "quitButtonH.png");
 
-	menuBackground.loadFromFile(config::MGE_TEXTURE_PATH + "mainMenu_background.png");
-	s_StartButton.setTexture(startButton);
-	s_StartButtonH.setTexture(startButtonH);
+	overlay.loadFromFile(config::MGE_TEXTURE_PATH + "pauseMenuOverlay.png");
+
+	//pauseMenuOverlay.loadFromFile(config::MGE_TEXTURE_PATH + "mainMenu_background.png");
+	s_ContinueButton.setTexture(continueButton);
+	s_ContinueButtonH.setTexture(continueButtonH);
 	s_QuitButton.setTexture(quitButton);
 	s_QuitButtonH.setTexture(quitButtonH);
-	s_MenuBackground.setTexture(menuBackground);
-	//s_MenuBackground.setPosition(0, 0);
-
+	s_overlay.setTexture(overlay);
+	//s_overlay.setPosition(SCREEN_WIDTH / 2 - overlay.getSize().x / 2, 0);
+	//s_MenuBackground.setTexture(pauseMenuOverlay);
+	
 	if (!defaultFont.loadFromFile(config::MGE_FONT_PATH + "arial.ttf")) {
 		cout << "Could not load font, exiting..." << endl;
 		return;
 	}
 
-	startBcacheWIDTH = s_StartButton.getTexture()->getSize().x;
-	startBCacheHEIGHT = s_StartButton.getTexture()->getSize().y;
-	startBcacheX = 150;
-	startBCacheY = 150;
-	s_StartButton.setPosition(startBcacheX, startBCacheY);
-	s_StartButtonH.setPosition(startBcacheX, startBCacheY);
+	continueBcacheWIDTH = s_ContinueButton.getTexture()->getSize().x;
+	continueBCacheHEIGHT = s_ContinueButton.getTexture()->getSize().y;
+	continueBcacheX = 150;
+	continueBCacheY = 150;
+	s_ContinueButton.setPosition(continueBcacheX, continueBCacheY);
+	s_ContinueButtonH.setPosition(continueBcacheX, continueBCacheY);
 
 
 	quitBcacheWIDTH = s_QuitButton.getTexture()->getSize().x;
@@ -85,7 +88,7 @@ bool PauseMenu::ButtonPressed(int x, int y, int width , int height)
 
 bool PauseMenu::StartButtonPressed()
 {
-	if (!ButtonPressed(startBcacheX, startBCacheY, startBcacheWIDTH, startBCacheHEIGHT)) { startHighlight = false; return false; }
+	if (!ButtonPressed(continueBcacheX, continueBCacheY, continueBcacheWIDTH, continueBCacheHEIGHT)) { startHighlight = false; return false; }
 
 	startHighlight = true;
 
@@ -105,11 +108,11 @@ void PauseMenu::update()
 {
 	glActiveTexture(GL_TEXTURE0);
 	_window->pushGLStates();
-	_window->draw(s_MenuBackground);
+	_window->draw(s_overlay);
 	if (startHighlight)
-		_window->draw(s_StartButtonH);
+		_window->draw(s_ContinueButtonH);
 	else
-		_window->draw(s_StartButton);
+		_window->draw(s_ContinueButton);
 
 	if (quitHighlight)
 		_window->draw(s_QuitButtonH);

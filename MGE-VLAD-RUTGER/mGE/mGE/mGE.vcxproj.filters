@@ -315,6 +315,9 @@
     <ClInclude Include="src\mge\core\SoundManager.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\mge\UI\PauseMenu.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\mge\shaders\color.fs">
@@ -621,6 +624,9 @@
     </ClCompile>
     <ClCompile Include="src\mge\core\SoundManager.cpp">
       <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mge\UI\PauseMenu.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

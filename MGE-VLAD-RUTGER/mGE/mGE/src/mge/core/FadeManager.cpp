@@ -1,7 +1,7 @@
 #include "FadeManager.h"
 #include "mge/core/Timer.hpp"
 #include "mge/core/GameObject.hpp"
-
+#include "mge/config.hpp"
 #include "mge/materials/FadeScreenMaterial.hpp"
 
 bool FadeManager::_fade = false;
@@ -11,11 +11,15 @@ float FadeManager::_alpha = 1;
 GameObject * FadeManager::_fadeScreen = NULL;
 FadeManager::FadeManager()
 {
+	
+
+
 }
 
 
 FadeManager::~FadeManager()
 {
+
 }
 
 void FadeManager::updateFadeScreen()
@@ -33,8 +37,7 @@ void FadeManager::updateFadeScreen()
 				//decrease fade.
 				if (_fadeScreen != NULL)
 				{
-					dynamic_cast<FadeScreenMaterial*>(_fadeScreen->getMaterial())->setAlpha(_alpha);
-					
+					dynamic_cast<FadeScreenMaterial*>(_fadeScreen->getMaterial())->setAlpha(_alpha);					
 				}
 					
 			}
@@ -79,3 +82,5 @@ void FadeManager::setFadeScreen(GameObject * pObject)
 {
 	_fadeScreen = pObject;
 }
+
+

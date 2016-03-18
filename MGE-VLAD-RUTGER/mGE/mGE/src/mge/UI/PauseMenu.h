@@ -4,11 +4,11 @@
 #include <iostream>
 using namespace std;
 
-class MainMenu
+class PauseMenu
 {
 public:
-	MainMenu(sf::RenderWindow* window);
-	~MainMenu();
+	PauseMenu(sf::RenderWindow* window);
+	~PauseMenu();
 	sf::Font defaultFont;
 	sf::Text buttonText;
 
@@ -22,28 +22,31 @@ private:
  sf::RenderWindow* _window;
  float SCREEN_WIDTH;
  float SCREEN_HEIGHT;
- float startBcacheX;
- float startBCacheY;
- float startBcacheWIDTH;
- float startBCacheHEIGHT;
+ float continueBcacheX;
+ float continueBCacheY;
+ float continueBcacheWIDTH;
+ float continueBCacheHEIGHT;
 
  float quitBcacheX;
  float quitBCacheY;
  float quitBcacheWIDTH;
  float quitBCacheHEIGHT;
+ 
 
  bool startHighlight;
  bool quitHighlight;
+ sf::Texture overlay;
+ sf::Sprite s_overlay;
 
- sf::Texture startButton;
+ sf::Texture continueButton;
  sf::Texture quitButton;
- sf::Texture startButtonH;
+ sf::Texture continueButtonH;
  sf::Texture quitButtonH;
- sf::Texture menuBackground;
+ sf::Texture pauseMenuOverlay;
 
- sf::Sprite s_StartButton;
+ sf::Sprite s_ContinueButton;
  sf::Sprite s_QuitButton;
- sf::Sprite s_StartButtonH;
+ sf::Sprite s_ContinueButtonH;
  sf::Sprite s_QuitButtonH;
  sf::Sprite s_MenuBackground;
 };

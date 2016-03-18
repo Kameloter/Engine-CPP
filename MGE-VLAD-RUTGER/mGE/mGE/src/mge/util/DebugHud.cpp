@@ -14,12 +14,16 @@ using namespace std;
 DebugHud::DebugHud( sf::RenderWindow * aWindow )
 :	_window( aWindow )
 {
+	drawScreen = false;
 	assert ( _window != NULL );
 
     if (!_font.loadFromFile(config::MGE_FONT_PATH+ "arial.ttf")) {
         cout << "Could not load font, exiting..." << endl;
         return;
     }
+
+	_loadingScreen.loadFromFile(config::MGE_TEXTURE_PATH + "loadingScreen.png");
+	s_LoadingScreen.setTexture(_loadingScreen);
 
     _createDebugHud();
 }
@@ -102,5 +106,7 @@ void DebugHud::draw()
 	_window->draw(_updateTimeText);
 	_window->draw(_triangleCountText);
 	_window->draw(_drawCallsText);
+	if (drawScreen)
+		_window->draw(s_LoadingScreen);
 	_window->popGLStates();
 }

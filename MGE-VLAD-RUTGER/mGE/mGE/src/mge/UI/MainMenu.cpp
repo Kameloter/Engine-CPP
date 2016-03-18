@@ -60,27 +60,12 @@ MainMenu::~MainMenu()
 bool MainMenu::ButtonPressed(int x, int y, int width , int height)
 {
 
-	
-
-	/*sf::RectangleShape rect(sf::Vector2f(width, height));
-	rect.setPosition(x, y);
-	rect.setFillColor(sf::Color::Blue);
-*/
-	
-
 	sf::Vector2i mousePos( sf::Mouse::getPosition(*_window).x , sf::Mouse::getPosition(*_window).y); // window is a sf::Window
-	//cout <<" X " <<  mousePos.x << "  Y " <<  mousePos.y << endl;
 
 	if (mousePos.x < x) return false;
 	if (mousePos.y < y) return false;
 	if (mousePos.x > x + width) return false;
 	if (mousePos.y > y + height) return false;
-
-
-	
-	
-
-
 }
 
 bool MainMenu::StartButtonPressed()

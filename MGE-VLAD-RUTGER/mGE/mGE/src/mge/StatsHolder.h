@@ -17,7 +17,7 @@ public:
 	static void setSpawnPos(glm::vec3 pos);
 	static glm::vec3 getSpawnPos();
 
-
+	static bool InPauseMenu;
 	static bool PlayerDied;
 
 private:

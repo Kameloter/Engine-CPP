@@ -3,6 +3,7 @@
 sf::Clock Timer::_clock;
 float Timer::_currentTime = 0.0f;
 float Timer::_deltaTime = 0.0f;
+float Timer::_timeScale = 1.0f;
 
 void Timer::update()
 {
@@ -18,5 +19,10 @@ float Timer::now()
 
 float Timer::deltaTime()
 {
-	return _deltaTime;
+	return _deltaTime * _timeScale;
+}
+
+void Timer::setTimeScale(float value)
+{
+	_timeScale = value;
 }

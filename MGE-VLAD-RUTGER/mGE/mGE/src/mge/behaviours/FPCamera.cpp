@@ -3,6 +3,7 @@
 #include "mge/core/GameObject.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "mge/StatsHolder.h"
 FPCamera::FPCamera(float pMoveSpeed, float pTurnSpeed, GameObject * pPlayer)
 {
     _moveSpeed = pMoveSpeed;
@@ -16,6 +17,7 @@ FPCamera::~FPCamera()
     //dtor
 }
 void FPCamera::update(float pStep){
+	if (StatsHolder::InPauseMenu) return;
 
 	glm::vec3 pos = _owner->getWorldPosition();
 	sf::Listener::setPosition(pos.x, pos.y,pos.z);

@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "mge/core/collision/RigidbodyGameObject.h"
 #include "mge/core/Timer.hpp"
-
+#include "mge/StatsHolder.h"
 GameObject* _camera;
 neV3 jump;
 FPController::FPController(float pMoveSpeed, float pTurnSpeed, GameObject * pCamera, InputType pInputType):
@@ -28,6 +28,8 @@ bool _canPress = false;
 
 float minimaly = 0;
 void FPController::update(float pStep) {
+	if (StatsHolder::InPauseMenu) return;
+
 	neV3 rv;
 	rv.Set(dynamic_cast<RigidbodyGameObject*>(_owner)->GetRigidBody()->GetVelocity());
 	glm::vec3 rbVel(rv[0], rv[1], rv[2]);
@@ -35,7 +37,7 @@ void FPController::update(float pStep) {
 	{
 		std::cout << "Player vel " << rbVel << std::endl;
 	}*/
-
+	
 
 	if (!_inAction) {
 		glm::vec3 translate;

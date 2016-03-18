@@ -10,7 +10,7 @@ class DebugHud
 		DebugHud( sf::RenderWindow * aWindow );
 		virtual ~DebugHud();
 		void draw();
-
+		bool drawScreen;
 		void setDebugInfo (std::string pInfo);
 		void setWinTextInfo (std::string pInfo);
 
@@ -29,7 +29,8 @@ class DebugHud
 		sf::Text _triangleCountText;
 		sf::Text _drawCallsText;
 		sf::Text _subToShow;
-
+		sf::Texture _loadingScreen;
+		sf::Sprite s_LoadingScreen;
         void _createDebugHud();
 };
 

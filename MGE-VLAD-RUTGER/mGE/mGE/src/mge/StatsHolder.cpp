@@ -3,6 +3,7 @@
 
 int StatsHolder::_score;
 bool StatsHolder::PlayerDied = false;
+bool StatsHolder::InPauseMenu = false;
 int StatsHolder::_keyCount = 0;
 glm::vec3 StatsHolder::_spawnPos = glm::vec3(0,0,0);
 

@@ -11,6 +11,7 @@ class Timer
 		static sf::Clock _clock;
 		static float _currentTime;
 		static float _deltaTime;
+		static float _timeScale;
 
 	private: // disable creation of time object
 		Timer(){}
@@ -19,7 +20,7 @@ class Timer
 		static void update();
 		static float now();
 		static float deltaTime();
-
+		static void setTimeScale(float value);
 };
 
 #endif // TIME_H

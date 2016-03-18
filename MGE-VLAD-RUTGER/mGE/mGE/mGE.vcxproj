@@ -93,6 +93,7 @@
     <ClInclude Include="src\mge\Subtitle.h" />
     <ClInclude Include="src\mge\SubtitleManager.h" />
     <ClInclude Include="src\mge\UI\MainMenu.h" />
+    <ClInclude Include="src\mge\UI\PauseMenu.h" />
     <ClInclude Include="src\mge\util\Color.h" />
     <ClInclude Include="src\mge\util\DebugHud.hpp" />
     <ClInclude Include="src\mge\xml\pugiconfig.hpp" />
@@ -199,6 +200,7 @@
     <ClCompile Include="src\mge\StatsHolder.cpp" />
     <ClCompile Include="src\mge\SubtitleManager.cpp" />
     <ClCompile Include="src\mge\UI\MainMenu.cpp" />
+    <ClCompile Include="src\mge\UI\PauseMenu.cpp" />
     <ClCompile Include="src\mge\util\Color.cpp" />
     <ClCompile Include="src\mge\util\DebugHud.cpp" />
     <ClCompile Include="src\mge\xml\pugixml.cpp" />
