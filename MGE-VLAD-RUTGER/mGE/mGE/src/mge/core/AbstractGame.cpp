@@ -85,7 +85,7 @@ void AbstractGame::_initializeRenderer() {
 void AbstractGame::_initializeWorld() {
     //setup our own world
 	cout << "Initializing world..." << endl;
-	_world = new PhysicsWorld(900, 20);
+	_world = new PhysicsWorld(2000, 20);
 
     cout << "Physics World initialized." << endl << endl;
 }

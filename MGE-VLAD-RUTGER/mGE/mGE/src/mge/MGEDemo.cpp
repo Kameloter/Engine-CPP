@@ -20,18 +20,20 @@ using namespace std;
 #include "mge/util/DebugHud.hpp"
 #include "mge/SubtitleManager.h"
 #include "mge/MGEDemo.hpp"
-
-
+#include "mge/UI/PauseMenu.h"
+PauseMenu * pauseMenu;
+bool showPauseMenu = false;
+bool press = false;
 //construct the game class into _window, _renderer and hud (other parts are initialized by build)
-MGEDemo::MGEDemo():AbstractGame ()
+MGEDemo::MGEDemo() :AbstractGame()
 {
 }
 
 void MGEDemo::initialize() {
-    //setup the core part
-    AbstractGame::initialize();
+	//setup the core part
+	AbstractGame::initialize();
 
-    //setup the custom part
+	//setup the custom part
 	cout << "Initializing HUD" << endl;
 	_hud = new DebugHud(_window);
 	cout << "HUD initialized." << endl << endl;
@@ -47,10 +49,10 @@ void MGEDemo::_initializeScene()
 	LevelManager::getInstance().SwitchToLevel(GameLevels::Menu);
 	mainMenu = new MainMenu(_window);
 
-	
+	pauseMenu = new PauseMenu(_window);
 
 
-	
+
 
 	//GameObject * cubeNormal = new GameObject("normalmap", glm::vec3(0, 2, 0));
 	//cubeNormal->setMesh(cubeMeshF);
@@ -60,25 +62,25 @@ void MGEDemo::_initializeScene()
 
 
 
-	SubtitleManager::addSubtitle("Subtitles_01", "Maybe I can find something in here to open the door!",4.0f);	//4sec
-	SubtitleManager::addSubtitle("Subtitles_02", "Hmm, a nice souvenir for at home!\n If I ever find the way out of here that is…",5.0f);	//5sec
-	SubtitleManager::addSubtitle("Subtitles_03", "I’ll have to be careful here.. \nBut it seems like there should be a way across.",5.0f);//	5sec
-	SubtitleManager::addSubtitle("Subtitles_04", "Nice..",3.0f);	//	3sec
-	SubtitleManager::addSubtitle("Subtitles_05", "This room looks safe, and that object \nseems like it would fit perfectly in the big gate! \nI should take it with me.",8.0f);//	8sec
-	SubtitleManager::addSubtitle("Subtitles_06", "Let’s hope this gate will take me out of here.",5.0f); //5 sec
-	
+	SubtitleManager::addSubtitle("Subtitles_01", "Maybe I can find something in here to open the door!", 4.0f);	//4sec
+	SubtitleManager::addSubtitle("Subtitles_02", "Hmm, a nice souvenir for at home!\n If I ever find the way out of here that is…", 5.0f);	//5sec
+	SubtitleManager::addSubtitle("Subtitles_03", "I’ll have to be careful here.. \nBut it seems like there should be a way across.", 5.0f);//	5sec
+	SubtitleManager::addSubtitle("Subtitles_04", "Nice..", 3.0f);	//	3sec
+	SubtitleManager::addSubtitle("Subtitles_05", "This room looks safe, and that object \nseems like it would fit perfectly in the big gate! \nI should take it with me.", 8.0f);//	8sec
+	SubtitleManager::addSubtitle("Subtitles_06", "Let’s hope this gate will take me out of here.", 5.0f); //5 sec
+
 	SubtitleManager::addSubtitle("HUB_01", "\"... I feel so dizzy, I should be glad i didn't break anything \nfrom that fall! Lets get back on my feet.\"", 8.0f);
 	SubtitleManager::addSubtitle("Tutorial_01", "\"Use the keys W, A, S, D to move!\nUse mouse to look around !\"", 8.0f);
 	SubtitleManager::addSubtitle("Tutorial_02", "\"Use the key SPACE to jump!\"", 8.0f);
 	SubtitleManager::addSubtitle("HUB_02", "\"I need to get back to my team and continue finding\n the answer to the mayan prophecy that threatens our world!\"", 8.0f);
 	SubtitleManager::addSubtitle("HUB_03", "\"But wait, this room seems very promising. \nI should explore a little and see what I can find.\"", 6.0f);
 	SubtitleManager::addSubtitle("Tutorial_03", "\"'Ill better push that statue on the pressure plate\"", 8.0f);
-	
+
 	SubtitleManager::addSubtitle("HUB_04", "\"'CheckPoints Reached\"", 4.0f);
 	SoundManager::getInstance().LoadSounds();
 }
 
-bool press = false;
+
 void MGEDemo::_render() {
 
 	//_world->renderDebugInfo();
@@ -89,7 +91,7 @@ void MGEDemo::_render() {
 		mainMenu->update();
 		if (mainMenu->StartButtonPressed())
 		{
-			LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
+			LevelManager::getInstance().SwitchToLevel(GameLevels::HUBTUTORIAL);
 		}
 
 		if (mainMenu->QuitButtonPressed())
@@ -97,6 +99,39 @@ void MGEDemo::_render() {
 			_world->CleanUpPhysicsWorld();
 			_window->close();
 			_running = false;
+		}
+	}
+	else {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && !press)
+		{
+			//pause game smh.
+			press = true;
+			showPauseMenu = true;
+			StatsHolder::InPauseMenu = true;
+		}
+		if (showPauseMenu)
+		{
+			pauseMenu->update();
+
+			if (pauseMenu->StartButtonPressed())
+			{
+				//resume
+				sf::Mouse::setPosition(sf::Vector2i(700, 400));
+				StatsHolder::InPauseMenu = false;
+				showPauseMenu = false;
+				press = false;
+			}
+
+			if (pauseMenu->QuitButtonPressed())
+			{
+				//switch to main menu
+				sf::Mouse::setPosition(sf::Vector2i(700, 400));
+				StatsHolder::InPauseMenu = false;
+				LevelManager::getInstance().SwitchToLevel(GameLevels::Menu);
+				showPauseMenu = false;
+				press = false;
+			}
+
 		}
 	}
 
@@ -115,8 +150,8 @@ void MGEDemo::_render() {
 float lastUpdateTime = 0;
 
 void MGEDemo::_updateHud() {
-    string debugInfo = "";
-    debugInfo += string ("FPS:") + std::to_string(FPS::getFPS())+"\n";
+	string debugInfo = "";
+	debugInfo += string("FPS:") + std::to_string(FPS::getFPS()) + "\n";
 	SubtitleManager::update(Timer::deltaTime());
 	SubtitleManager::draw(_window);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
@@ -127,7 +162,7 @@ void MGEDemo::_updateHud() {
 	{
 		FadeManager::setFade(true);
 	}
-    _hud->setDebugInfo(debugInfo);
+	_hud->setDebugInfo(debugInfo);
 	_hud->setWinTextInfo("Score : " + std::to_string(StatsHolder::getScore()));
 
 	if (Timer::now() > lastUpdateTime + 0.1f)
@@ -136,7 +171,7 @@ void MGEDemo::_updateHud() {
 		lastUpdateTime = Timer::now();
 	}
 
-    _hud->draw();
+	_hud->draw();
 }
 
 
