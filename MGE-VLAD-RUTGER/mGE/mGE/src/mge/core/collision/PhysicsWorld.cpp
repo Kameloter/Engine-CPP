@@ -33,6 +33,7 @@ PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObject
 
 	//start the physics simulation
 	_physicsSimulator = neSimulator::CreateSimulator(simulatorSize, NULL, &gravity);
+	_triggerManager = new TriggerManager();
 
 	_physicsSimulator->SetMaterial(0, 2.0f, 0.01f);// index , friction, bounciness
 }
@@ -142,7 +143,8 @@ void PhysicsWorld::CleanUpPhysicsWorld()
 	_rigidbodyGameObjects.clear();
 
 	_staticGameObjects.clear();
-	DestroyTriggerManager();
+	//DestroyTriggerManager();
+
 	std::cout << " CLEANED OBJECTS " << _staticGameObjects.size() << " <- S  " << _rigidbodyGameObjects.size() << " <- RB " << std::endl;
 } 
 

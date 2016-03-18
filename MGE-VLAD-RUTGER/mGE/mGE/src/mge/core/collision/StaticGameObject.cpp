@@ -133,7 +133,6 @@ void StaticGameObject::AddBoxCollider(float pW, float pH, float pD)
 		_animBody->UpdateBoundingInfo();
 	}
 	else {
-		
 		_trigger = new BoxTrigger(_minBounds, _maxBounds);
 		_world->addStaticTrigger(this);
 	}
