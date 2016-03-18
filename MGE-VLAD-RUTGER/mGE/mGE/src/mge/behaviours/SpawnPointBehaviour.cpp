@@ -29,7 +29,7 @@ void SpawnPointBehaviour::OnCollision(Collision collision)
 	{
 		StatsHolder::setSpawnPos(_owner->getLocalPosition() + glm::vec3(0, 2, 0));
 		SoundManager::getInstance().PlaySound(_owner->getName());
-		SubtitleManager::playSubtitle("HUB_04");
+		SubtitleManager::playSubtitle("HUB_04",sf::Color::Green);
 		hit = true;
 	}
 }

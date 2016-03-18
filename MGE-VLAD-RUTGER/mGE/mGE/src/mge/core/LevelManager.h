@@ -8,7 +8,7 @@ enum GameLevels
 
 class PhysicsWorld;
 //class XmlReader;
-
+class DebugHud;
 class LevelManager
 {
 public:
@@ -25,7 +25,7 @@ public:
 
 	void testUpdate();
 
-	void setWorldWindow(PhysicsWorld * pWorld, sf::Window * pWindow);
+	void setWorldWindow(PhysicsWorld * pWorld, sf::Window * pWindow, DebugHud * hud);
 	 
 	 void SwitchToLevel(GameLevels pToLevel);
 
@@ -44,6 +44,7 @@ private:
 
 	PhysicsWorld * _world;
 	sf::Window * _window;
+	DebugHud * _hud;
 	
 	static LevelManager * _instance;
 };

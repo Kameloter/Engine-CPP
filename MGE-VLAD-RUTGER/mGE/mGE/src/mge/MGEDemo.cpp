@@ -34,9 +34,7 @@ void MGEDemo::initialize() {
 	AbstractGame::initialize();
 
 	//setup the custom part
-	cout << "Initializing HUD" << endl;
-	_hud = new DebugHud(_window);
-	cout << "HUD initialized." << endl << endl;
+	
 }
 
 LevelManager * levelManager;
@@ -44,14 +42,19 @@ MainMenu * mainMenu;
 void MGEDemo::_initializeScene()
 {
 	_renderer->setClearColor(0, 0, 0);
-	LevelManager::getInstance().setWorldWindow(_world, _window);
+	cout << "Initializing HUD" << endl;
+	_hud = new DebugHud(_window);
+	cout << "HUD initialized." << endl << endl;
+	LevelManager::getInstance().setWorldWindow(_world, _window,_hud);
 	//levelManager = new LevelManager(_world,_window);
-	LevelManager::getInstance().SwitchToLevel(GameLevels::Menu);
+	
 	mainMenu = new MainMenu(_window);
 
 	pauseMenu = new PauseMenu(_window);
 
 
+
+	LevelManager::getInstance().SwitchToLevel(GameLevels::Menu);
 
 
 	//GameObject * cubeNormal = new GameObject("normalmap", glm::vec3(0, 2, 0));
@@ -85,7 +88,7 @@ void MGEDemo::_render() {
 
 	//_world->renderDebugInfo();
 	AbstractGame::_render();
-	_updateHud();
+
 	if (LevelManager::getInstance().currentlevel == GameLevels::Menu)
 	{
 		mainMenu->update();
@@ -135,7 +138,7 @@ void MGEDemo::_render() {
 		}
 	}
 
-
+	_updateHud();
 
 	if (StatsHolder::PlayerDied == true)
 	{
@@ -154,14 +157,16 @@ void MGEDemo::_updateHud() {
 	debugInfo += string("FPS:") + std::to_string(FPS::getFPS()) + "\n";
 	SubtitleManager::update(Timer::deltaTime());
 	SubtitleManager::draw(_window);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+
+	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
 	{
 		FadeManager::setFade(false);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
 	{
 		FadeManager::setFade(true);
-	}
+	}*/
+
 	_hud->setDebugInfo(debugInfo);
 	_hud->setWinTextInfo("Score : " + std::to_string(StatsHolder::getScore()));
 

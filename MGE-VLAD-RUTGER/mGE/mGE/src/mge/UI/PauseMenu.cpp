@@ -27,9 +27,8 @@ PauseMenu::PauseMenu(sf::RenderWindow* window) :
 	s_QuitButton.setTexture(quitButton);
 	s_QuitButtonH.setTexture(quitButtonH);
 	s_overlay.setTexture(overlay);
-	//s_overlay.setPosition(SCREEN_WIDTH / 2 - overlay.getSize().x / 2, 0);
-	//s_MenuBackground.setTexture(pauseMenuOverlay);
-	
+//	s_overlay.setPosition(SCREEN_WIDTH / 2 - overlay.getSize().x / 2, 0);
+
 	if (!defaultFont.loadFromFile(config::MGE_FONT_PATH + "arial.ttf")) {
 		cout << "Could not load font, exiting..." << endl;
 		return;
@@ -37,7 +36,7 @@ PauseMenu::PauseMenu(sf::RenderWindow* window) :
 
 	continueBcacheWIDTH = s_ContinueButton.getTexture()->getSize().x;
 	continueBCacheHEIGHT = s_ContinueButton.getTexture()->getSize().y;
-	continueBcacheX = 150;
+	continueBcacheX = SCREEN_WIDTH / 2 - continueButton.getSize().x / 2;
 	continueBCacheY = 150;
 	s_ContinueButton.setPosition(continueBcacheX, continueBCacheY);
 	s_ContinueButtonH.setPosition(continueBcacheX, continueBCacheY);
@@ -45,8 +44,8 @@ PauseMenu::PauseMenu(sf::RenderWindow* window) :
 
 	quitBcacheWIDTH = s_QuitButton.getTexture()->getSize().x;
 	quitBCacheHEIGHT = s_QuitButton.getTexture()->getSize().y;
-	quitBcacheX = 200;
-	quitBCacheY = 350;
+	quitBcacheX = SCREEN_WIDTH / 2 - quitButton.getSize().x / 2;
+	quitBCacheY = 250;
 	s_QuitButton.setPosition(quitBcacheX, quitBCacheY);
 	s_QuitButtonH.setPosition(quitBcacheX, quitBCacheY);
 	

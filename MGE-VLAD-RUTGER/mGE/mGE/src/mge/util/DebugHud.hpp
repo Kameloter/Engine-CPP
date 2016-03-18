@@ -10,13 +10,25 @@ class DebugHud
 		DebugHud( sf::RenderWindow * aWindow );
 		virtual ~DebugHud();
 		void draw();
-		bool drawScreen;
+	
 		void setDebugInfo (std::string pInfo);
 		void setWinTextInfo (std::string pInfo);
 
 		void setPerformanceDebugInfo(std::string renderTime, std::string updateTime, std::string triangleCount, std::string drawCalls);
+		void showLoadingScreen();
+		void disableLoadingScreen();
 
+
+		void updateAlpha();
+		void setFade(bool value);
+	
 	private:
+		float _alpha;
+
+		 bool _fade;
+		 bool _startFade;
+
+		 float _fadeStartTime;
 		sf::RenderWindow * _window;
 
         std::string _debugInfo;
@@ -32,6 +44,9 @@ class DebugHud
 		sf::Texture _loadingScreen;
 		sf::Sprite s_LoadingScreen;
         void _createDebugHud();
+
+		sf::Texture fadeBlack;
+		sf::Sprite s_fadeBlack;
 };
 
 #endif // DEBUGHUD_H

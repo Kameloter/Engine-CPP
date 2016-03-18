@@ -23,7 +23,8 @@ private:
 
 	static sf::Font _subFont;
 	static sf::Text _subText;
-
+	static float SCREEN_WIDTH;
+	static float SCREEN_HEIGHT;
 	static std::map<std::string, Subtitle*> _subtitles;
 
 };

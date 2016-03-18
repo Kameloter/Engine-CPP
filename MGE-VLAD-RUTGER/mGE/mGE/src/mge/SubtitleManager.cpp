@@ -18,7 +18,8 @@ std::map<std::string, Subtitle*> SubtitleManager::_subtitles;
 bool showSubtitle = false;
 float waitTime = 0.0f;
 float timer = 0.0f;
-
+float SubtitleManager::SCREEN_HEIGHT = 0;
+float SubtitleManager::SCREEN_WIDTH = 0;
 
 void SubtitleManager::createSubtitles()
 {
@@ -116,7 +117,7 @@ void SubtitleManager::playSubtitle(std::string sub, sf::Color pTextColor)
 	_subFont.loadFromFile(config::MGE_FONT_PATH + "arial.ttf");
 	_subText.setFont(_subFont);
 	_subText.setString(sub2->subtitle);
-	_subText.setPosition(sf::Vector2f(200, 500));
+	_subText.setPosition(sf::Vector2f(550, 650));
 
 
 	_subText.setColor(pTextColor);
@@ -125,6 +126,7 @@ void SubtitleManager::playSubtitle(std::string sub, sf::Color pTextColor)
 	showSubtitle = true;
 
 }
+
 void SubtitleManager::draw(sf::RenderWindow * pWindow)
 {
 	glActiveTexture(GL_TEXTURE0);

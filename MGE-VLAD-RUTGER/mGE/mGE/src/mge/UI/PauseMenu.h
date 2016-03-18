@@ -42,12 +42,12 @@ private:
  sf::Texture quitButton;
  sf::Texture continueButtonH;
  sf::Texture quitButtonH;
- sf::Texture pauseMenuOverlay;
+
 
  sf::Sprite s_ContinueButton;
  sf::Sprite s_QuitButton;
  sf::Sprite s_ContinueButtonH;
  sf::Sprite s_QuitButtonH;
- sf::Sprite s_MenuBackground;
+
 };
 

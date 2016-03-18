@@ -140,14 +140,9 @@ void BasicTextureLit::render(World* pWorld, GameObject* pGameObject, Camera* pCa
 	int pointCount = 0;
     for (int i =0; i < pWorld->getLightCount(); i++)
     {
-	
-		//cout <<"lightcount ->> " << pWorld->getLightCount() << endl;
-
         Light* temp = pWorld->getLightAt(i);
         switch(temp->type){
             case Light::LightType::Directional:
-			/*	dirCount++;*/
-				//cout << "dasdasdasdas" << endl;
 				glUniform3fv(_uDirLight_Dir, 1, glm::value_ptr(((DirectionalLight*)temp)->direction));
 				glUniform3fv(_uDirLight_Ambient, 1, glm::value_ptr(temp->ambient));
 				glUniform3fv(_uDirLight_Diffuse, 1, glm::value_ptr(temp->diffuse));
@@ -157,7 +152,6 @@ void BasicTextureLit::render(World* pWorld, GameObject* pGameObject, Camera* pCa
                 {
                   pointCount++;
 				  glUniform3fv(_uPointLight_Pos[pointCount - 1], 1, glm::value_ptr(temp->getWorldPosition()));
-
 				  glUniform3fv(_uPointLight_Ambient[pointCount - 1], 1, glm::value_ptr(temp->ambient));
 				  glUniform3fv(_uPointLight_Diffuse[pointCount - 1], 1, glm::value_ptr(temp->diffuse));
 				  glUniform3fv(_uPointLight_Specular[pointCount - 1], 1, glm::value_ptr(temp->specular));
@@ -177,8 +171,6 @@ void BasicTextureLit::render(World* pWorld, GameObject* pGameObject, Camera* pCa
                 }
                 break;
         }
-
-
     }
 
 	//glUniform1i(_shader->getUniformLocation("spotLightCount"), spotCount);

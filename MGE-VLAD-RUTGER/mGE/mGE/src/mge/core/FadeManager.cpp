@@ -24,6 +24,7 @@ FadeManager::~FadeManager()
 
 void FadeManager::updateFadeScreen()
 {
+
 	if (_startFade)
 	{
 		if (_fade)
@@ -73,6 +74,7 @@ void FadeManager::updateFadeScreen()
 
 void FadeManager::setFade(bool fade)
 {
+	if (!_fadeScreen)return;
 	_fade = fade;
 	_startFade = true;
 	_fadeStartTime = Timer::now();

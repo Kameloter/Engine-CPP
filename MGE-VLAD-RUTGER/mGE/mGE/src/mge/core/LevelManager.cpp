@@ -8,7 +8,7 @@
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/xml/XmlReader.h"
 #include "mge/core/SoundManager.h"
-
+#include "mge/util/DebugHud.hpp"
 //Lights and gameobjects
 #include "mge/core/GameObject.hpp"
 #include "mge/core/Player.h"
@@ -26,7 +26,7 @@
 #include "mge/materials/BasicTextureLight.hpp"
 #include "mge/materials/ColorMaterial.hpp"
 #include "mge/materials/TextureLitMaterial.hpp"
-
+#include "mge/core/FadeManager.h"
 //Behaviours 
 #include "mge/behaviours/StatueBehaviour.h"
 #include "mge/behaviours/RotatingBehaviour.hpp"
@@ -61,11 +61,18 @@ void LevelManager::SwitchToLevel(GameLevels pToLevel)
 	if (currentlevel == pToLevel)
 		return;
 
+
+
+	//_hud->setFade(true);
+	_hud->showLoadingScreen();
+
 	DestroyLevel(currentlevel);
 	std::cout << "destroyed level" << currentlevel  <<std::endl;
 	
 	BuildLevel(pToLevel);
 	currentlevel = pToLevel;
+	_hud->disableLoadingScreen();
+	//_hud->setFade(false);
 }
 void LevelManager::ReloadLevel()
 {
@@ -199,10 +206,11 @@ void LevelManager::Build_level_hub_tutorial()
 	xmlReader->LoadInteractables("interactables_level_hub");
 	xmlReader->LoadSubtitleTriggers("triggers_level_hub");
 
-	tutorialStart = true;
 	LUAManager::InitializeFile(_world, "level_hub");
 
 	delete xmlReader;
+	subStartTime = Timer::now();
+	tutorialStart = true;
 }
 
 sf::SoundBuffer ambientBuffer;
@@ -282,8 +290,12 @@ bool s_6 = false;
 
 void LevelManager::testUpdate()
 {
+
+
+
+
 	if (tutorialStart) {
-		if (Timer::now() > subStartTime + 5 && !s_1)
+		if (Timer::now() > subStartTime + 8 && !s_1)
 		{
 			SubtitleManager::playSubtitle("HUB_01");
 			SoundManager::getInstance().PlaySound("intro");
@@ -333,9 +345,10 @@ void LevelManager::testUpdate()
 	}
 }
 
-void LevelManager::setWorldWindow(PhysicsWorld * pWorld, sf::Window * pWindow)
+void LevelManager::setWorldWindow(PhysicsWorld * pWorld, sf::Window * pWindow, DebugHud * hud)
 {
 	_world = pWorld;
 	_window = pWindow;
+	_hud = hud;
 }
 

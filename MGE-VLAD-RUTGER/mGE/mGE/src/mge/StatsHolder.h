@@ -19,6 +19,7 @@ public:
 
 	static bool InPauseMenu;
 	static bool PlayerDied;
+	static bool showLoadingScreen;
 
 private:
 	static int _score;

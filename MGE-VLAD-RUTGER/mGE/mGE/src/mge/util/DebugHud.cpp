@@ -7,14 +7,24 @@ using namespace std;
 #include <SFML/Graphics/Text.hpp>
 #include "mge/core/FPS.hpp"
 
-
+#include "mge/core/Timer.hpp"
 #include "mge/util/DebugHud.hpp"
 #include "mge/config.hpp"
+#include "mge/StatsHolder.h"
+#include "mge/core/FadeManager.h"
 
 DebugHud::DebugHud( sf::RenderWindow * aWindow )
 :	_window( aWindow )
 {
-	drawScreen = false;
+	_alpha = 1;
+
+	_fade = true;
+	_startFade = false;
+	   
+	_fadeStartTime = 0;
+
+
+
 	assert ( _window != NULL );
 
     if (!_font.loadFromFile(config::MGE_FONT_PATH+ "arial.ttf")) {
@@ -24,6 +34,10 @@ DebugHud::DebugHud( sf::RenderWindow * aWindow )
 
 	_loadingScreen.loadFromFile(config::MGE_TEXTURE_PATH + "loadingScreen.png");
 	s_LoadingScreen.setTexture(_loadingScreen);
+	s_LoadingScreen.setPosition(0, 0);
+
+	fadeBlack.loadFromFile(config::MGE_TEXTURE_PATH + "fadeblack.png");
+	s_fadeBlack.setTexture(_loadingScreen);
 
     _createDebugHud();
 }
@@ -95,18 +109,100 @@ void DebugHud::setPerformanceDebugInfo(std::string renderTime, std::string updat
 
 }
 
+void DebugHud::showLoadingScreen()
+{
+	s_LoadingScreen.setPosition(0, 0);
+	glActiveTexture(GL_TEXTURE0);
+	_window->pushGLStates();
+	_window->draw(s_LoadingScreen);
+	_window->popGLStates();
+	_window->display();
+
+}
+
+void DebugHud::disableLoadingScreen()
+{
+	s_LoadingScreen.setPosition(0, 2000);
+	glActiveTexture(GL_TEXTURE0);
+	_window->pushGLStates();
+	_window->draw(s_LoadingScreen);
+	_window->popGLStates();
+	_window->display();
+	
+}
+
+void DebugHud::updateAlpha()
+{
+	if (_startFade)
+	{
+		if (_fade)
+		{
+			//dynamic_cast<FadeScreenMaterial*>(_fadeScreen->getMaterial())->setRenderImage(true);
+			if ((Timer::now() - _fadeStartTime) < 2)
+			{
+				_alpha += 0.02;
+				if (_alpha > 1)
+					_alpha = 1;
+				//decrease fade.
+
+				s_fadeBlack.setColor(sf::Color(255, 255, 255, _alpha / 255));
+
+
+			}
+			else {
+
+				_startFade = false;
+			}
+
+		}
+		else
+		{
+			if ((Timer::now() - _fadeStartTime) < 2)
+			{
+
+				_alpha -= 0.02;
+				if (_alpha < 0)
+					_alpha = 0;
+				//decrease fade.
+				s_fadeBlack.setColor(sf::Color(255, 255, 255, _alpha / 255));
+
+			}
+			else
+			{
+				//dynamic_cast<FadeScreenMaterial*>(_fadeScreen->getMaterial())->setRenderImage(false);
+				_startFade = false;
+			}
+		}
+	}
+}
+
+void DebugHud::setFade(bool value)
+{
+	//_fade = value;
+	//_startFade = true;
+	//_fadeStartTime = Timer::now();
+}
+
+
+
+
+
 void DebugHud::draw()
 {
+	//zupdateAlpha();
+
 	//glDisable( GL_CULL_FACE );
 	glActiveTexture(GL_TEXTURE0);
     _window->pushGLStates();
+
+
     _window->draw(_debugText);
     _window->draw(_winText);
 	_window->draw(_renderTimeText);
 	_window->draw(_updateTimeText);
 	_window->draw(_triangleCountText);
 	_window->draw(_drawCallsText);
-	if (drawScreen)
-		_window->draw(s_LoadingScreen);
+	//_window->draw(s_LoadingScreen);
+	//_window->draw(s_fadeBlack);
 	_window->popGLStates();
 }
