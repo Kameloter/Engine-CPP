@@ -89,7 +89,7 @@ void MGEDemo::_render() {
 		mainMenu->update();
 		if (mainMenu->StartButtonPressed())
 		{
-			LevelManager::getInstance().SwitchToLevel(GameLevels::HUBTUTORIAL);
+			LevelManager::getInstance().SwitchToLevel(GameLevels::Level1);
 		}
 
 		if (mainMenu->QuitButtonPressed())

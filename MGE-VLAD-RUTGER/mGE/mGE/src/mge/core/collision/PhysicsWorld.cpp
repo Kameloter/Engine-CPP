@@ -33,7 +33,6 @@ PhysicsWorld::PhysicsWorld(int pStaticGameObjectsCount, int pRigidbodyGameObject
 
 	//start the physics simulation
 	_physicsSimulator = neSimulator::CreateSimulator(simulatorSize, NULL, &gravity);
-	_triggerManager = new TriggerManager();
 
 	_physicsSimulator->SetMaterial(0, 2.0f, 0.01f);// index , friction, bounciness
 }
@@ -84,7 +83,9 @@ void PhysicsWorld::update(float pStep, const glm::mat4& pParentTransform)
 void PhysicsWorld::fixedUpdate()
 {
 	_physicsSimulator->Advance(0.005f);
-	_triggerManager->runPhysics(0.005f);
+	if (_triggerManager != NULL) {
+		_triggerManager->runPhysics(0.005f);
+	}
 
 	for (int i = 0; i < _staticGameObjects.size(); i++)
 	{
@@ -141,7 +142,7 @@ void PhysicsWorld::CleanUpPhysicsWorld()
 	_rigidbodyGameObjects.clear();
 
 	_staticGameObjects.clear();
-
+	DestroyTriggerManager();
 	std::cout << " CLEANED OBJECTS " << _staticGameObjects.size() << " <- S  " << _rigidbodyGameObjects.size() << " <- RB " << std::endl;
 } 
 
@@ -176,6 +177,17 @@ void PhysicsWorld::cleanMovingObject(GameObject * object)
 	//std::cout << " trigger manager  cleaned  " << object->getName() << std::endl;
 
 	World::CleanObjectFromWorld(object);
+}
+
+void PhysicsWorld::CreateTriggerManager()
+{
+	_triggerManager = new TriggerManager();
+}
+
+void PhysicsWorld::DestroyTriggerManager()
+{
+	delete _triggerManager;
+	_triggerManager = NULL;
 }
 
 void PhysicsWorld::freeMemory(neRigidBody* pNeRb)

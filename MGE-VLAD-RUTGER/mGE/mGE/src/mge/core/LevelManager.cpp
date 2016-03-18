@@ -74,6 +74,7 @@ void LevelManager::ReloadLevel()
 }
 void LevelManager::BuildLevel(GameLevels pLevel)
 {
+	_world->CreateTriggerManager();
 	switch (pLevel)
 	{
 	case Menu:

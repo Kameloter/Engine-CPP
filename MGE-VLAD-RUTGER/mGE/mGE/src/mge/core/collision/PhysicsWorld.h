@@ -33,6 +33,8 @@ class PhysicsWorld : public World
 
 		virtual void cleanStaticObject(GameObject * object);
 		virtual void cleanMovingObject(GameObject * object);
+		void CreateTriggerManager();
+		void DestroyTriggerManager();
     protected:
     private:
 		std::vector<RigidbodyGameObject*> _rigidbodyGameObjects;
