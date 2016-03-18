@@ -452,7 +452,7 @@
 	</Object>
 	<Object name="Secret_Wall_04">
 		<Position X="70.3020645939" Y="5.48203813869" Z="-42.079393469"/>
-		<Rotation X="0.0" Y="0.0" Z="0.0"/>
+		<Rotation X="0.0" Y="90.0" Z="0.0"/>
 		<Object_Type Type="9"/>
 	</Object>
 	<Object name="Secret_Wall_03">
@@ -621,7 +621,7 @@
 		<Object_Type Type="20"/>
 	</Object>
 	<Object name="Player">
-		<Position X="-62.3463" Y="24.6228" Z="-29.0"/>
+		<Position X="-60.3463" Y="0.6228" Z="16.5"/>
 		<Rotation X="0.0" Y="0.0" Z="0.0"/>
 		<Object_Type Type="10"/>
 	</Object>

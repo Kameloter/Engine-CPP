@@ -111,17 +111,39 @@ void SoundManager::LoadSounds()
 
 	LoadSound(config::MGE_SOUND_PATH + "Lava.wav", "lava");
 	LoadSound(config::MGE_SOUND_PATH + "mechanic click.wav", "mechclick");
-	LoadSound(config::MGE_SOUND_PATH + "Moving Statue.wav", "statue");
+
+	//LoadSound(config::MGE_SOUND_PATH + "Moving Statue.wav", "statue");
 //	EditSound("key", 25, true);
 
 	LoadSound(config::MGE_SOUND_PATH + "Pushing Block.wav", "pushingblock");
-	LoadSound(config::MGE_SOUND_PATH + "scream.wav", "scream");
 
 	LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
-	LoadSound(config::MGE_SOUND_PATH + "threatening sound.wav", "threating");
+
 
 	//NARRATIVE sounds
-	
+	LoadSound(config::MGE_SOUND_PATH + "Subtitles_01.wav", "Subtitles_01");
+
+	LoadSound(config::MGE_SOUND_PATH + "Finds Key.wav", "findkey");
+
+	LoadSound(config::MGE_SOUND_PATH + "Nice.wav", "Subtitles_04");
+
+	LoadSound(config::MGE_SOUND_PATH + "Intro HUB.wav", "intro");
+	LoadSound(config::MGE_SOUND_PATH + "Search Room.wav", "searchroom");
+	LoadSound(config::MGE_SOUND_PATH + "Cross Bridge LVL2.wav", "checkpoint_trigger_06");
+	LoadSound(config::MGE_SOUND_PATH + "That was close.wav", "close");
+	LoadSound(config::MGE_SOUND_PATH + "Nearby Ghost.wav", "checkpoint_trigger_03");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
+	//LoadSound(config::MGE_SOUND_PATH + "Tension Sound.wav", "tension");
 }
 
 Sound* SoundManager::_loadFromFile(std::string pFileName)

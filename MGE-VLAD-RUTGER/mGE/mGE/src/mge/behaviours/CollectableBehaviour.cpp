@@ -34,25 +34,18 @@ void CollectableBehaviour::OnCollision(Collision collision)
 	{
 		hit = true;
 
-		/*buffer;
-		if (!buffer.loadFromFile(config::MGE_SOUND_PATH + "victory.wav"))
-		{
-			std::cout << " cant load sound " << std::endl;
-		}
-
-		sound.setBuffer(buffer);
-		sound.play();*/
-		SoundManager::getInstance().PlaySound("coin");
-
 		std::cout << " Picked up " << std::endl;
-		if (_key) { 
+		if (_key) {
+			SoundManager::getInstance().PlaySound("key");
+			SoundManager::getInstance().PlaySound("findkey");
 			StatsHolder::addKey();
 		}
 		else {
+			SoundManager::getInstance().PlaySound("coin");
 			StatsHolder::increaseScore(1);
 		}
+
 		dynamic_cast<StaticGameObject*>(_owner)->deleteStaticObj();
 		delete dynamic_cast<StaticGameObject*>(_owner);
 	}
 }
-

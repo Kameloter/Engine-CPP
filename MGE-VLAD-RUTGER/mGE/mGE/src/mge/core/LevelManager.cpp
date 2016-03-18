@@ -285,6 +285,7 @@ void LevelManager::testUpdate()
 		if (Timer::now() > subStartTime + 5 && !s_1)
 		{
 			SubtitleManager::playSubtitle("HUB_01");
+			SoundManager::getInstance().PlaySound("intro");
 			subStartTime = Timer::now();
 			s_1 = true;
 
@@ -308,6 +309,7 @@ void LevelManager::testUpdate()
 
 		{
 			SubtitleManager::playSubtitle("HUB_02",sf::Color::White);
+			SoundManager::getInstance().PlaySound("searchroom");
 			subStartTime = Timer::now();
 			s_3 = true;
 		}
